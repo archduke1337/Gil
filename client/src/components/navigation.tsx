@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Gem } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoPath from "@assets/IMG-20250522-WA0006.jpg";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 
 export default function Navigation() {
   const [location] = useLocation();
@@ -14,7 +14,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <Link href="/">
             <div className="flex items-center space-x-3 cursor-pointer">
-              <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-1">
+              <div className="w-12 h-12 flex items-center justify-center">
                 <img 
                   src={logoPath} 
                   alt="GIL Logo" 

@@ -3,7 +3,7 @@ import { Shield, Gem, Search, Clock, Users, Star, Award, Microscope, FileCheck, 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/navigation";
-import logoPath from "@assets/IMG-20250522-WA0006.jpg";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 
 export default function Home() {
 
@@ -16,13 +16,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-40 h-40 mb-6">
-              <div className="w-32 h-32 bg-white rounded-full p-3 shadow-lg">
-                <img 
-                  src={logoPath} 
-                  alt="GIL - Gemological Institute Laboratories" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              <img 
+                src={logoPath} 
+                alt="GIL - Gemological Institute Laboratories" 
+                className="w-full h-full object-contain drop-shadow-lg"
+              />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Gemological Institute Laboratories
