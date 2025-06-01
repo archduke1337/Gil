@@ -16,7 +16,7 @@ const faqs = [
     id: 2,
     category: "Certificate Verification",
     question: "What if my certificate reference number is not found?",
-    answer: "If your reference number is not found, please verify that you've entered it correctly, including all dashes and letters. If the problem persists, contact our support team with your certificate details for assistance."
+    answer: "If your reference number is not found, please verify that you've entered it correctly, including all dashes and letters. Make sure to include any letters and hyphens exactly as they appear on your certificate."
   },
   {
     id: 3,
@@ -82,13 +82,13 @@ const faqs = [
     id: 13,
     category: "General",
     question: "How do I submit a diamond for grading?",
-    answer: "Please contact our customer service team for submission procedures. We provide secure shipping instructions and insurance options to ensure your diamond's safe transport to our laboratory."
+    answer: "We provide secure shipping instructions and insurance options to ensure your diamond's safe transport to our laboratory. Detailed submission procedures are available through our verification system."
   },
   {
     id: 14,
     category: "General",
     question: "What are your fees for grading services?",
-    answer: "Grading fees vary based on the size, type, and complexity of the evaluation required. Please contact us with details about your stone for a detailed quote."
+    answer: "Grading fees vary based on the size, type, and complexity of the evaluation required. Detailed pricing information is available through our verification system."
   },
   {
     id: 15,
