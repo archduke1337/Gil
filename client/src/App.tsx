@@ -5,6 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import About from "@/pages/about";
+import GemEncyclopedia from "@/pages/gem-encyclopedia";
+import AnalysisGrading from "@/pages/analysis-grading";
+import FAQs from "@/pages/faqs";
 import Admin from "@/pages/admin";
 import NotFound from "@/pages/not-found";
 
@@ -13,6 +16,9 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/gem-encyclopedia" component={GemEncyclopedia} />
+      <Route path="/analysis" component={AnalysisGrading} />
+      <Route path="/faqs" component={FAQs} />
       <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>

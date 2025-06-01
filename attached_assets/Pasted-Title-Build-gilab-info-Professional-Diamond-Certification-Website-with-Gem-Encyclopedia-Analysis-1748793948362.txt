@@ -1,0 +1,59 @@
+Title: Build gilab.info – Professional Diamond Certification Website with Gem Encyclopedia, Analysis & Grading, Report Check, FAQs, and Hidden Admin Panel
+
+Description:
+Create a sophisticated and modern website named gilab.info for Gemological Institute Laboratories (GIL), offering gemological services along with a secure, hidden admin panel for managing diamond reports.
+
+Features and Structure:
+
+Overall Design & Theme:
+Clean, elegant, and professional layout with a refined and trustworthy visual style.
+Use brand colors: primary #8c745c (warm brown-gold) and secondary #ece5dc (light beige), applying these with subtlety to create a luxurious and refined atmosphere.
+Employ modern, highly readable typography suitable for an authoritative gemological institute.
+Fully responsive design optimized for desktops, tablets, and smartphones.
+Navigation Bar (top, fixed or sticky):
+Menu items: Home | About Us | Gem Encyclopedia | Analysis & Grading | Report Check | FAQs
+The Admin Panel is intentionally excluded from the public navigation to remain hidden and accessible only via direct URL.
+Home Page:
+A prominent hero section with an impactful headline introducing Gilab as a leading gemological institute.
+Concise overview highlighting the institute’s expertise, trustworthiness, and the value of its services.
+Clear call-to-action button directing visitors to the Report Check page.
+About Us Page:
+Comprehensive content detailing Gilab’s history, mission, values, and professionalism in gemology.
+Use quality imagery or icons to complement the narrative and enhance engagement.
+Gem Encyclopedia Page:
+Rich informational section or searchable database providing detailed information about various gems and diamonds.
+Include educational content such as characteristics, history, and unique features of gems.
+Analysis & Grading Page:
+Detailed insights into the gemological analysis and grading processes performed by Gilab.
+Include descriptions, grading criteria, and visual aids or infographics explaining the grading standards.
+Report Check Page (formerly Certificate Verification):
+User-friendly form inviting customers to enter their diamond report reference number.
+Upon submission, display detailed report information and offer a secure link to view/download the report file (PDF or image).
+Clearly inform users if the report cannot be found.
+Use clean UI elements to enhance the user experience.
+FAQs Page:
+Frequently Asked Questions section addressing common inquiries about diamond certification, report verification, grading, and related services.
+Organize questions and answers in an easy-to-navigate format, such as collapsible accordions or a searchable list.
+Admin Panel (Hidden):
+Secure login page accessible exclusively via a direct URL (e.g., /admin).
+Post-login, an admin dashboard (/admin/dashboard) enabling:
+Uploads of diamond reports tied to unique reference numbers.
+Viewing of uploaded reports with relevant metadata (reference number, upload date).
+Validation to prevent duplicate reference numbers.
+Files securely stored on the server with accurate metadata tracking.
+Footer:
+Minimal, elegant footer containing links to Home, About Us, Gem Encyclopedia, Analysis & Grading, Report Check, and FAQs, along with copyright and contact details.
+Technical Specifications:
+
+Backend built with Node.js and Express framework.
+Use Multer middleware for handling file uploads securely.
+Store report files in a designated server directory; manage metadata in a JSON file or suitable storage.
+Render frontend pages using EJS templates or an equivalent templating engine for dynamic content.
+Apply the defined color palette consistently for cohesive branding and visual harmony.
+Follow responsive design and accessibility best practices across the site.
+Deliverables:
+
+Complete, polished Node.js Express application implementing all described features and design elements.
+Clear, concise instructions for running the application on Replit.
+A secure admin panel hidden from public navigation but fully functional via direct access.
+A refined user interface that conveys professionalism, trust, and expertise.

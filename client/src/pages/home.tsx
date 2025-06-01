@@ -37,9 +37,24 @@ export default function Home() {
                   About Us
                 </Button>
               </Link>
+              <Link href="/gem-encyclopedia">
+                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+                  Gem Encyclopedia
+                </Button>
+              </Link>
+              <Link href="/analysis">
+                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+                  Analysis & Grading
+                </Button>
+              </Link>
               <Button variant="ghost" className="text-primary border-b-2 border-primary">
-                Certificate Verification
+                Report Check
               </Button>
+              <Link href="/faqs">
+                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+                  FAQs
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -52,16 +67,21 @@ export default function Home() {
             <Shield className="w-10 h-10" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Welcome to GILab.info
+            Gemological Institute Laboratories
           </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Your trusted source for diamond certificate verification and gemological expertise
+          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
+            Leading provider of professional diamond certification, gemological analysis, and certificate verification services
           </p>
+          <Link href="#verification">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-3">
+              Verify Your Certificate
+            </Button>
+          </Link>
         </div>
       </div>
 
       {/* Verification Form Section */}
-      <div className="py-16 bg-white">
+      <div id="verification" className="py-16 bg-white">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-xl border border-border p-8">
             <div className="text-center mb-8">

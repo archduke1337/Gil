@@ -1,0 +1,396 @@
+import { Link } from "wouter";
+import { Gem, Microscope, Award, Target, Scale, Eye, CheckCircle, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+export default function AnalysisGrading() {
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
+                <Gem className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-foreground">GILab.info</h1>
+                <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Link href="/">
+                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+                  Home
+                </Button>
+              </Link>
+              <Link href="/about">
+                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+                  About Us
+                </Button>
+              </Link>
+              <Link href="/gem-encyclopedia">
+                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+                  Gem Encyclopedia
+                </Button>
+              </Link>
+              <Button variant="ghost" className="text-primary border-b-2 border-primary">
+                Analysis & Grading
+              </Button>
+              <Link href="/">
+                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+                  Report Check
+                </Button>
+              </Link>
+              <Link href="/faqs">
+                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+                  FAQs
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="gemological-gradient text-white py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
+            <Microscope className="w-10 h-10" />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Analysis & Grading Services
+          </h1>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            Professional gemological analysis using advanced instruments and internationally recognized grading standards
+          </p>
+        </div>
+      </div>
+
+      {/* Process Overview */}
+      <div className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Our Analysis Process</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Every gemstone undergoes rigorous examination using state-of-the-art equipment and expert evaluation
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Eye className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Initial Inspection</h3>
+              <p className="text-sm text-muted-foreground">
+                Visual examination to assess overall condition and identify key characteristics
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Microscope className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Microscopic Analysis</h3>
+              <p className="text-sm text-muted-foreground">
+                Detailed examination using high-powered microscopes to identify inclusions and treatments
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Scale className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Measurement</h3>
+              <p className="text-sm text-muted-foreground">
+                Precise measurements of dimensions, weight, and optical properties
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Award className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Final Grading</h3>
+              <p className="text-sm text-muted-foreground">
+                Comprehensive grading based on international standards and expert assessment
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Diamond Grading - 4Cs */}
+      <div className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Diamond Grading Standards</h2>
+            <p className="text-xl text-muted-foreground">
+              We follow the internationally recognized 4Cs system for diamond evaluation
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="border-border">
+              <CardContent className="p-8">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Scale className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-foreground">Carat Weight</h3>
+                    <p className="text-muted-foreground">Precise measurement of diamond size</p>
+                  </div>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Carat weight measures the actual weight of the diamond. One carat equals 0.2 grams or 200 milligrams. 
+                  We use certified precision scales accurate to 0.001 carats.
+                </p>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-foreground">Common sizes:</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-xs">
+                    <Badge variant="outline" className="border-border">0.25 ct</Badge>
+                    <Badge variant="outline" className="border-border">0.50 ct</Badge>
+                    <Badge variant="outline" className="border-border">1.00 ct</Badge>
+                    <Badge variant="outline" className="border-border">1.50 ct</Badge>
+                    <Badge variant="outline" className="border-border">2.00 ct</Badge>
+                    <Badge variant="outline" className="border-border">3.00+ ct</Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border">
+              <CardContent className="p-8">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Target className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-foreground">Cut Quality</h3>
+                    <p className="text-muted-foreground">Precision of diamond proportions</p>
+                  </div>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Cut quality determines how well a diamond reflects light, affecting its brilliance and fire. 
+                  We evaluate proportions, symmetry, and polish to determine overall cut grade.
+                </p>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-foreground">Cut grades:</span>
+                  </div>
+                  <div className="space-y-1 text-xs">
+                    <Badge variant="default" className="lab-bg-primary text-white mr-2">Excellent</Badge>
+                    <Badge variant="secondary" className="mr-2">Very Good</Badge>
+                    <Badge variant="outline" className="border-border mr-2">Good</Badge>
+                    <Badge variant="outline" className="border-border mr-2">Fair</Badge>
+                    <Badge variant="outline" className="border-border">Poor</Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border">
+              <CardContent className="p-8">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Star className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-foreground">Color Grade</h3>
+                    <p className="text-muted-foreground">Absence of color in white diamonds</p>
+                  </div>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Color grading evaluates the absence of color in white diamonds. The scale runs from D (colorless) 
+                  to Z (light yellow or brown). Grading is performed under controlled lighting conditions.
+                </p>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-foreground">Color scale:</span>
+                  </div>
+                  <div className="grid grid-cols-4 gap-1 text-xs">
+                    <Badge variant="default" className="lab-bg-primary text-white">D-F</Badge>
+                    <Badge variant="secondary" className="">G-J</Badge>
+                    <Badge variant="outline" className="border-border">K-M</Badge>
+                    <Badge variant="outline" className="border-border">N-Z</Badge>
+                  </div>
+                  <div className="grid grid-cols-4 gap-1 text-xs text-muted-foreground">
+                    <span>Colorless</span>
+                    <span>Near Colorless</span>
+                    <span>Faint Yellow</span>
+                    <span>Light Yellow</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border">
+              <CardContent className="p-8">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Eye className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-foreground">Clarity Grade</h3>
+                    <p className="text-muted-foreground">Internal and external characteristics</p>
+                  </div>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Clarity refers to the absence of inclusions and blemishes. We examine diamonds under 10x magnification 
+                  to identify and map any clarity characteristics.
+                </p>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-foreground">Clarity grades:</span>
+                  </div>
+                  <div className="space-y-1 text-xs">
+                    <Badge variant="default" className="lab-bg-primary text-white mr-2">FL</Badge>
+                    <Badge variant="default" className="lab-bg-primary text-white mr-2">IF</Badge>
+                    <Badge variant="secondary" className="mr-2">VVS1-VVS2</Badge>
+                    <Badge variant="secondary" className="mr-2">VS1-VS2</Badge>
+                    <Badge variant="outline" className="border-border mr-2">SI1-SI2</Badge>
+                    <Badge variant="outline" className="border-border">I1-I3</Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* Equipment and Technology */}
+      <div className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Advanced Equipment</h2>
+            <p className="text-xl text-muted-foreground">
+              Our laboratory is equipped with the latest gemological instruments
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-border">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Microscope className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">Gemological Microscopes</h3>
+                <p className="text-muted-foreground">
+                  High-powered binocular microscopes with darkfield illumination for detailed inclusion analysis and identification.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Target className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">Spectroscopy Equipment</h3>
+                <p className="text-muted-foreground">
+                  FTIR and UV-Vis spectroscopy for identifying treatments, synthetic materials, and origin determination.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Scale className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">Precision Instruments</h3>
+                <p className="text-muted-foreground">
+                  Calibrated carat scales, proportion analyzers, and photogoniometers for accurate measurements.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* Certification Standards */}
+      <div className="py-16 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-foreground mb-4">Certification Standards</h2>
+          <p className="text-xl text-muted-foreground mb-8">
+            Our reports meet international gemological standards and are recognized worldwide
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="border-border">
+              <CardContent className="p-6">
+                <CheckCircle className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-3">International Standards</h3>
+                <p className="text-muted-foreground">
+                  All our grading follows internationally recognized standards established by leading gemological institutes.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border">
+              <CardContent className="p-6">
+                <Award className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-3">Certified Gemologists</h3>
+                <p className="text-muted-foreground">
+                  Our team consists of certified gemologists with extensive training and experience in diamond grading.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
+                  <Gem className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold lab-primary">GILab</h1>
+                  <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground mb-4 max-w-md">
+                Professional gemological analysis and certification services using advanced equipment and expert knowledge.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">Navigation</h4>
+              <ul className="space-y-2 text-muted-foreground">
+                <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
+                <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
+                <li><Link href="/gem-encyclopedia" className="hover:text-primary transition-colors">Gem Encyclopedia</Link></li>
+                <li><Link href="/analysis" className="hover:text-primary transition-colors">Analysis & Grading</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">Services</h4>
+              <ul className="space-y-2 text-muted-foreground">
+                <li><Link href="/" className="hover:text-primary transition-colors">Report Check</Link></li>
+                <li><Link href="/faqs" className="hover:text-primary transition-colors">FAQs</Link></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Contact Us</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Support</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
+            <p>&copy; 2024 Gemological Institute Laboratories. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
