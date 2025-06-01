@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
+import Verify from "@/pages/verify";
 import About from "@/pages/about";
 import GemEncyclopedia from "@/pages/gem-encyclopedia";
 import AnalysisGrading from "@/pages/analysis-grading";
@@ -15,6 +16,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/verify" component={Verify} />
       <Route path="/about" component={About} />
       <Route path="/gem-encyclopedia" component={GemEncyclopedia} />
       <Route path="/analysis" component={AnalysisGrading} />

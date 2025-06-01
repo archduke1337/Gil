@@ -1,128 +1,129 @@
-import { useState } from "react";
 import { Link } from "wouter";
-import { Shield, Gem, Search, Clock, Users, Star } from "lucide-react";
-import VerificationForm from "@/components/verification-form";
-import CertificateResult from "@/components/certificate-result";
+import { Shield, Gem, Search, Clock, Users, Star, Award, Microscope, FileCheck, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import type { Certificate } from "@shared/schema";
 
 export default function Home() {
-  const [verificationResult, setVerificationResult] = useState<{
-    certificate: Certificate | null;
-    found: boolean;
-  } | null>(null);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
-                <Gem className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground">GILab.info</h1>
-                <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
-              </div>
+
+      {/* Hero Section */}
+      <div className="gemological-gradient text-white py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-white/20 rounded-full mb-6">
+              <Gem className="w-12 h-12" />
             </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" className="text-primary border-b-2 border-primary">
-                Home
-              </Button>
-              <Link href="/about">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  About Us
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Gemological Institute Laboratories
+            </h1>
+            <p className="text-2xl text-white/90 max-w-4xl mx-auto mb-8">
+              World-class diamond certification and gemological services since 1987
+            </p>
+            <p className="text-lg text-white/80 max-w-3xl mx-auto mb-10">
+              Trusted by over 50,000+ jewelers, retailers, and collectors worldwide for accurate, 
+              reliable gemstone analysis and certification services.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/verify">
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-4">
+                  <FileCheck className="w-5 h-5 mr-2" />
+                  Verify Certificate
                 </Button>
               </Link>
               <Link href="/gem-encyclopedia">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Gem Encyclopedia
-                </Button>
-              </Link>
-              <Link href="/analysis">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Analysis & Grading
-                </Button>
-              </Link>
-              <Button variant="ghost" className="text-primary border-b-2 border-primary">
-                Report Check
-              </Button>
-              <Link href="/faqs">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  FAQs
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4">
+                  <Search className="w-5 h-5 mr-2" />
+                  Explore Gems
                 </Button>
               </Link>
             </div>
           </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <div className="gemological-gradient text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
-            <Shield className="w-10 h-10" />
+          
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-bold mb-2">50,000+</div>
+              <div className="text-white/80">Certificates Issued</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">37+</div>
+              <div className="text-white/80">Years Experience</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">500+</div>
+              <div className="text-white/80">Trained Gemologists</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">99.9%</div>
+              <div className="text-white/80">Accuracy Rate</div>
+            </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Gemological Institute Laboratories
-          </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
-            Leading provider of professional diamond certification, gemological analysis, and certificate verification services
-          </p>
-          <Link href="#verification">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-3">
-              Verify Your Certificate
-            </Button>
-          </Link>
         </div>
       </div>
 
-      {/* Verification Form Section */}
-      <div id="verification" className="py-16 bg-white">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-xl border border-border p-8">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-foreground mb-2">Enter Certificate Reference</h2>
-              <p className="text-muted-foreground">Input your diamond certificate reference number to view details</p>
-            </div>
+      {/* Services Overview */}
+      <div className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-foreground mb-4">Our Services</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Comprehensive gemological services backed by cutting-edge technology and decades of expertise
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="text-center border-border hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Microscope className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">Diamond Grading</h3>
+                <p className="text-muted-foreground">
+                  Complete 4Cs analysis using advanced spectroscopic equipment and certified expertise.
+                </p>
+              </CardContent>
+            </Card>
             
-            <VerificationForm onResult={setVerificationResult} />
-
-            {/* Sample Reference Numbers */}
-            <div className="mt-8 p-4 bg-background rounded-lg">
-              <h3 className="text-sm font-medium text-foreground mb-2">Sample Reference Numbers for Testing:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-                <button 
-                  className="text-left p-2 hover:bg-white rounded cursor-pointer transition-colors"
-                  onClick={() => {
-                    const input = document.querySelector('input[name="referenceNumber"]') as HTMLInputElement;
-                    if (input) input.value = 'GIL-2024-001234';
-                  }}
-                >
-                  <code className="text-primary">GIL-2024-001234</code>
-                </button>
-                <button 
-                  className="text-left p-2 hover:bg-white rounded cursor-pointer transition-colors"
-                  onClick={() => {
-                    const input = document.querySelector('input[name="referenceNumber"]') as HTMLInputElement;
-                    if (input) input.value = 'GIL-2024-005678';
-                  }}
-                >
-                  <code className="text-primary">GIL-2024-005678</code>
-                </button>
-              </div>
-            </div>
+            <Card className="text-center border-border hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">Certificate Verification</h3>
+                <p className="text-muted-foreground">
+                  Secure online verification system for instant certificate authenticity checks.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center border-border hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Search className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">Gemstone Analysis</h3>
+                <p className="text-muted-foreground">
+                  Comprehensive identification and evaluation of precious and semi-precious stones.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center border-border hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">Appraisal Services</h3>
+                <p className="text-muted-foreground">
+                  Professional valuation reports for insurance, estate, and retail purposes.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
-
-      {/* Certificate Results */}
-      {verificationResult && (
-        <CertificateResult result={verificationResult} />
-      )}
 
       {/* Features Section */}
       <div className="py-16 bg-background">
