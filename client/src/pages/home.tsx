@@ -15,12 +15,14 @@ export default function Home() {
       <div className="gemological-gradient text-white py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-32 h-32 bg-white/10 rounded-full mb-6 p-4">
-              <img 
-                src={logoPath} 
-                alt="GIL - Gemological Institute Laboratories" 
-                className="w-full h-full object-contain"
-              />
+            <div className="inline-flex items-center justify-center w-40 h-40 mb-6">
+              <div className="w-32 h-32 bg-white rounded-full p-3 shadow-lg">
+                <img 
+                  src={logoPath} 
+                  alt="GIL - Gemological Institute Laboratories" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Gemological Institute Laboratories
