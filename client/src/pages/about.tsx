@@ -15,7 +15,7 @@ export default function About() {
                 <Gem className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">GILab.info</h1>
+                <h1 className="text-xl font-bold text-foreground">GIL</h1>
                 <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
               </div>
             </div>
@@ -60,15 +60,15 @@ export default function About() {
             <h2 className="text-3xl font-bold text-foreground mb-4">Our Story</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Founded with a mission to bring transparency and trust to the diamond industry, 
-              GILab has become a respected authority in gemological certification.
+              GIL has become a respected authority in gemological certification.
             </p>
           </div>
           
           <div className="prose prose-lg max-w-none text-foreground">
             <p className="mb-6">
-              Gemological Institute Laboratories (GILab) was established by a team of certified gemologists 
+              Gemological Institute Laboratories (GIL) was established by a team of certified gemologists 
               who recognized the need for accurate, reliable, and accessible diamond certification services. 
-              Our founders, with decades of combined experience in the jewelry industry, built GILab on the 
+              Our founders, with decades of combined experience in the jewelry industry, built GIL on the 
               principles of scientific rigor, ethical practices, and customer service excellence.
             </p>
             
@@ -80,7 +80,7 @@ export default function About() {
             </p>
             
             <p>
-              Today, GILab certificates are trusted by jewelers, retailers, and consumers worldwide. 
+              Today, GIL certificates are trusted by jewelers, retailers, and consumers worldwide. 
               Our digital verification system ensures that our certificates remain secure, accessible, 
               and tamper-proof, providing peace of mind for diamond owners everywhere.
             </p>
@@ -252,7 +252,7 @@ export default function About() {
                   <Gem className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold lab-primary">GILab</h1>
+                  <h1 className="text-xl font-bold lab-primary">GIL</h1>
                   <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
                 </div>
               </div>
@@ -262,7 +262,7 @@ export default function About() {
               </p>
               <div className="flex items-center space-x-4">
                 <span className="text-primary">✉</span>
-                <span className="text-muted-foreground">info@gilab.info</span>
+                <span className="text-muted-foreground">info@gil.info</span>
               </div>
             </div>
             

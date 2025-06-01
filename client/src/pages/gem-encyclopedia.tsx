@@ -335,7 +335,7 @@ export default function GemEncyclopedia() {
                   <Gem className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold lab-primary">GILab</h1>
+                  <h1 className="text-xl font-bold lab-primary">GIL</h1>
                   <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
                 </div>
               </div>
