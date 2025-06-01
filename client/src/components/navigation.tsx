@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Gem } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoPath from "@assets/IMG-20250522-WA0006.jpg";
 
 export default function Navigation() {
   const [location] = useLocation();
@@ -13,8 +14,12 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <Link href="/">
             <div className="flex items-center space-x-3 cursor-pointer">
-              <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
-                <Gem className="w-5 h-5 text-white" />
+              <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-1">
+                <img 
+                  src={logoPath} 
+                  alt="GIL Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-foreground">GIL</h1>
