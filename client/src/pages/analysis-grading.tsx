@@ -162,8 +162,10 @@ export default function AnalysisGrading() {
             <Card className="border-border">
               <CardContent className="p-8">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Scale className="w-6 h-6 text-primary" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12">
+                      <CaratDiagramSVG />
+                    </div>
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-foreground">Carat Weight</h3>
@@ -193,8 +195,10 @@ export default function AnalysisGrading() {
             <Card className="border-border">
               <CardContent className="p-8">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Target className="w-6 h-6 text-primary" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12">
+                      <CutDiagramSVG />
+                    </div>
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-foreground">Cut Quality</h3>
@@ -223,8 +227,10 @@ export default function AnalysisGrading() {
             <Card className="border-border">
               <CardContent className="p-8">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Star className="w-6 h-6 text-primary" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12">
+                      <ColorDiagramSVG />
+                    </div>
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-foreground">Color Grade</h3>
@@ -258,8 +264,10 @@ export default function AnalysisGrading() {
             <Card className="border-border">
               <CardContent className="p-8">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Eye className="w-6 h-6 text-primary" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12">
+                      <ClarityDiagramSVG />
+                    </div>
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-foreground">Clarity Grade</h3>
