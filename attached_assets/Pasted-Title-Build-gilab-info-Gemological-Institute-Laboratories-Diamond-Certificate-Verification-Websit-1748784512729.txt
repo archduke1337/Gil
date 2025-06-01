@@ -1,0 +1,33 @@
+Title: Build gilab.info - Gemological Institute Laboratories Diamond Certificate Verification Website with Admin Upload Panel
+
+Description: Create a modern, professional website named gilab.info for Gemological Institute Laboratories (GILab), a diamond lab verification service. The website must include:
+
+Public Verification Page:
+A clean, user-friendly page where customers can enter their diamond certificate reference number.
+Upon submission, the site displays the diamond certificate details and provides a download/view link to the certificate (PDF or image).
+If the reference number is not found, show a clear "Certificate not found" message.
+Admin Panel:
+Secure login page for the admin (use a fixed username/password for simplicity).
+After login, an admin dashboard to upload diamond certificates.
+Admin can input a unique reference number, upload the certificate file, and submit.
+Uploaded certificates are saved with the reference number for later retrieval.
+Admin sees a list of uploaded certificates with their reference numbers and upload dates.
+Technical Requirements:
+
+Use Node.js with Express framework to build the backend.
+Use Multer middleware for handling file uploads.
+Store uploaded certificate files in a dedicated directory on the server.
+Store metadata (reference number, filename, upload timestamp) in a JSON file or in-memory store.
+Serve a public endpoint to allow verification of certificates by reference number.
+Implement minimal frontend using EJS or plain HTML/CSS/JS for simplicity.
+Style the site professionally with a modern look (nice fonts, colors matching a gemological theme).
+Bonus:
+
+Responsive design that works well on mobile and desktop.
+Validation on admin form to ensure unique reference numbers.
+Deliverables:
+
+Fully functional Node.js Express app.
+Public route "/" for verification input.
+Admin routes "/admin" for login and "/admin/dashboard" for uploads and listing.
+Clear instructions on how to run the project on Replit.
