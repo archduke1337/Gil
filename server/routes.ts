@@ -24,7 +24,13 @@ const upload = multer({
   },
   fileFilter: (req: any, file: any, cb: any) => {
     const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
-    if (allowedTypes.includes(file.mimetype)) {
+    const fileExtension = file.originalname?.toLowerCase();
+    
+    if (allowedTypes.includes(file.mimetype) || 
+        fileExtension?.endsWith('.pdf') || 
+        fileExtension?.endsWith('.jpg') || 
+        fileExtension?.endsWith('.jpeg') || 
+        fileExtension?.endsWith('.png')) {
       cb(null, true);
     } else {
       cb(new Error('Invalid file type. Only PDF, JPG, and PNG files are allowed.'));

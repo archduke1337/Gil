@@ -39,6 +39,9 @@ export class MemStorage implements IStorage {
     
     // Load existing certificates from file
     this.loadCertificates();
+    
+    // Add sample certificates if none exist
+    this.initializeSampleData().catch(console.error);
   }
 
   private loadCertificates(): void {
@@ -73,6 +76,41 @@ export class MemStorage implements IStorage {
       fs.writeFileSync(this.certificatesFile, JSON.stringify(data, null, 2));
     } catch (error) {
       console.error('Error saving certificates:', error);
+    }
+  }
+
+  private async initializeSampleData(): Promise<void> {
+    if (this.certificates.size === 0) {
+      // Add sample certificates for demonstration
+      await this.createCertificate({
+        referenceNumber: 'GIL-2024-001234',
+        filename: 'sample-diamond-cert-1.pdf',
+        caratWeight: '1.52',
+        colorGrade: 'G',
+        clarityGrade: 'VS1',
+        cutGrade: 'Excellent',
+        issueDate: new Date('2024-01-15'),
+      });
+
+      await this.createCertificate({
+        referenceNumber: 'GIL-2024-005678',
+        filename: 'sample-diamond-cert-2.pdf',
+        caratWeight: '2.08',
+        colorGrade: 'F',
+        clarityGrade: 'VVS2',
+        cutGrade: 'Excellent',
+        issueDate: new Date('2024-02-20'),
+      });
+
+      await this.createCertificate({
+        referenceNumber: 'GIL-2024-009999',
+        filename: 'sample-diamond-cert-3.pdf',
+        caratWeight: '0.75',
+        colorGrade: 'H',
+        clarityGrade: 'SI1',
+        cutGrade: 'Very Good',
+        issueDate: new Date('2024-03-10'),
+      });
     }
   }
 
