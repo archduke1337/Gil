@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertCertificateSchema } from "@shared/schema";
@@ -6,6 +6,10 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import { z } from "zod";
+
+interface MulterRequest extends Request {
+  file?: Express.Multer.File;
+}
 
 // Configure multer for file uploads
 const uploadsDir = path.join(process.cwd(), 'uploads');
@@ -18,7 +22,7 @@ const upload = multer({
   limits: {
     fileSize: 10 * 1024 * 1024, // 10MB limit
   },
-  fileFilter: (req, file, cb) => {
+  fileFilter: (req: any, file: any, cb: any) => {
     const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
     if (allowedTypes.includes(file.mimetype)) {
       cb(null, true);
@@ -98,8 +102,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Upload certificate endpoint
-  app.post("/api/certificates/upload", upload.single('certificateFile'), async (req, res) => {
-    try {{
+  app.post("/api/certificates/upload", upload.single('certificateFile'), async (req: MulterRequest, res) => {
+    try {
       if (!req.file) {
         return res.status(400).json({ message: "Certificate file is required" });
       }

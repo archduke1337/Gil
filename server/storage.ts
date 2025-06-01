@@ -85,10 +85,15 @@ export class MemStorage implements IStorage {
   async createCertificate(insertCertificate: InsertCertificate): Promise<Certificate> {
     const id = this.currentCertificateId++;
     const certificate: Certificate = {
-      ...insertCertificate,
       id,
-      uploadDate: new Date(),
+      referenceNumber: insertCertificate.referenceNumber,
+      filename: insertCertificate.filename,
+      caratWeight: insertCertificate.caratWeight || null,
+      colorGrade: insertCertificate.colorGrade || null,
+      clarityGrade: insertCertificate.clarityGrade || null,
+      cutGrade: insertCertificate.cutGrade || null,
       issueDate: insertCertificate.issueDate || new Date(),
+      uploadDate: new Date(),
       isActive: true,
     };
     
@@ -100,7 +105,11 @@ export class MemStorage implements IStorage {
   async getAllCertificates(): Promise<Certificate[]> {
     return Array.from(this.certificates.values())
       .filter(cert => cert.isActive)
-      .sort((a, b) => b.uploadDate.getTime() - a.uploadDate.getTime());
+      .sort((a, b) => {
+        const bTime = b.uploadDate ? b.uploadDate.getTime() : 0;
+        const aTime = a.uploadDate ? a.uploadDate.getTime() : 0;
+        return bTime - aTime;
+      });
   }
 
   async deleteCertificate(id: number): Promise<boolean> {
