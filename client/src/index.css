@@ -5,25 +5,25 @@
 @tailwind utilities;
 
 :root {
-  --background: 210 11% 98%; /* #F8FAFC */
-  --foreground: 222 84% 5%; /* #0F172A */
-  --muted: 210 40% 96%; /* #F1F5F9 */
-  --muted-foreground: 215 16% 47%; /* #64748B */
+  --background: 32 28% 91%; /* #ECE5DC - light beige background */
+  --foreground: 32 28% 20%; /* #2C2519 - dark brown text */
+  --muted: 32 28% 85%; /* #DDD5CA - muted beige */
+  --muted-foreground: 32 28% 35%; /* #4A3E31 - muted brown text */
   --popover: 0 0% 100%; /* #FFFFFF */
-  --popover-foreground: 222 84% 5%; /* #0F172A */
+  --popover-foreground: 32 28% 20%; /* #2C2519 */
   --card: 0 0% 100%; /* #FFFFFF */
-  --card-foreground: 222 84% 5%; /* #0F172A */
-  --border: 214 32% 91%; /* #E2E8F0 */
-  --input: 214 32% 91%; /* #E2E8F0 */
-  --primary: 221 83% 53%; /* #3B82F6 */
-  --primary-foreground: 210 40% 98%; /* #F8FAFC */
-  --secondary: 210 40% 96%; /* #F1F5F9 */
-  --secondary-foreground: 222 84% 5%; /* #0F172A */
-  --accent: 210 40% 96%; /* #F1F5F9 */
-  --accent-foreground: 222 84% 5%; /* #0F172A */
+  --card-foreground: 32 28% 20%; /* #2C2519 */
+  --border: 32 28% 80%; /* #CFC5B8 - light brown border */
+  --input: 32 28% 85%; /* #DDD5CA - input background */
+  --primary: 32 28% 55%; /* #8C745C - warm brownish gold */
+  --primary-foreground: 32 28% 95%; /* #F5F2EE - light text on primary */
+  --secondary: 32 28% 85%; /* #DDD5CA - secondary beige */
+  --secondary-foreground: 32 28% 20%; /* #2C2519 - dark text on secondary */
+  --accent: 32 28% 80%; /* #CFC5B8 - accent color */
+  --accent-foreground: 32 28% 20%; /* #2C2519 */
   --destructive: 0 84% 60%; /* #EF4444 */
-  --destructive-foreground: 210 40% 98%; /* #F8FAFC */
-  --ring: 221 83% 53%; /* #3B82F6 */
+  --destructive-foreground: 32 28% 95%; /* #F5F2EE */
+  --ring: 32 28% 55%; /* #8C745C - ring color matching primary */
   --radius: 0.5rem;
 }
 
@@ -65,20 +65,28 @@
 }
 
 @layer components {
-  .lab-blue {
-    @apply text-blue-700;
+  .lab-primary {
+    color: #8c745c;
   }
   
-  .lab-bg-blue {
-    @apply bg-blue-700;
+  .lab-bg-primary {
+    background-color: #8c745c;
   }
   
-  .lab-border-blue {
-    @apply border-blue-700;
+  .lab-border-primary {
+    border-color: #8c745c;
+  }
+  
+  .lab-secondary {
+    color: #ece5dc;
+  }
+  
+  .lab-bg-secondary {
+    background-color: #ece5dc;
   }
   
   .gemological-gradient {
-    @apply bg-gradient-to-br from-blue-700 to-blue-500;
+    background: linear-gradient(135deg, #8c745c 0%, #a68b73 100%);
   }
   
   .diamond-shadow {
@@ -86,7 +94,7 @@
   }
   
   .certificate-card {
-    @apply bg-white rounded-2xl shadow-xl border border-gray-100 p-8;
+    @apply bg-white rounded-2xl shadow-xl border border-primary p-8;
   }
 }
 
