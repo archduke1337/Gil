@@ -360,7 +360,6 @@ export default function GemEncyclopedia() {
               <ul className="space-y-2 text-muted-foreground">
                 <li><Link href="/" className="hover:text-primary transition-colors">Report Check</Link></li>
                 <li><Link href="/faqs" className="hover:text-primary transition-colors">FAQs</Link></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Contact Us</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Support</a></li>
               </ul>
             </div>

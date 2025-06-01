@@ -206,10 +206,7 @@ export default function Home() {
                 Leading provider of diamond certification and verification services. 
                 Trusted by jewelers, retailers, and consumers worldwide.
               </p>
-              <div className="flex items-center space-x-4">
-                <span className="text-primary">✉</span>
-                <span className="text-muted-foreground">info@gil.info</span>
-              </div>
+
             </div>
             
             <div>
@@ -226,7 +223,6 @@ export default function Home() {
               <h4 className="font-semibold text-foreground mb-4">Support</h4>
               <ul className="space-y-2 text-muted-foreground">
                 <li><a href="#" className="hover:text-primary transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Contact Us</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
               </ul>

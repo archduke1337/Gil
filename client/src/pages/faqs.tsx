@@ -264,39 +264,7 @@ export default function FAQs() {
         </div>
       </div>
 
-      {/* Contact Section */}
-      <div className="py-16 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">Still Have Questions?</h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Our expert team is here to help with any additional questions about our services
-          </p>
-          
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <Card className="border-border">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary">📧</span>
-                </div>
-                <h3 className="font-semibold text-foreground mb-2">Email Support</h3>
-                <p className="text-muted-foreground mb-3">Get detailed answers to your questions</p>
-                <p className="text-sm text-primary">support@gilab.info</p>
-              </CardContent>
-            </Card>
 
-            <Card className="border-border">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary">📞</span>
-                </div>
-                <h3 className="font-semibold text-foreground mb-2">Phone Support</h3>
-                <p className="text-muted-foreground mb-3">Speak directly with our experts</p>
-                <p className="text-sm text-primary">+1 (555) 123-4567</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
 
       {/* Footer */}
       <footer className="bg-white border-t border-border">
@@ -332,7 +300,6 @@ export default function FAQs() {
               <ul className="space-y-2 text-muted-foreground">
                 <li><Link href="/" className="hover:text-primary transition-colors">Report Check</Link></li>
                 <li><Link href="/faqs" className="hover:text-primary transition-colors">FAQs</Link></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Contact Us</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Support</a></li>
               </ul>
             </div>
