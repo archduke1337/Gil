@@ -187,7 +187,7 @@ export default function Home() {
                   <Gem className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold lab-primary">GILab</h1>
+                  <h1 className="text-xl font-bold lab-primary">GIL</h1>
                   <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
                 </div>
               </div>
@@ -197,7 +197,7 @@ export default function Home() {
               </p>
               <div className="flex items-center space-x-4">
                 <span className="text-primary">✉</span>
-                <span className="text-muted-foreground">info@gilab.info</span>
+                <span className="text-muted-foreground">info@gil.info</span>
               </div>
             </div>
             
