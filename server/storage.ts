@@ -24,8 +24,12 @@ export class DatabaseStorage implements IStorage {
       fs.mkdirSync(uploadsDir, { recursive: true });
     }
 
-    // Initialize with default admin
-    this.initializeDefaultAdmin().catch(console.error);
+    // Initialize with default admin - with delay to ensure database is ready
+    setTimeout(() => {
+      this.initializeDefaultAdmin().catch(error => {
+        console.error('Error initializing default admin:', error);
+      });
+    }, 1000);
   }
 
   private async initializeDefaultAdmin(): Promise<void> {
