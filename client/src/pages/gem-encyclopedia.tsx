@@ -5,6 +5,64 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Navigation from "@/components/navigation";
+
+// SVG Components for Gemstones
+const DiamondSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <defs>
+      <linearGradient id="diamondGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style={{stopColor:"#ffffff", stopOpacity:0.9}} />
+        <stop offset="50%" style={{stopColor:"#e3f2fd", stopOpacity:0.7}} />
+        <stop offset="100%" style={{stopColor:"#bbdefb", stopOpacity:0.8}} />
+      </linearGradient>
+    </defs>
+    <polygon points="50,10 70,35 50,90 30,35" fill="url(#diamondGradient)" stroke="#1976d2" strokeWidth="1"/>
+    <polygon points="50,10 60,25 50,40 40,25" fill="#ffffff" opacity="0.6"/>
+  </svg>
+);
+
+const RubySVG = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <defs>
+      <linearGradient id="rubyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style={{stopColor:"#ff5252", stopOpacity:0.9}} />
+        <stop offset="50%" style={{stopColor:"#d32f2f", stopOpacity:0.8}} />
+        <stop offset="100%" style={{stopColor:"#b71c1c", stopOpacity:0.9}} />
+      </linearGradient>
+    </defs>
+    <ellipse cx="50" cy="50" rx="35" ry="40" fill="url(#rubyGradient)" stroke="#b71c1c" strokeWidth="1"/>
+    <ellipse cx="45" cy="35" rx="10" ry="15" fill="#ff8a80" opacity="0.6"/>
+  </svg>
+);
+
+const SapphireSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <defs>
+      <linearGradient id="sapphireGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style={{stopColor:"#3f51b5", stopOpacity:0.9}} />
+        <stop offset="50%" style={{stopColor:"#1a237e", stopOpacity:0.8}} />
+        <stop offset="100%" style={{stopColor:"#0d47a1", stopOpacity:0.9}} />
+      </linearGradient>
+    </defs>
+    <polygon points="50,15 75,40 60,85 40,85 25,40" fill="url(#sapphireGradient)" stroke="#1a237e" strokeWidth="1"/>
+    <polygon points="50,15 65,30 50,45 35,30" fill="#7986cb" opacity="0.5"/>
+  </svg>
+);
+
+const EmeraldSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full">
+    <defs>
+      <linearGradient id="emeraldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style={{stopColor:"#4caf50", stopOpacity:0.9}} />
+        <stop offset="50%" style={{stopColor:"#2e7d32", stopOpacity:0.8}} />
+        <stop offset="100%" style={{stopColor:"#1b5e20", stopOpacity:0.9}} />
+      </linearGradient>
+    </defs>
+    <rect x="25" y="20" width="50" height="60" rx="5" fill="url(#emeraldGradient)" stroke="#2e7d32" strokeWidth="1"/>
+    <rect x="30" y="25" width="15" height="20" fill="#81c784" opacity="0.6"/>
+  </svg>
+);
 
 const gemstones = [
   {
@@ -16,7 +74,7 @@ const gemstones = [
     description: "The hardest natural substance known, diamonds are prized for their brilliance and fire. Formed deep within the Earth under extreme pressure and temperature.",
     characteristics: ["Exceptional hardness", "High refractive index", "Superior brilliance", "Excellent thermal conductivity"],
     colors: ["Colorless", "Yellow", "Brown", "Blue", "Pink", "Green", "Red", "Black"],
-    icon: Diamond
+    icon: DiamondSVG
   },
   {
     id: 2,
@@ -27,7 +85,7 @@ const gemstones = [
     description: "The red variety of corundum, rubies are among the most valuable colored gemstones. The finest rubies display a pure red color with excellent clarity.",
     characteristics: ["Vivid red color", "Excellent hardness", "High brilliance", "Pleochroism"],
     colors: ["Pink-red", "Blood red", "Purplish red"],
-    icon: Crown
+    icon: RubySVG
   },
   {
     id: 3,
@@ -38,7 +96,7 @@ const gemstones = [
     description: "All non-red varieties of corundum are called sapphires. Blue sapphires are most famous, but they occur in many colors including yellow, pink, and white.",
     characteristics: ["Exceptional hardness", "Excellent clarity", "Vivid colors", "Strong pleochroism"],
     colors: ["Blue", "Yellow", "Pink", "White", "Orange", "Green", "Purple"],
-    icon: Sparkles
+    icon: SapphireSVG
   },
   {
     id: 4,
@@ -49,7 +107,7 @@ const gemstones = [
     description: "The green variety of beryl, emeralds are valued for their intense green color. Most emeralds contain inclusions, which are considered part of their character.",
     characteristics: ["Intense green color", "Natural inclusions", "Moderate hardness", "Hexagonal crystals"],
     colors: ["Light green", "Deep green", "Bluish green"],
-    icon: Star
+    icon: EmeraldSVG
   },
   {
     id: 5,
@@ -90,52 +148,7 @@ export default function GemEncyclopedia() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
-                <Gem className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground">GILab.info</h1>
-                <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link href="/">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Home
-                </Button>
-              </Link>
-              <Link href="/about">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  About Us
-                </Button>
-              </Link>
-              <Button variant="ghost" className="text-primary border-b-2 border-primary">
-                Gem Encyclopedia
-              </Button>
-              <Link href="/analysis">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Analysis & Grading
-                </Button>
-              </Link>
-              <Link href="/">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Report Check
-                </Button>
-              </Link>
-              <Link href="/faqs">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  FAQs
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <div className="gemological-gradient text-white py-16">
@@ -193,8 +206,10 @@ export default function GemEncyclopedia() {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                          <IconComponent className="w-6 h-6 text-primary" />
+                        <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl flex items-center justify-center shadow-inner">
+                          <div className="w-10 h-10">
+                            <IconComponent />
+                          </div>
                         </div>
                         <div>
                           <h3 className="text-xl font-semibold text-foreground">{gem.name}</h3>

@@ -3,56 +3,81 @@ import { Gem, Microscope, Award, Target, Scale, Eye, CheckCircle, Star } from "l
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Navigation from "@/components/navigation";
+
+// SVG Components for the 4Cs
+const CutDiagramSVG = () => (
+  <svg viewBox="0 0 120 120" className="w-full h-full">
+    <defs>
+      <linearGradient id="cutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style={{stopColor:"#f3e5f5", stopOpacity:1}} />
+        <stop offset="50%" style={{stopColor:"#e1bee7", stopOpacity:1}} />
+        <stop offset="100%" style={{stopColor:"#ce93d8", stopOpacity:1}} />
+      </linearGradient>
+    </defs>
+    <polygon points="60,20 85,50 60,100 35,50" fill="url(#cutGradient)" stroke="#8e24aa" strokeWidth="2"/>
+    <line x1="60" y1="20" x2="60" y2="50" stroke="#8e24aa" strokeWidth="1"/>
+    <line x1="35" y1="50" x2="85" y2="50" stroke="#8e24aa" strokeWidth="1"/>
+    <line x1="60" y1="50" x2="60" y2="100" stroke="#8e24aa" strokeWidth="1"/>
+    <circle cx="60" cy="35" r="3" fill="#ffffff"/>
+  </svg>
+);
+
+const ClarityDiagramSVG = () => (
+  <svg viewBox="0 0 120 120" className="w-full h-full">
+    <defs>
+      <radialGradient id="clarityGradient" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" style={{stopColor:"#ffffff", stopOpacity:0.9}} />
+        <stop offset="70%" style={{stopColor:"#e3f2fd", stopOpacity:0.7}} />
+        <stop offset="100%" style={{stopColor:"#bbdefb", stopOpacity:0.8}} />
+      </radialGradient>
+    </defs>
+    <circle cx="60" cy="60" r="40" fill="url(#clarityGradient)" stroke="#1976d2" strokeWidth="2"/>
+    <circle cx="55" cy="50" r="2" fill="#ffab40" opacity="0.7"/>
+    <circle cx="70" cy="65" r="1.5" fill="#ff7043" opacity="0.6"/>
+    <text x="60" y="95" textAnchor="middle" fontSize="10" fill="#1976d2">FL-IF</text>
+  </svg>
+);
+
+const ColorDiagramSVG = () => (
+  <svg viewBox="0 0 120 120" className="w-full h-full">
+    <defs>
+      <linearGradient id="colorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style={{stopColor:"#ffffff", stopOpacity:1}} />
+        <stop offset="30%" style={{stopColor:"#fff9c4", stopOpacity:1}} />
+        <stop offset="60%" style={{stopColor:"#fff176", stopOpacity:1}} />
+        <stop offset="100%" style={{stopColor:"#ffc107", stopOpacity:1}} />
+      </linearGradient>
+    </defs>
+    <rect x="20" y="40" width="80" height="40" fill="url(#colorGradient)" stroke="#f57c00" strokeWidth="2" rx="5"/>
+    <text x="30" y="55" fontSize="8" fill="#333">D</text>
+    <text x="50" y="55" fontSize="8" fill="#333">G</text>
+    <text x="70" y="55" fontSize="8" fill="#333">J</text>
+    <text x="90" y="55" fontSize="8" fill="#333">Z</text>
+    <text x="60" y="95" textAnchor="middle" fontSize="10" fill="#f57c00">Color Scale</text>
+  </svg>
+);
+
+const CaratDiagramSVG = () => (
+  <svg viewBox="0 0 120 120" className="w-full h-full">
+    <defs>
+      <linearGradient id="caratGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style={{stopColor:"#e8f5e8", stopOpacity:1}} />
+        <stop offset="50%" style={{stopColor:"#c8e6c9", stopOpacity:1}} />
+        <stop offset="100%" style={{stopColor:"#a5d6a7", stopOpacity:1}} />
+      </linearGradient>
+    </defs>
+    <circle cx="40" cy="60" r="15" fill="url(#caratGradient)" stroke="#4caf50" strokeWidth="2"/>
+    <circle cx="70" cy="60" r="20" fill="url(#caratGradient)" stroke="#4caf50" strokeWidth="2"/>
+    <text x="40" y="85" textAnchor="middle" fontSize="8" fill="#4caf50">0.5ct</text>
+    <text x="70" y="85" textAnchor="middle" fontSize="8" fill="#4caf50">1.0ct</text>
+  </svg>
+);
 
 export default function AnalysisGrading() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
-                <Gem className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground">GILab.info</h1>
-                <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link href="/">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Home
-                </Button>
-              </Link>
-              <Link href="/about">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  About Us
-                </Button>
-              </Link>
-              <Link href="/gem-encyclopedia">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Gem Encyclopedia
-                </Button>
-              </Link>
-              <Button variant="ghost" className="text-primary border-b-2 border-primary">
-                Analysis & Grading
-              </Button>
-              <Link href="/">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Report Check
-                </Button>
-              </Link>
-              <Link href="/faqs">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  FAQs
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <div className="gemological-gradient text-white py-16">

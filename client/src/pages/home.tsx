@@ -2,11 +2,13 @@ import { Link } from "wouter";
 import { Shield, Gem, Search, Clock, Users, Star, Award, Microscope, FileCheck, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Navigation from "@/components/navigation";
 
 export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
 
       {/* Hero Section */}
       <div className="gemological-gradient text-white py-20">

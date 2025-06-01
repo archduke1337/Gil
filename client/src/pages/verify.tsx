@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Shield, Gem } from "lucide-react";
 import VerificationForm from "@/components/verification-form";
 import CertificateResult from "@/components/certificate-result";
+import Navigation from "@/components/navigation";
 import type { Certificate } from "@shared/schema";
 
 export default function Verify() {
@@ -12,6 +13,7 @@ export default function Verify() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
       {/* Hero Section */}
       <div className="gemological-gradient text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
