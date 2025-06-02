@@ -221,10 +221,17 @@ export default function GemEncyclopedia() {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-[#8c745c] to-[#7a6550] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8 flex justify-center">
+            <img 
+              src="/attached_assets/Capture3.PNG" 
+              alt="Professional Gemstone Collection and Analysis" 
+              className="max-w-lg w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
             <Sparkles className="w-10 h-10" />
           </div>
-          <div className="mb-8 flex justify-center">
+          <div className="mb-6 flex justify-center">
             <img 
               src="/attached_assets/IMG-20250522-WA0006.jpg" 
               alt="GIL Official Seal - Gemological Excellence" 
@@ -243,6 +250,13 @@ export default function GemEncyclopedia() {
       {/* Search and Filter Section */}
       <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 flex justify-center">
+            <img 
+              src="/attached_assets/Capture5.PNG" 
+              alt="Gemological Research and Analysis Laboratory" 
+              className="max-w-md w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -378,6 +392,13 @@ export default function GemEncyclopedia() {
       {/* Educational Section */}
       <div className="py-16 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8 flex justify-center">
+            <img 
+              src="/attached_assets/image_1748796623120.png" 
+              alt="Professional Gemstone Analysis and Equipment" 
+              className="max-w-md w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
           <h2 className="text-3xl font-bold text-foreground mb-4">Understanding Gemstone Properties</h2>
           <p className="text-xl text-muted-foreground mb-8">
             Learn about the fundamental characteristics that define each gemstone's beauty and value
