@@ -12,26 +12,49 @@ export const DiamondSVG = ({ className = "", size = 64 }: GemSVGProps) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <linearGradient id="diamondGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
-        <stop offset="30%" stopColor="#e8f4f8" stopOpacity="0.8" />
-        <stop offset="70%" stopColor="#d0e8f0" stopOpacity="0.7" />
-        <stop offset="100%" stopColor="#b8dce8" stopOpacity="0.6" />
+      <radialGradient id="diamondMainGradient" cx="35%" cy="25%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+        <stop offset="25%" stopColor="#f8fcff" stopOpacity="0.95" />
+        <stop offset="50%" stopColor="#e1f5fe" stopOpacity="0.9" />
+        <stop offset="75%" stopColor="#b3e5fc" stopOpacity="0.8" />
+        <stop offset="100%" stopColor="#81d4fa" stopOpacity="0.7" />
+      </radialGradient>
+      <linearGradient id="diamondReflection" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
+        <stop offset="50%" stopColor="#e3f2fd" stopOpacity="0.4" />
+        <stop offset="100%" stopColor="#bbdefb" stopOpacity="0.2" />
       </linearGradient>
-      <filter id="diamondShadow">
-        <feDropShadow dx="2" dy="2" stdDeviation="3" floodOpacity="0.3"/>
+      <filter id="diamondBrilliance">
+        <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+        <feDropShadow dx="3" dy="3" stdDeviation="4" floodColor="#000" floodOpacity="0.2"/>
       </filter>
     </defs>
+    
+    {/* Main diamond shape */}
     <path
-      d="M32 8 L48 24 L32 56 L16 24 Z"
-      fill="url(#diamondGradient)"
-      stroke="#a0c4d0"
-      strokeWidth="1"
-      filter="url(#diamondShadow)"
+      d="M32 6 L50 22 L32 58 L14 22 Z"
+      fill="url(#diamondMainGradient)"
+      stroke="#90caf9"
+      strokeWidth="0.8"
+      filter="url(#diamondBrilliance)"
     />
-    <path d="M16 24 L32 24 L48 24" stroke="#8bb8c8" strokeWidth="0.5" opacity="0.6"/>
-    <path d="M24 16 L32 24 L40 16" stroke="#8bb8c8" strokeWidth="0.5" opacity="0.6"/>
-    <path d="M32 24 L32 40" stroke="#8bb8c8" strokeWidth="0.5" opacity="0.4"/>
+    
+    {/* Top facets */}
+    <path d="M14 22 L32 22 L50 22" stroke="#64b5f6" strokeWidth="0.6" opacity="0.7"/>
+    <path d="M20 14 L32 22 L44 14" stroke="#64b5f6" strokeWidth="0.6" opacity="0.6"/>
+    <path d="M26 10 L32 22 L38 10" stroke="#42a5f5" strokeWidth="0.5" opacity="0.5"/>
+    
+    {/* Side facets */}
+    <path d="M14 22 L32 36 L32 22" fill="url(#diamondReflection)" opacity="0.6"/>
+    <path d="M50 22 L32 36 L32 22" fill="url(#diamondReflection)" opacity="0.4"/>
+    
+    {/* Bottom facets */}
+    <path d="M32 22 L32 45" stroke="#29b6f6" strokeWidth="0.4" opacity="0.5"/>
+    <path d="M20 35 L32 45 L44 35" stroke="#29b6f6" strokeWidth="0.4" opacity="0.4"/>
+    
+    {/* Brilliant highlights */}
+    <ellipse cx="28" cy="18" rx="3" ry="2" fill="#ffffff" opacity="0.9"/>
+    <ellipse cx="36" cy="20" rx="2" ry="1.5" fill="#ffffff" opacity="0.7"/>
   </svg>
 );
 
@@ -44,24 +67,49 @@ export const RubySVG = ({ className = "", size = 64 }: GemSVGProps) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <radialGradient id="rubyGradient" cx="30%" cy="30%">
-        <stop offset="0%" stopColor="#ff6b9d" />
-        <stop offset="40%" stopColor="#e63946" />
-        <stop offset="80%" stopColor="#c1121f" />
-        <stop offset="100%" stopColor="#a4161a" />
+      <radialGradient id="rubyMainGradient" cx="35%" cy="25%">
+        <stop offset="0%" stopColor="#ff1744" />
+        <stop offset="25%" stopColor="#e91e63" />
+        <stop offset="50%" stopColor="#d32f2f" />
+        <stop offset="75%" stopColor="#c62828" />
+        <stop offset="100%" stopColor="#b71c1c" />
       </radialGradient>
-      <filter id="rubyGlow">
-        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-        <feMerge>
-          <feMergeNode in="coloredBlur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
+      <radialGradient id="rubyHighlight" cx="40%" cy="20%">
+        <stop offset="0%" stopColor="#ff8a80" stopOpacity="0.8" />
+        <stop offset="50%" stopColor="#ff5722" stopOpacity="0.4" />
+        <stop offset="100%" stopColor="#d32f2f" stopOpacity="0.1" />
+      </radialGradient>
+      <filter id="rubyBrilliance">
+        <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+        <feDropShadow dx="2" dy="3" stdDeviation="3" floodColor="#000" floodOpacity="0.3"/>
       </filter>
     </defs>
-    <ellipse cx="32" cy="32" rx="20" ry="26" fill="url(#rubyGradient)" filter="url(#rubyGlow)"/>
-    <ellipse cx="32" cy="28" rx="8" ry="12" fill="#ff8fa3" opacity="0.4"/>
-    <ellipse cx="28" cy="24" rx="3" ry="6" fill="#ffb3c1" opacity="0.6"/>
-    <path d="M20 20 Q32 16 44 20 Q40 32 32 36 Q24 32 20 20" fill="#ff8fa3" opacity="0.3"/>
+    
+    {/* Main ruby crystal shape */}
+    <path
+      d="M32 8 L46 20 L48 32 L46 44 L32 56 L18 44 L16 32 L18 20 Z"
+      fill="url(#rubyMainGradient)"
+      stroke="#ad1457"
+      strokeWidth="0.8"
+      filter="url(#rubyBrilliance)"
+    />
+    
+    {/* Crystal facets */}
+    <path d="M18 20 L32 20 L46 20" stroke="#c2185b" strokeWidth="0.6" opacity="0.6"/>
+    <path d="M16 32 L32 32 L48 32" stroke="#c2185b" strokeWidth="0.6" opacity="0.5"/>
+    <path d="M18 44 L32 44 L46 44" stroke="#c2185b" strokeWidth="0.6" opacity="0.4"/>
+    
+    {/* Side facets for depth */}
+    <path d="M18 20 L32 32 L18 44" fill="url(#rubyMainGradient)" opacity="0.7"/>
+    <path d="M46 20 L32 32 L46 44" fill="url(#rubyMainGradient)" opacity="0.5"/>
+    
+    {/* Brilliant highlights */}
+    <ellipse cx="32" cy="24" rx="8" ry="6" fill="url(#rubyHighlight)" opacity="0.6"/>
+    <ellipse cx="28" cy="20" rx="4" ry="3" fill="#ff8a80" opacity="0.8"/>
+    <circle cx="30" cy="18" r="2" fill="#ffffff" opacity="0.9"/>
+    
+    {/* Inner fire effect */}
+    <path d="M24 28 Q32 24 40 28 Q36 36 32 40 Q28 36 24 28" fill="#ff5722" opacity="0.3"/>
   </svg>
 );
 
@@ -74,18 +122,55 @@ export const EmeraldSVG = ({ className = "", size = 64 }: GemSVGProps) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <linearGradient id="emeraldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#7dd87d" />
-        <stop offset="30%" stopColor="#4caf50" />
-        <stop offset="70%" stopColor="#2e7d32" />
+      <radialGradient id="emeraldMainGradient" cx="40%" cy="30%">
+        <stop offset="0%" stopColor="#00e676" />
+        <stop offset="25%" stopColor="#00c853" />
+        <stop offset="50%" stopColor="#388e3c" />
+        <stop offset="75%" stopColor="#2e7d32" />
         <stop offset="100%" stopColor="#1b5e20" />
+      </radialGradient>
+      <linearGradient id="emeraldHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#a5d6a7" stopOpacity="0.8" />
+        <stop offset="50%" stopColor="#66bb6a" stopOpacity="0.3" />
+        <stop offset="100%" stopColor="#4caf50" stopOpacity="0.1" />
       </linearGradient>
+      <filter id="emeraldBrilliance">
+        <feDropShadow dx="2" dy="3" stdDeviation="3" floodColor="#000" floodOpacity="0.3"/>
+      </filter>
     </defs>
-    <rect x="16" y="12" width="32" height="40" rx="2" ry="2" fill="url(#emeraldGradient)"/>
-    <rect x="18" y="16" width="28" height="8" fill="#81c784" opacity="0.5"/>
-    <rect x="20" y="20" width="24" height="4" fill="#a5d6a7" opacity="0.7"/>
-    <path d="M16 28 L48 28 M16 36 L48 36 M16 44 L48 44" stroke="#66bb6a" strokeWidth="0.5" opacity="0.4"/>
-    <path d="M24 12 L24 52 M32 12 L32 52 M40 12 L40 52" stroke="#66bb6a" strokeWidth="0.5" opacity="0.4"/>
+    
+    {/* Main emerald cut shape */}
+    <path
+      d="M20 10 L44 10 L48 14 L48 50 L44 54 L20 54 L16 50 L16 14 Z"
+      fill="url(#emeraldMainGradient)"
+      stroke="#2e7d32"
+      strokeWidth="0.8"
+      filter="url(#emeraldBrilliance)"
+    />
+    
+    {/* Step cut facets */}
+    <rect x="18" y="12" width="28" height="6" fill="url(#emeraldHighlight)" opacity="0.6"/>
+    <rect x="20" y="18" width="24" height="4" fill="url(#emeraldHighlight)" opacity="0.5"/>
+    <rect x="22" y="22" width="20" height="4" fill="url(#emeraldHighlight)" opacity="0.4"/>
+    
+    {/* Characteristic emerald inclusions (jardin) */}
+    <path d="M25 16 L28 19 L26 22" stroke="#81c784" strokeWidth="0.8" opacity="0.6" fill="none"/>
+    <path d="M38 24 L41 27 L39 30" stroke="#a5d6a7" strokeWidth="0.6" opacity="0.5" fill="none"/>
+    <circle cx="30" cy="35" r="1" fill="#c8e6c9" opacity="0.7"/>
+    <ellipse cx="36" cy="40" rx="1.5" ry="0.8" fill="#e8f5e8" opacity="0.6"/>
+    
+    {/* Step cut lines */}
+    <path d="M16 22 L48 22" stroke="#4caf50" strokeWidth="0.4" opacity="0.5"/>
+    <path d="M16 32 L48 32" stroke="#4caf50" strokeWidth="0.4" opacity="0.4"/>
+    <path d="M16 42 L48 42" stroke="#4caf50" strokeWidth="0.4" opacity="0.3"/>
+    
+    {/* Vertical step cuts */}
+    <path d="M24 10 L24 54" stroke="#4caf50" strokeWidth="0.4" opacity="0.4"/>
+    <path d="M32 10 L32 54" stroke="#4caf50" strokeWidth="0.4" opacity="0.3"/>
+    <path d="M40 10 L40 54" stroke="#4caf50" strokeWidth="0.4" opacity="0.4"/>
+    
+    {/* Brilliant highlight */}
+    <ellipse cx="35" cy="18" rx="5" ry="3" fill="#ffffff" opacity="0.7"/>
   </svg>
 );
 
@@ -233,21 +318,51 @@ export const OpalSVG = ({ className = "", size = 64 }: GemSVGProps) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <radialGradient id="opalGradient" cx="50%" cy="50%">
+      <radialGradient id="opalBaseGradient" cx="50%" cy="40%">
         <stop offset="0%" stopColor="#ffffff" />
-        <stop offset="20%" stopColor="#e8f5e8" />
-        <stop offset="40%" stopColor="#e3f2fd" />
-        <stop offset="60%" stopColor="#fce4ec" />
-        <stop offset="80%" stopColor="#fff3e0" />
-        <stop offset="100%" stopColor="#f3e5f5" />
+        <stop offset="30%" stopColor="#f8f9fa" />
+        <stop offset="70%" stopColor="#e9ecef" />
+        <stop offset="100%" stopColor="#dee2e6" />
       </radialGradient>
+      <radialGradient id="opalBlueFlash" cx="30%" cy="30%">
+        <stop offset="0%" stopColor="#2196f3" stopOpacity="0.8" />
+        <stop offset="50%" stopColor="#03a9f4" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#81d4fa" stopOpacity="0.2" />
+      </radialGradient>
+      <radialGradient id="opalGreenFlash" cx="70%" cy="60%">
+        <stop offset="0%" stopColor="#4caf50" stopOpacity="0.7" />
+        <stop offset="50%" stopColor="#8bc34a" stopOpacity="0.5" />
+        <stop offset="100%" stopColor="#c8e6c9" stopOpacity="0.2" />
+      </radialGradient>
+      <filter id="opalShimmer">
+        <feGaussianBlur stdDeviation="0.8" result="coloredBlur"/>
+        <feDropShadow dx="1" dy="2" stdDeviation="2" floodColor="#000" floodOpacity="0.2"/>
+      </filter>
     </defs>
-    <ellipse cx="32" cy="32" rx="24" ry="20" fill="url(#opalGradient)"/>
-    <ellipse cx="28" cy="28" rx="8" ry="6" fill="#4fc3f7" opacity="0.6"/>
-    <ellipse cx="38" cy="30" rx="6" ry="4" fill="#e91e63" opacity="0.5"/>
-    <ellipse cx="30" cy="38" rx="5" ry="3" fill="#4caf50" opacity="0.5"/>
-    <ellipse cx="36" cy="40" rx="4" ry="3" fill="#ff9800" opacity="0.6"/>
-    <circle cx="26" cy="35" r="2" fill="#9c27b0" opacity="0.7"/>
+    
+    {/* Main opal body */}
+    <ellipse cx="32" cy="32" rx="26" ry="22" fill="url(#opalBaseGradient)" filter="url(#opalShimmer)"/>
+    
+    {/* Play-of-color patches */}
+    <ellipse cx="25" cy="26" rx="9" ry="7" fill="url(#opalBlueFlash)" opacity="0.8"/>
+    <ellipse cx="42" cy="30" rx="7" ry="5" fill="#e91e63" opacity="0.6"/>
+    <ellipse cx="28" cy="42" rx="6" ry="4" fill="url(#opalGreenFlash)" opacity="0.7"/>
+    <ellipse cx="40" cy="44" rx="5" ry="3" fill="#ff9800" opacity="0.6"/>
+    <ellipse cx="35" cy="20" rx="4" ry="3" fill="#9c27b0" opacity="0.5"/>
+    <ellipse cx="18" cy="38" rx="3" ry="2" fill="#ffeb3b" opacity="0.7"/>
+    
+    {/* Spectral flashes */}
+    <path d="M20 32 Q28 28 36 32 Q32 38 24 36 Q18 34 20 32" fill="#00bcd4" opacity="0.4"/>
+    <path d="M38 25 Q44 22 50 25 Q48 30 42 29 Q36 28 38 25" fill="#e1bee7" opacity="0.5"/>
+    
+    {/* Opal matrix patterns */}
+    <circle cx="32" cy="32" r="1" fill="#6c757d" opacity="0.3"/>
+    <ellipse cx="24" cy="35" rx="1.5" ry="1" fill="#6c757d" opacity="0.2"/>
+    <ellipse cx="40" cy="28" rx="1" ry="1.5" fill="#6c757d" opacity="0.2"/>
+    
+    {/* Surface highlights */}
+    <ellipse cx="28" cy="24" rx="6" ry="4" fill="#ffffff" opacity="0.6"/>
+    <ellipse cx="36" cy="26" rx="3" ry="2" fill="#ffffff" opacity="0.8"/>
   </svg>
 );
 
@@ -419,19 +534,47 @@ export const LapisLazuliSVG = ({ className = "", size = 64 }: GemSVGProps) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <radialGradient id="lapisGradient" cx="50%" cy="40%">
-        <stop offset="0%" stopColor="#5c6bc0" />
-        <stop offset="40%" stopColor="#3f51b5" />
-        <stop offset="80%" stopColor="#303f9f" />
+      <radialGradient id="lapisMainGradient" cx="50%" cy="40%">
+        <stop offset="0%" stopColor="#3f51b5" />
+        <stop offset="30%" stopColor="#303f9f" />
+        <stop offset="70%" stopColor="#283593" />
         <stop offset="100%" stopColor="#1a237e" />
       </radialGradient>
+      <radialGradient id="lapisTexture" cx="30%" cy="30%">
+        <stop offset="0%" stopColor="#5c6bc0" stopOpacity="0.8" />
+        <stop offset="50%" stopColor="#3949ab" stopOpacity="0.5" />
+        <stop offset="100%" stopColor="#1a237e" stopOpacity="0.2" />
+      </radialGradient>
+      <filter id="lapisBrilliance">
+        <feDropShadow dx="2" dy="3" stdDeviation="3" floodColor="#000" floodOpacity="0.4"/>
+      </filter>
     </defs>
-    <rect x="14" y="14" width="36" height="36" rx="4" fill="url(#lapisGradient)"/>
-    <circle cx="24" cy="24" r="2" fill="#ffeb3b"/>
-    <circle cx="38" cy="28" r="1.5" fill="#ffc107"/>
-    <circle cx="28" cy="36" r="1" fill="#fff59d"/>
-    <circle cx="42" cy="40" r="1.5" fill="#ffeb3b"/>
-    <circle cx="32" cy="44" r="1" fill="#ffc107"/>
+    
+    {/* Main lapis lazuli base */}
+    <rect x="12" y="12" width="40" height="40" rx="6" fill="url(#lapisMainGradient)" filter="url(#lapisBrilliance)"/>
+    
+    {/* Natural stone texture */}
+    <rect x="14" y="14" width="36" height="36" rx="4" fill="url(#lapisTexture)" opacity="0.7"/>
+    
+    {/* Pyrite veins and inclusions */}
+    <circle cx="22" cy="22" r="2.5" fill="#ffd700" opacity="0.9"/>
+    <circle cx="40" cy="26" r="1.8" fill="#ffeb3b" opacity="0.8"/>
+    <circle cx="26" cy="35" r="1.2" fill="#ffc107" opacity="0.7"/>
+    <circle cx="44" cy="42" r="2" fill="#ffd700" opacity="0.9"/>
+    <circle cx="18" cy="40" r="1" fill="#fff59d" opacity="0.6"/>
+    <circle cx="36" cy="18" r="1.5" fill="#ffeb3b" opacity="0.8"/>
+    
+    {/* Pyrite veining patterns */}
+    <path d="M20 30 Q26 32 32 30 Q38 28 44 30" stroke="#ffd700" strokeWidth="0.8" opacity="0.6" fill="none"/>
+    <path d="M16 38 Q22 36 28 38 Q34 40 40 38" stroke="#ffeb3b" strokeWidth="0.6" opacity="0.5" fill="none"/>
+    
+    {/* Calcite white veins */}
+    <path d="M30 16 L34 20 L32 24" stroke="#ffffff" strokeWidth="1" opacity="0.4" fill="none"/>
+    <path d="M42 34 L46 38 L44 42" stroke="#f8f9fa" strokeWidth="0.8" opacity="0.3" fill="none"/>
+    
+    {/* Deep blue variations */}
+    <ellipse cx="28" cy="28" rx="6" ry="4" fill="#1a237e" opacity="0.3"/>
+    <ellipse cx="38" cy="36" rx="4" ry="3" fill="#0d47a1" opacity="0.4"/>
   </svg>
 );
 
@@ -513,16 +656,48 @@ export const AlexandriteSVG = ({ className = "", size = 64 }: GemSVGProps) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <linearGradient id="alexandriteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#81c784" />
-        <stop offset="50%" stopColor="#66bb6a" />
-        <stop offset="100%" stopColor="#e57373" />
-      </linearGradient>
+      <radialGradient id="alexandriteMainGradient" cx="40%" cy="30%">
+        <stop offset="0%" stopColor="#00e676" />
+        <stop offset="30%" stopColor="#4caf50" />
+        <stop offset="60%" stopColor="#8e24aa" />
+        <stop offset="100%" stopColor="#d32f2f" />
+      </radialGradient>
+      <radialGradient id="alexandriteGreenSide" cx="20%" cy="40%">
+        <stop offset="0%" stopColor="#66bb6a" stopOpacity="0.9" />
+        <stop offset="70%" stopColor="#388e3c" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#1b5e20" stopOpacity="0.3" />
+      </radialGradient>
+      <radialGradient id="alexandriteRedSide" cx="80%" cy="60%">
+        <stop offset="0%" stopColor="#ef5350" stopOpacity="0.9" />
+        <stop offset="70%" stopColor="#c62828" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#b71c1c" stopOpacity="0.3" />
+      </radialGradient>
+      <filter id="alexandriteBrilliance">
+        <feDropShadow dx="2" dy="3" stdDeviation="3" floodColor="#000" floodOpacity="0.3"/>
+      </filter>
     </defs>
-    <ellipse cx="32" cy="32" rx="20" ry="26" fill="url(#alexandriteGradient)"/>
-    <ellipse cx="28" cy="26" rx="8" ry="12" fill="#a5d6a7" opacity="0.4"/>
-    <ellipse cx="36" cy="38" rx="6" ry="8" fill="#ffcdd2" opacity="0.4"/>
-    <path d="M20 20 Q32 16 44 20 Q40 32 32 36 Q24 32 20 20" fill="#c8e6c9" opacity="0.3"/>
+    
+    {/* Main alexandrite crystal */}
+    <ellipse cx="32" cy="32" rx="22" ry="28" fill="url(#alexandriteMainGradient)" filter="url(#alexandriteBrilliance)"/>
+    
+    {/* Color change zones */}
+    <ellipse cx="24" cy="26" rx="12" ry="16" fill="url(#alexandriteGreenSide)" opacity="0.8"/>
+    <ellipse cx="40" cy="38" rx="10" ry="14" fill="url(#alexandriteRedSide)" opacity="0.8"/>
+    
+    {/* Transition zone showing pleochroism */}
+    <path d="M20 20 Q32 24 44 20 Q40 40 32 44 Q24 40 20 20" fill="#9c27b0" opacity="0.4"/>
+    
+    {/* Crystal facets */}
+    <path d="M32 8 L48 24 L32 40 L16 24 Z" fill="none" stroke="#4a148c" strokeWidth="0.6" opacity="0.5"/>
+    <path d="M16 24 L32 24 L48 24" stroke="#6a1b9a" strokeWidth="0.4" opacity="0.6"/>
+    
+    {/* Brilliant highlights showing color change */}
+    <ellipse cx="26" cy="22" rx="4" ry="3" fill="#a5d6a7" opacity="0.8"/>
+    <ellipse cx="38" cy="34" rx="3" ry="2" fill="#ffcdd2" opacity="0.8"/>
+    <circle cx="32" cy="18" r="2" fill="#ffffff" opacity="0.9"/>
+    
+    {/* Characteristic alexandrite glow */}
+    <ellipse cx="32" cy="28" rx="8" ry="6" fill="#e1bee7" opacity="0.3"/>
   </svg>
 );
 
