@@ -12,9 +12,6 @@ import BulkUpload from "@/components/bulk-upload";
 import AdvancedSearch from "@/components/advanced-search";
 import GemRecommendationEngine from "@/components/gem-recommendation-engine";
 import GemRarityHeatmap from "@/components/gem-rarity-heatmap";
-import PersonalizedLearning from "@/components/personalized-learning";
-import CommunityShowcase from "@/components/community-showcase";
-import ARVisualization from "@/components/ar-visualization";
 import { useToast } from "@/hooks/use-toast";
 import type { Certificate } from "@shared/schema";
 
@@ -162,7 +159,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
         </div>
 
         <Tabs defaultValue="certificates" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-9">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6">
             <TabsTrigger value="certificates" className="flex items-center space-x-2">
               <List className="w-4 h-4" />
               <span>Certificates</span>
@@ -186,18 +183,6 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <TabsTrigger value="heatmap" className="flex items-center space-x-2">
               <Map className="w-4 h-4" />
               <span>Rarity Map</span>
-            </TabsTrigger>
-            <TabsTrigger value="learning" className="flex items-center space-x-2">
-              <BookOpen className="w-4 h-4" />
-              <span>Learning</span>
-            </TabsTrigger>
-            <TabsTrigger value="community" className="flex items-center space-x-2">
-              <Users className="w-4 h-4" />
-              <span>Community</span>
-            </TabsTrigger>
-            <TabsTrigger value="ar" className="flex items-center space-x-2">
-              <Eye className="w-4 h-4" />
-              <span>AR Visualization</span>
             </TabsTrigger>
           </TabsList>
 
@@ -261,35 +246,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </motion.div>
           </TabsContent>
 
-          <TabsContent value="learning" className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <PersonalizedLearning />
-            </motion.div>
-          </TabsContent>
 
-          <TabsContent value="community" className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <CommunityShowcase />
-            </motion.div>
-          </TabsContent>
-
-          <TabsContent value="ar" className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <ARVisualization />
-            </motion.div>
-          </TabsContent>
         </Tabs>
       </div>
     </div>
