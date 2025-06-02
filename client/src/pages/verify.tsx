@@ -4,6 +4,7 @@ import VerificationForm from "@/components/verification-form";
 import CertificateResult from "@/components/certificate-result";
 import Navigation from "@/components/navigation";
 import type { Certificate } from "@shared/schema";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 
 export default function Verify() {
   const [verificationResult, setVerificationResult] = useState<{
@@ -79,7 +80,7 @@ export default function Verify() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <img 
-                src="/attached_assets/1000119055-removebg-preview.png" 
+                src={logoPath} 
                 alt="GIL - Gemological Institute Laboratories" 
                 className="h-16 w-auto mb-4 brightness-0 invert"
               />

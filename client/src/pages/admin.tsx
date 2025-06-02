@@ -4,6 +4,7 @@ import { Gem, ArrowLeft } from "lucide-react";
 import AdminLogin from "@/components/admin-login";
 import AdminDashboard from "@/components/admin-dashboard";
 import { Button } from "@/components/ui/button";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 
 export default function Admin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,9 +18,11 @@ export default function Admin() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center">
-                    <Gem className="w-5 h-5 text-white" />
-                  </div>
+                  <img 
+                    src={logoPath} 
+                    alt="GIL - Gemological Institute Laboratories" 
+                    className="h-10 w-auto"
+                  />
                   <div>
                     <h1 className="text-xl font-bold text-gray-900">GILab.info</h1>
                     <p className="text-xs text-gray-500">Gemological Institute Laboratories</p>
