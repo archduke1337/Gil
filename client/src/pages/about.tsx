@@ -186,6 +186,13 @@ export default function About() {
       {/* Values Section */}
       <div className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 flex justify-center">
+            <img 
+              src="/attached_assets/Capture12.PNG" 
+              alt="Advanced Gemological Laboratory" 
+              className="max-w-lg w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
           <motion.div 
             className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}

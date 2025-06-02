@@ -125,6 +125,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
+            <div className="mb-8 flex justify-center">
+              <img 
+                src="/attached_assets/Capture3.PNG" 
+                alt="Professional Diamond Analysis Equipment" 
+                className="max-w-md w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Professional Services
             </h2>
