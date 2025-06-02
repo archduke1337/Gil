@@ -414,8 +414,9 @@ export default function GemEncyclopedia() {
                     transition: { duration: 0.2 }
                   }}
                 >
-                  <Card className="border-border hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-muted/20 group">
-                    <CardContent className="p-6">
+                  <Link href={`/gem/${gem.id}`}>
+                    <Card className="border-border hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-muted/20 group cursor-pointer card-3d">
+                      <CardContent className="p-6">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center space-x-3">
                           <motion.div 
@@ -481,8 +482,9 @@ export default function GemEncyclopedia() {
                           ))}
                         </ul>
                       </div>
-                    </CardContent>
-                  </Card>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 </motion.div>
               );
             })}

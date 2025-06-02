@@ -21,6 +21,7 @@ function Router() {
       <Route path="/verify" component={Verify} />
       <Route path="/about" component={About} />
       <Route path="/gem-encyclopedia" component={GemEncyclopedia} />
+      <Route path="/gem/:id" component={GemDetail} />
       <Route path="/analysis" component={AnalysisGrading} />
       <Route path="/gem-services" component={GemServices} />
       <Route path="/faqs" component={FAQs} />
