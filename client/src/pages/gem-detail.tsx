@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import Navigation from "@/components/navigation";
 import { Link } from "wouter";
 import { gemIcons } from "@/components/gem-svg-icons";
+import GemDimensionDiagram from "@/components/gem-dimension-diagram";
 
 interface GemDetail {
   name: string;
@@ -1099,11 +1100,45 @@ export default function GemDetail() {
               </Card>
             </motion.div>
 
-            {/* Mineralogy */}
+            {/* 3D Dimension Diagram */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <Card className="card-3d">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Gem className="w-5 h-5 mr-2 text-primary" />
+                    Cut Dimensions & Proportions
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="w-full overflow-x-auto">
+                    <GemDimensionDiagram gemType={gem.name} className="w-full" />
+                  </div>
+                  <div className="mt-4 p-4 bg-muted/30 rounded-lg">
+                    <h4 className="text-sm font-semibold text-foreground mb-2">Professional Grading Standards</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
+                      <div>
+                        <span className="font-medium">Clarity Scale:</span>
+                        <p>FL → IF → VVS1 → VVS2 → VS1 → VS2 → SI1 → SI2 → SI3 → I1 → I2 → I3</p>
+                      </div>
+                      <div>
+                        <span className="font-medium">Cut Quality:</span>
+                        <p>Excellent → Very Good → Good → Fair → Poor</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Mineralogy */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
             >
               <Card className="card-3d">
                 <CardHeader>
