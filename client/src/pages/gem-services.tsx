@@ -149,7 +149,7 @@ export default function GemServices() {
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                           <div>
-                            <span className="font-medium">Carat:</span> {cert.caratWeight || "N/A"}
+                            <span className="font-medium">Carat:</span> {cert.caratWeight ? `${cert.caratWeight} ct` : "N/A"}
                           </div>
                           <div>
                             <span className="font-medium">Color:</span> {cert.colorGrade || "N/A"}

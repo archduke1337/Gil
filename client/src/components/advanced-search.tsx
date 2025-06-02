@@ -95,7 +95,7 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
 
     if (filters.caratWeight) {
       filtered = filtered.filter(cert => 
-        cert.caratWeight?.includes(filters.caratWeight)
+        cert.caratWeight?.toString().includes(filters.caratWeight)
       );
     }
 
