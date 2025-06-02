@@ -21,7 +21,7 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="bg-white shadow-sm border-b border-border sticky top-0 z-50">
+    <nav className="bg-white shadow-sm border-b border-[#ece5dc] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -49,8 +49,8 @@ export default function Navigation() {
                   variant="ghost" 
                   size="sm"
                   className={isActive(item.href) 
-                    ? "text-primary border-b-2 border-primary rounded-none" 
-                    : "text-muted-foreground hover:text-primary"
+                    ? "text-[#8c745c] border-b-2 border-[#8c745c] rounded-none" 
+                    : "text-gray-600 hover:text-[#8c745c]"
                   }
                 >
                   {item.label}
@@ -61,7 +61,7 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-md text-muted-foreground hover:text-primary hover:bg-background"
+            className="lg:hidden p-2 rounded-md text-gray-600 hover:text-[#8c745c] hover:bg-[#ece5dc]/50"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -71,7 +71,7 @@ export default function Navigation() {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-border">
+          <div className="lg:hidden border-t border-[#ece5dc]">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigationItems.map((item) => (
                 <Link key={item.href} href={item.href}>
@@ -79,8 +79,8 @@ export default function Navigation() {
                     variant="ghost"
                     className={`w-full justify-start ${
                       isActive(item.href) 
-                        ? "text-primary bg-primary/10" 
-                        : "text-muted-foreground hover:text-primary hover:bg-background"
+                        ? "text-[#8c745c] bg-[#ece5dc]" 
+                        : "text-gray-600 hover:text-[#8c745c] hover:bg-[#ece5dc]/50"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

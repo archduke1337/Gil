@@ -64,11 +64,11 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-[#ece5dc] to-white">
       <Navigation />
       
       {/* Hero Section */}
-      <div className="gemological-gradient text-white py-20 overflow-hidden">
+      <div className="bg-gradient-to-r from-[#8c745c] to-[#7a6550] text-white py-20 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div 
             className="mb-8"
