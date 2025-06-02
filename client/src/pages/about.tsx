@@ -1,5 +1,7 @@
 import { Link } from "wouter";
 import { Gem, Award, Shield, Users, Clock, Star, Mail, Phone, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
+import Navigation from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -63,32 +65,79 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
+      
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white py-20">
+      <div className="gemological-gradient text-white py-20 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-8">
-            <img 
-              src={logoPath} 
-              alt="GIL Logo" 
-              className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 bg-white/10 rounded-2xl p-4"
-            />
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <motion.div 
+            className="mb-8"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <motion.div 
+              className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 bg-white/10 rounded-2xl p-4 floating-animation pulse-glow"
+              whileHover={{ 
+                scale: 1.05,
+                rotateY: 15,
+                transition: { duration: 0.3 }
+              }}
+            >
+              <img 
+                src={logoPath} 
+                alt="GIL Logo" 
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+          </motion.div>
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             Gemological Institute Laboratories
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
+          </motion.h1>
+          <motion.p 
+            className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
             Leading the industry in diamond certification and gemological expertise with cutting-edge technology and uncompromising standards
-          </p>
-          <div className="flex justify-center space-x-4">
+          </motion.p>
+          <motion.div 
+            className="flex flex-col sm:flex-row justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+          >
             <Link href="/verify">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-white/90">
-                Verify Certificate
-              </Button>
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-white/90 px-8 py-4 transform-gpu">
+                  <Shield className="w-5 h-5 mr-2" />
+                  Verify Certificate
+                </Button>
+              </motion.div>
             </Link>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-              Learn More
-            </Button>
-          </div>
+            <Link href="/gem-services">
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 transform-gpu">
+                  <Gem className="w-5 h-5 mr-2" />
+                  Explore Services
+                </Button>
+              </motion.div>
+            </Link>
+          </motion.div>
         </div>
       </div>
 
@@ -128,54 +177,80 @@ export default function About() {
       </div>
 
       {/* Values Section */}
-      <div className="py-16 bg-background">
+      <div className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-foreground mb-4">Our Values</h3>
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Our Values</h3>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               The principles that guide every aspect of our work and define our commitment to excellence.
             </p>
-          </div>
+          </motion.div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center border-border">
-              <CardContent className="p-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-8 h-8 text-primary" />
-                </div>
-                <h4 className="text-xl font-semibold text-foreground mb-3">Integrity</h4>
-                <p className="text-muted-foreground">
-                  We maintain the highest ethical standards in all our evaluations, 
-                  ensuring honest and unbiased assessments of every diamond.
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+            >
+              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-white h-full">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground mb-3">Integrity</h4>
+                  <p className="text-muted-foreground">
+                    We maintain the highest ethical standards in all our evaluations, 
+                    ensuring honest and unbiased assessments of every diamond.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
             
-            <Card className="text-center border-border">
-              <CardContent className="p-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8 text-primary" />
-                </div>
-                <h4 className="text-xl font-semibold text-foreground mb-3">Excellence</h4>
-                <p className="text-muted-foreground">
-                  Our certified gemologists use cutting-edge technology and rigorous 
-                  procedures to deliver the most accurate certifications possible.
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+            >
+              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-white h-full">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Star className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground mb-3">Excellence</h4>
+                  <p className="text-muted-foreground">
+                    Our certified gemologists use cutting-edge technology and rigorous 
+                    procedures to deliver the most accurate certifications possible.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
             
-            <Card className="text-center border-border">
-              <CardContent className="p-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-primary" />
-                </div>
-                <h4 className="text-xl font-semibold text-foreground mb-3">Service</h4>
-                <p className="text-muted-foreground">
-                  We're committed to providing exceptional customer service and 
-                  support to all our clients, from individual consumers to major retailers.
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+            >
+              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-white h-full">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground mb-3">Service</h4>
+                  <p className="text-muted-foreground">
+                    We're committed to providing exceptional customer service and 
+                    support to all our clients, from individual consumers to major retailers.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </div>
