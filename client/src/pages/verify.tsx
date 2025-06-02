@@ -35,6 +35,13 @@ export default function Verify() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-xl border border-border p-8">
             <div className="text-center mb-8">
+              <div className="mb-6 flex justify-center">
+                <img 
+                  src="/attached_assets/IMG-20250522-WA0006.jpg" 
+                  alt="GIL Official Seal - Certificate Verification" 
+                  className="w-16 h-16 object-contain"
+                />
+              </div>
               <h2 className="text-2xl font-bold text-foreground mb-2">Enter Certificate Reference</h2>
               <p className="text-muted-foreground">Input your diamond certificate reference number to view details</p>
             </div>
