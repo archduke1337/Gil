@@ -307,47 +307,47 @@ export default function GemEncyclopedia() {
                         </div>
                       </div>
 
-                    <p className="text-muted-foreground mb-4 line-clamp-3">
-                      {gem.description}
-                    </p>
+                      <p className="text-muted-foreground mb-4 line-clamp-3">
+                        {gem.description}
+                      </p>
 
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-foreground">Hardness:</span>
-                        <span className="text-sm text-muted-foreground">{gem.hardness}</span>
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm font-medium text-foreground">Hardness:</span>
+                          <span className="text-sm text-muted-foreground">{gem.hardness}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm font-medium text-foreground">Crystal System:</span>
+                          <span className="text-sm text-muted-foreground">{gem.crystal}</span>
+                        </div>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-foreground">Crystal System:</span>
-                        <span className="text-sm text-muted-foreground">{gem.crystal}</span>
-                      </div>
-                    </div>
 
-                    <div className="mt-4">
-                      <span className="text-sm font-medium text-foreground mb-2 block">Common Colors:</span>
-                      <div className="flex flex-wrap gap-1">
-                        {gem.colors.slice(0, 4).map((color, index) => (
-                          <Badge key={index} variant="outline" className="text-xs border-border">
-                            {color}
-                          </Badge>
-                        ))}
-                        {gem.colors.length > 4 && (
-                          <Badge variant="outline" className="text-xs border-border">
-                            +{gem.colors.length - 4} more
-                          </Badge>
-                        )}
+                      <div className="mt-4">
+                        <span className="text-sm font-medium text-foreground mb-2 block">Common Colors:</span>
+                        <div className="flex flex-wrap gap-1">
+                          {gem.colors.slice(0, 4).map((color, colorIndex) => (
+                            <Badge key={colorIndex} variant="outline" className="text-xs border-border">
+                              {color}
+                            </Badge>
+                          ))}
+                          {gem.colors.length > 4 && (
+                            <Badge variant="outline" className="text-xs border-border">
+                              +{gem.colors.length - 4} more
+                            </Badge>
+                          )}
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="mt-4">
-                      <span className="text-sm font-medium text-foreground mb-2 block">Key Characteristics:</span>
-                      <ul className="text-xs text-muted-foreground space-y-1">
-                        {gem.characteristics.slice(0, 3).map((char, index) => (
-                          <li key={index}>• {char}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <div className="mt-4">
+                        <span className="text-sm font-medium text-foreground mb-2 block">Key Characteristics:</span>
+                        <ul className="text-xs text-muted-foreground space-y-1">
+                          {gem.characteristics.slice(0, 3).map((char, charIndex) => (
+                            <li key={charIndex}>• {char}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               );
             })}

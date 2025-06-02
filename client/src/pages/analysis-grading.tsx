@@ -1,8 +1,10 @@
 import { Link } from "wouter";
-import { Gem, Microscope, Award, Target, Scale, Eye, CheckCircle, Star } from "lucide-react";
+import { Gem, Microscope, Award, Target, Scale, Eye, CheckCircle, Star, Palette, Zap, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 
 // SVG Components for the 4Cs
@@ -159,38 +161,54 @@ export default function AnalysisGrading() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-border">
-              <CardContent className="p-8">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 rounded-xl flex items-center justify-center">
-                    <div className="w-12 h-12">
-                      <CaratDiagramSVG />
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Card className="border-border hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-8">
+                  <div className="flex items-center space-x-4 mb-6">
+                    <motion.div 
+                      className="w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 rounded-xl flex items-center justify-center relative overflow-hidden"
+                      whileHover={{ scale: 1.05, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="w-12 h-12">
+                        <CaratDiagramSVG />
+                      </div>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-green-200/20 to-green-300/20"
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground">Carat Weight</h3>
+                      <p className="text-muted-foreground">Precise measurement of diamond size</p>
                     </div>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-foreground">Carat Weight</h3>
-                    <p className="text-muted-foreground">Precise measurement of diamond size</p>
+                  <p className="text-muted-foreground mb-4">
+                    Carat weight measures the actual weight of the diamond. One carat equals 0.2 grams or 200 milligrams. 
+                    We use certified precision scales accurate to 0.001 carats.
+                  </p>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-foreground">Common sizes:</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 text-xs">
+                      <Badge variant="outline" className="border-border">0.25 ct</Badge>
+                      <Badge variant="outline" className="border-border">0.50 ct</Badge>
+                      <Badge variant="outline" className="border-border">1.00 ct</Badge>
+                      <Badge variant="outline" className="border-border">1.50 ct</Badge>
+                      <Badge variant="outline" className="border-border">2.00 ct</Badge>
+                      <Badge variant="outline" className="border-border">3.00+ ct</Badge>
+                    </div>
                   </div>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  Carat weight measures the actual weight of the diamond. One carat equals 0.2 grams or 200 milligrams. 
-                  We use certified precision scales accurate to 0.001 carats.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-foreground">Common sizes:</span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2 text-xs">
-                    <Badge variant="outline" className="border-border">0.25 ct</Badge>
-                    <Badge variant="outline" className="border-border">0.50 ct</Badge>
-                    <Badge variant="outline" className="border-border">1.00 ct</Badge>
-                    <Badge variant="outline" className="border-border">1.50 ct</Badge>
-                    <Badge variant="outline" className="border-border">2.00 ct</Badge>
-                    <Badge variant="outline" className="border-border">3.00+ ct</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             <Card className="border-border">
               <CardContent className="p-8">
