@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import professionalEquipmentImage from "@assets/image_1748796623120.png";
+import gilSealImage from "@assets/IMG-20250522-WA0006.jpg";
 
 // SVG Components for Gemstones
 const DiamondSVG = () => (
@@ -233,7 +235,7 @@ export default function GemEncyclopedia() {
           </div>
           <div className="mb-6 flex justify-center">
             <img 
-              src="/attached_assets/IMG-20250522-WA0006.jpg" 
+              src={gilSealImage} 
               alt="GIL Official Seal - Gemological Excellence" 
               className="w-24 h-24 object-contain opacity-90"
             />
@@ -394,7 +396,7 @@ export default function GemEncyclopedia() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-8 flex justify-center">
             <img 
-              src="/attached_assets/image_1748796623120.png" 
+              src={professionalEquipmentImage} 
               alt="Professional Gemstone Analysis and Equipment" 
               className="max-w-md w-full h-auto rounded-lg shadow-lg"
             />
