@@ -59,7 +59,7 @@ export default function Home() {
               <img 
                 src={logoPath} 
                 alt="GIL - Gemological Institute Laboratories" 
-                className="h-24 w-auto mx-auto mb-6"
+                className="h-32 md:h-40 w-auto mx-auto mb-8"
               />
             </motion.div>
             

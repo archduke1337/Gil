@@ -77,16 +77,18 @@ export default function About() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.div 
-              className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 bg-primary/20 rounded-2xl p-4 floating-animation pulse-glow"
+              className="mx-auto mb-6 floating-animation"
               whileHover={{ 
                 scale: 1.05,
                 rotateY: 15,
                 transition: { duration: 0.3 }
               }}
             >
-              <div className="w-full h-full bg-primary rounded-xl flex items-center justify-center">
-                <Gem className="w-12 h-12 md:w-16 md:h-16 text-primary-foreground" />
-              </div>
+              <img 
+                src={logoPath} 
+                alt="GIL - Gemological Institute Laboratories" 
+                className="h-32 md:h-40 w-auto mx-auto"
+              />
             </motion.div>
           </motion.div>
           <motion.h1 
