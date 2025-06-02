@@ -4,6 +4,80 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Optimize font loading */
+body {
+  font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile touch optimization */
+@media (hover: none) and (pointer: coarse) {
+  .hover\:shadow-xl:hover {
+    box-shadow: none;
+  }
+  
+  .group:hover .group-hover\:opacity-100 {
+    opacity: 0;
+  }
+}
+
+/* GPU acceleration for animations */
+.card-3d {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optimize scrolling on mobile */
+.overflow-hidden {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Loading state optimization */
+.animate-spin {
+  animation: spin 1s linear infinite;
+  will-change: transform;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Performance Optimizations */
 * {
   box-sizing: border-box;

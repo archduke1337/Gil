@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { motion, useMotionValue, useTransform, PanInfo } from "framer-motion";
 import { RotateCcw, ZoomIn, ZoomOut, Eye, Info, Lightbulb, Search, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { getOptimizedAnimationConfig, isTouchDevice } from "@/utils/performance";
 
 interface Interactive3DGemProps {
   gemType: string;
@@ -88,10 +89,13 @@ export default function Interactive3DGem({ gemType, className = "" }: Interactiv
   const [measurementMode, setMeasurementMode] = useState(false);
   const constraintsRef = useRef(null);
   
+  const animationConfig = useMemo(() => getOptimizedAnimationConfig(), []);
+  const isTouch = useMemo(() => isTouchDevice(), []);
+  
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-200, 200], [45, -45]);
-  const rotateY = useTransform(x, [-200, 200], [-45, 45]);
+  const rotateX = useTransform(y, [-200, 200], [30, -30]);
+  const rotateY = useTransform(x, [-200, 200], [-30, 30]);
 
   const data = gemAnalysisData[gemType.toLowerCase()] || gemAnalysisData.diamond;
 

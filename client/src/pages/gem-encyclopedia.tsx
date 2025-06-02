@@ -481,7 +481,7 @@ export default function GemEncyclopedia() {
           </p>
 
           {/* Gemstone Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             {filteredGems.map((gem, index) => {
               const IconComponent = gem.icon;
               return (
@@ -502,67 +502,77 @@ export default function GemEncyclopedia() {
                 >
                   <Link href={`/gem/${gem.id}`}>
                     <Card className="border-border hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 bg-gradient-to-br from-white to-muted/20 group cursor-pointer card-3d relative overflow-hidden hover:border-primary/50">
-                      {/* Animated background shimmer */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent opacity-0 group-hover:opacity-100"
-                        animate={{
-                          x: ["-100%", "100%"],
-                          transition: {
-                            duration: 1.5,
-                            repeat: Infinity,
-                            repeatType: "loop",
-                            ease: "easeInOut"
-                          }
-                        }}
-                      />
-                      
-                      {/* Sparkle effects */}
-                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        {[...Array(4)].map((_, i) => (
+                      {/* Optimized hover effects */}
+                      {animationConfig.complexity === 'full' && (
+                        <>
                           <motion.div
-                            key={i}
-                            className="absolute w-1 h-1 bg-primary rounded-full"
-                            style={{
-                              top: `${i * 6}px`,
-                              right: `${i * 8}px`,
-                            }}
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent opacity-0 group-hover:opacity-100"
                             animate={{
-                              opacity: [0, 1, 0],
-                              scale: [0, 1.5, 0],
+                              x: ["-100%", "100%"],
                               transition: {
-                                delay: i * 0.15,
-                                duration: 1.2,
+                                duration: 1.5,
                                 repeat: Infinity,
-                                repeatType: "loop"
+                                repeatType: "loop",
+                                ease: "easeInOut"
                               }
                             }}
                           />
-                        ))}
-                      </div>
-                      <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center space-x-3">
-                          <motion.div 
-                            className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl flex items-center justify-center shadow-inner relative overflow-hidden"
-                            whileHover={{ 
-                              rotate: 360,
-                              transition: { duration: 0.8, ease: "easeInOut" }
-                            }}
-                          >
-                            <div className="w-10 h-10 z-10 relative">
-                              <IconComponent />
-                            </div>
+                          
+                          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            {[...Array(2)].map((_, i) => (
+                              <motion.div
+                                key={i}
+                                className="absolute w-1 h-1 bg-primary rounded-full"
+                                style={{
+                                  top: `${i * 8}px`,
+                                  right: `${i * 10}px`,
+                                }}
+                                animate={{
+                                  opacity: [0, 1, 0],
+                                  scale: [0, 1.2, 0],
+                                  transition: {
+                                    delay: i * 0.2,
+                                    duration: 1,
+                                    repeat: Infinity,
+                                    repeatType: "loop"
+                                  }
+                                }}
+                              />
+                            ))}
+                          </div>
+                        </>
+                      )}
+                      
+                      {/* Simple hover effect for lower performance devices */}
+                      {animationConfig.complexity === 'simple' && (
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                          <div className="w-2 h-2 bg-primary rounded-full" />
+                        </div>
+                      )}
+                      <CardContent className="p-4 md:p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <motion.div 
+                          className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl flex items-center justify-center shadow-inner relative overflow-hidden flex-shrink-0"
+                          whileHover={animationConfig.enabled ? { 
+                            rotate: 360,
+                            transition: { duration: 0.6, ease: "easeInOut" }
+                          } : {}}
+                        >
+                          <div className="w-8 h-8 md:w-10 md:h-10 z-10 relative">
+                            <IconComponent />
+                          </div>
+                          {animationConfig.enabled && (
                             <motion.div
                               className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/30"
                               initial={{ opacity: 0 }}
                               whileHover={{ opacity: 1 }}
                               transition={{ duration: 0.3 }}
                             />
-                          </motion.div>
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-semibold text-foreground">{gem.name}</h3>
-                          <Badge variant="secondary" className="text-xs">{gem.category}</Badge>
+                          )}
+                        </motion.div>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-lg md:text-xl font-semibold text-foreground truncate">{gem.name}</h3>
+                          <Badge variant="secondary" className="text-xs mt-1">{gem.category}</Badge>
                         </div>
                       </div>
 
