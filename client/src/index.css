@@ -41,6 +41,24 @@ html {
   100% { box-shadow: 0 0 5px rgba(140, 116, 92, 0.3); }
 }
 
+/* Gemological gradient for consistent branding */
+.gemological-gradient {
+  background: linear-gradient(135deg, #1e40af 0%, #7c3aed 25%, #1e40af 50%, #3b82f6 75%, #1e40af 100%);
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Laboratory background utility */
+.lab-bg-primary {
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+}
+
 .shimmer {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
   background-size: 200% 100%;

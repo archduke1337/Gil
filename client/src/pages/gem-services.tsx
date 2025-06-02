@@ -137,7 +137,7 @@ export default function GemServices() {
                         <div className="flex justify-between items-start mb-4">
                           <div>
                             <h4 className="text-lg font-semibold">{cert.referenceNumber}</h4>
-                            <p className="text-muted-foreground">Certificate</p>
+                            <p className="text-muted-foreground">Diamond Certificate</p>
                           </div>
                           <span className={`px-2 py-1 rounded text-xs font-medium ${
                             cert.isActive 
