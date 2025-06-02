@@ -427,12 +427,51 @@ export default function GemEncyclopedia() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ 
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
+                    scale: 1.05,
+                    y: -8,
+                    transition: { duration: 0.3, ease: "easeOut" }
                   }}
+                  className="group"
                 >
                   <Link href={`/gem/${gem.id}`}>
-                    <Card className="border-border hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-muted/20 group cursor-pointer card-3d">
+                    <Card className="border-border hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 bg-gradient-to-br from-white to-muted/20 group cursor-pointer card-3d relative overflow-hidden hover:border-primary/50">
+                      {/* Animated background shimmer */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent opacity-0 group-hover:opacity-100"
+                        animate={{
+                          x: ["-100%", "100%"],
+                          transition: {
+                            duration: 1.5,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            ease: "easeInOut"
+                          }
+                        }}
+                      />
+                      
+                      {/* Sparkle effects */}
+                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        {[...Array(4)].map((_, i) => (
+                          <motion.div
+                            key={i}
+                            className="absolute w-1 h-1 bg-primary rounded-full"
+                            style={{
+                              top: `${i * 6}px`,
+                              right: `${i * 8}px`,
+                            }}
+                            animate={{
+                              opacity: [0, 1, 0],
+                              scale: [0, 1.5, 0],
+                              transition: {
+                                delay: i * 0.15,
+                                duration: 1.2,
+                                repeat: Infinity,
+                                repeatType: "loop"
+                              }
+                            }}
+                          />
+                        ))}
+                      </div>
                       <CardContent className="p-6">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center space-x-3">
