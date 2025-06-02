@@ -119,26 +119,28 @@ export default function FAQs() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background">
       <Navigation />
 
       {/* Hero Section */}
-      <div className="gemological-gradient text-white py-16">
+      <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
-            <HelpCircle className="w-10 h-10" />
+          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+              <HelpCircle className="w-8 h-8 text-primary-foreground" />
+            </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Frequently Asked Questions
           </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Find answers to common questions about our gemological services, certification process, and verification system
           </p>
         </div>
       </div>
 
       {/* Search and Filter Section */}
-      <div className="py-12 bg-white">
+      <div className="py-12 bg-card">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <div className="relative mb-6">
@@ -158,7 +160,7 @@ export default function FAQs() {
                   onClick={() => setSelectedCategory(category)}
                   variant={selectedCategory === category ? "default" : "outline"}
                   size="sm"
-                  className={selectedCategory === category ? "lab-bg-primary text-white" : "border-border hover:bg-primary/10"}
+                  className={selectedCategory === category ? "bg-primary hover:bg-primary/90 text-primary-foreground" : "border-border hover:bg-primary/10"}
                 >
                   {category}
                 </Button>
@@ -224,42 +226,42 @@ export default function FAQs() {
 
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-foreground text-primary-foreground py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <img 
-                src={logoPath} 
-                alt="GIL - Gemological Institute Laboratories" 
-                className="h-16 w-auto mb-4 brightness-0 invert"
-              />
-              <p className="text-gray-400 leading-relaxed">
+              <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
+                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                  <Gem className="w-6 h-6 text-primary-foreground" />
+                </div>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">
                 Leading the world in gemological excellence, education, and certification services.
               </p>
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-[#8c745c]">Quick Links</h3>
+              <h3 className="text-lg font-semibold mb-4 text-primary">Quick Links</h3>
               <ul className="space-y-2">
-                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
-                <li><Link href="/gem-encyclopedia" className="text-gray-400 hover:text-white transition-colors">Gem Encyclopedia</Link></li>
-                <li><Link href="/analysis" className="text-gray-400 hover:text-white transition-colors">Analysis & Grading</Link></li>
-                <li><Link href="/gem-services" className="text-gray-400 hover:text-white transition-colors">Gem Services</Link></li>
-                <li><Link href="/verify" className="text-gray-400 hover:text-white transition-colors">Report Check</Link></li>
+                <li><Link href="/about" className="text-muted-foreground hover:text-primary-foreground transition-colors">About Us</Link></li>
+                <li><Link href="/gem-encyclopedia" className="text-muted-foreground hover:text-primary-foreground transition-colors">Gem Encyclopedia</Link></li>
+                <li><Link href="/analysis" className="text-muted-foreground hover:text-primary-foreground transition-colors">Analysis & Grading</Link></li>
+                <li><Link href="/gem-services" className="text-muted-foreground hover:text-primary-foreground transition-colors">Gem Services</Link></li>
+                <li><Link href="/verify" className="text-muted-foreground hover:text-primary-foreground transition-colors">Report Check</Link></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-[#8c745c]">Support</h3>
+              <h3 className="text-lg font-semibold mb-4 text-primary">Support</h3>
               <ul className="space-y-2">
-                <li><Link href="/faqs" className="text-gray-400 hover:text-white transition-colors">FAQs</Link></li>
-                <li><Link href="/about#contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
+                <li><Link href="/faqs" className="text-muted-foreground hover:text-primary-foreground transition-colors">FAQs</Link></li>
+                <li><Link href="/about#contact" className="text-muted-foreground hover:text-primary-foreground transition-colors">Contact</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400">
+          <div className="border-t border-border mt-8 pt-8 text-center">
+            <p className="text-muted-foreground">
               © {new Date().getFullYear()} Gemological Institute Laboratories (GIL). All rights reserved.
             </p>
           </div>

@@ -64,11 +64,11 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#ece5dc] to-white">
+    <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background">
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-[#8c745c] to-[#7a6550] text-white py-20 overflow-hidden">
+      <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-20 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div 
             className="mb-8"
@@ -77,18 +77,16 @@ export default function About() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.div 
-              className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 bg-white/10 rounded-2xl p-4 floating-animation pulse-glow"
+              className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 bg-primary/20 rounded-2xl p-4 floating-animation pulse-glow"
               whileHover={{ 
                 scale: 1.05,
                 rotateY: 15,
                 transition: { duration: 0.3 }
               }}
             >
-              <img 
-                src={logoPath} 
-                alt="GIL Logo" 
-                className="w-full h-full object-contain"
-              />
+              <div className="w-full h-full bg-primary rounded-xl flex items-center justify-center">
+                <Gem className="w-12 h-12 md:w-16 md:h-16 text-primary-foreground" />
+              </div>
             </motion.div>
           </motion.div>
           <motion.h1 
@@ -100,7 +98,7 @@ export default function About() {
             Gemological Institute Laboratories
           </motion.h1>
           <motion.p 
-            className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8"
+            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -119,7 +117,7 @@ export default function About() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-white/90 px-8 py-4 transform-gpu">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 transform-gpu">
                   <Shield className="w-5 h-5 mr-2" />
                   Verify Certificate
                 </Button>
@@ -131,7 +129,7 @@ export default function About() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 transform-gpu">
+                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 transform-gpu">
                   <Gem className="w-5 h-5 mr-2" />
                   Explore Services
                 </Button>
@@ -142,7 +140,7 @@ export default function About() {
       </div>
 
       {/* Our Story Section */}
-      <div className="py-16 bg-white">
+      <div className="py-16 bg-card">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">Our Story</h2>
@@ -177,7 +175,7 @@ export default function About() {
       </div>
 
       {/* Values Section */}
-      <div className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="py-16 bg-gradient-to-r from-secondary to-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-12"
@@ -198,10 +196,10 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.1 }}
               whileHover={{ scale: 1.02, y: -5 }}
             >
-              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-white h-full">
+              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-card h-full">
                 <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-[#8c745c] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-primary-foreground" />
                   </div>
                   <h4 className="text-xl font-semibold text-foreground mb-3">Integrity</h4>
                   <p className="text-muted-foreground">
@@ -218,10 +216,10 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.2 }}
               whileHover={{ scale: 1.02, y: -5 }}
             >
-              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-white h-full">
+              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-card h-full">
                 <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-[#8c745c] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Star className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Star className="w-8 h-8 text-primary-foreground" />
                   </div>
                   <h4 className="text-xl font-semibold text-foreground mb-3">Excellence</h4>
                   <p className="text-muted-foreground">
@@ -238,10 +236,10 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.3 }}
               whileHover={{ scale: 1.02, y: -5 }}
             >
-              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-white h-full">
+              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-card h-full">
                 <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-[#8c745c] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-primary-foreground" />
                   </div>
                   <h4 className="text-xl font-semibold text-foreground mb-3">Service</h4>
                   <p className="text-muted-foreground">
@@ -256,7 +254,7 @@ export default function About() {
       </div>
 
       {/* Expertise Section */}
-      <div className="py-16 bg-white">
+      <div className="py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
