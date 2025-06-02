@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import Navigation from "@/components/navigation";
 import { Link } from "wouter";
+import { gemIcons } from "@/components/gem-svg-icons";
 
 interface GemDetail {
   name: string;
@@ -956,13 +957,19 @@ export default function GemDetail() {
           
           <div className="flex items-center space-x-4 mb-6">
             <motion.div 
-              className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center"
+              className="w-24 h-24 bg-primary/20 rounded-xl flex items-center justify-center p-3"
               whileHover={{ 
                 rotate: 360,
                 transition: { duration: 0.8, ease: "easeInOut" }
               }}
             >
-              <Gem className="w-12 h-12 text-primary" />
+              {gemIcons[id] ? (
+                <div className="w-full h-full">
+                  {gemIcons[id]({ className: "w-full h-full" })}
+                </div>
+              ) : (
+                <Gem className="w-12 h-12 text-primary" />
+              )}
             </motion.div>
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2">{gem.name}</h1>

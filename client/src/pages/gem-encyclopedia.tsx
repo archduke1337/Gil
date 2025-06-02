@@ -253,7 +253,7 @@ const gemstones = [
     description: "A variety of feldspar showing adularescence - a billowy, moonlight-like sheen. The optical phenomenon is caused by light scattering between feldspar layers.",
     characteristics: ["Adularescence", "Feldspar mineral", "Layered structure", "Moonlight effect"],
     colors: ["White", "Gray", "Peach", "Green", "Blue", "Rainbow"],
-    icon: Eye
+    icon: gemIcons["17"]
   },
   {
     id: 18,
@@ -264,7 +264,7 @@ const gemstones = [
     description: "A metamorphic rock composed primarily of lazurite with calcite and pyrite. Prized since antiquity for its intense blue color and golden flecks.",
     characteristics: ["Rock composition", "Pyrite inclusions", "Historical significance", "Intense blue color"],
     colors: ["Deep blue", "Royal blue", "Blue with gold flecks"],
-    icon: Crown
+    icon: gemIcons["18"]
   },
   {
     id: 19,
@@ -275,7 +275,7 @@ const gemstones = [
     description: "A hydrated phosphate mineral known for its distinctive blue-green color. Often found with host rock matrix creating unique patterns.",
     characteristics: ["Waxy luster", "Matrix patterns", "Porosity", "Ancient gemstone"],
     colors: ["Sky blue", "Blue-green", "Green", "Blue with matrix"],
-    icon: Sparkles
+    icon: gemIcons["19"]
   },
   {
     id: 20,
@@ -286,7 +286,7 @@ const gemstones = [
     description: "The pink to peach variety of beryl, colored by manganese. Named after J.P. Morgan, it's prized for its delicate pastel colors.",
     characteristics: ["Beryl variety", "Manganese coloration", "Large crystals possible", "Heat sensitive"],
     colors: ["Pink", "Peach", "Rose", "Salmon"],
-    icon: Star
+    icon: gemIcons["20"]
   },
   {
     id: 21,
@@ -297,7 +297,7 @@ const gemstones = [
     description: "Often confused with ruby throughout history, spinel is a magnesium aluminum oxide. The Black Prince's Ruby in the British Crown is actually a spinel.",
     characteristics: ["High hardness", "No cleavage", "Single refraction", "Historical confusion with ruby"],
     colors: ["Red", "Pink", "Blue", "Purple", "Black", "Colorless"],
-    icon: Crown
+    icon: gemIcons["21"]
   },
   {
     id: 22,
@@ -308,21 +308,10 @@ const gemstones = [
     description: "A rare variety of chrysoberyl famous for its color-changing properties. Appears green in daylight and red under incandescent light.",
     characteristics: ["Color change", "Extreme rarity", "Chrysoberyl variety", "Pleochroism"],
     colors: ["Green to red", "Blue to purple", "Yellow to pink"],
-    icon: Zap
+    icon: gemIcons["22"]
   },
   {
     id: 23,
-    name: "Topaz",
-    category: "Semi-Precious",
-    hardness: "8",
-    crystal: "Orthorhombic",
-    description: "A fluorine aluminum silicate mineral occurring in many colors. Imperial topaz (orange to pink) is the most valuable variety.",
-    characteristics: ["Perfect cleavage", "High hardness", "Wide color range", "Heat treatment common"],
-    colors: ["Blue", "Pink", "Yellow", "Orange", "Colorless", "Brown"],
-    icon: Diamond
-  },
-  {
-    id: 24,
     name: "Iolite",
     category: "Semi-Precious",
     hardness: "7-7.5",
@@ -330,7 +319,18 @@ const gemstones = [
     description: "Also known as cordierite, iolite shows strong pleochroism displaying violet-blue, yellow, and colorless depending on viewing angle.",
     characteristics: ["Strong pleochroism", "Cordierite mineral", "Viking compass stone", "Three-color effect"],
     colors: ["Violet-blue", "Blue", "Yellow", "Colorless"],
-    icon: Eye
+    icon: gemIcons["23"]
+  },
+  {
+    id: 24,
+    name: "Andalusite",
+    category: "Semi-Precious",
+    hardness: "7.5",
+    crystal: "Orthorhombic",
+    description: "An aluminum silicate showing strong pleochroism. The chiastolite variety displays distinctive cross-shaped inclusions and has been used as a protective talisman.",
+    characteristics: ["Strong pleochroism", "Cross inclusions", "Metamorphic mineral", "Protective stone"],
+    colors: ["Brown", "Green", "Yellow", "Pink", "Red", "Gray"],
+    icon: gemIcons["24"]
   }
 ];
 
