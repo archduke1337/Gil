@@ -200,7 +200,7 @@ export default function About() {
             >
               <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-white h-full">
                 <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-[#8c745c] rounded-full flex items-center justify-center mx-auto mb-4">
                     <Shield className="w-8 h-8 text-white" />
                   </div>
                   <h4 className="text-xl font-semibold text-foreground mb-3">Integrity</h4>
@@ -220,7 +220,7 @@ export default function About() {
             >
               <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-white h-full">
                 <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-[#8c745c] rounded-full flex items-center justify-center mx-auto mb-4">
                     <Star className="w-8 h-8 text-white" />
                   </div>
                   <h4 className="text-xl font-semibold text-foreground mb-3">Excellence</h4>
@@ -240,7 +240,7 @@ export default function About() {
             >
               <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-white h-full">
                 <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-[#8c745c] rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-white" />
                   </div>
                   <h4 className="text-xl font-semibold text-foreground mb-3">Service</h4>
@@ -263,8 +263,8 @@ export default function About() {
               <h3 className="text-3xl font-bold text-foreground mb-6">Our Expertise</h3>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Clock className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Clock className="w-4 h-4 text-[#8c745c]" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Decades of Experience</h4>
@@ -275,8 +275,8 @@ export default function About() {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Award className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Award className="w-4 h-4 text-[#8c745c]" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Certified Professionals</h4>
@@ -287,8 +287,8 @@ export default function About() {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Gem className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Gem className="w-4 h-4 text-[#8c745c]" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Advanced Technology</h4>
@@ -300,33 +300,33 @@ export default function About() {
               </div>
             </div>
             
-            <div className="bg-background p-8 rounded-2xl">
+            <div className="bg-[#ece5dc]/30 p-8 rounded-2xl">
               <h4 className="text-xl font-semibold text-foreground mb-4">Certification Standards</h4>
               <p className="text-muted-foreground mb-6">
                 Our certification process follows the internationally recognized 4Cs grading system:
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                    <span className="font-bold text-primary">C</span>
+                  <div className="w-12 h-12 bg-[#ece5dc] rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <span className="font-bold text-[#8c745c]">C</span>
                   </div>
                   <p className="text-sm font-medium text-foreground">Carat</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                    <span className="font-bold text-primary">C</span>
+                  <div className="w-12 h-12 bg-[#ece5dc] rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <span className="font-bold text-[#8c745c]">C</span>
                   </div>
                   <p className="text-sm font-medium text-foreground">Color</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                    <span className="font-bold text-primary">C</span>
+                  <div className="w-12 h-12 bg-[#ece5dc] rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <span className="font-bold text-[#8c745c]">C</span>
                   </div>
                   <p className="text-sm font-medium text-foreground">Clarity</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                    <span className="font-bold text-primary">C</span>
+                  <div className="w-12 h-12 bg-[#ece5dc] rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <span className="font-bold text-[#8c745c]">C</span>
                   </div>
                   <p className="text-sm font-medium text-foreground">Cut</p>
                 </div>
