@@ -16,7 +16,8 @@ export default function Navigation() {
     { href: "/gem-encyclopedia", label: "Gem Encyclopedia" },
     { href: "/analysis", label: "Analysis & Grading" },
     { href: "/about", label: "About Us" },
-    { href: "/faqs", label: "FAQs" }
+    { href: "/faqs", label: "FAQs" },
+    { href: "/about#contact", label: "Contact Us" }
   ];
 
   return (

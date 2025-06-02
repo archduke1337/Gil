@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { Gem, Search, Sparkles, Diamond, Crown, Star } from "lucide-react";
+import { Gem, Search, Sparkles, Diamond, Crown, Star, Eye, Palette, Zap, Mountain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 
 // SVG Components for Gemstones
@@ -130,6 +131,72 @@ const gemstones = [
     characteristics: ["High refractive index", "Good hardness", "Excellent clarity", "Wide color range"],
     colors: ["Red", "Orange", "Yellow", "Green", "Purple", "Pink"],
     icon: Crown
+  },
+  {
+    id: 7,
+    name: "Amethyst",
+    category: "Semi-Precious",
+    hardness: "7",
+    crystal: "Hexagonal",
+    description: "The purple variety of quartz, amethyst has been prized for millennia. Its color ranges from pale lavender to deep purple and is caused by iron impurities.",
+    characteristics: ["Purple coloration", "Excellent hardness", "Piezoelectric properties", "Heat sensitive"],
+    colors: ["Light purple", "Deep purple", "Lavender", "Violet"],
+    icon: Star
+  },
+  {
+    id: 8,
+    name: "Aquamarine",
+    category: "Semi-Precious",
+    hardness: "7.5-8",
+    crystal: "Hexagonal",
+    description: "The blue variety of beryl, aquamarine derives its name from seawater. It's known for its clarity and beautiful blue hues ranging from pale to deep blue.",
+    characteristics: ["Excellent clarity", "Blue coloration", "Good hardness", "Heat resistant"],
+    colors: ["Pale blue", "Sky blue", "Deep blue", "Blue-green"],
+    icon: Sparkles
+  },
+  {
+    id: 9,
+    name: "Topaz",
+    category: "Semi-Precious",
+    hardness: "8",
+    crystal: "Orthorhombic",
+    description: "One of the hardest naturally occurring minerals, topaz comes in many colors. Imperial topaz, with its golden to pink hues, is the most valued variety.",
+    characteristics: ["Exceptional hardness", "Perfect cleavage", "High refractive index", "Color variety"],
+    colors: ["Colorless", "Blue", "Pink", "Yellow", "Orange", "Imperial"],
+    icon: Diamond
+  },
+  {
+    id: 10,
+    name: "Peridot",
+    category: "Semi-Precious",
+    hardness: "6.5-7",
+    crystal: "Orthorhombic",
+    description: "One of the few gemstones that occurs in only one color - green. Peridot is formed deep in the Earth's mantle and brought to surface by volcanic activity.",
+    characteristics: ["Olivine green color", "High birefringence", "Oily luster", "Volcanic origin"],
+    colors: ["Yellow-green", "Olive green", "Brownish green"],
+    icon: Gem
+  },
+  {
+    id: 11,
+    name: "Citrine",
+    category: "Semi-Precious",
+    hardness: "7",
+    crystal: "Hexagonal",
+    description: "The yellow to brownish variety of quartz, citrine is often called the 'merchant's stone' and is believed to bring prosperity and success.",
+    characteristics: ["Yellow coloration", "Good clarity", "Affordable", "Heat treatable"],
+    colors: ["Pale yellow", "Golden yellow", "Orange", "Brownish yellow"],
+    icon: Crown
+  },
+  {
+    id: 12,
+    name: "Opal",
+    category: "Semi-Precious",
+    hardness: "5.5-6.5",
+    crystal: "Amorphous",
+    description: "Known for its unique play-of-color, opal displays a rainbow-like iridescence. It contains water and is formed from silica gel that hardens over time.",
+    characteristics: ["Play of color", "Hydrated silica", "Delicate structure", "Color flashes"],
+    colors: ["White", "Black", "Fire", "Boulder", "Crystal"],
+    icon: Sparkles
   }
 ];
 
@@ -199,24 +266,46 @@ export default function GemEncyclopedia() {
 
           {/* Gemstone Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredGems.map((gem) => {
+            {filteredGems.map((gem, index) => {
               const IconComponent = gem.icon;
               return (
-                <Card key={gem.id} className="border-border hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl flex items-center justify-center shadow-inner">
-                          <div className="w-10 h-10">
-                            <IconComponent />
-                          </div>
+                <motion.div
+                  key={gem.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  <Card className="border-border hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-muted/20 group">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-3">
+                          <motion.div 
+                            className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl flex items-center justify-center shadow-inner relative overflow-hidden"
+                            whileHover={{ 
+                              rotate: 360,
+                              transition: { duration: 0.8, ease: "easeInOut" }
+                            }}
+                          >
+                            <div className="w-10 h-10 z-10 relative">
+                              <IconComponent />
+                            </div>
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/30"
+                              initial={{ opacity: 0 }}
+                              whileHover={{ opacity: 1 }}
+                              transition={{ duration: 0.3 }}
+                            />
+                          </motion.div>
                         </div>
                         <div>
                           <h3 className="text-xl font-semibold text-foreground">{gem.name}</h3>
                           <Badge variant="secondary" className="text-xs">{gem.category}</Badge>
                         </div>
                       </div>
-                    </div>
 
                     <p className="text-muted-foreground mb-4 line-clamp-3">
                       {gem.description}
@@ -259,6 +348,7 @@ export default function GemEncyclopedia() {
                     </div>
                   </CardContent>
                 </Card>
+                </motion.div>
               );
             })}
           </div>
