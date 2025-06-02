@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
 import { motion, useMotionValue, useTransform, PanInfo } from "framer-motion";
-import { RotateCcw, ZoomIn, ZoomOut, Eye, Info } from "lucide-react";
+import { RotateCcw, ZoomIn, ZoomOut, Eye, Info, Lightbulb, Search, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Slider } from "@/components/ui/slider";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface Interactive3DGemProps {
   gemType: string;
@@ -79,12 +81,17 @@ export default function Interactive3DGem({ gemType, className = "" }: Interactiv
   const [selectedView, setSelectedView] = useState<"side" | "top" | "pavilion">("side");
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [zoom, setZoom] = useState(1);
+  const [lightingIntensity, setLightingIntensity] = useState([75]);
+  const [lightingAngle, setLightingAngle] = useState([45]);
+  const [microscopyLevel, setMicroscopyLevel] = useState("10x");
+  const [showInclusions, setShowInclusions] = useState(false);
+  const [measurementMode, setMeasurementMode] = useState(false);
   const constraintsRef = useRef(null);
   
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [30, -30]);
-  const rotateY = useTransform(x, [-100, 100], [-30, 30]);
+  const rotateX = useTransform(y, [-200, 200], [45, -45]);
+  const rotateY = useTransform(x, [-200, 200], [-45, 45]);
 
   const data = gemAnalysisData[gemType.toLowerCase()] || gemAnalysisData.diamond;
 
@@ -99,8 +106,16 @@ export default function Interactive3DGem({ gemType, className = "" }: Interactiv
   };
 
   const get3DGemSVG = (view: string) => {
-    const baseColor = gemType.toLowerCase() === 'diamond' ? '#e3f2fd' : '#c8e6c9';
-    const accentColor = gemType.toLowerCase() === 'diamond' ? '#1976d2' : '#4caf50';
+    const gemColors = {
+      diamond: { base: '#e3f2fd', accent: '#1976d2', highlight: '#ffffff' },
+      emerald: { base: '#c8e6c9', accent: '#4caf50', highlight: '#e8f5e8' },
+      ruby: { base: '#ffcdd2', accent: '#f44336', highlight: '#ffebee' },
+      sapphire: { base: '#e3f2fd', accent: '#2196f3', highlight: '#f3e5f5' }
+    };
+    
+    const colors = gemColors[gemType.toLowerCase() as keyof typeof gemColors] || gemColors.diamond;
+    const lightIntensity = lightingIntensity[0] / 100;
+    const angle = lightingAngle[0];
     
     switch (view) {
       case 'top':
@@ -108,49 +123,143 @@ export default function Interactive3DGem({ gemType, className = "" }: Interactiv
           <svg viewBox="0 0 200 200" className="w-full h-full">
             <defs>
               <radialGradient id={`${gemType}TopGradient`} cx="50%" cy="30%">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="50%" stopColor={baseColor} />
-                <stop offset="100%" stopColor={accentColor} />
+                <stop offset="0%" stopColor={colors.highlight} stopOpacity={lightIntensity} />
+                <stop offset="50%" stopColor={colors.base} />
+                <stop offset="100%" stopColor={colors.accent} />
               </radialGradient>
+              <filter id="brillianceEffect">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
-            <circle cx="100" cy="100" r="80" fill={`url(#${gemType}TopGradient)`} stroke={accentColor} strokeWidth="2"/>
-            <polygon points="100,40 140,60 160,100 140,140 100,160 60,140 40,100 60,60" 
-                     fill="none" stroke={accentColor} strokeWidth="1" opacity="0.7"/>
-            <polygon points="100,60 120,80 120,120 100,140 80,120 80,80" 
-                     fill={baseColor} stroke={accentColor} strokeWidth="1" opacity="0.8"/>
+            
+            {/* Main gem outline */}
+            <circle cx="100" cy="100" r="75" fill={`url(#${gemType}TopGradient)`} stroke={colors.accent} strokeWidth="2" filter="url(#brillianceEffect)"/>
+            
+            {/* Table facet */}
+            <polygon points="100,50 130,70 130,130 100,150 70,130 70,70" 
+                     fill={colors.highlight} stroke={colors.accent} strokeWidth="1" opacity={0.9}/>
+            
+            {/* Crown facets */}
+            <g stroke={colors.accent} strokeWidth="0.8" fill="none" opacity="0.7">
+              <path d="M100 25 L100 50"/>
+              <path d="M130 70 L155 70"/>
+              <path d="M130 130 L155 130"/>
+              <path d="M100 150 L100 175"/>
+              <path d="M70 130 L45 130"/>
+              <path d="M70 70 L45 70"/>
+              <path d="M85 40 L115 40"/>
+              <path d="M140 85 L140 115"/>
+            </g>
+            
+            {/* Inclusions (if enabled) */}
+            {showInclusions && (
+              <g>
+                <circle cx="90" cy="90" r="2" fill={colors.accent} opacity="0.4"/>
+                <circle cx="110" cy="120" r="1.5" fill={colors.accent} opacity="0.3"/>
+                <path d="M105 95 L115 105" stroke={colors.accent} strokeWidth="1" opacity="0.3"/>
+              </g>
+            )}
+            
+            {/* Measurement points (if enabled) */}
+            {measurementMode && (
+              <g>
+                <circle cx="70" cy="100" r="2" fill="red" stroke="white" strokeWidth="1"/>
+                <circle cx="130" cy="100" r="2" fill="red" stroke="white" strokeWidth="1"/>
+                <line x1="70" y1="100" x2="130" y2="100" stroke="red" strokeWidth="1" strokeDasharray="3,3"/>
+                <text x="100" y="95" textAnchor="middle" fontSize="8" fill="red">6.5mm</text>
+              </g>
+            )}
           </svg>
         );
+        
       case 'pavilion':
         return (
           <svg viewBox="0 0 200 200" className="w-full h-full">
             <defs>
               <linearGradient id={`${gemType}PavilionGradient`} x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor={accentColor} />
+                <stop offset="0%" stopColor={colors.accent} />
+                <stop offset="50%" stopColor={colors.base} />
                 <stop offset="100%" stopColor="#1a237e" />
               </linearGradient>
             </defs>
+            
+            {/* Pavilion outline */}
             <polygon points="100,40 160,80 140,120 100,180 60,120 40,80" 
-                     fill={`url(#${gemType}PavilionGradient)`} stroke={accentColor} strokeWidth="2"/>
-            <path d="M100 40 L100 180" stroke="#ffffff" strokeWidth="1" opacity="0.6"/>
-            <path d="M40 80 L160 80 L100 180 Z" fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.4"/>
+                     fill={`url(#${gemType}PavilionGradient)`} stroke={colors.accent} strokeWidth="2"/>
+            
+            {/* Pavilion facets */}
+            <g stroke={colors.highlight} strokeWidth="1" opacity="0.6">
+              <path d="M100 40 L100 180"/>
+              <path d="M40 80 L160 80"/>
+              <path d="M60 120 L140 120"/>
+              <path d="M80 100 L120 100"/>
+            </g>
+            
+            {/* Light reflection */}
+            <polygon points="100,60 120,80 100,100 80,80" 
+                     fill={colors.highlight} opacity={lightIntensity * 0.8}/>
+                     
+            {/* Culet point */}
+            <circle cx="100" cy="180" r="2" fill={colors.accent}/>
           </svg>
         );
-      default:
+        
+      default: // side view
         return (
           <svg viewBox="0 0 200 200" className="w-full h-full">
             <defs>
               <linearGradient id={`${gemType}SideGradient`} x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="30%" stopColor={baseColor} />
-                <stop offset="100%" stopColor={accentColor} />
+                <stop offset="0%" stopColor={colors.highlight} stopOpacity={lightIntensity} />
+                <stop offset="30%" stopColor={colors.base} />
+                <stop offset="100%" stopColor={colors.accent} />
               </linearGradient>
+              <radialGradient id={`${gemType}Brilliance`} cx="50%" cy="30%">
+                <stop offset="0%" stopColor={colors.highlight} stopOpacity="0.9" />
+                <stop offset="100%" stopColor="transparent" />
+              </radialGradient>
             </defs>
+            
+            {/* Main gem body */}
             <polygon points="100,30 150,70 150,130 100,170 50,130 50,70" 
-                     fill={`url(#${gemType}SideGradient)`} stroke={accentColor} strokeWidth="2"/>
-            <polygon points="70,70 130,70 135,85 125,100 75,100 65,85" 
-                     fill="#ffffff" stroke={accentColor} strokeWidth="1" opacity="0.8"/>
-            <path d="M50 70 L100 85 L150 70" stroke="#ffffff" strokeWidth="1" opacity="0.6"/>
-            <path d="M50 130 L100 115 L150 130" stroke="#ffffff" strokeWidth="1" opacity="0.6"/>
+                     fill={`url(#${gemType}SideGradient)`} stroke={colors.accent} strokeWidth="2"/>
+            
+            {/* Table facet */}
+            <polygon points="70,70 130,70 135,80 125,90 75,90 65,80" 
+                     fill={colors.highlight} stroke={colors.accent} strokeWidth="1" opacity="0.9"/>
+            
+            {/* Crown and pavilion divisions */}
+            <path d="M50 70 L150 70" stroke={colors.accent} strokeWidth="1.5" opacity="0.8"/>
+            <path d="M50 130 L150 130" stroke={colors.accent} strokeWidth="1" opacity="0.6"/>
+            
+            {/* Facet lines */}
+            <g stroke={colors.highlight} strokeWidth="0.8" opacity="0.6">
+              <path d="M65 55 L100 70 L135 55"/>
+              <path d="M50 70 L100 85 L150 70"/>
+              <path d="M50 130 L100 115 L150 130"/>
+              <path d="M65 145 L100 130 L135 145"/>
+            </g>
+            
+            {/* Brilliance effect */}
+            <ellipse cx="100" cy="70" rx="25" ry="15" fill={`url(#${gemType}Brilliance)`} opacity={lightIntensity}/>
+            
+            {/* Measurement annotations */}
+            {measurementMode && (
+              <g>
+                <line x1="30" y1="30" x2="30" y2="170" stroke="red" strokeWidth="1"/>
+                <line x1="25" y1="30" x2="35" y2="30" stroke="red" strokeWidth="1"/>
+                <line x1="25" y1="170" x2="35" y2="170" stroke="red" strokeWidth="1"/>
+                <text x="20" y="100" textAnchor="middle" fontSize="8" fill="red" transform="rotate(-90, 20, 100)">7.2mm</text>
+                
+                <line x1="50" y1="185" x2="150" y2="185" stroke="red" strokeWidth="1"/>
+                <line x1="50" y1="180" x2="50" y2="190" stroke="red" strokeWidth="1"/>
+                <line x1="150" y1="180" x2="150" y2="190" stroke="red" strokeWidth="1"/>
+                <text x="100" y="195" textAnchor="middle" fontSize="8" fill="red">6.5mm</text>
+              </g>
+            )}
           </svg>
         );
     }
@@ -180,19 +289,22 @@ export default function Interactive3DGem({ gemType, className = "" }: Interactiv
             {/* 3D Gem Viewer */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="text-lg font-semibold">3D Examination</h4>
+                <h4 className="text-lg font-semibold">Professional Gem Examination</h4>
                 <div className="flex items-center gap-2">
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => setZoom(Math.max(0.5, zoom - 0.1))}
+                    onClick={() => setZoom(Math.max(0.5, zoom - 0.2))}
                   >
                     <ZoomOut className="h-4 w-4" />
                   </Button>
+                  <span className="text-xs text-muted-foreground min-w-[3rem] text-center">
+                    {Math.round(zoom * 100)}%
+                  </span>
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => setZoom(Math.min(2, zoom + 0.1))}
+                    onClick={() => setZoom(Math.min(5, zoom + 0.2))}
                   >
                     <ZoomIn className="h-4 w-4" />
                   </Button>
@@ -203,6 +315,75 @@ export default function Interactive3DGem({ gemType, className = "" }: Interactiv
                   >
                     <RotateCcw className="h-4 w-4" />
                   </Button>
+                </div>
+              </div>
+
+              {/* Advanced Controls */}
+              <div className="grid grid-cols-2 gap-4 p-4 bg-muted/30 rounded-lg">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Lightbulb className="h-4 w-4" />
+                    Light Intensity: {lightingIntensity[0]}%
+                  </label>
+                  <Slider
+                    value={lightingIntensity}
+                    onValueChange={setLightingIntensity}
+                    max={100}
+                    min={20}
+                    step={5}
+                    className="w-full"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Settings className="h-4 w-4" />
+                    Light Angle: {lightingAngle[0]}°
+                  </label>
+                  <Slider
+                    value={lightingAngle}
+                    onValueChange={setLightingAngle}
+                    max={90}
+                    min={0}
+                    step={15}
+                    className="w-full"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Microscopy Level</label>
+                  <Select value={microscopyLevel} onValueChange={setMicroscopyLevel}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="10x">10x Magnification</SelectItem>
+                      <SelectItem value="20x">20x Magnification</SelectItem>
+                      <SelectItem value="40x">40x Magnification</SelectItem>
+                      <SelectItem value="100x">100x Magnification</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Examination Tools</label>
+                  <div className="flex gap-2">
+                    <Button
+                      variant={showInclusions ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setShowInclusions(!showInclusions)}
+                    >
+                      <Search className="h-4 w-4 mr-1" />
+                      Inclusions
+                    </Button>
+                    <Button
+                      variant={measurementMode ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setMeasurementMode(!measurementMode)}
+                    >
+                      Measure
+                    </Button>
+                  </div>
                 </div>
               </div>
               

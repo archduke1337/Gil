@@ -176,25 +176,7 @@ export default function AnalysisGrading() {
         </div>
       </div>
 
-      {/* AR Gem Identification */}
-      <div className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-foreground mb-4">Augmented Reality Gem Identification</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Use cutting-edge AI technology to identify and analyze gemstones instantly
-              </p>
-            </div>
-            <ARGemIdentification />
-          </motion.div>
-        </div>
-      </div>
+
 
       {/* Diamond Grading - 4Cs */}
       <div className="py-16 bg-card">
