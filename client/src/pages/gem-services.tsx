@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sparkles, Map, Users, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 import GemRecommendationEngine from "@/components/gem-recommendation-engine";
 import GemRarityHeatmap from "@/components/gem-rarity-heatmap";
 import CommunityShowcase from "@/components/community-showcase";

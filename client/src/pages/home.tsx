@@ -21,6 +21,12 @@ export default function Home() {
       link: "/analysis"
     },
     {
+      icon: <Search className="w-12 h-12 text-[#8c745c]" />,
+      title: "Advanced Gem Services",
+      description: "AI-powered recommendations, community showcase, rarity analysis, and advanced search tools for gemstone enthusiasts.",
+      link: "/gem-services"
+    },
+    {
       icon: <FileCheck className="w-12 h-12 text-[#8c745c]" />,
       title: "Report Check",
       description: "Verify the authenticity of gemological certificates and access detailed analysis reports instantly.",
@@ -127,7 +133,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -233,6 +239,7 @@ export default function Home() {
                 <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
                 <li><Link href="/gem-encyclopedia" className="text-gray-400 hover:text-white transition-colors">Gem Encyclopedia</Link></li>
                 <li><Link href="/analysis" className="text-gray-400 hover:text-white transition-colors">Analysis & Grading</Link></li>
+                <li><Link href="/gem-services" className="text-gray-400 hover:text-white transition-colors">Gem Services</Link></li>
                 <li><Link href="/verify" className="text-gray-400 hover:text-white transition-colors">Report Check</Link></li>
               </ul>
             </div>
