@@ -4,12 +4,17 @@ import { Gem, LogOut, Upload, List, RefreshCw, FileUp, Search, Filter, Map, Book
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 import UploadForm from "@/components/upload-form";
 import CertificateList from "@/components/certificate-list";
+import BulkUpload from "@/components/bulk-upload";
+import AdvancedSearch from "@/components/advanced-search";
+import GemRecommendationEngine from "@/components/gem-recommendation-engine";
+import GemRarityHeatmap from "@/components/gem-rarity-heatmap";
+import PersonalizedLearning from "@/components/personalized-learning";
+import CommunityShowcase from "@/components/community-showcase";
+import ARVisualization from "@/components/ar-visualization";
 import { useToast } from "@/hooks/use-toast";
 import type { Certificate } from "@shared/schema";
 
@@ -18,15 +23,12 @@ interface AdminDashboardProps {
 }
 
 export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
-  const [activeTab, setActiveTab] = useState<"upload" | "list" | "bulk" | "search" | "analytics">("upload");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filterCategory, setFilterCategory] = useState("all");
-  const [bulkFiles, setBulkFiles] = useState<File[]>([]);
+  const [searchResults, setSearchResults] = useState<Certificate[]>([]);
   const { toast } = useToast();
 
   const { data: certificatesData, refetch } = useQuery<{ certificates: Certificate[] }>({
     queryKey: ["/api/certificates"],
-    refetchInterval: 30000, // Refetch every 30 seconds
+    refetchInterval: 30000,
   });
 
   const certificates = certificatesData?.certificates || [];
@@ -43,59 +45,52 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
     refetch();
   };
 
-  const handleBulkUpload = async () => {
-    if (bulkFiles.length === 0) {
-      toast({
-        title: "No files selected",
-        description: "Please select files to upload",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    toast({
-      title: "Bulk Upload Started",
-      description: `Processing ${bulkFiles.length} certificates...`,
-    });
-  };
-
-  const filteredCertificates = certificates.filter(cert => {
-    const matchesSearch = cert.referenceNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         cert.filename.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesFilter = filterCategory === "all" || cert.colorGrade?.toLowerCase() === filterCategory.toLowerCase();
-    return matchesSearch && matchesFilter;
-  });
+  const displayCertificates = searchResults.length > 0 ? searchResults : certificates;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Dashboard Header */}
-      <div className="bg-white shadow border-b border-gray-200">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
-                <Gem className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                <Gem className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Advanced Certificate Management</h1>
-                <p className="text-gray-600">Upload and manage diamond certificates</p>
+                <h1 className="text-2xl font-bold text-gray-900">GIL Admin Dashboard</h1>
+                <p className="text-sm text-gray-600">Comprehensive gemological management system</p>
               </div>
             </div>
-            <Button 
-              onClick={handleLogout}
-              variant="ghost"
-              className="flex items-center space-x-2 text-gray-600 hover:text-red-600 transition-colors"
-            >
-              <LogOut className="w-4 h-4" />
-              <span>Logout</span>
+            <Button onClick={handleLogout} variant="outline">
+              <LogOut className="w-4 h-4 mr-2" />
+              Logout
             </Button>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Advanced Dashboard Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Card className="hover:shadow-lg transition-shadow duration-300">
+              <CardContent className="p-6">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <FileUp className="w-6 h-6 text-blue-700" />
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-600">Total Certificates</p>
+                    <p className="text-2xl font-semibold text-gray-900">{certificates.length}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -104,12 +99,14 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <Card className="hover:shadow-lg transition-shadow duration-300">
               <CardContent className="p-6">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Upload className="w-6 h-6 text-blue-700" />
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <Eye className="w-6 h-6 text-green-700" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Total Certificates</p>
-                    <p className="text-2xl font-semibold text-gray-900">{certificates.length}</p>
+                    <p className="text-sm font-medium text-gray-600">Active Certificates</p>
+                    <p className="text-2xl font-semibold text-gray-900">
+                      {certificates.filter(cert => cert.isActive).length}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -124,69 +121,176 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <Card className="hover:shadow-lg transition-shadow duration-300">
               <CardContent className="p-6">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Eye className="w-6 h-6 text-green-700" />
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <Search className="w-6 h-6 text-purple-700" />
                   </div>
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-600">Verifications Today</p>
-                  <p className="text-2xl font-semibold text-gray-900">42</p>
+                    <p className="text-2xl font-semibold text-gray-900">42</p>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                  <RefreshCw className="w-6 h-6 text-emerald-600" />
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Card className="hover:shadow-lg transition-shadow duration-300">
+              <CardContent className="p-6">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                    <RefreshCw className="w-6 h-6 text-emerald-600" />
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-600">Uploads This Month</p>
+                    <p className="text-2xl font-semibold text-gray-900">
+                      {certificates.filter(cert => {
+                        if (!cert.uploadDate) return false;
+                        const uploadDate = new Date(cert.uploadDate);
+                        const now = new Date();
+                        return uploadDate.getMonth() === now.getMonth() && uploadDate.getFullYear() === now.getFullYear();
+                      }).length}
+                    </p>
+                  </div>
                 </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Uploads This Month</p>
-                  <p className="text-2xl font-semibold text-gray-900">
-                    {certificates.filter(cert => {
-                      const uploadDate = new Date(cert.uploadDate);
-                      const now = new Date();
-                      return uploadDate.getMonth() === now.getMonth() && uploadDate.getFullYear() === now.getFullYear();
-                    }).length}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex space-x-1 mb-8 bg-gray-200 rounded-lg p-1">
-          <Button
-            onClick={() => setActiveTab("upload")}
-            variant={activeTab === "upload" ? "default" : "ghost"}
-            className={`flex-1 ${activeTab === "upload" ? "bg-white shadow-sm" : ""}`}
-          >
-            <Upload className="w-4 h-4 mr-2" />
-            Upload Certificate
-          </Button>
-          <Button
-            onClick={() => setActiveTab("list")}
-            variant={activeTab === "list" ? "default" : "ghost"}
-            className={`flex-1 ${activeTab === "list" ? "bg-white shadow-sm" : ""}`}
-          >
-            <List className="w-4 h-4 mr-2" />
-            Certificate Database
-            {certificates.length > 0 && (
-              <Badge variant="secondary" className="ml-2">
-                {certificates.length}
-              </Badge>
-            )}
-          </Button>
-        </div>
+        <Tabs defaultValue="certificates" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-9">
+            <TabsTrigger value="certificates" className="flex items-center space-x-2">
+              <List className="w-4 h-4" />
+              <span>Certificates</span>
+            </TabsTrigger>
+            <TabsTrigger value="upload" className="flex items-center space-x-2">
+              <Upload className="w-4 h-4" />
+              <span>Upload</span>
+            </TabsTrigger>
+            <TabsTrigger value="bulk" className="flex items-center space-x-2">
+              <FileUp className="w-4 h-4" />
+              <span>Bulk Upload</span>
+            </TabsTrigger>
+            <TabsTrigger value="search" className="flex items-center space-x-2">
+              <Search className="w-4 h-4" />
+              <span>Advanced Search</span>
+            </TabsTrigger>
+            <TabsTrigger value="ai" className="flex items-center space-x-2">
+              <Gem className="w-4 h-4" />
+              <span>AI Recommendations</span>
+            </TabsTrigger>
+            <TabsTrigger value="heatmap" className="flex items-center space-x-2">
+              <Map className="w-4 h-4" />
+              <span>Rarity Map</span>
+            </TabsTrigger>
+            <TabsTrigger value="learning" className="flex items-center space-x-2">
+              <BookOpen className="w-4 h-4" />
+              <span>Learning</span>
+            </TabsTrigger>
+            <TabsTrigger value="community" className="flex items-center space-x-2">
+              <Users className="w-4 h-4" />
+              <span>Community</span>
+            </TabsTrigger>
+            <TabsTrigger value="ar" className="flex items-center space-x-2">
+              <Eye className="w-4 h-4" />
+              <span>AR Visualization</span>
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Tab Content */}
-        {activeTab === "upload" ? (
-          <UploadForm onSuccess={handleUploadSuccess} />
-        ) : (
-          <CertificateList certificates={certificates} onUpdate={refetch} />
-        )}
+          <TabsContent value="certificates" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <CertificateList certificates={displayCertificates} onUpdate={handleUploadSuccess} />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="upload" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <UploadForm onSuccess={handleUploadSuccess} />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="bulk" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <BulkUpload onSuccess={handleUploadSuccess} />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="search" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <AdvancedSearch certificates={certificates} onSearchResults={setSearchResults} />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="ai" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <GemRecommendationEngine />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="heatmap" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <GemRarityHeatmap />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="learning" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <PersonalizedLearning />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="community" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <CommunityShowcase />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="ar" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <ARVisualization />
+            </motion.div>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
