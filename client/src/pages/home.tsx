@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Shield, Gem, Search, Clock, Users, Star, Award, Microscope, FileCheck, Globe } from "lucide-react";
+import { Shield, Gem, Search, Clock, Users, Star, Award, Microscope, FileCheck, Globe, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -117,11 +117,113 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Advanced Features Section */}
+      <div className="py-12 sm:py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">Advanced Gem Services</h2>
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
+              Discover our cutting-edge tools and community features designed for gemstone enthusiasts
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+            >
+              <Card className="h-full text-center border-border hover:shadow-xl transition-all duration-300 bg-white">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Sparkles className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">AI Recommendations</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Get personalized gemstone suggestions based on your preferences and budget
+                  </p>
+                  <Link href="/gem-services">
+                    <Button className="w-full">Try AI Engine</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+            >
+              <Card className="h-full text-center border-border hover:shadow-xl transition-all duration-300 bg-white">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Globe className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Rarity Heat Map</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Explore interactive visualizations of gemstone rarity and market trends
+                  </p>
+                  <Link href="/gem-services">
+                    <Button className="w-full">View Heat Map</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+            >
+              <Card className="h-full text-center border-border hover:shadow-xl transition-all duration-300 bg-white">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Community Showcase</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Share your collection and discover exceptional gems from our community
+                  </p>
+                  <Link href="/gem-services">
+                    <Button className="w-full">Join Community</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+            >
+              <Card className="h-full text-center border-border hover:shadow-xl transition-all duration-300 bg-white">
+                <CardContent className="p-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Search className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Advanced Search</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Search certificates with sophisticated filters and criteria
+                  </p>
+                  <Link href="/gem-services">
+                    <Button className="w-full">Search Now</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
       {/* Services Overview */}
       <div className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">Our Services</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">Our Core Services</h2>
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Comprehensive gemological services backed by cutting-edge technology and decades of expertise
             </p>

@@ -8,6 +8,7 @@ import Verify from "@/pages/verify";
 import About from "@/pages/about";
 import GemEncyclopedia from "@/pages/gem-encyclopedia";
 import AnalysisGrading from "@/pages/analysis-grading";
+import GemServices from "@/pages/gem-services";
 import FAQs from "@/pages/faqs";
 import Admin from "@/pages/admin";
 import NotFound from "@/pages/not-found";
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/gem-encyclopedia" component={GemEncyclopedia} />
       <Route path="/analysis" component={AnalysisGrading} />
+      <Route path="/gem-services" component={GemServices} />
       <Route path="/faqs" component={FAQs} />
       <Route path="/admin" component={Admin} />
       <Route component={NotFound} />

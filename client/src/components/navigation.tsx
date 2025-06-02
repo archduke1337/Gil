@@ -15,6 +15,7 @@ export default function Navigation() {
     { href: "/verify", label: "Verify Certificate" },
     { href: "/gem-encyclopedia", label: "Gem Encyclopedia" },
     { href: "/analysis", label: "Analysis & Grading" },
+    { href: "/gem-services", label: "Gem Services" },
     { href: "/about", label: "About Us" },
     { href: "/faqs", label: "FAQs" },
     { href: "/about#contact", label: "Contact Us" },
