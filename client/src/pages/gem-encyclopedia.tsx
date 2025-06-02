@@ -198,6 +198,138 @@ const gemstones = [
     characteristics: ["Play of color", "Hydrated silica", "Delicate structure", "Color flashes"],
     colors: ["White", "Black", "Fire", "Boulder", "Crystal"],
     icon: Sparkles
+  },
+  {
+    id: 13,
+    name: "Tourmaline",
+    category: "Semi-Precious",
+    hardness: "7-7.5",
+    crystal: "Trigonal",
+    description: "A complex borosilicate mineral with exceptional color range. Tourmaline can exhibit multiple colors in a single crystal and has strong pleochroism.",
+    characteristics: ["Wide color range", "Pleochroism", "Pyroelectric properties", "Bicolor crystals"],
+    colors: ["Pink", "Green", "Blue", "Yellow", "Black", "Watermelon", "Paraiba"],
+    icon: Palette
+  },
+  {
+    id: 14,
+    name: "Jade",
+    category: "Semi-Precious",
+    hardness: "6-7",
+    crystal: "Monoclinic",
+    description: "Actually two different minerals: jadeite and nephrite. Prized for thousands of years, especially in Asian cultures for its toughness and beauty.",
+    characteristics: ["Exceptional toughness", "Waxy luster", "Cultural significance", "Fine grain structure"],
+    colors: ["Green", "White", "Lavender", "Yellow", "Black", "Red"],
+    icon: Mountain
+  },
+  {
+    id: 15,
+    name: "Citrine",
+    category: "Semi-Precious",
+    hardness: "7",
+    crystal: "Hexagonal",
+    description: "The yellow variety of quartz, ranging from pale yellow to brownish orange. Most commercial citrine is heat-treated amethyst or smoky quartz.",
+    characteristics: ["Yellow coloration", "Heat treatment common", "Piezoelectric", "Abundant availability"],
+    colors: ["Pale yellow", "Golden yellow", "Orange", "Brownish yellow"],
+    icon: Star
+  },
+  {
+    id: 16,
+    name: "Peridot",
+    category: "Semi-Precious",
+    hardness: "6.5-7",
+    crystal: "Orthorhombic",
+    description: "The gem variety of olivine, peridot is one of the few gemstones that occurs in only one color. It's found in meteorites and volcanic rocks.",
+    characteristics: ["Single color variety", "High birefringence", "Olivine mineral", "Extraterrestrial occurrence"],
+    colors: ["Yellowish green", "Olive green", "Brownish green"],
+    icon: Zap
+  },
+  {
+    id: 17,
+    name: "Moonstone",
+    category: "Semi-Precious",
+    hardness: "6-6.5",
+    crystal: "Triclinic",
+    description: "A variety of feldspar showing adularescence - a billowy, moonlight-like sheen. The optical phenomenon is caused by light scattering between feldspar layers.",
+    characteristics: ["Adularescence", "Feldspar mineral", "Layered structure", "Moonlight effect"],
+    colors: ["White", "Gray", "Peach", "Green", "Blue", "Rainbow"],
+    icon: Eye
+  },
+  {
+    id: 18,
+    name: "Lapis Lazuli",
+    category: "Semi-Precious",
+    hardness: "5-5.5",
+    crystal: "Cubic",
+    description: "A metamorphic rock composed primarily of lazurite with calcite and pyrite. Prized since antiquity for its intense blue color and golden flecks.",
+    characteristics: ["Rock composition", "Pyrite inclusions", "Historical significance", "Intense blue color"],
+    colors: ["Deep blue", "Royal blue", "Blue with gold flecks"],
+    icon: Crown
+  },
+  {
+    id: 19,
+    name: "Turquoise",
+    category: "Semi-Precious",
+    hardness: "5-6",
+    crystal: "Triclinic",
+    description: "A hydrated phosphate mineral known for its distinctive blue-green color. Often found with host rock matrix creating unique patterns.",
+    characteristics: ["Waxy luster", "Matrix patterns", "Porosity", "Ancient gemstone"],
+    colors: ["Sky blue", "Blue-green", "Green", "Blue with matrix"],
+    icon: Sparkles
+  },
+  {
+    id: 20,
+    name: "Morganite",
+    category: "Semi-Precious",
+    hardness: "7.5-8",
+    crystal: "Hexagonal",
+    description: "The pink to peach variety of beryl, colored by manganese. Named after J.P. Morgan, it's prized for its delicate pastel colors.",
+    characteristics: ["Beryl variety", "Manganese coloration", "Large crystals possible", "Heat sensitive"],
+    colors: ["Pink", "Peach", "Rose", "Salmon"],
+    icon: Star
+  },
+  {
+    id: 21,
+    name: "Spinel",
+    category: "Precious Stone",
+    hardness: "8",
+    crystal: "Cubic",
+    description: "Often confused with ruby throughout history, spinel is a magnesium aluminum oxide. The Black Prince's Ruby in the British Crown is actually a spinel.",
+    characteristics: ["High hardness", "No cleavage", "Single refraction", "Historical confusion with ruby"],
+    colors: ["Red", "Pink", "Blue", "Purple", "Black", "Colorless"],
+    icon: Crown
+  },
+  {
+    id: 22,
+    name: "Alexandrite",
+    category: "Precious Stone",
+    hardness: "8.5",
+    crystal: "Orthorhombic",
+    description: "A rare variety of chrysoberyl famous for its color-changing properties. Appears green in daylight and red under incandescent light.",
+    characteristics: ["Color change", "Extreme rarity", "Chrysoberyl variety", "Pleochroism"],
+    colors: ["Green to red", "Blue to purple", "Yellow to pink"],
+    icon: Zap
+  },
+  {
+    id: 23,
+    name: "Topaz",
+    category: "Semi-Precious",
+    hardness: "8",
+    crystal: "Orthorhombic",
+    description: "A fluorine aluminum silicate mineral occurring in many colors. Imperial topaz (orange to pink) is the most valuable variety.",
+    characteristics: ["Perfect cleavage", "High hardness", "Wide color range", "Heat treatment common"],
+    colors: ["Blue", "Pink", "Yellow", "Orange", "Colorless", "Brown"],
+    icon: Diamond
+  },
+  {
+    id: 24,
+    name: "Iolite",
+    category: "Semi-Precious",
+    hardness: "7-7.5",
+    crystal: "Orthorhombic",
+    description: "Also known as cordierite, iolite shows strong pleochroism displaying violet-blue, yellow, and colorless depending on viewing angle.",
+    characteristics: ["Strong pleochroism", "Cordierite mineral", "Viking compass stone", "Three-color effect"],
+    colors: ["Violet-blue", "Blue", "Yellow", "Colorless"],
+    icon: Eye
   }
 ];
 

@@ -7,6 +7,7 @@ import Home from "@/pages/home";
 import Verify from "@/pages/verify";
 import About from "@/pages/about";
 import GemEncyclopedia from "@/pages/gem-encyclopedia";
+import GemDetail from "@/pages/gem-detail";
 import AnalysisGrading from "@/pages/analysis-grading";
 import GemServices from "@/pages/gem-services";
 import FAQs from "@/pages/faqs";
