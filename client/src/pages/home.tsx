@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Shield, Gem, Search, Clock, Users, Star, Award, Microscope, FileCheck, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 
@@ -12,42 +13,86 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <div className="gemological-gradient text-white py-12 sm:py-16 lg:py-20">
+      <div className="gemological-gradient text-white py-12 sm:py-16 lg:py-20 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <div className="inline-flex items-center justify-center w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 mb-6">
-              <div className="w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 bg-white rounded-full flex items-center justify-center shadow-lg p-3 sm:p-4">
+            <motion.div 
+              className="inline-flex items-center justify-center w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 mb-6"
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.div 
+                className="w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 bg-white rounded-full flex items-center justify-center shadow-lg p-3 sm:p-4 floating-animation pulse-glow transform-gpu"
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 15,
+                  transition: { duration: 0.3 }
+                }}
+              >
                 <img 
                   src={logoPath} 
                   alt="GIL - Gemological Institute Laboratories" 
                   className="w-full h-full object-contain"
                 />
-              </div>
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+              </motion.div>
+            </motion.div>
+            <motion.h1 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               Gemological Institute Laboratories
-            </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto mb-6 sm:mb-8">
+            </motion.h1>
+            <motion.p 
+              className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto mb-6 sm:mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
               World-class diamond certification and gemological services since 1987
-            </p>
-            <p className="text-sm sm:text-base lg:text-lg text-white/80 max-w-3xl mx-auto mb-8 sm:mb-10 px-4">
+            </motion.p>
+            <motion.p 
+              className="text-sm sm:text-base lg:text-lg text-white/80 max-w-3xl mx-auto mb-8 sm:mb-10 px-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
               Trusted by over 50,000+ jewelers, retailers, and collectors worldwide for accurate, 
               reliable gemstone analysis and certification services.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            </motion.p>
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
               <Link href="/verify">
-                <Button size="lg" className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 font-semibold px-6 sm:px-8 py-3 sm:py-4">
-                  <FileCheck className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Verify Certificate
-                </Button>
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Button size="lg" className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 font-semibold px-6 sm:px-8 py-3 sm:py-4 transform-gpu">
+                    <FileCheck className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    Verify Certificate
+                  </Button>
+                </motion.div>
               </Link>
               <Link href="/gem-encyclopedia">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/10 px-6 sm:px-8 py-3 sm:py-4">
-                  <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Explore Gems
-                </Button>
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/10 px-6 sm:px-8 py-3 sm:py-4 transform-gpu">
+                    <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    Explore Gems
+                  </Button>
+                </motion.div>
               </Link>
-            </div>
+            </motion.div>
           </div>
           
           {/* Stats */}
