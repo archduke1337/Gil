@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Gem, Search, Sparkles, Diamond, Crown, Star, Eye, Palette, Zap, Mountain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import { gemIcons } from "@/components/gem-svg-icons";
+import { GemTermTooltip, InfoIconTooltip } from "@/components/educational-tooltips";
+import GemLoadingSpinner from "@/components/gem-loading-spinner";
 
 // SVG Components for Gemstones
 const DiamondSVG = () => (
@@ -353,6 +355,19 @@ const gemstones = [
 export default function GemEncyclopedia() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isLoading, setIsLoading] = useState(true);
+  
+  const { scrollY } = useScroll();
+  const parallaxY1 = useTransform(scrollY, [0, 1000], [0, -200]);
+  const parallaxY2 = useTransform(scrollY, [0, 1000], [0, -100]);
+  const parallaxY3 = useTransform(scrollY, [0, 1000], [0, -50]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredGems = gemstones.filter(gem => {
     const matchesSearch = gem.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -363,9 +378,39 @@ export default function GemEncyclopedia() {
 
   const categories = ["All", "Precious Stone", "Semi-Precious"];
 
+  if (isLoading) {
+    return <GemLoadingSpinner size="lg" className="min-h-screen flex items-center justify-center" />;
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background">
-      <Navigation />
+    <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background relative overflow-hidden">
+      {/* Parallax Background Elements */}
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{ y: parallaxY1 }}
+      >
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary/5 rounded-full blur-xl" />
+        <div className="absolute top-60 right-20 w-48 h-48 bg-secondary/5 rounded-full blur-2xl" />
+      </motion.div>
+      
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{ y: parallaxY2 }}
+      >
+        <div className="absolute top-40 left-1/3 w-24 h-24 bg-accent/5 rounded-full blur-lg" />
+        <div className="absolute bottom-40 right-1/4 w-36 h-36 bg-primary/5 rounded-full blur-xl" />
+      </motion.div>
+
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{ y: parallaxY3 }}
+      >
+        <div className="absolute top-80 right-10 w-20 h-20 bg-secondary/5 rounded-full blur-md" />
+        <div className="absolute bottom-60 left-16 w-28 h-28 bg-accent/5 rounded-full blur-lg" />
+      </motion.div>
+
+      <div className="relative z-10">
+        <Navigation />
 
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
@@ -505,7 +550,13 @@ export default function GemEncyclopedia() {
 
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium text-foreground">Hardness:</span>
+                          <span className="text-sm font-medium text-foreground">
+                            <GemTermTooltip term="mohs scale">Hardness</GemTermTooltip>
+                            <InfoIconTooltip 
+                              content="Measured on the Mohs scale from 1-10, indicating resistance to scratching"
+                              className="ml-1"
+                            />:
+                          </span>
                           <span className="text-sm text-muted-foreground">{gem.hardness}</span>
                         </div>
                         <div className="flex justify-between items-center">
@@ -514,13 +565,25 @@ export default function GemEncyclopedia() {
                         </div>
                         {gem.clarity && (
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium text-foreground">Clarity:</span>
+                            <span className="text-sm font-medium text-foreground">
+                              <GemTermTooltip term="clarity">Clarity</GemTermTooltip>
+                              <InfoIconTooltip 
+                                content="Grading of internal and external flaws visible under 10x magnification"
+                                className="ml-1"
+                              />:
+                            </span>
                             <span className="text-sm text-muted-foreground">{gem.clarity}</span>
                           </div>
                         )}
                         {gem.opticalProperties && (
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium text-foreground">Optical:</span>
+                            <span className="text-sm font-medium text-foreground">
+                              <GemTermTooltip term="refractive index">Optical</GemTermTooltip>
+                              <InfoIconTooltip 
+                                content="Refractive index and birefringence values for gem identification"
+                                className="ml-1"
+                              />:
+                            </span>
                             <span className="text-sm text-muted-foreground">{gem.opticalProperties}</span>
                           </div>
                         )}
@@ -684,6 +747,7 @@ export default function GemEncyclopedia() {
           </div>
         </div>
       </footer>
+      </div>
     </div>
   );
 }

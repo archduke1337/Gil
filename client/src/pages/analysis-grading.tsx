@@ -7,6 +7,9 @@ import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import Interactive3DGem from "@/components/interactive-3d-gem";
+import ARGemIdentification from "@/components/ar-gem-identification";
+import { GemTermTooltip, InfoIconTooltip } from "@/components/educational-tooltips";
 
 // SVG Components for the 4Cs
 const CutDiagramSVG = () => (
@@ -153,8 +156,48 @@ export default function AnalysisGrading() {
         </div>
       </div>
 
-      {/* Diamond Grading - 4Cs */}
+      {/* Interactive 3D Gem Examination */}
+      <div className="py-16 bg-card">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-foreground mb-4">Interactive 3D Gem Examination</h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Experience our advanced 3D visualization technology for detailed gemstone analysis
+              </p>
+            </div>
+            <Interactive3DGem gemType="diamond" />
+          </motion.div>
+        </div>
+      </div>
+
+      {/* AR Gem Identification */}
       <div className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-foreground mb-4">Augmented Reality Gem Identification</h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Use cutting-edge AI technology to identify and analyze gemstones instantly
+              </p>
+            </div>
+            <ARGemIdentification />
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Diamond Grading - 4Cs */}
+      <div className="py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">Diamond Grading Standards</h2>
