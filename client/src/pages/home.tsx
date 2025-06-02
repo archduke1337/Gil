@@ -183,6 +183,14 @@ export default function Home() {
               Trusted Worldwide
             </h2>
             
+            <div className="mb-12 flex justify-center">
+              <img 
+                src="/attached_assets/Capture5.PNG" 
+                alt="Gemological Institute Laboratories - World-class certification since 1987" 
+                className="max-w-4xl w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
               <div className="text-center">
                 <div className="mb-4 flex justify-center">
