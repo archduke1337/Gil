@@ -155,13 +155,6 @@ export default function AnalysisGrading() {
       <div className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="mb-8 flex justify-center">
-              <img 
-                src="/attached_assets/IMG-20250522-WA0006.jpg" 
-                alt="GIL Official Seal - Professional Grading Standards" 
-                className="w-20 h-20 object-contain"
-              />
-            </div>
             <h2 className="text-3xl font-bold text-foreground mb-4">Diamond Grading Standards</h2>
             <p className="text-xl text-muted-foreground">
               We follow the internationally recognized 4Cs system for diamond evaluation

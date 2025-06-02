@@ -125,13 +125,6 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <div className="mb-8 flex justify-center">
-              <img 
-                src="/attached_assets/Capture3.PNG" 
-                alt="Professional Diamond Analysis Equipment" 
-                className="max-w-md w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Professional Services
             </h2>
@@ -189,14 +182,6 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
               Trusted Worldwide
             </h2>
-            
-            <div className="mb-12 flex justify-center">
-              <img 
-                src="/attached_assets/Capture5.PNG" 
-                alt="Gemological Institute Laboratories - World-class certification since 1987" 
-                className="max-w-4xl w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
               <div className="text-center">

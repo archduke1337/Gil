@@ -128,13 +128,6 @@ export default function FAQs() {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
             <HelpCircle className="w-10 h-10" />
           </div>
-          <div className="mb-8 flex justify-center">
-            <img 
-              src="/attached_assets/IMG-20250522-WA0006.jpg" 
-              alt="GIL Official Seal - Support and Information" 
-              className="w-20 h-20 object-contain opacity-90"
-            />
-          </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Frequently Asked Questions
           </h1>

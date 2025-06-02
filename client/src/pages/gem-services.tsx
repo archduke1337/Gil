@@ -27,13 +27,6 @@ export default function GemServices() {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-[#8c745c] to-[#7a6550] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-8 flex justify-center">
-            <img 
-              src="/attached_assets/Capture12.PNG" 
-              alt="GIL Advanced Gemological Features and Services" 
-              className="max-w-2xl w-full h-auto rounded-lg shadow-lg opacity-95"
-            />
-          </div>
           <motion.h1 
             className="text-4xl md:text-5xl font-bold mb-6"
             initial={{ opacity: 0, y: 30 }}

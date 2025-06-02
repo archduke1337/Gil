@@ -145,13 +145,6 @@ export default function About() {
       <div className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="mb-8 flex justify-center">
-              <img 
-                src="/attached_assets/IMG-20250522-WA0006.jpg" 
-                alt="GIL Official Gemological Institute Seal" 
-                className="w-32 h-32 object-contain"
-              />
-            </div>
             <h2 className="text-3xl font-bold text-foreground mb-4">Our Story</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Founded with a mission to bring transparency and trust to the diamond industry, 
@@ -186,13 +179,6 @@ export default function About() {
       {/* Values Section */}
       <div className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 flex justify-center">
-            <img 
-              src="/attached_assets/Capture12.PNG" 
-              alt="Advanced Gemological Laboratory" 
-              className="max-w-lg w-full h-auto rounded-lg shadow-lg"
-            />
-          </div>
           <motion.div 
             className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
