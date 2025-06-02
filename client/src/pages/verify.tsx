@@ -18,6 +18,13 @@ export default function Verify() {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-[#8c745c] to-[#7a6550] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8 flex justify-center">
+            <img 
+              src="/attached_assets/Capture5.PNG" 
+              alt="Diamond Certificate Verification Technology" 
+              className="max-w-lg w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
             <Shield className="w-10 h-10" />
           </div>
