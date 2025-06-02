@@ -17,7 +17,8 @@ export default function Navigation() {
     { href: "/analysis", label: "Analysis & Grading" },
     { href: "/about", label: "About Us" },
     { href: "/faqs", label: "FAQs" },
-    { href: "/about#contact", label: "Contact Us" }
+    { href: "/about#contact", label: "Contact Us" },
+    { href: "/admin", label: "Admin Portal" }
   ];
 
   return (

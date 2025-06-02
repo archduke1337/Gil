@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
 import { useState } from "react";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 
 export default function About() {
   const [formData, setFormData] = useState({
@@ -62,50 +63,32 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
-                <Gem className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground">GIL</h1>
-                <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link href="/">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Home
-                </Button>
-              </Link>
-              <Button variant="ghost" className="text-primary border-b-2 border-primary">
-                About Us
-              </Button>
-              <Link href="/">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Certificate Verification
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Section */}
-      <div className="gemological-gradient text-white py-16">
+      <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
-            <Award className="w-10 h-10" />
+          <div className="mb-8">
+            <img 
+              src={logoPath} 
+              alt="GIL Logo" 
+              className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 bg-white/10 rounded-2xl p-4"
+            />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            About Gemological Institute Laboratories
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Gemological Institute Laboratories
           </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Leading the industry in diamond certification and gemological expertise since our founding
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
+            Leading the industry in diamond certification and gemological expertise with cutting-edge technology and uncompromising standards
           </p>
+          <div className="flex justify-center space-x-4">
+            <Link href="/verify">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-white/90">
+                Verify Certificate
+              </Button>
+            </Link>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              Learn More
+            </Button>
+          </div>
         </div>
       </div>
 
