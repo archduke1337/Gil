@@ -1,9 +1,65 @@
 import { Link } from "wouter";
-import { Gem, Award, Shield, Users, Clock, Star } from "lucide-react";
+import { Gem, Award, Shield, Users, Clock, Star, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
+import { useState } from "react";
 
 export default function About() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for contacting us. We'll get back to you soon.",
+      });
+
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again later or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -223,20 +279,152 @@ export default function About() {
       </div>
 
       {/* Contact Section */}
-      <div className="py-16 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-3xl font-bold text-foreground mb-4">Get in Touch</h3>
-          <p className="text-xl text-muted-foreground mb-8">
-            Have questions about our certification process or need assistance with certificate verification?
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <div className="flex items-center space-x-2 text-muted-foreground">
-              <span>📧</span>
-              <span>info@gilab.info</span>
+      <div className="py-16 bg-muted/30">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-foreground mb-4">Get in Touch</h3>
+            <p className="text-xl text-muted-foreground">
+              Have questions about our certification process or need assistance with certificate verification?
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-2xl font-semibold text-foreground mb-6">Contact Information</h4>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 lab-bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-foreground">Email Support</h5>
+                      <p className="text-muted-foreground">Get detailed answers to your questions</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 lab-bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-foreground">Professional Service</h5>
+                      <p className="text-muted-foreground">Speak directly with our gemology experts</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 lab-bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-foreground">Laboratory Location</h5>
+                      <p className="text-muted-foreground">State-of-the-art gemological facility</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-background p-6 rounded-xl border border-border">
+                <h5 className="font-semibold text-foreground mb-3">Business Hours</h5>
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <div className="flex justify-between">
+                    <span>Monday - Friday</span>
+                    <span>9:00 AM - 6:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Saturday</span>
+                    <span>10:00 AM - 4:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Sunday</span>
+                    <span>Closed</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center space-x-2 text-muted-foreground">
-              <span>📞</span>
-              <span>+1 (555) 123-4567</span>
+
+            {/* Contact Form */}
+            <div>
+              <Card className="border-border">
+                <CardContent className="p-8">
+                  <h4 className="text-2xl font-semibold text-foreground mb-6">Send us a Message</h4>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name" className="text-sm font-medium text-foreground">
+                          Full Name *
+                        </Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          type="text"
+                          required
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          className="border-border focus:border-primary"
+                          placeholder="Your full name"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                          Email Address *
+                        </Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="border-border focus:border-primary"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="subject" className="text-sm font-medium text-foreground">
+                        Subject *
+                      </Label>
+                      <Input
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        required
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className="border-border focus:border-primary"
+                        placeholder="Brief description of your inquiry"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="message" className="text-sm font-medium text-foreground">
+                        Message *
+                      </Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        required
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className="border-border focus:border-primary min-h-[120px]"
+                        placeholder="Please provide details about your inquiry, certificate questions, or how we can assist you..."
+                      />
+                    </div>
+                    
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full lab-bg-primary hover:bg-primary/90 text-white font-medium py-3"
+                    >
+                      {isSubmitting ? "Sending Message..." : "Send Message"}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
