@@ -269,46 +269,44 @@ export default function FAQs() {
 
 
       {/* Footer */}
-      <footer className="bg-white border-t border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
-                  <Gem className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold lab-primary">GIL</h1>
-                  <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
-                </div>
-              </div>
-              <p className="text-muted-foreground mb-4 max-w-md">
-                Professional gemological services with expert support and comprehensive documentation.
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <img 
+                src={logoPath} 
+                alt="GIL - Gemological Institute Laboratories" 
+                className="h-16 w-auto mb-4 brightness-0 invert"
+              />
+              <p className="text-gray-400 leading-relaxed">
+                Leading the world in gemological excellence, education, and certification services.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Navigation</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
-                <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-                <li><Link href="/gem-encyclopedia" className="hover:text-primary transition-colors">Gem Encyclopedia</Link></li>
-                <li><Link href="/analysis" className="hover:text-primary transition-colors">Analysis & Grading</Link></li>
+              <h3 className="text-lg font-semibold mb-4 text-[#8c745c]">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/gem-encyclopedia" className="text-gray-400 hover:text-white transition-colors">Gem Encyclopedia</Link></li>
+                <li><Link href="/analysis" className="text-gray-400 hover:text-white transition-colors">Analysis & Grading</Link></li>
+                <li><Link href="/gem-services" className="text-gray-400 hover:text-white transition-colors">Gem Services</Link></li>
+                <li><Link href="/verify" className="text-gray-400 hover:text-white transition-colors">Report Check</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Services</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><Link href="/" className="hover:text-primary transition-colors">Report Check</Link></li>
-                <li><Link href="/faqs" className="hover:text-primary transition-colors">FAQs</Link></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Support</a></li>
+              <h3 className="text-lg font-semibold mb-4 text-[#8c745c]">Support</h3>
+              <ul className="space-y-2">
+                <li><Link href="/faqs" className="text-gray-400 hover:text-white transition-colors">FAQs</Link></li>
+                <li><Link href="/about#contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 Gemological Institute Laboratories. All rights reserved.</p>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p className="text-gray-400">
+              © {new Date().getFullYear()} Gemological Institute Laboratories (GIL). All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
