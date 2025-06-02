@@ -336,6 +336,229 @@ export default function About() {
         </div>
       </div>
 
+      {/* Gem Encyclopedia Section */}
+      <div className="py-16 bg-gradient-to-r from-[#ece5dc] to-[#f5f2ed]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-foreground mb-4">Gem Encyclopedia</h3>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Our comprehensive database contains detailed information on over 200 gemstone varieties
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#8c745c] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Gem className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-3">Gemstone Properties</h4>
+                <p className="text-muted-foreground">
+                  Physical and optical properties, crystal systems, and identifying characteristics for each gemstone
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#8c745c] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MapPin className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-3">Origins & Mining</h4>
+                <p className="text-muted-foreground">
+                  Geographical sources, mining locations, and geological formation processes
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#8c745c] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-3">Market Value</h4>
+                <p className="text-muted-foreground">
+                  Current market trends, valuation factors, and investment potential analysis
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Analysis & Grading Section */}
+      <div className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-foreground mb-4">Analysis & Grading</h3>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              State-of-the-art equipment and certified expertise ensure accurate gemstone analysis
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h4 className="text-2xl font-bold text-foreground mb-6">Our Testing Methods</h4>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Award className="w-4 h-4 text-[#8c745c]" />
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-foreground mb-2">Spectroscopic Analysis</h5>
+                    <p className="text-muted-foreground">
+                      Advanced spectroscopy techniques including FTIR, UV-Vis, and Raman spectroscopy
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Award className="w-4 h-4 text-[#8c745c]" />
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-foreground mb-2">Photoluminescence Testing</h5>
+                    <p className="text-muted-foreground">
+                      Identifying natural versus synthetic gemstones and treatment detection
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Award className="w-4 h-4 text-[#8c745c]" />
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-foreground mb-2">Microscopic Examination</h5>
+                    <p className="text-muted-foreground">
+                      Detailed inclusion study and internal structure analysis
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-[#ece5dc]/30 p-8 rounded-2xl">
+              <h4 className="text-xl font-semibold text-foreground mb-4">Grading Standards</h4>
+              <p className="text-muted-foreground mb-6">
+                We follow internationally recognized grading systems:
+              </p>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg">
+                  <span className="font-medium text-foreground">Diamond Grading</span>
+                  <span className="text-[#8c745c] font-semibold">GIA Standards</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg">
+                  <span className="font-medium text-foreground">Colored Stones</span>
+                  <span className="text-[#8c745c] font-semibold">AGTA Guidelines</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg">
+                  <span className="font-medium text-foreground">Pearls</span>
+                  <span className="text-[#8c745c] font-semibold">CIBJO Standards</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Services Section */}
+      <div className="py-16 bg-gradient-to-r from-[#ece5dc] to-[#f5f2ed]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-foreground mb-4">Our Services</h3>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Comprehensive gemological services for professionals and collectors worldwide
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="w-12 h-12 bg-[#8c745c] rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="text-lg font-semibold text-foreground mb-2">Certification</h4>
+                <p className="text-muted-foreground text-sm">
+                  Official gemstone identification and grading certificates
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="w-12 h-12 bg-[#8c745c] rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Gem className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="text-lg font-semibold text-foreground mb-2">Appraisal</h4>
+                <p className="text-muted-foreground text-sm">
+                  Professional valuation for insurance and estate purposes
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="w-12 h-12 bg-[#8c745c] rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="text-lg font-semibold text-foreground mb-2">Consultation</h4>
+                <p className="text-muted-foreground text-sm">
+                  Expert advice on gemstone selection and investment
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="w-12 h-12 bg-[#8c745c] rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="text-lg font-semibold text-foreground mb-2">Education</h4>
+                <p className="text-muted-foreground text-sm">
+                  Training programs for gemology professionals
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
       {/* Contact Section */}
       <div id="contact" className="py-16 bg-muted/30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
