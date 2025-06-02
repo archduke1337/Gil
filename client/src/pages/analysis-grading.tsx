@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
-import Interactive3DGem from "@/components/interactive-3d-gem";
+import EnhancedGemAnalysis from "@/components/enhanced-gem-analysis";
 import ARGemIdentification from "@/components/ar-gem-identification";
 import { GemTermTooltip, InfoIconTooltip } from "@/components/educational-tooltips";
 

@@ -1,12 +1,13 @@
 import { useState, useRef, useMemo } from "react";
 import { motion, useMotionValue, useTransform, PanInfo } from "framer-motion";
-import { RotateCcw, ZoomIn, ZoomOut, Eye, Info, Lightbulb, Search, Settings } from "lucide-react";
+import { RotateCcw, ZoomIn, ZoomOut, Eye, Info, Lightbulb, Search, Settings, Microscope, Ruler, Award, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getOptimizedAnimationConfig, isTouchDevice } from "@/utils/performance";
 
 interface Interactive3DGemProps {
@@ -25,14 +26,45 @@ interface GemAnalysisData {
     depth: string;
     crown: string;
     pavilion: string;
+    girdle: string;
+    culet: string;
   };
   opticalProperties: {
     brilliance: string;
     fire: string;
     scintillation: string;
+    refractiveIndex: string;
+    birefringence: string;
+    pleochroism: string;
   };
-  inclusions: string[];
+  inclusions: {
+    type: string;
+    location: string;
+    severity: 'minor' | 'moderate' | 'significant';
+    impact: string;
+  }[];
+  measurements: {
+    length: string;
+    width: string;
+    depth: string;
+    weight: string;
+    angles: {
+      crownAngle: string;
+      pavilionAngle: string;
+    };
+  };
+  certification: {
+    institute: string;
+    reportNumber: string;
+    date: string;
+    authenticity: string;
+  };
   recommendations: string[];
+  marketValue: {
+    retail: string;
+    wholesale: string;
+    insurance: string;
+  };
 }
 
 const gemAnalysisData: { [key: string]: GemAnalysisData } = {
@@ -45,16 +77,60 @@ const gemAnalysisData: { [key: string]: GemAnalysisData } = {
     proportions: {
       table: "58%",
       depth: "61.5%",
-      crown: "15%",
-      pavilion: "43%"
+      crown: "15.2%",
+      pavilion: "43.1%",
+      girdle: "Medium, faceted",
+      culet: "None"
     },
     opticalProperties: {
       brilliance: "Exceptional",
       fire: "High",
-      scintillation: "Excellent"
+      scintillation: "Excellent",
+      refractiveIndex: "2.418",
+      birefringence: "None (isotropic)",
+      pleochroism: "None"
     },
-    inclusions: ["Small crystal near girdle", "Minor feather in pavilion"],
-    recommendations: ["Excellent cut quality", "Ideal for engagement ring", "High investment value"]
+    inclusions: [
+      {
+        type: "Crystal inclusion",
+        location: "Near girdle at 3 o'clock",
+        severity: "minor",
+        impact: "Minimal effect on brilliance"
+      },
+      {
+        type: "Feather",
+        location: "Pavilion center",
+        severity: "minor",
+        impact: "Not visible to naked eye"
+      }
+    ],
+    measurements: {
+      length: "6.98mm",
+      width: "7.02mm",
+      depth: "4.31mm",
+      weight: "1.25ct",
+      angles: {
+        crownAngle: "34.5°",
+        pavilionAngle: "40.8°"
+      }
+    },
+    certification: {
+      institute: "GIA",
+      reportNumber: "2185749631",
+      date: "2024-03-15",
+      authenticity: "Natural diamond"
+    },
+    recommendations: [
+      "Excellent cut quality maximizes brilliance",
+      "Ideal for engagement ring setting",
+      "High investment grade stone",
+      "Recommend professional setting"
+    ],
+    marketValue: {
+      retail: "$8,500 - $12,000",
+      wholesale: "$6,200 - $8,800",
+      insurance: "$15,000"
+    }
   },
   emerald: {
     name: "Emerald",
@@ -65,16 +141,118 @@ const gemAnalysisData: { [key: string]: GemAnalysisData } = {
     proportions: {
       table: "65%",
       depth: "63%",
-      crown: "13%",
-      pavilion: "44%"
+      crown: "13.5%",
+      pavilion: "44.2%",
+      girdle: "Medium",
+      culet: "Small"
     },
     opticalProperties: {
       brilliance: "Good",
       fire: "Moderate",
-      scintillation: "Good"
+      scintillation: "Good",
+      refractiveIndex: "1.576-1.582",
+      birefringence: "0.006",
+      pleochroism: "Weak dichroism"
     },
-    inclusions: ["Natural jardin pattern", "Minor surface reaching inclusion"],
-    recommendations: ["Natural emerald characteristics", "Consider oil treatment", "Suitable for pendant"]
+    inclusions: [
+      {
+        type: "Jardin (garden)",
+        location: "Throughout stone",
+        severity: "moderate",
+        impact: "Characteristic emerald feature"
+      },
+      {
+        type: "Surface-reaching inclusion",
+        location: "Table edge",
+        severity: "minor",
+        impact: "May affect durability"
+      }
+    ],
+    measurements: {
+      length: "8.45mm",
+      width: "6.82mm",
+      depth: "4.29mm",
+      weight: "2.15ct",
+      angles: {
+        crownAngle: "28°",
+        pavilionAngle: "42°"
+      }
+    },
+    certification: {
+      institute: "SSEF",
+      reportNumber: "105847",
+      date: "2024-02-28",
+      authenticity: "Natural emerald, minor oil"
+    },
+    recommendations: [
+      "Natural emerald with typical inclusions",
+      "Minor oil treatment enhances clarity",
+      "Suitable for pendant or earrings",
+      "Avoid ultrasonic cleaning"
+    ],
+    marketValue: {
+      retail: "$3,200 - $5,800",
+      wholesale: "$2,400 - $4,200",
+      insurance: "$7,500"
+    }
+  },
+  ruby: {
+    name: "Ruby",
+    clarity: "Eye Clean",
+    color: "Pigeon Blood Red",
+    cut: "Oval Brilliant",
+    carat: "1.85",
+    proportions: {
+      table: "62%",
+      depth: "64%",
+      crown: "14.8%",
+      pavilion: "43.5%",
+      girdle: "Medium to thick",
+      culet: "Small"
+    },
+    opticalProperties: {
+      brilliance: "Very Good",
+      fire: "Good",
+      scintillation: "Very Good",
+      refractiveIndex: "1.762-1.770",
+      birefringence: "0.008",
+      pleochroism: "Strong dichroism"
+    },
+    inclusions: [
+      {
+        type: "Silk inclusions",
+        location: "Center of stone",
+        severity: "minor",
+        impact: "Creates asterism potential"
+      }
+    ],
+    measurements: {
+      length: "8.12mm",
+      width: "6.95mm",
+      depth: "4.45mm",
+      weight: "1.85ct",
+      angles: {
+        crownAngle: "32°",
+        pavilionAngle: "41.5°"
+      }
+    },
+    certification: {
+      institute: "Gübelin",
+      reportNumber: "21034567",
+      date: "2024-01-20",
+      authenticity: "Natural ruby, heat treated"
+    },
+    recommendations: [
+      "Exceptional color quality",
+      "Heat treatment is standard",
+      "Ideal for ring setting",
+      "High collector value"
+    ],
+    marketValue: {
+      retail: "$12,000 - $18,000",
+      wholesale: "$8,500 - $13,000",
+      insurance: "$25,000"
+    }
   }
 };
 
@@ -87,6 +265,7 @@ export default function Interactive3DGem({ gemType, className = "" }: Interactiv
   const [microscopyLevel, setMicroscopyLevel] = useState("10x");
   const [showInclusions, setShowInclusions] = useState(false);
   const [measurementMode, setMeasurementMode] = useState(false);
+  const [selectedTab, setSelectedTab] = useState<"basic" | "proportions" | "optical" | "inclusions" | "certification" | "valuation">("basic");
   const constraintsRef = useRef(null);
   
   const animationConfig = useMemo(() => getOptimizedAnimationConfig(), []);
