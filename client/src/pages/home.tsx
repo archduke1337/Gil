@@ -56,11 +56,11 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="mb-8"
             >
-              <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                  <Gem className="w-8 h-8 text-primary-foreground" />
-                </div>
-              </div>
+              <img 
+                src={logoPath} 
+                alt="GIL - Gemological Institute Laboratories" 
+                className="h-24 w-auto mx-auto mb-6"
+              />
             </motion.div>
             
             <motion.h1
@@ -108,7 +108,7 @@ export default function Home() {
               >
                 <Link href="/about">
                   <FileCheck className="mr-2 h-5 w-5" />
-                  Submit Report
+                  About Us
                 </Link>
               </Button>
             </motion.div>

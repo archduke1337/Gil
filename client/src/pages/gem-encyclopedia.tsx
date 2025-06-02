@@ -215,26 +215,28 @@ export default function GemEncyclopedia() {
   const categories = ["All", "Precious Stone", "Semi-Precious"];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#ece5dc] to-white">
+    <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background">
       <Navigation />
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-[#8c745c] to-[#7a6550] text-white py-16">
+      <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
-            <Sparkles className="w-10 h-10" />
+          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+              <Sparkles className="w-8 h-8 text-primary-foreground" />
+            </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Gem Encyclopedia
           </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Explore our comprehensive database of gemstones and learn about their unique characteristics, formation, and properties
           </p>
         </div>
       </div>
 
       {/* Search and Filter Section */}
-      <div className="py-12 bg-white">
+      <div className="py-12 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="relative flex-1">
