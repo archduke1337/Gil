@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import { gemIcons } from "@/components/gem-svg-icons";
 
 // SVG Components for Gemstones
 const DiamondSVG = () => (
@@ -76,7 +77,7 @@ const gemstones = [
     description: "The hardest natural substance known, diamonds are prized for their brilliance and fire. Formed deep within the Earth under extreme pressure and temperature.",
     characteristics: ["Exceptional hardness", "High refractive index", "Superior brilliance", "Excellent thermal conductivity"],
     colors: ["Colorless", "Yellow", "Brown", "Blue", "Pink", "Green", "Red", "Black"],
-    icon: DiamondSVG
+    icon: gemIcons["1"]
   },
   {
     id: 2,
@@ -87,21 +88,10 @@ const gemstones = [
     description: "The red variety of corundum, rubies are among the most valuable colored gemstones. The finest rubies display a pure red color with excellent clarity.",
     characteristics: ["Vivid red color", "Excellent hardness", "High brilliance", "Pleochroism"],
     colors: ["Pink-red", "Blood red", "Purplish red"],
-    icon: RubySVG
+    icon: gemIcons["2"]
   },
   {
     id: 3,
-    name: "Sapphire",
-    category: "Precious Stone",
-    hardness: "9",
-    crystal: "Trigonal",
-    description: "All non-red varieties of corundum are called sapphires. Blue sapphires are most famous, but they occur in many colors including yellow, pink, and white.",
-    characteristics: ["Exceptional hardness", "Excellent clarity", "Vivid colors", "Strong pleochroism"],
-    colors: ["Blue", "Yellow", "Pink", "White", "Orange", "Green", "Purple"],
-    icon: SapphireSVG
-  },
-  {
-    id: 4,
     name: "Emerald",
     category: "Precious Stone",
     hardness: "7.5-8",
@@ -109,7 +99,18 @@ const gemstones = [
     description: "The green variety of beryl, emeralds are valued for their intense green color. Most emeralds contain inclusions, which are considered part of their character.",
     characteristics: ["Intense green color", "Natural inclusions", "Moderate hardness", "Hexagonal crystals"],
     colors: ["Light green", "Deep green", "Bluish green"],
-    icon: EmeraldSVG
+    icon: gemIcons["3"]
+  },
+  {
+    id: 4,
+    name: "Sapphire",
+    category: "Precious Stone",
+    hardness: "9",
+    crystal: "Trigonal",
+    description: "All non-red varieties of corundum are called sapphires. Blue sapphires are most famous, but they occur in many colors including yellow, pink, and white.",
+    characteristics: ["Exceptional hardness", "Excellent clarity", "Vivid colors", "Strong pleochroism"],
+    colors: ["Blue", "Yellow", "Pink", "White", "Orange", "Green", "Purple"],
+    icon: gemIcons["4"]
   },
   {
     id: 5,
@@ -120,7 +121,7 @@ const gemstones = [
     description: "Found only in Tanzania, tanzanite displays remarkable trichroism, showing blue, violet, and burgundy colors depending on the viewing angle.",
     characteristics: ["Strong trichroism", "Rare occurrence", "Heat treatment common", "Pleochroic"],
     colors: ["Blue", "Violet", "Purple"],
-    icon: Gem
+    icon: gemIcons["5"]
   },
   {
     id: 6,
@@ -131,7 +132,7 @@ const gemstones = [
     description: "A group of silicate minerals with similar crystal structures. Garnets come in many colors and are known for their brilliance and durability.",
     characteristics: ["High refractive index", "Good hardness", "Excellent clarity", "Wide color range"],
     colors: ["Red", "Orange", "Yellow", "Green", "Purple", "Pink"],
-    icon: Crown
+    icon: gemIcons["6"]
   },
   {
     id: 7,
@@ -142,7 +143,7 @@ const gemstones = [
     description: "The purple variety of quartz, amethyst has been prized for millennia. Its color ranges from pale lavender to deep purple and is caused by iron impurities.",
     characteristics: ["Purple coloration", "Excellent hardness", "Piezoelectric properties", "Heat sensitive"],
     colors: ["Light purple", "Deep purple", "Lavender", "Violet"],
-    icon: Star
+    icon: gemIcons["7"]
   },
   {
     id: 8,
@@ -153,7 +154,7 @@ const gemstones = [
     description: "The blue variety of beryl, aquamarine derives its name from seawater. It's known for its clarity and beautiful blue hues ranging from pale to deep blue.",
     characteristics: ["Excellent clarity", "Blue coloration", "Good hardness", "Heat resistant"],
     colors: ["Pale blue", "Sky blue", "Deep blue", "Blue-green"],
-    icon: Sparkles
+    icon: gemIcons["8"]
   },
   {
     id: 9,
@@ -164,18 +165,18 @@ const gemstones = [
     description: "One of the hardest naturally occurring minerals, topaz comes in many colors. Imperial topaz, with its golden to pink hues, is the most valued variety.",
     characteristics: ["Exceptional hardness", "Perfect cleavage", "High refractive index", "Color variety"],
     colors: ["Colorless", "Blue", "Pink", "Yellow", "Orange", "Imperial"],
-    icon: Diamond
+    icon: gemIcons["9"]
   },
   {
     id: 10,
-    name: "Peridot",
+    name: "Opal",
     category: "Semi-Precious",
-    hardness: "6.5-7",
-    crystal: "Orthorhombic",
-    description: "One of the few gemstones that occurs in only one color - green. Peridot is formed deep in the Earth's mantle and brought to surface by volcanic activity.",
-    characteristics: ["Olivine green color", "High birefringence", "Oily luster", "Volcanic origin"],
-    colors: ["Yellow-green", "Olive green", "Brownish green"],
-    icon: Gem
+    hardness: "5.5-6.5",
+    crystal: "Amorphous",
+    description: "Known for its unique play-of-color, opal displays a rainbow-like iridescence. It contains water and is formed from silica gel that hardens over time.",
+    characteristics: ["Play of color", "Hydrated silica", "Delicate structure", "Color flashes"],
+    colors: ["White", "Black", "Fire", "Boulder", "Crystal"],
+    icon: gemIcons["10"]
   },
   {
     id: 11,
@@ -186,18 +187,18 @@ const gemstones = [
     description: "The yellow to brownish variety of quartz, citrine is often called the 'merchant's stone' and is believed to bring prosperity and success.",
     characteristics: ["Yellow coloration", "Good clarity", "Affordable", "Heat treatable"],
     colors: ["Pale yellow", "Golden yellow", "Orange", "Brownish yellow"],
-    icon: Crown
+    icon: gemIcons["11"]
   },
   {
     id: 12,
-    name: "Opal",
+    name: "Kunzite",
     category: "Semi-Precious",
-    hardness: "5.5-6.5",
-    crystal: "Amorphous",
-    description: "Known for its unique play-of-color, opal displays a rainbow-like iridescence. It contains water and is formed from silica gel that hardens over time.",
-    characteristics: ["Play of color", "Hydrated silica", "Delicate structure", "Color flashes"],
-    colors: ["White", "Black", "Fire", "Boulder", "Crystal"],
-    icon: Sparkles
+    hardness: "6.5-7",
+    crystal: "Monoclinic",
+    description: "The pink variety of spodumene, kunzite shows strong pleochroism and can fade with prolonged light exposure. Named after gemologist George Frederick Kunz.",
+    characteristics: ["Strong pleochroism", "Perfect cleavage", "Photosensitive", "Evening stone"],
+    colors: ["Pink", "Lilac", "Violet", "Green"],
+    icon: gemIcons["12"]
   },
   {
     id: 13,
@@ -208,7 +209,7 @@ const gemstones = [
     description: "A complex borosilicate mineral with exceptional color range. Tourmaline can exhibit multiple colors in a single crystal and has strong pleochroism.",
     characteristics: ["Wide color range", "Pleochroism", "Pyroelectric properties", "Bicolor crystals"],
     colors: ["Pink", "Green", "Blue", "Yellow", "Black", "Watermelon", "Paraiba"],
-    icon: Palette
+    icon: gemIcons["13"]
   },
   {
     id: 14,
@@ -219,18 +220,18 @@ const gemstones = [
     description: "Actually two different minerals: jadeite and nephrite. Prized for thousands of years, especially in Asian cultures for its toughness and beauty.",
     characteristics: ["Exceptional toughness", "Waxy luster", "Cultural significance", "Fine grain structure"],
     colors: ["Green", "White", "Lavender", "Yellow", "Black", "Red"],
-    icon: Mountain
+    icon: gemIcons["14"]
   },
   {
     id: 15,
-    name: "Citrine",
+    name: "Labradorite",
     category: "Semi-Precious",
-    hardness: "7",
-    crystal: "Hexagonal",
-    description: "The yellow variety of quartz, ranging from pale yellow to brownish orange. Most commercial citrine is heat-treated amethyst or smoky quartz.",
-    characteristics: ["Yellow coloration", "Heat treatment common", "Piezoelectric", "Abundant availability"],
-    colors: ["Pale yellow", "Golden yellow", "Orange", "Brownish yellow"],
-    icon: Star
+    hardness: "6-6.5",
+    crystal: "Triclinic",
+    description: "A plagioclase feldspar known for its labradorescence - brilliant flashes of blue, green, yellow, and orange colors caused by light interference.",
+    characteristics: ["Labradorescence", "Perfect cleavage", "Twinning", "Color play"],
+    colors: ["Gray", "Blue", "Green", "Yellow", "Orange"],
+    icon: gemIcons["15"]
   },
   {
     id: 16,
@@ -241,7 +242,7 @@ const gemstones = [
     description: "The gem variety of olivine, peridot is one of the few gemstones that occurs in only one color. It's found in meteorites and volcanic rocks.",
     characteristics: ["Single color variety", "High birefringence", "Olivine mineral", "Extraterrestrial occurrence"],
     colors: ["Yellowish green", "Olive green", "Brownish green"],
-    icon: Zap
+    icon: gemIcons["16"]
   },
   {
     id: 17,
