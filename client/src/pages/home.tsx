@@ -39,27 +39,27 @@ export default function Home() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-primary/15 to-primary/5">
+      <section className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-primary/15 to-primary/5 perspective-container">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
+        <div className="absolute inset-0 opacity-10 parallax-3d">
+          <div className="absolute inset-0 rotate-3d" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23${encodeURIComponent('725D47')}' fill-opacity='0.1'%3E%3Cpath d='M30 30l15-15v30l-15-15zm-15 0l15 15v-30l-15 15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             backgroundSize: '60px 60px'
           }} />
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 depth-layer">
           <div className="text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, rotateX: -15 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ duration: 0.8 }}
-              className="mb-8"
+              className="mb-8 perspective-container"
             >
               <img 
                 src={logoPath} 
                 alt="GIL - Gemological Institute Laboratories" 
-                className="h-32 md:h-40 w-auto mx-auto mb-8"
+                className="h-32 md:h-40 w-auto mx-auto mb-8 floating-animation pulse-glow transform-gpu"
               />
             </motion.div>
             
@@ -84,18 +84,18 @@ export default function Home() {
             </motion.p>
             
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, rotateX: -10 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-4 justify-center perspective-container"
             >
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 button-3d transform-gpu"
               >
                 <Link href="/verify">
-                  <Search className="mr-2 h-5 w-5" />
+                  <Search className="mr-2 h-5 w-5 icon-3d" />
                   Verify Certificate
                 </Link>
               </Button>
@@ -104,10 +104,10 @@ export default function Home() {
                 asChild 
                 variant="outline" 
                 size="lg" 
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 button-3d transform-gpu"
               >
                 <Link href="/about">
-                  <FileCheck className="mr-2 h-5 w-5" />
+                  <FileCheck className="mr-2 h-5 w-5 icon-3d" />
                   About Us
                 </Link>
               </Button>
@@ -134,20 +134,27 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-container">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20, rotateX: -15, rotateY: -5 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateY: 5, 
+                  rotateX: 5,
+                  transition: { duration: 0.3 }
+                }}
+                className="transform-gpu"
               >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border border-border shadow-lg group cursor-pointer bg-card">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 border border-border shadow-lg group cursor-pointer bg-card card-3d">
                   <Link href={feature.link}>
                     <CardContent className="p-8 text-center">
                       <div className="mb-6 flex justify-center">
-                        <div className="p-4 bg-secondary rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                        <div className="p-4 bg-secondary rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 icon-3d floating-animation">
                           {feature.icon}
                         </div>
                       </div>
@@ -159,7 +166,7 @@ export default function Home() {
                       </p>
                       <div className="mt-6 flex items-center justify-center text-primary font-semibold group-hover:text-foreground transition-colors duration-300">
                         Learn More
-                        <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                        <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300 icon-3d" />
                       </div>
                     </CardContent>
                   </Link>
@@ -171,49 +178,79 @@ export default function Home() {
       </section>
 
       {/* Trust & Credentials Section */}
-      <section className="py-20 bg-gradient-to-r from-secondary to-muted">
+      <section className="py-20 bg-gradient-to-r from-secondary to-muted perspective-container">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20, rotateX: -10 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center"
+            className="text-center depth-layer"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
               Trusted Worldwide
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-              <div className="text-center">
+              <motion.div 
+                className="text-center"
+                initial={{ opacity: 0, rotateY: -15 }}
+                whileInView={{ opacity: 1, rotateY: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateY: 5,
+                  transition: { duration: 0.3 }
+                }}
+              >
                 <div className="mb-4 flex justify-center">
-                  <div className="p-4 bg-card rounded-full shadow-lg">
+                  <div className="p-4 bg-card rounded-full shadow-lg icon-3d floating-animation pulse-glow">
                     <Award className="w-8 h-8 text-primary" />
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Certified Excellence</h3>
                 <p className="text-muted-foreground">International accreditation and recognition</p>
-              </div>
+              </motion.div>
               
-              <div className="text-center">
+              <motion.div 
+                className="text-center"
+                initial={{ opacity: 0, rotateY: 0 }}
+                whileInView={{ opacity: 1, rotateY: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateX: 5,
+                  transition: { duration: 0.3 }
+                }}
+              >
                 <div className="mb-4 flex justify-center">
-                  <div className="p-4 bg-card rounded-full shadow-lg">
+                  <div className="p-4 bg-card rounded-full shadow-lg icon-3d floating-animation pulse-glow">
                     <Shield className="w-8 h-8 text-primary" />
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Trusted Security</h3>
                 <p className="text-muted-foreground">Secure verification and authentication</p>
-              </div>
+              </motion.div>
               
-              <div className="text-center">
+              <motion.div 
+                className="text-center"
+                initial={{ opacity: 0, rotateY: 15 }}
+                whileInView={{ opacity: 1, rotateY: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateY: -5,
+                  transition: { duration: 0.3 }
+                }}
+              >
                 <div className="mb-4 flex justify-center">
-                  <div className="p-4 bg-card rounded-full shadow-lg">
+                  <div className="p-4 bg-card rounded-full shadow-lg icon-3d floating-animation pulse-glow">
                     <Search className="w-8 h-8 text-primary" />
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Advanced Analysis</h3>
                 <p className="text-muted-foreground">State-of-the-art gemological equipment</p>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
