@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "wouter";
 import { Gem, Search, Sparkles, Diamond, Crown, Star, Eye, Palette, Zap, Mountain } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import logoPath from "@assets/1000119055-removebg-preview.png";
 import { gemIcons } from "@/components/gem-svg-icons";
 import { GemTermTooltip, InfoIconTooltip } from "@/components/educational-tooltips";
 import GemLoadingSpinner from "@/components/gem-loading-spinner";
+import { debounce, getOptimizedAnimationConfig } from "@/utils/performance";
 
 // SVG Components for Gemstones
 const DiamondSVG = () => (
@@ -354,6 +355,7 @@ const gemstones = [
 
 export default function GemEncyclopedia() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
   
@@ -361,20 +363,37 @@ export default function GemEncyclopedia() {
   const parallaxY1 = useTransform(scrollY, [0, 1000], [0, -200]);
   const parallaxY2 = useTransform(scrollY, [0, 1000], [0, -100]);
   const parallaxY3 = useTransform(scrollY, [0, 1000], [0, -50]);
+  
+  const animationConfig = getOptimizedAnimationConfig();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 800); // Reduced loading time
     return () => clearTimeout(timer);
   }, []);
 
-  const filteredGems = gemstones.filter(gem => {
-    const matchesSearch = gem.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         gem.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || gem.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  // Debounced search to improve performance
+  const debouncedSearch = useCallback(
+    debounce((query: string) => {
+      setDebouncedSearchQuery(query);
+    }, 300),
+    []
+  );
+
+  useEffect(() => {
+    debouncedSearch(searchQuery);
+  }, [searchQuery, debouncedSearch]);
+
+  // Memoized filtering for better performance
+  const filteredGems = useMemo(() => {
+    return gemstones.filter(gem => {
+      const matchesSearch = gem.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
+                           gem.description.toLowerCase().includes(debouncedSearchQuery.toLowerCase());
+      const matchesCategory = selectedCategory === "All" || gem.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [debouncedSearchQuery, selectedCategory]);
 
   const categories = ["All", "Precious Stone", "Semi-Precious"];
 
@@ -468,14 +487,17 @@ export default function GemEncyclopedia() {
               return (
                 <motion.div
                   key={gem.id}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: animationConfig.enabled ? 30 : 0 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    y: -8,
-                    transition: { duration: 0.3, ease: "easeOut" }
+                  transition={{ 
+                    duration: animationConfig.duration, 
+                    delay: animationConfig.enabled ? index * 0.05 : 0 
                   }}
+                  whileHover={animationConfig.enabled ? { 
+                    scale: 1.02,
+                    y: -4,
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  } : {}}
                   className="group"
                 >
                   <Link href={`/gem/${gem.id}`}>
