@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useToast } from "@/hooks/use-toast";
 import { Users, Star, Heart, MessageCircle, Share, Upload, Filter } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -31,6 +32,71 @@ interface GemShowcase {
 export default function CommunityShowcase() {
   const [filter, setFilter] = useState("all");
   const [showSubmissionForm, setShowSubmissionForm] = useState(false);
+  const [submissionForm, setSubmissionForm] = useState({
+    title: '',
+    gemType: '',
+    carat: '',
+    color: '',
+    clarity: '',
+    cut: '',
+    description: ''
+  });
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSubmissionForm({
+      ...submissionForm,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmitGem = () => {
+    if (!submissionForm.title || !submissionForm.gemType) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in the gem title and type",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    toast({
+      title: "Gem Submitted Successfully",
+      description: "Your gemstone showcase will be reviewed and published shortly.",
+    });
+    
+    setSubmissionForm({
+      title: '',
+      gemType: '',
+      carat: '',
+      color: '',
+      clarity: '',
+      cut: '',
+      description: ''
+    });
+    setShowSubmissionForm(false);
+  };
+
+  const handleLike = (gemId: string) => {
+    toast({
+      title: "Liked!",
+      description: "Added to your favorites",
+    });
+  };
+
+  const handleComment = (gemId: string) => {
+    toast({
+      title: "Comment Feature",
+      description: "Comment functionality coming soon",
+    });
+  };
+
+  const handleShare = (gemId: string) => {
+    toast({
+      title: "Shared",
+      description: "Link copied to clipboard",
+    });
+  };
 
   const showcaseItems: GemShowcase[] = [
     {
@@ -156,19 +222,55 @@ export default function CommunityShowcase() {
               >
                 <h4 className="text-lg font-semibold mb-4">Submit Your Gem</h4>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Input placeholder="Gem Title" />
-                  <Input placeholder="Gem Type" />
-                  <Input placeholder="Carat Weight" />
-                  <Input placeholder="Color Grade" />
-                  <Input placeholder="Clarity Grade" />
-                  <Input placeholder="Cut Grade" />
+                  <Input 
+                    placeholder="Gem Title" 
+                    name="title"
+                    value={submissionForm.title}
+                    onChange={handleInputChange}
+                  />
+                  <Input 
+                    placeholder="Gem Type" 
+                    name="gemType"
+                    value={submissionForm.gemType}
+                    onChange={handleInputChange}
+                  />
+                  <Input 
+                    placeholder="Carat Weight" 
+                    name="carat"
+                    value={submissionForm.carat}
+                    onChange={handleInputChange}
+                  />
+                  <Input 
+                    placeholder="Color Grade" 
+                    name="color"
+                    value={submissionForm.color}
+                    onChange={handleInputChange}
+                  />
+                  <Input 
+                    placeholder="Clarity Grade" 
+                    name="clarity"
+                    value={submissionForm.clarity}
+                    onChange={handleInputChange}
+                  />
+                  <Input 
+                    placeholder="Cut Grade" 
+                    name="cut"
+                    value={submissionForm.cut}
+                    onChange={handleInputChange}
+                  />
                 </div>
-                <Textarea placeholder="Description and story..." className="mt-4" />
+                <Textarea 
+                  placeholder="Description and story..." 
+                  name="description"
+                  value={submissionForm.description}
+                  onChange={handleInputChange}
+                  className="mt-4" 
+                />
                 <div className="flex justify-end space-x-2 mt-4">
                   <Button variant="outline" onClick={() => setShowSubmissionForm(false)}>
                     Cancel
                   </Button>
-                  <Button>Submit for Review</Button>
+                  <Button onClick={handleSubmitGem}>Submit for Review</Button>
                 </div>
               </motion.div>
             )}
@@ -238,15 +340,30 @@ export default function CommunityShowcase() {
                         </div>
 
                         <div className="flex space-x-2">
-                          <Button size="sm" variant="outline" className="flex-1">
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="flex-1"
+                            onClick={() => handleLike(item.id)}
+                          >
                             <Heart className="w-3 h-3 mr-1" />
                             Like
                           </Button>
-                          <Button size="sm" variant="outline" className="flex-1">
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="flex-1"
+                            onClick={() => handleComment(item.id)}
+                          >
                             <MessageCircle className="w-3 h-3 mr-1" />
                             Comment
                           </Button>
-                          <Button size="sm" variant="outline" className="flex-1">
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="flex-1"
+                            onClick={() => handleShare(item.id)}
+                          >
                             <Share className="w-3 h-3 mr-1" />
                             Share
                           </Button>

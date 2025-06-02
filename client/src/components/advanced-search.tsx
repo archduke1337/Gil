@@ -67,28 +67,43 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
   };
 
   const applyFilters = () => {
-    const filtered = certificates.filter(cert => {
-      const matchesReference = !filters.referenceNumber || 
-        cert.referenceNumber.toLowerCase().includes(filters.referenceNumber.toLowerCase());
-      
-      const matchesColor = !filters.colorGrade || 
-        cert.colorGrade?.toLowerCase() === filters.colorGrade.toLowerCase();
-      
-      const matchesClarity = !filters.clarityGrade || 
-        cert.clarityGrade?.toLowerCase() === filters.clarityGrade.toLowerCase();
-      
-      const matchesCut = !filters.cutGrade || 
-        cert.cutGrade?.toLowerCase() === filters.cutGrade.toLowerCase();
-      
-      const matchesCarat = !filters.caratWeight || 
-        cert.caratWeight?.includes(filters.caratWeight);
-      
-      const matchesActive = !filters.isActive || 
-        (filters.isActive === "active" ? cert.isActive : !cert.isActive);
+    let filtered = certificates;
 
-      return matchesReference && matchesColor && matchesClarity && 
-             matchesCut && matchesCarat && matchesActive;
-    });
+    if (filters.referenceNumber) {
+      filtered = filtered.filter(cert => 
+        cert.referenceNumber.toLowerCase().includes(filters.referenceNumber.toLowerCase())
+      );
+    }
+
+    if (filters.colorGrade) {
+      filtered = filtered.filter(cert => 
+        cert.colorGrade?.toLowerCase() === filters.colorGrade.toLowerCase()
+      );
+    }
+
+    if (filters.clarityGrade) {
+      filtered = filtered.filter(cert => 
+        cert.clarityGrade?.toLowerCase() === filters.clarityGrade.toLowerCase()
+      );
+    }
+
+    if (filters.cutGrade) {
+      filtered = filtered.filter(cert => 
+        cert.cutGrade?.toLowerCase() === filters.cutGrade.toLowerCase()
+      );
+    }
+
+    if (filters.caratWeight) {
+      filtered = filtered.filter(cert => 
+        cert.caratWeight?.includes(filters.caratWeight)
+      );
+    }
+
+    if (filters.isActive) {
+      filtered = filtered.filter(cert => 
+        filters.isActive === "active" ? cert.isActive : !cert.isActive
+      );
+    }
 
     onSearchResults(filtered);
   };
