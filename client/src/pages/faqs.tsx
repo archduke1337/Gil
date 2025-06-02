@@ -120,54 +120,7 @@ export default function FAQs() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <img 
-                src={logoPath} 
-                alt="GIL - Gemological Institute Laboratories" 
-                className="h-10 w-auto"
-              />
-              <div>
-                <h1 className="text-xl font-bold text-foreground">GIL</h1>
-                <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link href="/">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Home
-                </Button>
-              </Link>
-              <Link href="/about">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  About Us
-                </Button>
-              </Link>
-              <Link href="/gem-encyclopedia">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Gem Encyclopedia
-                </Button>
-              </Link>
-              <Link href="/analysis">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Analysis & Grading
-                </Button>
-              </Link>
-              <Link href="/">
-                <Button variant="ghost" className="text-muted-foreground hover:text-primary">
-                  Report Check
-                </Button>
-              </Link>
-              <Button variant="ghost" className="text-primary border-b-2 border-primary">
-                FAQs
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <div className="gemological-gradient text-white py-16">
