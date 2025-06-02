@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 
 // SVG Components for the 4Cs
 const CutDiagramSVG = () => (

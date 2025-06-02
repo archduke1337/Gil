@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 
 // SVG Components for Gemstones
 const DiamondSVG = () => (
@@ -214,11 +215,11 @@ export default function GemEncyclopedia() {
   const categories = ["All", "Precious Stone", "Semi-Precious"];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-[#ece5dc] to-white">
       <Navigation />
 
       {/* Hero Section */}
-      <div className="gemological-gradient text-white py-16">
+      <div className="bg-gradient-to-r from-[#8c745c] to-[#7a6550] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
             <Sparkles className="w-10 h-10" />

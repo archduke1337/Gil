@@ -43,7 +43,7 @@ html {
 
 /* Gemological gradient for consistent branding */
 .gemological-gradient {
-  background: linear-gradient(135deg, #1e40af 0%, #7c3aed 25%, #1e40af 50%, #3b82f6 75%, #1e40af 100%);
+  background: linear-gradient(135deg, #8c745c 0%, #7a6550 25%, #8c745c 50%, #9d8169 75%, #8c745c 100%);
   background-size: 400% 400%;
   animation: gradient-shift 8s ease infinite;
 }
