@@ -171,7 +171,9 @@ export default function AnalysisGrading() {
                 Experience our advanced 3D visualization technology for detailed gemstone analysis
               </p>
             </div>
-            <Interactive3DGem gemType="diamond" />
+            <div className="text-center text-muted-foreground">
+              Interactive 3D analysis available in the enhanced section below
+            </div>
           </motion.div>
         </div>
       </div>
@@ -421,6 +423,22 @@ export default function AnalysisGrading() {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* Enhanced 3D Gem Analysis */}
+      <div className="py-16 bg-muted/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Professional 3D Gem Analysis</h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Advanced gemological examination with comprehensive analysis tools and professional-grade assessment capabilities
+            </p>
+          </div>
+          
+          <div className="max-w-6xl mx-auto">
+            <EnhancedGemAnalysis gemType="diamond" />
           </div>
         </div>
       </div>
