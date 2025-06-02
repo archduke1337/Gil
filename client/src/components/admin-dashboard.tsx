@@ -10,8 +10,6 @@ import UploadForm from "@/components/upload-form";
 import CertificateList from "@/components/certificate-list";
 import BulkUpload from "@/components/bulk-upload";
 import AdvancedSearch from "@/components/advanced-search";
-import GemRecommendationEngine from "@/components/gem-recommendation-engine";
-import GemRarityHeatmap from "@/components/gem-rarity-heatmap";
 import { useToast } from "@/hooks/use-toast";
 import type { Certificate } from "@shared/schema";
 
@@ -159,7 +157,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
         </div>
 
         <Tabs defaultValue="certificates" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
             <TabsTrigger value="certificates" className="flex items-center space-x-2">
               <List className="w-4 h-4" />
               <span>Certificates</span>
@@ -175,14 +173,6 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <TabsTrigger value="search" className="flex items-center space-x-2">
               <Search className="w-4 h-4" />
               <span>Advanced Search</span>
-            </TabsTrigger>
-            <TabsTrigger value="ai" className="flex items-center space-x-2">
-              <Gem className="w-4 h-4" />
-              <span>AI Recommendations</span>
-            </TabsTrigger>
-            <TabsTrigger value="heatmap" className="flex items-center space-x-2">
-              <Map className="w-4 h-4" />
-              <span>Rarity Map</span>
             </TabsTrigger>
           </TabsList>
 
@@ -226,25 +216,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </motion.div>
           </TabsContent>
 
-          <TabsContent value="ai" className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <GemRecommendationEngine />
-            </motion.div>
-          </TabsContent>
 
-          <TabsContent value="heatmap" className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <GemRarityHeatmap />
-            </motion.div>
-          </TabsContent>
 
 
         </Tabs>
