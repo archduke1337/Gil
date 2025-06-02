@@ -74,6 +74,10 @@ const gemstones = [
     category: "Precious Stone",
     hardness: "10",
     crystal: "Cubic",
+    clarity: "Flawless to I3",
+    dimensions: "Table: 53-64%, Depth: 58-64%, Crown: 14-16%",
+    cutQuality: "Excellent, Very Good, Good",
+    opticalProperties: "RI: 2.418, Dispersion: 0.044",
     description: "The hardest natural substance known, diamonds are prized for their brilliance and fire. Formed deep within the Earth under extreme pressure and temperature.",
     characteristics: ["Exceptional hardness", "High refractive index", "Superior brilliance", "Excellent thermal conductivity"],
     colors: ["Colorless", "Yellow", "Brown", "Blue", "Pink", "Green", "Red", "Black"],
@@ -85,6 +89,10 @@ const gemstones = [
     category: "Precious Stone",
     hardness: "9",
     crystal: "Trigonal",
+    clarity: "Eye Clean to Included",
+    dimensions: "Crown: 12-15%, Table: 50-65%, Depth: 60-70%",
+    cutQuality: "Oval, Cushion, Round, Emerald Cut",
+    opticalProperties: "RI: 1.762-1.770, Birefringence: 0.008",
     description: "The red variety of corundum, rubies are among the most valuable colored gemstones. The finest rubies display a pure red color with excellent clarity.",
     characteristics: ["Vivid red color", "Excellent hardness", "High brilliance", "Pleochroism"],
     colors: ["Pink-red", "Blood red", "Purplish red"],
@@ -96,6 +104,10 @@ const gemstones = [
     category: "Precious Stone",
     hardness: "7.5-8",
     crystal: "Hexagonal",
+    clarity: "Included to Eye Clean (Jardin accepted)",
+    dimensions: "Table: 60-70%, Depth: 61-67%, Crown: 11-16%",
+    cutQuality: "Emerald Cut, Oval, Round, Cushion",
+    opticalProperties: "RI: 1.576-1.582, Birefringence: 0.006",
     description: "The green variety of beryl, emeralds are valued for their intense green color. Most emeralds contain inclusions, which are considered part of their character.",
     characteristics: ["Intense green color", "Natural inclusions", "Moderate hardness", "Hexagonal crystals"],
     colors: ["Light green", "Deep green", "Bluish green"],
@@ -107,6 +119,10 @@ const gemstones = [
     category: "Precious Stone",
     hardness: "9",
     crystal: "Trigonal",
+    clarity: "Eye Clean to Slightly Included",
+    dimensions: "Table: 53-65%, Depth: 60-70%, Crown: 12-15%",
+    cutQuality: "Round, Oval, Cushion, Emerald, Princess",
+    opticalProperties: "RI: 1.762-1.770, Birefringence: 0.008",
     description: "All non-red varieties of corundum are called sapphires. Blue sapphires are most famous, but they occur in many colors including yellow, pink, and white.",
     characteristics: ["Exceptional hardness", "Excellent clarity", "Vivid colors", "Strong pleochroism"],
     colors: ["Blue", "Yellow", "Pink", "White", "Orange", "Green", "Purple"],
@@ -457,7 +473,41 @@ export default function GemEncyclopedia() {
                           <span className="text-sm font-medium text-foreground">Crystal System:</span>
                           <span className="text-sm text-muted-foreground">{gem.crystal}</span>
                         </div>
+                        {gem.clarity && (
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm font-medium text-foreground">Clarity:</span>
+                            <span className="text-sm text-muted-foreground">{gem.clarity}</span>
+                          </div>
+                        )}
+                        {gem.opticalProperties && (
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm font-medium text-foreground">Optical:</span>
+                            <span className="text-sm text-muted-foreground">{gem.opticalProperties}</span>
+                          </div>
+                        )}
                       </div>
+
+                      {gem.dimensions && (
+                        <div className="mt-4">
+                          <span className="text-sm font-medium text-foreground mb-2 block">Cut Dimensions:</span>
+                          <div className="text-xs text-muted-foreground bg-muted/30 p-2 rounded">
+                            {gem.dimensions}
+                          </div>
+                        </div>
+                      )}
+
+                      {gem.cutQuality && (
+                        <div className="mt-4">
+                          <span className="text-sm font-medium text-foreground mb-2 block">Cut Styles:</span>
+                          <div className="flex flex-wrap gap-1">
+                            {gem.cutQuality.split(', ').slice(0, 3).map((cut, index) => (
+                              <Badge key={index} variant="outline" className="text-xs border-border">
+                                {cut}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
                       <div className="mt-4">
                         <span className="text-sm font-medium text-foreground mb-2 block">Common Colors:</span>

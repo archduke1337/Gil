@@ -1158,6 +1158,46 @@ export default function GemDetail() {
               </Card>
             </motion.div>
 
+            {/* Gemological Specifications */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <Card className="card-3d">
+                <CardHeader>
+                  <CardTitle>Gemological Specifications</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <span className="text-sm font-medium text-foreground">Clarity Grades:</span>
+                    <p className="text-sm text-muted-foreground">FL, IF, VVS1-VVS2, VS1-VS2, SI1-SI3, I1-I3</p>
+                  </div>
+                  <Separator />
+                  <div>
+                    <span className="text-sm font-medium text-foreground">Cut Proportions:</span>
+                    <div className="text-sm text-muted-foreground">
+                      <p>Table: 53-64% • Depth: 58-64%</p>
+                      <p>Crown: 14-16% • Pavilion: 42-44%</p>
+                    </div>
+                  </div>
+                  <Separator />
+                  <div>
+                    <span className="text-sm font-medium text-foreground">Optical Properties:</span>
+                    <div className="text-sm text-muted-foreground">
+                      <p>Brilliance: Exceptional</p>
+                      <p>Fire: High • Scintillation: Excellent</p>
+                    </div>
+                  </div>
+                  <Separator />
+                  <div>
+                    <span className="text-sm font-medium text-foreground">Cut Quality Grades:</span>
+                    <p className="text-sm text-muted-foreground">Excellent, Very Good, Good, Fair, Poor</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
             {/* Colors */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}

@@ -7,54 +7,49 @@ export const DiamondSVG = ({ className = "", size = 64 }: GemSVGProps) => (
   <svg
     width={size}
     height={size}
-    viewBox="0 0 64 64"
+    viewBox="0 0 120 120"
     className={className}
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <radialGradient id="diamondMainGradient" cx="35%" cy="25%">
-        <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-        <stop offset="25%" stopColor="#f8fcff" stopOpacity="0.95" />
-        <stop offset="50%" stopColor="#e1f5fe" stopOpacity="0.9" />
-        <stop offset="75%" stopColor="#b3e5fc" stopOpacity="0.8" />
-        <stop offset="100%" stopColor="#81d4fa" stopOpacity="0.7" />
-      </radialGradient>
-      <linearGradient id="diamondReflection" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
-        <stop offset="50%" stopColor="#e3f2fd" stopOpacity="0.4" />
-        <stop offset="100%" stopColor="#bbdefb" stopOpacity="0.2" />
+      <linearGradient id="diamondMain" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#ffffff" />
+        <stop offset="20%" stopColor="#f8fcff" />
+        <stop offset="40%" stopColor="#e1f5fe" />
+        <stop offset="100%" stopColor="#b3e5fc" />
       </linearGradient>
-      <filter id="diamondBrilliance">
-        <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
-        <feDropShadow dx="3" dy="3" stdDeviation="4" floodColor="#000" floodOpacity="0.2"/>
+      <linearGradient id="diamondFacet1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#81d4fa" />
+        <stop offset="100%" stopColor="#4fc3f7" />
+      </linearGradient>
+      <linearGradient id="diamondFacet2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#29b6f6" />
+        <stop offset="100%" stopColor="#1976d2" />
+      </linearGradient>
+      <filter id="diamond3D">
+        <feDropShadow dx="4" dy="6" stdDeviation="3" floodColor="#000" floodOpacity="0.3"/>
       </filter>
     </defs>
     
-    {/* Main diamond shape */}
-    <path
-      d="M32 6 L50 22 L32 58 L14 22 Z"
-      fill="url(#diamondMainGradient)"
-      stroke="#90caf9"
-      strokeWidth="0.8"
-      filter="url(#diamondBrilliance)"
-    />
+    {/* Top table facet */}
+    <polygon points="40,25 80,25 85,30 75,35 45,35 35,30" fill="url(#diamondMain)" stroke="#64b5f6" strokeWidth="0.5"/>
     
-    {/* Top facets */}
-    <path d="M14 22 L32 22 L50 22" stroke="#64b5f6" strokeWidth="0.6" opacity="0.7"/>
-    <path d="M20 14 L32 22 L44 14" stroke="#64b5f6" strokeWidth="0.6" opacity="0.6"/>
-    <path d="M26 10 L32 22 L38 10" stroke="#42a5f5" strokeWidth="0.5" opacity="0.5"/>
+    {/* Crown facets */}
+    <polygon points="35,30 60,15 85,30 75,35 45,35" fill="url(#diamondFacet1)" stroke="#42a5f5" strokeWidth="0.5"/>
+    <polygon points="60,15 85,30 95,40 75,35" fill="url(#diamondFacet2)" stroke="#1976d2" strokeWidth="0.5"/>
+    <polygon points="35,30 25,40 45,35 60,15" fill="url(#diamondFacet1)" stroke="#42a5f5" strokeWidth="0.5"/>
     
-    {/* Side facets */}
-    <path d="M14 22 L32 36 L32 22" fill="url(#diamondReflection)" opacity="0.6"/>
-    <path d="M50 22 L32 36 L32 22" fill="url(#diamondReflection)" opacity="0.4"/>
+    {/* Pavilion facets */}
+    <polygon points="45,35 75,35 95,40 60,85" fill="url(#diamondFacet2)" stroke="#1565c0" strokeWidth="0.5"/>
+    <polygon points="25,40 45,35 60,85 35,65" fill="url(#diamondFacet1)" stroke="#1976d2" strokeWidth="0.5"/>
+    <polygon points="35,65 60,85 95,40 85,55" fill="#0d47a1" stroke="#0d47a1" strokeWidth="0.5"/>
     
-    {/* Bottom facets */}
-    <path d="M32 22 L32 45" stroke="#29b6f6" strokeWidth="0.4" opacity="0.5"/>
-    <path d="M20 35 L32 45 L44 35" stroke="#29b6f6" strokeWidth="0.4" opacity="0.4"/>
+    {/* Main body */}
+    <polygon points="25,40 95,40 85,55 35,65" fill="url(#diamondMain)" stroke="#29b6f6" strokeWidth="0.8" filter="url(#diamond3D)"/>
     
-    {/* Brilliant highlights */}
-    <ellipse cx="28" cy="18" rx="3" ry="2" fill="#ffffff" opacity="0.9"/>
-    <ellipse cx="36" cy="20" rx="2" ry="1.5" fill="#ffffff" opacity="0.7"/>
+    {/* Brilliant reflections */}
+    <polygon points="55,20 65,20 70,25 60,30 50,30" fill="#ffffff" opacity="0.8"/>
+    <polygon points="40,32 50,32 55,37 45,42 35,42" fill="#ffffff" opacity="0.6"/>
   </svg>
 );
 
@@ -62,54 +57,51 @@ export const RubySVG = ({ className = "", size = 64 }: GemSVGProps) => (
   <svg
     width={size}
     height={size}
-    viewBox="0 0 64 64"
+    viewBox="0 0 120 120"
     className={className}
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <radialGradient id="rubyMainGradient" cx="35%" cy="25%">
+      <linearGradient id="rubyMain" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#ff1744" />
-        <stop offset="25%" stopColor="#e91e63" />
-        <stop offset="50%" stopColor="#d32f2f" />
-        <stop offset="75%" stopColor="#c62828" />
+        <stop offset="30%" stopColor="#e91e63" />
+        <stop offset="70%" stopColor="#c62828" />
         <stop offset="100%" stopColor="#b71c1c" />
-      </radialGradient>
-      <radialGradient id="rubyHighlight" cx="40%" cy="20%">
-        <stop offset="0%" stopColor="#ff8a80" stopOpacity="0.8" />
-        <stop offset="50%" stopColor="#ff5722" stopOpacity="0.4" />
-        <stop offset="100%" stopColor="#d32f2f" stopOpacity="0.1" />
-      </radialGradient>
-      <filter id="rubyBrilliance">
-        <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-        <feDropShadow dx="2" dy="3" stdDeviation="3" floodColor="#000" floodOpacity="0.3"/>
+      </linearGradient>
+      <linearGradient id="rubyFacet1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#ff5722" />
+        <stop offset="100%" stopColor="#d32f2f" />
+      </linearGradient>
+      <linearGradient id="rubyFacet2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#f44336" />
+        <stop offset="100%" stopColor="#c62828" />
+      </linearGradient>
+      <filter id="ruby3D">
+        <feDropShadow dx="4" dy="6" stdDeviation="3" floodColor="#000" floodOpacity="0.4"/>
       </filter>
     </defs>
     
-    {/* Main ruby crystal shape */}
-    <path
-      d="M32 8 L46 20 L48 32 L46 44 L32 56 L18 44 L16 32 L18 20 Z"
-      fill="url(#rubyMainGradient)"
-      stroke="#ad1457"
-      strokeWidth="0.8"
-      filter="url(#rubyBrilliance)"
-    />
+    {/* Crown facets */}
+    <polygon points="35,30 60,10 85,30 75,35 45,35" fill="url(#rubyMain)" stroke="#ad1457" strokeWidth="0.8"/>
+    <polygon points="60,10 85,30 95,45 75,35" fill="url(#rubyFacet1)" stroke="#880e4f" strokeWidth="0.6"/>
+    <polygon points="35,30 25,45 45,35 60,10" fill="url(#rubyFacet2)" stroke="#880e4f" strokeWidth="0.6"/>
     
-    {/* Crystal facets */}
-    <path d="M18 20 L32 20 L46 20" stroke="#c2185b" strokeWidth="0.6" opacity="0.6"/>
-    <path d="M16 32 L32 32 L48 32" stroke="#c2185b" strokeWidth="0.6" opacity="0.5"/>
-    <path d="M18 44 L32 44 L46 44" stroke="#c2185b" strokeWidth="0.6" opacity="0.4"/>
+    {/* Table facet */}
+    <polygon points="45,35 75,35 80,40 70,45 50,45 40,40" fill="url(#rubyMain)" stroke="#ad1457" strokeWidth="0.5"/>
     
-    {/* Side facets for depth */}
-    <path d="M18 20 L32 32 L18 44" fill="url(#rubyMainGradient)" opacity="0.7"/>
-    <path d="M46 20 L32 32 L46 44" fill="url(#rubyMainGradient)" opacity="0.5"/>
+    {/* Pavilion facets */}
+    <polygon points="45,45 75,45 95,60 60,100" fill="url(#rubyFacet2)" stroke="#6a1b9a" strokeWidth="0.6"/>
+    <polygon points="25,60 45,45 60,100 35,80" fill="url(#rubyFacet1)" stroke="#6a1b9a" strokeWidth="0.6"/>
     
-    {/* Brilliant highlights */}
-    <ellipse cx="32" cy="24" rx="8" ry="6" fill="url(#rubyHighlight)" opacity="0.6"/>
-    <ellipse cx="28" cy="20" rx="4" ry="3" fill="#ff8a80" opacity="0.8"/>
-    <circle cx="30" cy="18" r="2" fill="#ffffff" opacity="0.9"/>
+    {/* Main body with 3D effect */}
+    <polygon points="25,45 95,60 85,75 35,65" fill="url(#rubyMain)" stroke="#c62828" strokeWidth="0.8" filter="url(#ruby3D)"/>
     
-    {/* Inner fire effect */}
-    <path d="M24 28 Q32 24 40 28 Q36 36 32 40 Q28 36 24 28" fill="#ff5722" opacity="0.3"/>
+    {/* Inner fire brilliance */}
+    <polygon points="55,15 65,15 70,25 60,30 50,30" fill="#ff8a80" opacity="0.9"/>
+    <polygon points="50,40 60,40 65,50 55,55 45,55" fill="#ffcdd2" opacity="0.7"/>
+    
+    {/* Star effect highlight */}
+    <circle cx="60" cy="20" r="3" fill="#ffffff" opacity="0.8"/>
   </svg>
 );
 
