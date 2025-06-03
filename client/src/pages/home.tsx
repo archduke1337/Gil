@@ -124,10 +124,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-display font-heading text-gray-900 mb-4 text-ultra-smooth">
               Our Professional Services
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-lg font-body text-gray-600 max-w-3xl mx-auto text-ultra-smooth">
               Comprehensive gemological services backed by decades of expertise and cutting-edge technology
             </p>
           </motion.div>
@@ -145,11 +145,11 @@ export default function Home() {
                   transition: { duration: 0.3 }
                 }}
               >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 rounded-xl soft-shadow group cursor-pointer bg-white">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 rounded-3xl soft-shadow group cursor-pointer bg-white/90 backdrop-blur-sm">
                   <Link href={feature.link}>
                     <CardContent className="p-8 text-center">
                       <div className="mb-6 flex justify-center">
-                        <div className="p-4 bg-[#8c745c]/10 rounded-full group-hover:bg-[#8c745c] group-hover:text-white transition-all duration-300">
+                        <div className="p-4 bg-[#8c745c]/10 rounded-3xl group-hover:bg-[#8c745c] group-hover:text-white transition-all duration-300">
                           <div className="text-[#8c745c] group-hover:text-white">
                             {feature.icon}
                           </div>
