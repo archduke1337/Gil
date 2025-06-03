@@ -733,25 +733,31 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                   </motion.div>
 
                   {/* Submit Button */}
-                  <div className="flex justify-center pt-8 pb-4">
-                    <Button 
-                      type="submit" 
-                      disabled={isGenerating}
-                      size="lg"
-                      className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold py-4 px-12 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 min-w-[280px] h-16 text-lg"
-                    >
-                      {isGenerating ? (
-                        <div className="flex items-center gap-3">
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          <span>Generating Certificate...</span>
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-3">
-                          <Sparkles className="w-6 h-6" />
-                          <span>Generate Professional Certificate</span>
-                        </div>
-                      )}
-                    </Button>
+                  <div className="w-full bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-8 mt-8 border border-primary/20">
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="text-center">
+                        <h4 className="text-xl font-bold text-foreground mb-2">Ready to Generate Certificate</h4>
+                        <p className="text-muted-foreground">Click below to create your professional gemological certificate</p>
+                      </div>
+                      <Button 
+                        type="submit" 
+                        disabled={isGenerating}
+                        size="lg"
+                        className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-bold py-6 px-16 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 min-w-[320px] h-20 text-xl border-2 border-amber-700"
+                      >
+                        {isGenerating ? (
+                          <div className="flex items-center gap-4">
+                            <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+                            <span>Generating Certificate...</span>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-4">
+                            <Sparkles className="w-7 h-7" />
+                            <span>Generate Professional Certificate</span>
+                          </div>
+                        )}
+                      </Button>
+                    </div>
                   </div>
                 </form>
               </Form>
