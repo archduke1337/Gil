@@ -712,7 +712,7 @@ export default function About() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-border">
+      <footer className="text-white border-t border-border" style={{ backgroundColor: '#101826' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="col-span-2">
@@ -724,10 +724,10 @@ export default function About() {
                 />
                 <div>
                   <h1 className="text-xl font-bold text-[#8c745c]">GIL</h1>
-                  <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
+                  <p className="text-xs text-gray-400">Gemological Institute Laboratories</p>
                 </div>
               </div>
-              <p className="text-muted-foreground mb-4 max-w-md">
+              <p className="text-gray-400 mb-4 max-w-md">
                 Leading provider of diamond certification and verification services. 
                 Trusted by jewelers, retailers, and consumers worldwide.
               </p>

@@ -9,7 +9,7 @@ export default function Footer({ variant = "dark" }: FooterProps) {
   const isDark = variant === "dark";
 
   return (
-    <footer className={`py-12 ${isDark ? "bg-gray-900 text-white" : "bg-white border-t border-border"}`}>
+    <footer className={`py-12 ${isDark ? "text-white" : "bg-white border-t border-border"}`} style={{ backgroundColor: isDark ? '#101826' : undefined }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
