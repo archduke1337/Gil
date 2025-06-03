@@ -45,8 +45,8 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const displayCertificates = searchResults.length > 0 ? searchResults : certificates;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="bg-white shadow-sm border-b">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+      <div className="bg-white/80 backdrop-blur-sm shadow-sm border-0 rounded-b-3xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-3">
@@ -75,15 +75,15 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-6">
+            <Card className="border-0 rounded-3xl soft-shadow hover:shadow-xl transition-all duration-300 bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-8">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <FileUp className="w-6 h-6 text-blue-700" />
+                  <div className="w-16 h-16 bg-blue-100 rounded-3xl flex items-center justify-center soft-shadow">
+                    <FileUp className="w-8 h-8 text-blue-700" />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Total Certificates</p>
-                    <p className="text-2xl font-semibold text-gray-900">{certificates.length}</p>
+                  <div className="ml-6">
+                    <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Total Certificates</p>
+                    <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">{certificates.length}</p>
                   </div>
                 </div>
               </CardContent>
@@ -95,15 +95,15 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-6">
+            <Card className="border-0 rounded-3xl soft-shadow hover:shadow-xl transition-all duration-300 bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-8">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Eye className="w-6 h-6 text-green-700" />
+                  <div className="w-16 h-16 bg-green-100 rounded-3xl flex items-center justify-center soft-shadow">
+                    <Eye className="w-8 h-8 text-green-700" />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Active Certificates</p>
-                    <p className="text-2xl font-semibold text-gray-900">
+                  <div className="ml-6">
+                    <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Active Certificates</p>
+                    <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">
                       {certificates.filter(cert => cert.isActive).length}
                     </p>
                   </div>
@@ -117,15 +117,15 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-6">
+            <Card className="border-0 rounded-3xl soft-shadow hover:shadow-xl transition-all duration-300 bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-8">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <Search className="w-6 h-6 text-purple-700" />
+                  <div className="w-16 h-16 bg-purple-100 rounded-3xl flex items-center justify-center soft-shadow">
+                    <Search className="w-8 h-8 text-purple-700" />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Verifications Today</p>
-                    <p className="text-2xl font-semibold text-gray-900">42</p>
+                  <div className="ml-6">
+                    <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Verifications Today</p>
+                    <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">42</p>
                   </div>
                 </div>
               </CardContent>
@@ -137,15 +137,15 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-6">
+            <Card className="border-0 rounded-3xl soft-shadow hover:shadow-xl transition-all duration-300 bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-8">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                    <RefreshCw className="w-6 h-6 text-emerald-600" />
+                  <div className="w-16 h-16 bg-emerald-100 rounded-3xl flex items-center justify-center soft-shadow">
+                    <RefreshCw className="w-8 h-8 text-emerald-600" />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Uploads This Month</p>
-                    <p className="text-2xl font-semibold text-gray-900">
+                  <div className="ml-6">
+                    <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Uploads This Month</p>
+                    <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">
                       {certificates.filter(cert => {
                         if (!cert.uploadDate) return false;
                         const uploadDate = new Date(cert.uploadDate);
