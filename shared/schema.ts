@@ -50,6 +50,9 @@ export const certificates = pgTable("certificates", {
   clarityPlotDiagram: boolean("clarity_plot_diagram").default(false),
   certificateNotes: text("certificate_notes"),
   verifierUrl: text("verifier_url").default("https://gilab.info/verify"),
+  proportionsDiagram: text("proportions_diagram"),
+  clarityDiagram1: text("clarity_diagram1"),
+  clarityDiagram2: text("clarity_diagram2"),
   
   // System Fields
   issueDate: timestamp("issue_date").defaultNow(),
@@ -87,6 +90,15 @@ export const gilCertificateSchema = z.object({
   clarityPlotDiagram: z.boolean().default(false),
   certificateNotes: z.string().optional(),
   verifierUrl: z.string().default("https://gilab.info/verify"),
+  proportionsDiagram: z.string().optional(),
+  clarityDiagram1: z.string().optional(),
+  clarityDiagram2: z.string().optional(),
+  tablePercentage: z.string().optional(),
+  depthPercentage: z.string().optional(),
+  crownAngle: z.string().optional(),
+  pavilionAngle: z.string().optional(),
+  girdleThickness: z.string().optional(),
+  culetSize: z.string().optional(),
 });
 
 // Legacy Certificate Schema (Backward compatibility)
