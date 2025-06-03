@@ -129,8 +129,8 @@ export default function AnalysisGrading() {
               <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
                 <Microscope className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-3 text-ultra-smooth text-lg">Microscopic Analysis</h3>
-              <p className="text-muted-foreground text-ultra-smooth">
+              <h3 className="font-heading text-heading-sm text-foreground mb-3 text-ultra-smooth">Microscopic Analysis</h3>
+              <p className="font-body text-body text-muted-foreground text-ultra-smooth">
                 Detailed examination using high-powered microscopes to identify inclusions and treatments
               </p>
             </div>
@@ -139,8 +139,8 @@ export default function AnalysisGrading() {
               <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
                 <Scale className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-3 text-ultra-smooth text-lg">Measurement</h3>
-              <p className="text-muted-foreground text-ultra-smooth">
+              <h3 className="font-heading text-heading-sm text-foreground mb-3 text-ultra-smooth">Measurement</h3>
+              <p className="font-body text-body text-muted-foreground text-ultra-smooth">
                 Precise measurements of dimensions, weight, and optical properties
               </p>
             </div>
@@ -149,8 +149,8 @@ export default function AnalysisGrading() {
               <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
                 <Award className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-3 text-ultra-smooth text-lg">Final Grading</h3>
-              <p className="text-muted-foreground text-ultra-smooth">
+              <h3 className="font-heading text-heading-sm text-foreground mb-3 text-ultra-smooth">Final Grading</h3>
+              <p className="font-body text-body text-muted-foreground text-ultra-smooth">
                 Comprehensive grading based on international standards and expert assessment
               </p>
             </div>
@@ -162,8 +162,8 @@ export default function AnalysisGrading() {
       <div className="py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4 text-ultra-smooth">Diamond Grading Standards</h2>
-            <p className="text-xl text-muted-foreground text-ultra-smooth">
+            <h2 className="text-display font-heading text-foreground mb-6 text-ultra-smooth">Diamond Grading Standards</h2>
+            <p className="text-body-lg font-body text-muted-foreground text-ultra-smooth">
               We follow the internationally recognized 4Cs system for diamond evaluation
             </p>
           </div>
@@ -193,8 +193,8 @@ export default function AnalysisGrading() {
                       />
                     </motion.div>
                     <div>
-                      <h3 className="text-2xl font-bold text-foreground text-ultra-smooth">Carat Weight</h3>
-                      <p className="text-muted-foreground text-ultra-smooth">Precise measurement of diamond size</p>
+                      <h3 className="text-heading-md font-heading text-foreground text-ultra-smooth">Carat Weight</h3>
+                      <p className="text-body font-body text-muted-foreground text-ultra-smooth">Precise measurement of diamond size</p>
                     </div>
                   </div>
                   <p className="text-muted-foreground mb-4">
