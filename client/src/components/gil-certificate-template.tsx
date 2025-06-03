@@ -150,33 +150,36 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
         {/* GIL Logo */}
         <div className="flex items-center">
           <div className="relative w-16 h-16 mr-3">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              <circle cx="50" cy="50" r="48" fill="none" stroke="#8B7355" strokeWidth="2"/>
-              <g transform="translate(50,50)">
-                {/* Radiating lines */}
-                {[...Array(24)].map((_, i) => (
-                  <line 
-                    key={i}
-                    x1="0" y1="-35" 
-                    x2="0" y2="-40" 
-                    stroke="#8B7355" 
-                    strokeWidth="1"
-                    transform={`rotate(${i * 15})`}
+            <img 
+              src="/attached_assets/1000119055-removebg-preview.png" 
+              alt="GIL - Gemological Institute Laboratory" 
+              className="w-full h-full object-contain"
+            />
+            {data.digitallySignedBy && (
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                  <path 
+                    d="M20 6L9 17L4 12" 
+                    stroke="white" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
                   />
-                ))}
-                <circle cx="0" cy="0" r="25" fill="none" stroke="#8B7355" strokeWidth="2"/>
-                <text x="0" y="5" textAnchor="middle" fontSize="12" fill="#8B7355" fontWeight="bold">GIL</text>
-              </g>
-            </svg>
+                </svg>
+              </div>
+            )}
           </div>
-          <div className="text-2xl font-bold text-black tracking-wider">GIL°</div>
+          <div>
+            <div className="text-2xl font-bold text-black tracking-wider">GIL°</div>
+            <div className="text-xs text-gray-600">Gemological Institute Laboratory</div>
+          </div>
         </div>
 
         {/* Center - Report Info */}
         <div className="text-center">
           <div className="text-sm text-gray-600 mb-1">GIL REPORT</div>
           <div className="text-3xl font-bold text-black tracking-wider">{data.reportNumber}</div>
-          <div className="text-xs text-gray-600 mt-1">Verify this report at gilgem.com</div>
+          <div className="text-xs text-gray-600 mt-1">Verify this report at gilab.info</div>
         </div>
 
         {/* Right - Facsimile */}
@@ -387,26 +390,27 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
               {/* GIL Seal */}
               <div className="text-center mb-4">
-                <div className="inline-block">
-                  <svg viewBox="0 0 60 60" className="w-12 h-12">
-                    <circle cx="30" cy="30" r="28" fill="none" stroke="#8B7355" strokeWidth="2"/>
-                    <g transform="translate(30,30)">
-                      {[...Array(16)].map((_, i) => (
-                        <line 
-                          key={i}
-                          x1="0" y1="-20" 
-                          x2="0" y2="-25" 
-                          stroke="#8B7355" 
-                          strokeWidth="1"
-                          transform={`rotate(${i * 22.5})`}
+                <div className="inline-block relative">
+                  <img 
+                    src="/attached_assets/1000119055-removebg-preview.png" 
+                    alt="GIL Seal" 
+                    className="w-12 h-12 object-contain"
+                  />
+                  {data.digitallySignedBy && (
+                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                        <path 
+                          d="M20 6L9 17L4 12" 
+                          stroke="white" 
+                          strokeWidth="2" 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round"
                         />
-                      ))}
-                      <circle cx="0" cy="0" r="15" fill="none" stroke="#8B7355" strokeWidth="1"/>
-                      <text x="0" y="3" textAnchor="middle" fontSize="8" fill="#8B7355" fontWeight="bold">GIL</text>
-                    </g>
-                  </svg>
+                      </svg>
+                    </div>
+                  )}
                 </div>
-                <div className="text-xs mt-1">gilgem.com</div>
+                <div className="text-xs mt-1">gilab.info</div>
               </div>
 
               {/* Verification Text */}
@@ -432,7 +436,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
           <div className="text-center">
             <div className="inline-block bg-white border-2 border-gray-400 p-2">
               <QRCodeSVG 
-                value={data.verifierUrl || `https://gilgem.com/verify/${data.reportNumber}`}
+                value={data.verifierUrl || `https://gilab.info/verify/${data.reportNumber}`}
                 size={60}
                 bgColor="#ffffff"
                 fgColor="#000000"
@@ -440,6 +444,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                 includeMargin={false}
               />
             </div>
+            <div className="text-xs mt-2 text-gray-600">Scan to verify at gilab.info</div>
           </div>
         </div>
       </div>
