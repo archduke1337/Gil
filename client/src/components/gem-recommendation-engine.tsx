@@ -101,8 +101,8 @@ export default function GemRecommendationEngine() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label>Budget Range: ${params.budget[0].toLocaleString()}</Label>
+                <div className="space-y-3">
+                  <Label className="text-body font-body text-ultra-smooth">Budget Range: ${params.budget[0].toLocaleString()}</Label>
                   <Slider
                     value={params.budget}
                     onValueChange={(value) => setParams(prev => ({ ...prev, budget: value }))}
@@ -111,16 +111,16 @@ export default function GemRecommendationEngine() {
                     step={500}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-xs text-muted-foreground">
+                  <div className="flex justify-between text-body-sm font-body text-muted-foreground text-ultra-smooth">
                     <span>$1,000</span>
                     <span>$50,000</span>
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Purpose</Label>
+                <div className="space-y-3">
+                  <Label className="text-body font-body text-ultra-smooth">Purpose</Label>
                   <Select value={params.purpose} onValueChange={(value) => setParams(prev => ({ ...prev, purpose: value }))}>
-                    <SelectTrigger>
+                    <SelectTrigger className="rounded-2xl">
                       <SelectValue placeholder="Select purpose" />
                     </SelectTrigger>
                     <SelectContent>
@@ -133,10 +133,10 @@ export default function GemRecommendationEngine() {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Style Preference</Label>
+                <div className="space-y-3">
+                  <Label className="text-body font-body text-ultra-smooth">Style Preference</Label>
                   <Select value={params.style} onValueChange={(value) => setParams(prev => ({ ...prev, style: value }))}>
-                    <SelectTrigger>
+                    <SelectTrigger className="rounded-2xl">
                       <SelectValue placeholder="Select style" />
                     </SelectTrigger>
                     <SelectContent>
@@ -151,10 +151,10 @@ export default function GemRecommendationEngine() {
               </div>
 
               <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label>Color Preference</Label>
+                <div className="space-y-3">
+                  <Label className="text-body font-body text-ultra-smooth">Color Preference</Label>
                   <Select value={params.colorPreference} onValueChange={(value) => setParams(prev => ({ ...prev, colorPreference: value }))}>
-                    <SelectTrigger>
+                    <SelectTrigger className="rounded-2xl">
                       <SelectValue placeholder="Select color" />
                     </SelectTrigger>
                     <SelectContent>
@@ -169,10 +169,10 @@ export default function GemRecommendationEngine() {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Size Preference</Label>
+                <div className="space-y-3">
+                  <Label className="text-body font-body text-ultra-smooth">Size Preference</Label>
                   <Select value={params.sizePreference} onValueChange={(value) => setParams(prev => ({ ...prev, sizePreference: value }))}>
-                    <SelectTrigger>
+                    <SelectTrigger className="rounded-2xl">
                       <SelectValue placeholder="Select size" />
                     </SelectTrigger>
                     <SelectContent>
@@ -184,10 +184,10 @@ export default function GemRecommendationEngine() {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Rarity Level</Label>
+                <div className="space-y-3">
+                  <Label className="text-body font-body text-ultra-smooth">Rarity Level</Label>
                   <Select value={params.rarityLevel} onValueChange={(value) => setParams(prev => ({ ...prev, rarityLevel: value }))}>
-                    <SelectTrigger>
+                    <SelectTrigger className="rounded-2xl">
                       <SelectValue placeholder="Select rarity" />
                     </SelectTrigger>
                     <SelectContent>
@@ -205,17 +205,17 @@ export default function GemRecommendationEngine() {
             <Button 
               onClick={generateRecommendations}
               disabled={isGenerating || !params.purpose}
-              className="w-full"
+              className="w-full rounded-2xl text-body font-body text-ultra-smooth"
               size="lg"
             >
               {isGenerating ? (
                 <>
-                  <Brain className="w-4 h-4 mr-2 animate-pulse" />
+                  <Brain className="w-5 h-5 mr-2 animate-pulse" />
                   AI Analyzing...
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-4 h-4 mr-2" />
+                  <Sparkles className="w-5 h-5 mr-2" />
                   Generate Recommendations
                 </>
               )}
@@ -230,8 +230,8 @@ export default function GemRecommendationEngine() {
           animate={{ opacity: 1, y: 0 }}
           className="space-y-4"
         >
-          <h4 className="text-lg font-semibold flex items-center space-x-2">
-            <Target className="w-5 h-5 text-primary" />
+          <h4 className="text-heading font-heading flex items-center space-x-3 text-ultra-smooth">
+            <Target className="w-6 h-6 text-primary" />
             <span>AI Recommendations</span>
           </h4>
 
@@ -242,12 +242,12 @@ export default function GemRecommendationEngine() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="hover:soft-shadow-lg transition-all rounded-3xl bg-white/80 backdrop-blur-sm border-none">
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h5 className="text-lg font-semibold">{rec.name}</h5>
+                        <h5 className="text-body-lg font-body text-ultra-smooth">{rec.name}</h5>
                         <p className="text-muted-foreground">{rec.type} • {rec.color} • {rec.size}</p>
                       </div>
                       <div className="text-right">
