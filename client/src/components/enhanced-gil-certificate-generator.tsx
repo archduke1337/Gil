@@ -14,7 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, Gem, FileCheck, ShieldCheck, QrCode, Eye, Download, Sparkles, Diamond, FileText, Clipboard, Award } from "lucide-react";
+import { CalendarIcon, Gem, FileCheck, ShieldCheck, QrCode, Eye, Download, Sparkles, Diamond, FileText, Clipboard, Award, Ruler } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -568,6 +568,152 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                       <FormControl>
                         <div className="flex flex-wrap gap-2">
                           {fluorescenceOptions.map((option) => (
+                            <Button
+                              key={option}
+                              type="button"
+                              variant={field.value === option ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => field.onChange(option)}
+                              className="rounded-full"
+                            >
+                              {option}
+                            </Button>
+                          ))}
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Technical Measurements Section */}
+          <Card className="border-blue-200">
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
+              <CardTitle className="flex items-center space-x-2">
+                <Ruler className="h-5 w-5 text-blue-600" />
+                <span>Technical Measurements</span>
+              </CardTitle>
+              <CardDescription>Detailed proportions and technical specifications</CardDescription>
+            </CardHeader>
+            <CardContent className="pt-6 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <FormField
+                  control={form.control}
+                  name="tablePercentage"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-body font-semibold">Table Percentage</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="57%" 
+                          {...field}
+                          value={field.value || ""}
+                          className="rounded-xl"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="depthPercentage"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-body font-semibold">Depth Percentage</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="62.3%" 
+                          {...field}
+                          value={field.value || ""}
+                          className="rounded-xl"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="crownAngle"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-body font-semibold">Crown Angle</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="34.5°" 
+                          {...field}
+                          value={field.value || ""}
+                          className="rounded-xl"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <FormField
+                  control={form.control}
+                  name="pavilionAngle"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-body font-semibold">Pavilion Angle</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="40.8°" 
+                          {...field}
+                          value={field.value || ""}
+                          className="rounded-xl"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="girdleThickness"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-body font-semibold">Girdle Thickness</FormLabel>
+                      <FormControl>
+                        <div className="flex flex-wrap gap-2">
+                          {["Extremely Thin", "Very Thin", "Thin", "Medium", "Slightly Thick", "Thick", "Very Thick", "Extremely Thick"].map((option) => (
+                            <Button
+                              key={option}
+                              type="button"
+                              variant={field.value === option ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => field.onChange(option)}
+                              className="rounded-full text-xs"
+                            >
+                              {option}
+                            </Button>
+                          ))}
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="culetSize"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-body font-semibold">Culet Size</FormLabel>
+                      <FormControl>
+                        <div className="flex flex-wrap gap-2">
+                          {["None", "Very Small", "Small", "Medium", "Slightly Large", "Large", "Very Large"].map((option) => (
                             <Button
                               key={option}
                               type="button"
