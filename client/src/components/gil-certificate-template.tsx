@@ -155,19 +155,6 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               alt="GIL - Gemological Institute Laboratory" 
               className="w-full h-full object-contain"
             />
-            {data.digitallySignedBy && (
-              <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                  <path 
-                    d="M20 6L9 17L4 12" 
-                    stroke="white" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-            )}
           </div>
           <div>
             <div className="text-2xl font-bold text-black tracking-wider">GIL°</div>
