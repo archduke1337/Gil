@@ -127,15 +127,15 @@ export default function FAQs() {
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <HelpCircle className="w-8 h-8 text-primary-foreground" />
+          <div className="w-24 h-24 bg-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-8 soft-shadow">
+            <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center">
+              <HelpCircle className="w-10 h-10 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-hero font-heading mb-8 text-ultra-smooth">
             Frequently Asked Questions
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-body-lg font-body text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
             Find answers to common questions about our gemological services, certification process, and verification system
           </p>
         </div>
@@ -146,23 +146,23 @@ export default function FAQs() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <div className="relative mb-6">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <Input
                 placeholder="Search questions..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                className="pl-12 pr-4 py-4 border-none rounded-2xl focus:ring-2 focus:ring-primary bg-white/80 backdrop-blur-sm soft-shadow text-body font-body text-ultra-smooth"
               />
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {categories.map((category) => (
                 <Button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   variant={selectedCategory === category ? "default" : "outline"}
                   size="sm"
-                  className={selectedCategory === category ? "bg-primary hover:bg-primary/90 text-primary-foreground" : "border-border hover:bg-primary/10"}
+                  className={`rounded-2xl text-body-sm font-body text-ultra-smooth ${selectedCategory === category ? "bg-primary hover:bg-primary/90 text-primary-foreground" : "border-none bg-white/80 backdrop-blur-sm hover:bg-primary/10"}`}
                 >
                   {category}
                 </Button>
@@ -171,38 +171,38 @@ export default function FAQs() {
           </div>
 
           {/* Results Count */}
-          <p className="text-muted-foreground mb-6">
+          <p className="text-body font-body text-muted-foreground mb-6 text-ultra-smooth">
             Showing {filteredFAQs.length} of {faqs.length} questions
           </p>
 
           {/* FAQ List */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             {filteredFAQs.map((faq) => (
-              <Card key={faq.id} className="border-border">
+              <Card key={faq.id} className="border-none rounded-3xl bg-white/80 backdrop-blur-sm soft-shadow">
                 <CardContent className="p-0">
                   <button
                     onClick={() => toggleFAQ(faq.id)}
-                    className="w-full p-6 text-left hover:bg-background/50 transition-colors flex items-center justify-between"
+                    className="w-full p-8 text-left hover:bg-background/30 transition-all rounded-3xl flex items-center justify-between"
                   >
                     <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-2">
-                        <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full font-medium">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <span className="text-body-xs font-body px-3 py-1 bg-primary/10 text-primary rounded-2xl text-ultra-smooth">
                           {faq.category}
                         </span>
                       </div>
-                      <h3 className="text-lg font-semibold text-foreground">{faq.question}</h3>
+                      <h3 className="text-body-lg font-heading text-foreground text-ultra-smooth">{faq.question}</h3>
                     </div>
                     {expandedFAQ === faq.id ? (
-                      <ChevronUp className="w-5 h-5 text-muted-foreground flex-shrink-0 ml-4" />
+                      <ChevronUp className="w-6 h-6 text-muted-foreground flex-shrink-0 ml-4" />
                     ) : (
-                      <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0 ml-4" />
+                      <ChevronDown className="w-6 h-6 text-muted-foreground flex-shrink-0 ml-4" />
                     )}
                   </button>
                   
                   {expandedFAQ === faq.id && (
-                    <div className="px-6 pb-6">
-                      <div className="border-t border-border pt-4">
-                        <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                    <div className="px-8 pb-8">
+                      <div className="border-t border-border/30 pt-6">
+                        <p className="text-body font-body text-muted-foreground leading-relaxed text-ultra-smooth">{faq.answer}</p>
                       </div>
                     </div>
                   )}
@@ -212,12 +212,12 @@ export default function FAQs() {
           </div>
 
           {filteredFAQs.length === 0 && (
-            <div className="text-center py-12">
-              <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="w-8 h-8 text-muted-foreground" />
+            <div className="text-center py-16">
+              <div className="w-20 h-20 bg-muted/50 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                <Search className="w-10 h-10 text-muted-foreground" />
               </div>
-              <h3 className="text-lg font-medium text-foreground mb-2">No questions found</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-heading font-heading text-foreground mb-4 text-ultra-smooth">No questions found</h3>
+              <p className="text-body font-body text-muted-foreground text-ultra-smooth">
                 Try adjusting your search terms or selecting a different category
               </p>
             </div>
