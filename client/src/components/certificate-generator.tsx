@@ -1,0 +1,688 @@
+import { useState, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { CalendarIcon, Download, Eye, FileText, Gem, Settings, Sparkles } from "lucide-react";
+import { format } from "date-fns";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import logoPath from "@assets/1000119055-removebg-preview.png";
+
+const certificateSchema = z.object({
+  referenceNumber: z.string().min(1, "Reference number is required"),
+  gemType: z.string().min(1, "Gem type is required"),
+  shape: z.string().min(1, "Shape is required"),
+  dimensions: z.string().min(1, "Dimensions are required"),
+  caratWeight: z.string().min(1, "Carat weight is required"),
+  colorGrade: z.string().min(1, "Color grade is required"),
+  clarityGrade: z.string().min(1, "Clarity grade is required"),
+  cutGrade: z.string().min(1, "Cut grade is required"),
+  treatment: z.string().optional(),
+  origin: z.string().optional(),
+  comments: z.string().optional(),
+  certificationDate: z.date(),
+  examinedBy: z.string().min(1, "Examiner name is required"),
+  approvedBy: z.string().min(1, "Approver name is required"),
+});
+
+type CertificateForm = z.infer<typeof certificateSchema>;
+
+interface CertificateGeneratorProps {
+  onSuccess: () => void;
+}
+
+export default function CertificateGenerator({ onSuccess }: CertificateGeneratorProps) {
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [previewMode, setPreviewMode] = useState(false);
+  const [generatedCertificate, setGeneratedCertificate] = useState<CertificateForm | null>(null);
+  const certificateRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
+
+  const form = useForm<CertificateForm>({
+    resolver: zodResolver(certificateSchema),
+    defaultValues: {
+      referenceNumber: `GIL-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`,
+      certificationDate: new Date(),
+      treatment: "None",
+      origin: "Natural",
+    },
+  });
+
+  const onSubmit = async (data: CertificateForm) => {
+    setIsGenerating(true);
+    try {
+      // Generate certificate data
+      setGeneratedCertificate(data);
+      setPreviewMode(true);
+      
+      toast({
+        title: "Certificate Generated",
+        description: "Certificate preview is ready for review",
+      });
+    } catch (error) {
+      toast({
+        title: "Generation Failed",
+        description: "Failed to generate certificate",
+        variant: "destructive",
+      });
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const handleSaveCertificate = async () => {
+    if (!generatedCertificate) return;
+    
+    try {
+      const response = await fetch("/api/certificates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          referenceNumber: generatedCertificate.referenceNumber,
+          gemType: generatedCertificate.gemType,
+          shape: generatedCertificate.shape,
+          dimensions: generatedCertificate.dimensions,
+          caratWeight: parseFloat(generatedCertificate.caratWeight),
+          colorGrade: generatedCertificate.colorGrade,
+          clarityGrade: generatedCertificate.clarityGrade,
+          cutGrade: generatedCertificate.cutGrade,
+          treatment: generatedCertificate.treatment,
+          origin: generatedCertificate.origin,
+          comments: generatedCertificate.comments,
+          certificationDate: generatedCertificate.certificationDate.toISOString(),
+          examinedBy: generatedCertificate.examinedBy,
+          approvedBy: generatedCertificate.approvedBy,
+          isActive: true,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to save certificate");
+
+      toast({
+        title: "Certificate Saved",
+        description: "Certificate has been saved to the database",
+      });
+      
+      onSuccess();
+      setPreviewMode(false);
+      form.reset();
+      setGeneratedCertificate(null);
+    } catch (error) {
+      toast({
+        title: "Save Failed",
+        description: "Failed to save certificate to database",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleDownloadPDF = () => {
+    if (typeof window !== 'undefined' && certificateRef.current) {
+      // Create a new window for printing
+      const printWindow = window.open('', '_blank');
+      if (printWindow) {
+        printWindow.document.write(`
+          <html>
+            <head>
+              <title>GIL Certificate - ${generatedCertificate?.referenceNumber}</title>
+              <style>
+                body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+                .certificate { max-width: 800px; margin: 0 auto; }
+                .no-print { display: none; }
+                @media print {
+                  body { margin: 0; }
+                  .certificate { max-width: none; }
+                }
+              </style>
+            </head>
+            <body>
+              ${certificateRef.current.innerHTML}
+            </body>
+          </html>
+        `);
+        printWindow.document.close();
+        printWindow.print();
+      }
+    }
+  };
+
+  if (previewMode && generatedCertificate) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h3 className="text-2xl font-bold text-foreground">Certificate Preview</h3>
+          <div className="flex gap-3">
+            <Button variant="outline" onClick={() => setPreviewMode(false)}>
+              Edit Certificate
+            </Button>
+            <Button variant="outline" onClick={handleDownloadPDF}>
+              <Download className="w-4 h-4 mr-2" />
+              Download PDF
+            </Button>
+            <Button onClick={handleSaveCertificate} className="bg-primary">
+              <FileText className="w-4 h-4 mr-2" />
+              Save Certificate
+            </Button>
+          </div>
+        </div>
+
+        <div ref={certificateRef} className="bg-white border-2 border-primary/20 rounded-lg p-8 shadow-lg">
+          {/* Certificate Header */}
+          <div className="text-center mb-8 border-b border-gray-200 pb-6">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <img src={logoPath} alt="GIL Logo" className="h-16 w-auto" />
+              <div>
+                <h1 className="text-3xl font-bold text-primary">GIL</h1>
+                <p className="text-sm text-gray-600">Gemological Institute Laboratories</p>
+              </div>
+            </div>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">GEMSTONE IDENTIFICATION & GRADING REPORT</h2>
+            <p className="text-gray-600">Certificate Number: {generatedCertificate.referenceNumber}</p>
+          </div>
+
+          {/* Certificate Body */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Left Column */}
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Gem Type:</p>
+                  <p className="text-lg font-bold text-primary">{generatedCertificate.gemType}</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Shape:</p>
+                  <p className="text-gray-800">{generatedCertificate.shape}</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Carat Weight:</p>
+                  <p className="text-lg font-bold text-primary">{generatedCertificate.caratWeight} ct</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Dimensions:</p>
+                  <p className="text-gray-800">{generatedCertificate.dimensions}</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Color:</p>
+                  <p className="text-gray-800 font-medium">{generatedCertificate.colorGrade}</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Clarity:</p>
+                  <p className="text-gray-800 font-medium">{generatedCertificate.clarityGrade}</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Cut:</p>
+                  <p className="text-gray-800 font-medium">{generatedCertificate.cutGrade}</p>
+                </div>
+              </div>
+
+              {generatedCertificate.treatment && (
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Treatment:</p>
+                  <p className="text-gray-800">{generatedCertificate.treatment}</p>
+                </div>
+              )}
+
+              {generatedCertificate.origin && (
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Origin:</p>
+                  <p className="text-gray-800">{generatedCertificate.origin}</p>
+                </div>
+              )}
+            </div>
+
+            {/* Right Column */}
+            <div className="space-y-4">
+              <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                <p className="text-sm font-semibold text-gray-700 mb-2">Gemstone Representation</p>
+                <div className="h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center">
+                  <Gem className="w-16 h-16 text-primary" />
+                </div>
+              </div>
+
+              {generatedCertificate.comments && (
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Comments:</p>
+                  <p className="text-gray-800 text-sm">{generatedCertificate.comments}</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Certificate Footer */}
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="grid md:grid-cols-3 gap-6 text-sm">
+              <div>
+                <p className="font-semibold text-gray-700">Examined By:</p>
+                <p className="text-gray-800">{generatedCertificate.examinedBy}</p>
+                <p className="text-gray-600">Certified Gemologist</p>
+              </div>
+              <div>
+                <p className="font-semibold text-gray-700">Approved By:</p>
+                <p className="text-gray-800">{generatedCertificate.approvedBy}</p>
+                <p className="text-gray-600">Laboratory Director</p>
+              </div>
+              <div>
+                <p className="font-semibold text-gray-700">Date:</p>
+                <p className="text-gray-800">{format(generatedCertificate.certificationDate, "MMMM dd, yyyy")}</p>
+              </div>
+            </div>
+            
+            <div className="mt-6 text-center text-xs text-gray-500">
+              <p>This certificate is issued by GIL (Gemological Institute Laboratories) and represents our professional opinion based on gemological examination.</p>
+              <p>For verification, visit our website and enter certificate number: {generatedCertificate.referenceNumber}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/30 rounded-lg flex items-center justify-center">
+          <Sparkles className="w-5 h-5 text-primary" />
+        </div>
+        <div>
+          <h3 className="text-2xl font-bold text-foreground">Certificate Generator</h3>
+          <p className="text-muted-foreground">Create professional gemological certificates</p>
+        </div>
+      </div>
+
+      <Card className="border-0 rounded-xl soft-shadow">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FileText className="w-5 h-5" />
+            Certificate Information
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              {/* Basic Information */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
+                  name="referenceNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Reference Number</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="GIL-2024-123456" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="certificationDate"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Certification Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            disabled={(date) =>
+                              date > new Date() || date < new Date("1900-01-01")
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <Separator />
+
+              {/* Gem Information */}
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                  <Gem className="w-5 h-5" />
+                  Gemstone Details
+                </h4>
+                
+                <div className="grid md:grid-cols-3 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="gemType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Gem Type</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select gem type" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="Diamond">Diamond</SelectItem>
+                            <SelectItem value="Ruby">Ruby</SelectItem>
+                            <SelectItem value="Sapphire">Sapphire</SelectItem>
+                            <SelectItem value="Emerald">Emerald</SelectItem>
+                            <SelectItem value="Tanzanite">Tanzanite</SelectItem>
+                            <SelectItem value="Garnet">Garnet</SelectItem>
+                            <SelectItem value="Amethyst">Amethyst</SelectItem>
+                            <SelectItem value="Aquamarine">Aquamarine</SelectItem>
+                            <SelectItem value="Topaz">Topaz</SelectItem>
+                            <SelectItem value="Other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="shape"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Shape</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select shape" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="Round">Round</SelectItem>
+                            <SelectItem value="Oval">Oval</SelectItem>
+                            <SelectItem value="Emerald">Emerald</SelectItem>
+                            <SelectItem value="Princess">Princess</SelectItem>
+                            <SelectItem value="Cushion">Cushion</SelectItem>
+                            <SelectItem value="Pear">Pear</SelectItem>
+                            <SelectItem value="Marquise">Marquise</SelectItem>
+                            <SelectItem value="Heart">Heart</SelectItem>
+                            <SelectItem value="Asscher">Asscher</SelectItem>
+                            <SelectItem value="Radiant">Radiant</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="caratWeight"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Carat Weight</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="1.25" type="number" step="0.01" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <FormField
+                  control={form.control}
+                  name="dimensions"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Dimensions (mm)</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="6.52 x 6.48 x 4.05" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <Separator />
+
+              {/* Grading Information */}
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                  <Settings className="w-5 h-5" />
+                  Grading Details
+                </h4>
+                
+                <div className="grid md:grid-cols-3 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="colorGrade"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Color Grade</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select color grade" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="D">D (Colorless)</SelectItem>
+                            <SelectItem value="E">E (Colorless)</SelectItem>
+                            <SelectItem value="F">F (Colorless)</SelectItem>
+                            <SelectItem value="G">G (Near Colorless)</SelectItem>
+                            <SelectItem value="H">H (Near Colorless)</SelectItem>
+                            <SelectItem value="I">I (Near Colorless)</SelectItem>
+                            <SelectItem value="J">J (Near Colorless)</SelectItem>
+                            <SelectItem value="K">K (Faint Yellow)</SelectItem>
+                            <SelectItem value="L">L (Faint Yellow)</SelectItem>
+                            <SelectItem value="M">M (Faint Yellow)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="clarityGrade"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Clarity Grade</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select clarity grade" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="FL">FL (Flawless)</SelectItem>
+                            <SelectItem value="IF">IF (Internally Flawless)</SelectItem>
+                            <SelectItem value="VVS1">VVS1 (Very Very Slightly Included)</SelectItem>
+                            <SelectItem value="VVS2">VVS2 (Very Very Slightly Included)</SelectItem>
+                            <SelectItem value="VS1">VS1 (Very Slightly Included)</SelectItem>
+                            <SelectItem value="VS2">VS2 (Very Slightly Included)</SelectItem>
+                            <SelectItem value="SI1">SI1 (Slightly Included)</SelectItem>
+                            <SelectItem value="SI2">SI2 (Slightly Included)</SelectItem>
+                            <SelectItem value="I1">I1 (Included)</SelectItem>
+                            <SelectItem value="I2">I2 (Included)</SelectItem>
+                            <SelectItem value="I3">I3 (Included)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="cutGrade"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Cut Grade</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select cut grade" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="Excellent">Excellent</SelectItem>
+                            <SelectItem value="Very Good">Very Good</SelectItem>
+                            <SelectItem value="Good">Good</SelectItem>
+                            <SelectItem value="Fair">Fair</SelectItem>
+                            <SelectItem value="Poor">Poor</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="treatment"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Treatment</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="None, Heat Treatment, etc." />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="origin"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Origin</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="Natural, Synthetic, etc." />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <FormField
+                  control={form.control}
+                  name="comments"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Comments</FormLabel>
+                      <FormControl>
+                        <Textarea {...field} placeholder="Additional observations or notes..." rows={3} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <Separator />
+
+              {/* Certification Information */}
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-foreground">Certification Details</h4>
+                
+                <div className="grid md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="examinedBy"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Examined By</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="Gemologist name" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="approvedBy"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Approved By</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="Laboratory director name" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-3 pt-6">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setPreviewMode(true);
+                    setGeneratedCertificate(form.getValues());
+                  }}
+                  disabled={!form.formState.isValid}
+                >
+                  <Eye className="w-4 h-4 mr-2" />
+                  Preview Certificate
+                </Button>
+                <Button type="submit" disabled={isGenerating} className="bg-primary">
+                  {isGenerating ? (
+                    <>Generating...</>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Generate Certificate
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

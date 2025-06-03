@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Gem, LogOut, Upload, List, RefreshCw, FileUp, Search, Filter, Map, BookOpen, Users, Eye } from "lucide-react";
+import { Gem, LogOut, Upload, List, RefreshCw, FileUp, Search, Filter, Map, BookOpen, Users, Eye, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,7 @@ import UploadForm from "@/components/upload-form";
 import CertificateList from "@/components/certificate-list";
 import BulkUpload from "@/components/bulk-upload";
 import AdvancedSearch from "@/components/advanced-search";
+import CertificateGenerator from "@/components/certificate-generator";
 import { useToast } from "@/hooks/use-toast";
 import type { Certificate } from "@shared/schema";
 import logoPath from "@assets/1000119055-removebg-preview.png";
@@ -160,10 +161,14 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
         </div>
 
         <Tabs defaultValue="certificates" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5">
             <TabsTrigger value="certificates" className="flex items-center space-x-2">
               <List className="w-4 h-4" />
               <span>Certificates</span>
+            </TabsTrigger>
+            <TabsTrigger value="generator" className="flex items-center space-x-2">
+              <Sparkles className="w-4 h-4" />
+              <span>Generator</span>
             </TabsTrigger>
             <TabsTrigger value="upload" className="flex items-center space-x-2">
               <Upload className="w-4 h-4" />
@@ -186,6 +191,16 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
               transition={{ duration: 0.5 }}
             >
               <CertificateList certificates={displayCertificates} onUpdate={handleUploadSuccess} />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="generator" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <CertificateGenerator onSuccess={handleUploadSuccess} />
             </motion.div>
           </TabsContent>
 
