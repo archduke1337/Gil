@@ -172,81 +172,81 @@ export default function Home() {
       </section>
 
       {/* Trust & Credentials Section */}
-      <section className="py-20 bg-gradient-to-r from-secondary to-muted perspective-container">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20, rotateX: -10 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center depth-layer"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Trusted Worldwide
             </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-              <motion.div 
-                className="text-center"
-                initial={{ opacity: 0, rotateY: -15 }}
-                whileInView={{ opacity: 1, rotateY: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 5,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <div className="mb-4 flex justify-center">
-                  <div className="p-4 bg-card rounded-full shadow-lg icon-3d floating-animation pulse-glow">
-                    <Award className="w-8 h-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Certified Excellence</h3>
-                <p className="text-muted-foreground">International accreditation and recognition</p>
-              </motion.div>
-              
-              <motion.div 
-                className="text-center"
-                initial={{ opacity: 0, rotateY: 0 }}
-                whileInView={{ opacity: 1, rotateY: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateX: 5,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <div className="mb-4 flex justify-center">
-                  <div className="p-4 bg-card rounded-full shadow-lg icon-3d floating-animation pulse-glow">
-                    <Shield className="w-8 h-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Trusted Security</h3>
-                <p className="text-muted-foreground">Secure verification and authentication</p>
-              </motion.div>
-              
-              <motion.div 
-                className="text-center"
-                initial={{ opacity: 0, rotateY: 15 }}
-                whileInView={{ opacity: 1, rotateY: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: -5,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <div className="mb-4 flex justify-center">
-                  <div className="p-4 bg-card rounded-full shadow-lg icon-3d floating-animation pulse-glow">
-                    <Search className="w-8 h-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Advanced Analysis</h3>
-                <p className="text-muted-foreground">State-of-the-art gemological equipment</p>
-              </motion.div>
-            </div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our certificates are recognized and respected by jewelers, retailers, and collectors worldwide
+            </p>
           </motion.div>
+            
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div 
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ 
+                y: -5,
+                transition: { duration: 0.3 }
+              }}
+            >
+              <div className="mb-4 flex justify-center">
+                <div className="p-4 bg-[#8c745c]/10 rounded-full shadow-lg hover:bg-[#8c745c] group transition-all duration-300">
+                  <Award className="w-8 h-8 text-[#8c745c] group-hover:text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Certified Excellence</h3>
+              <p className="text-gray-600">International accreditation and recognition</p>
+            </motion.div>
+              
+            <motion.div 
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ 
+                y: -5,
+                transition: { duration: 0.3 }
+              }}
+            >
+              <div className="mb-4 flex justify-center">
+                <div className="p-4 bg-[#8c745c]/10 rounded-full shadow-lg hover:bg-[#8c745c] group transition-all duration-300">
+                  <Shield className="w-8 h-8 text-[#8c745c] group-hover:text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Trusted Security</h3>
+              <p className="text-gray-600">Secure verification and authentication</p>
+            </motion.div>
+              
+            <motion.div 
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ 
+                y: -5,
+                transition: { duration: 0.3 }
+              }}
+            >
+              <div className="mb-4 flex justify-center">
+                <div className="p-4 bg-[#8c745c]/10 rounded-full shadow-lg hover:bg-[#8c745c] group transition-all duration-300">
+                  <Search className="w-8 h-8 text-[#8c745c] group-hover:text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Advanced Analysis</h3>
+              <p className="text-gray-600">State-of-the-art gemological equipment</p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -260,33 +260,33 @@ export default function Home() {
                 alt="GIL - Gemological Institute Laboratories" 
                 className="h-16 w-auto mb-4 brightness-0 invert"
               />
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-gray-400 leading-relaxed">
                 Leading the world in gemological excellence, education, and certification services.
               </p>
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-primary">Quick Links</h3>
+              <h3 className="text-lg font-semibold mb-4 text-[#8c745c]">Quick Links</h3>
               <ul className="space-y-2">
-                <li><Link href="/about" className="text-muted-foreground hover:text-primary-foreground transition-colors">About Us</Link></li>
-                <li><Link href="/gem-encyclopedia" className="text-muted-foreground hover:text-primary-foreground transition-colors">Gem Encyclopedia</Link></li>
-                <li><Link href="/analysis" className="text-muted-foreground hover:text-primary-foreground transition-colors">Analysis & Grading</Link></li>
-                <li><Link href="/gem-services" className="text-muted-foreground hover:text-primary-foreground transition-colors">Gem Services</Link></li>
-                <li><Link href="/verify" className="text-muted-foreground hover:text-primary-foreground transition-colors">Report Check</Link></li>
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/gem-encyclopedia" className="text-gray-400 hover:text-white transition-colors">Gem Encyclopedia</Link></li>
+                <li><Link href="/analysis" className="text-gray-400 hover:text-white transition-colors">Analysis & Grading</Link></li>
+                <li><Link href="/gem-services" className="text-gray-400 hover:text-white transition-colors">Gem Services</Link></li>
+                <li><Link href="/verify" className="text-gray-400 hover:text-white transition-colors">Report Check</Link></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-primary">Support</h3>
+              <h3 className="text-lg font-semibold mb-4 text-[#8c745c]">Support</h3>
               <ul className="space-y-2">
-                <li><Link href="/faqs" className="text-muted-foreground hover:text-primary-foreground transition-colors">FAQs</Link></li>
-                <li><Link href="/about#contact" className="text-muted-foreground hover:text-primary-foreground transition-colors">Contact</Link></li>
+                <li><Link href="/faqs" className="text-gray-400 hover:text-white transition-colors">FAQs</Link></li>
+                <li><Link href="/about#contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-border mt-8 pt-8 text-center">
-            <p className="text-muted-foreground">
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p className="text-gray-400">
               © {new Date().getFullYear()} Gemological Institute Laboratories (GIL). All rights reserved.
             </p>
           </div>
