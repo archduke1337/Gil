@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 export function usePageTitle(title: string) {
   useEffect(() => {
     const originalTitle = document.title;
-    document.title = `💎 ${title} | GIL - Gemological Institute Laboratories`;
+    document.title = `${title} | GIL - Gemological Institute Laboratories`;
     
     return () => {
       document.title = originalTitle;
@@ -12,5 +12,5 @@ export function usePageTitle(title: string) {
 }
 
 export function setPageTitle(title: string) {
-  document.title = `💎 ${title} | GIL - Gemological Institute Laboratories`;
+  document.title = `${title} | GIL - Gemological Institute Laboratories`;
 }
