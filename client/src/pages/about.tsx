@@ -8,9 +8,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 import emailjs from '@emailjs/browser';
 import { useState } from "react";
-import logoPath from "@assets/1000119055-removebg-preview.png";
 
 export default function About() {
   const [formData, setFormData] = useState({
@@ -717,11 +717,13 @@ export default function About() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 lab-bg-primary rounded-lg flex items-center justify-center">
-                  <Gem className="w-5 h-5 text-white" />
-                </div>
+                <img 
+                  src={logoPath} 
+                  alt="GIL - Gemological Institute Laboratories" 
+                  className="h-12 w-auto"
+                />
                 <div>
-                  <h1 className="text-xl font-bold lab-primary">GIL</h1>
+                  <h1 className="text-xl font-bold text-[#8c745c]">GIL</h1>
                   <p className="text-xs text-muted-foreground">Gemological Institute Laboratories</p>
                 </div>
               </div>
