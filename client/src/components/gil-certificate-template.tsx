@@ -138,46 +138,157 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
   };
 
   return (
-    <div className={`bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-8 font-serif text-black ${className}`} 
+    <div className={`relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-8 font-serif text-black ${className}`} 
          style={{ 
            width: '297mm', 
            height: '210mm', 
            fontSize: '10px',
            background: 'linear-gradient(135deg, #FEF7ED 0%, #FED7AA 20%, #FDBA74 40%, #FB923C 60%, #F97316 80%, #EA580C 100%)',
-           fontFamily: 'Georgia, "Times New Roman", serif'
+           fontFamily: 'Georgia, "Times New Roman", serif',
+           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+           filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
          }}>
       
-      {/* Elegant Header with Decorative Elements */}
-      <div className="relative mb-6">
-        {/* Decorative border frame */}
-        <div className="absolute -inset-2 bg-gradient-to-r from-amber-800 via-orange-700 to-amber-800 rounded-lg opacity-20"></div>
-        <div className="absolute -inset-1 border-2 border-amber-700 rounded-lg"></div>
+      {/* Enhanced Paper Texture with Security Pattern */}
+      <div className="absolute inset-0 paper-texture certificate-watermark opacity-10 pointer-events-none"></div>
+      
+      {/* Animated Security Watermark */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-3 pointer-events-none transform rotate-45"
+           style={{ animation: 'securityPattern 6s ease-in-out infinite' }}>
+        <div className="text-8xl font-bold text-amber-800" 
+             style={{ 
+               fontFamily: 'Georgia, serif',
+               textShadow: '4px 4px 8px rgba(146, 64, 14, 0.2)',
+               background: 'linear-gradient(45deg, #92400e, #d97706, #92400e)',
+               WebkitBackgroundClip: 'text',
+               WebkitTextFillColor: 'transparent'
+             }}>
+          GIL AUTHENTIC
+        </div>
+      </div>
+      
+      {/* Elegant Header with 3D Effects */}
+      <div className="relative mb-6 transform perspective-1000">
+        {/* Multi-layer shadow effect */}
+        <div className="absolute -inset-3 bg-gradient-to-r from-amber-900 via-orange-800 to-amber-900 rounded-lg opacity-10 blur-sm"></div>
+        <div className="absolute -inset-2 bg-gradient-to-r from-amber-800 via-orange-700 to-amber-800 rounded-lg opacity-15 blur-sm"></div>
+        <div className="absolute -inset-1 border-2 border-amber-700 rounded-lg shadow-lg"></div>
         
-        <div className="relative bg-gradient-to-r from-amber-100 via-orange-100 to-amber-100 p-4 rounded-lg shadow-lg border border-amber-300">
-          <div className="flex items-start justify-between">
+        {/* Main header with 3D depth */}
+        <div className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 p-6 rounded-lg border-2 border-amber-400"
+             style={{
+               boxShadow: `
+                 0 8px 32px rgba(251, 146, 60, 0.3),
+                 inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                 inset 0 -1px 0 rgba(251, 146, 60, 0.2),
+                 0 4px 8px rgba(0, 0, 0, 0.1)
+               `,
+               background: 'linear-gradient(145deg, #fef3c7, #fed7aa, #fdba74)',
+               transform: 'translateZ(0)'
+             }}>
+          
+          {/* Embossed border effect */}
+          <div className="absolute inset-2 border border-amber-300 rounded-lg"
+               style={{
+                 boxShadow: 'inset 2px 2px 4px rgba(251, 146, 60, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.3)'
+               }}>
+          </div>
+          
+          <div className="relative flex items-start justify-between z-10">
             
-            {/* Left: Logo and Company Name */}
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <div className="absolute inset-0 bg-amber-800 rounded-full transform rotate-12 opacity-30"></div>
-                <div className="absolute inset-1 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full"></div>
-                <img src={logoPath} alt="GIL Logo" className="relative w-16 h-16 rounded-full border-3 border-amber-700 shadow-md z-10" />
+            {/* Left: Enhanced 3D Logo and Company Name */}
+            <div className="flex items-center space-x-6">
+              <div className="relative transform-gpu">
+                {/* Multiple shadow layers for depth */}
+                <div className="absolute -inset-2 bg-amber-900 rounded-full opacity-20 blur-md transform rotate-6"></div>
+                <div className="absolute -inset-1 bg-amber-800 rounded-full opacity-25 blur-sm transform rotate-3"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-700 to-orange-800 rounded-full transform rotate-12 opacity-40"></div>
+                
+                {/* Layered background for 3D effect */}
+                <div className="absolute inset-1 bg-gradient-to-br from-yellow-200 via-amber-400 to-orange-500 rounded-full"
+                     style={{
+                       boxShadow: 'inset 2px 2px 8px rgba(146, 64, 14, 0.3), inset -2px -2px 8px rgba(255, 255, 255, 0.4)'
+                     }}>
+                </div>
+                
+                {/* Main logo with enhanced effects */}
+                <img src={logoPath} alt="GIL Logo" 
+                     className="relative w-20 h-20 rounded-full border-4 border-amber-700 z-10" 
+                     style={{
+                       boxShadow: `
+                         0 8px 16px rgba(146, 64, 14, 0.4),
+                         0 4px 8px rgba(0, 0, 0, 0.2),
+                         inset 0 2px 0 rgba(255, 255, 255, 0.3),
+                         inset 0 -2px 0 rgba(146, 64, 14, 0.2)
+                       `,
+                       filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))'
+                     }} />
+                
+                {/* Holographic effect overlay */}
+                <div className="absolute inset-2 rounded-full opacity-20 pointer-events-none"
+                     style={{
+                       background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%)',
+                       animation: 'shimmer 3s ease-in-out infinite'
+                     }}>
+                </div>
               </div>
+              
               <div>
-                <div className="text-3xl font-bold tracking-wide text-amber-900" style={{ fontFamily: 'Georgia, serif', textShadow: '1px 1px 2px rgba(0,0,0,0.1)' }}>
+                <div className="text-4xl font-bold tracking-wide text-amber-900 mb-1" 
+                     style={{ 
+                       fontFamily: 'Georgia, serif', 
+                       textShadow: '2px 2px 4px rgba(146, 64, 14, 0.3), 0 0 8px rgba(251, 146, 60, 0.2)',
+                       background: 'linear-gradient(135deg, #92400e, #d97706, #f59e0b)',
+                       WebkitBackgroundClip: 'text',
+                       WebkitTextFillColor: 'transparent',
+                       filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.1))'
+                     }}>
                   GIL°
                 </div>
-                <div className="text-xs text-amber-800 font-medium mt-1">Gemological Institute Laboratory</div>
+                <div className="text-sm text-amber-800 font-semibold tracking-wide"
+                     style={{ 
+                       textShadow: '1px 1px 2px rgba(146, 64, 14, 0.2)' 
+                     }}>
+                  Gemological Institute Laboratory
+                </div>
+                <div className="text-xs text-amber-700 italic mt-1">Excellence in Diamond Certification</div>
               </div>
             </div>
             
-            {/* Center: Report Number */}
-            <div className="text-center bg-white rounded-lg p-3 shadow-md border-2 border-amber-600">
-              <div className="text-sm font-bold text-amber-800 mb-1 tracking-wide">GIL REPORT</div>
-              <div className="text-2xl font-bold tracking-wider text-amber-900" style={{ fontFamily: 'Georgia, serif' }}>
-                {data.reportNumber}
+            {/* Center: Enhanced 3D Report Number */}
+            <div className="text-center relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-amber-700 to-orange-700 rounded-lg opacity-20 blur-md"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-lg opacity-30"></div>
+              <div className="relative bg-gradient-to-br from-white via-amber-50 to-orange-50 rounded-lg p-4 border-3 border-amber-600"
+                   style={{
+                     boxShadow: `
+                       0 12px 30px rgba(251, 146, 60, 0.4),
+                       inset 0 3px 0 rgba(255, 255, 255, 0.8),
+                       inset 0 -3px 0 rgba(251, 146, 60, 0.3),
+                       0 6px 12px rgba(0, 0, 0, 0.15)
+                     `,
+                     transform: 'translateZ(0)'
+                   }}>
+                <div className="text-sm font-bold text-amber-800 mb-2 tracking-wider" 
+                     style={{ textShadow: '1px 1px 3px rgba(146, 64, 14, 0.3)' }}>
+                  GIL REPORT
+                </div>
+                <div className="text-2xl font-bold tracking-wider text-amber-900 mb-2" 
+                     style={{ 
+                       fontFamily: 'Georgia, serif',
+                       textShadow: '3px 3px 6px rgba(146, 64, 14, 0.4), 0 0 10px rgba(251, 146, 60, 0.3)',
+                       background: 'linear-gradient(135deg, #92400e, #d97706, #f59e0b)',
+                       WebkitBackgroundClip: 'text',
+                       WebkitTextFillColor: 'transparent',
+                       filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.2))'
+                     }}>
+                  {data.reportNumber}
+                </div>
+                <div className="text-xs text-amber-700 italic font-medium" 
+                     style={{ textShadow: '1px 1px 2px rgba(146, 64, 14, 0.2)' }}>
+                  Verify this report at gilgem.com
+                </div>
               </div>
-              <div className="text-xs mt-2 text-amber-700 italic">Verify this report at gilgem.com</div>
             </div>
 
             {/* Right: Facsimile Notice */}
@@ -551,19 +662,68 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
             </div>
           )}
 
-          {/* Enhanced GIL Seal */}
+          {/* Enhanced 3D GIL Seal with Security Features */}
           <div className="text-center">
-            <div className="relative w-20 h-20 mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-600 rounded-full"></div>
-              <div className="absolute inset-1 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full border-2 border-amber-700"></div>
-              <div className="absolute inset-3 bg-white rounded-full border border-amber-600 flex items-center justify-center">
-                <div className="text-xs font-bold text-amber-900" style={{ fontFamily: 'Georgia, serif' }}>GIL</div>
+            <div className="relative w-24 h-24 mx-auto transform-gpu">
+              {/* Multi-layer depth shadows */}
+              <div className="absolute -inset-3 bg-amber-900 rounded-full opacity-15 blur-lg"></div>
+              <div className="absolute -inset-2 bg-amber-800 rounded-full opacity-20 blur-md"></div>
+              <div className="absolute -inset-1 bg-amber-700 rounded-full opacity-25 blur-sm"></div>
+              
+              {/* Outer ring with 3D effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-orange-500 to-amber-600 rounded-full"
+                   style={{
+                     boxShadow: `
+                       0 8px 16px rgba(146, 64, 14, 0.4),
+                       inset 0 2px 0 rgba(255, 255, 255, 0.3),
+                       inset 0 -2px 0 rgba(146, 64, 14, 0.3)
+                     `
+                   }}></div>
+              
+              {/* Middle ring with embossed effect */}
+              <div className="absolute inset-2 bg-gradient-to-br from-yellow-300 via-amber-400 to-amber-500 rounded-full border-2 border-amber-700 embossed"
+                   style={{
+                     boxShadow: `
+                       inset 2px 2px 4px rgba(146, 64, 14, 0.2),
+                       inset -2px -2px 4px rgba(255, 255, 255, 0.3),
+                       0 4px 8px rgba(0, 0, 0, 0.1)
+                     `
+                   }}></div>
+              
+              {/* Inner seal with holographic effect */}
+              <div className="absolute inset-4 bg-gradient-to-br from-white via-amber-50 to-orange-50 rounded-full border border-amber-600 flex items-center justify-center"
+                   style={{
+                     boxShadow: `
+                       inset 1px 1px 3px rgba(251, 146, 60, 0.2),
+                       0 2px 4px rgba(0, 0, 0, 0.1)
+                     `
+                   }}>
+                <div className="text-sm font-bold text-amber-900" 
+                     style={{ 
+                       fontFamily: 'Georgia, serif',
+                       textShadow: '1px 1px 2px rgba(146, 64, 14, 0.3)',
+                       background: 'linear-gradient(135deg, #92400e, #d97706)',
+                       WebkitBackgroundClip: 'text',
+                       WebkitTextFillColor: 'transparent'
+                     }}>
+                  GIL
+                </div>
               </div>
-              {/* Decorative elements around seal */}
-              <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-amber-600 rounded-full"></div>
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-amber-600 rounded-full"></div>
-              <div className="absolute top-1/2 -left-1 transform -translate-y-1/2 w-2 h-2 bg-amber-600 rounded-full"></div>
-              <div className="absolute top-1/2 -right-1 transform -translate-y-1/2 w-2 h-2 bg-amber-600 rounded-full"></div>
+              
+              {/* Security hologram overlay */}
+              <div className="absolute inset-2 rounded-full opacity-30 pointer-events-none overflow-hidden">
+                <div className="w-full h-full"
+                     style={{
+                       background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%)',
+                       animation: 'shimmer 4s ease-in-out infinite'
+                     }}></div>
+              </div>
+              
+              {/* Enhanced decorative elements with 3D effects */}
+              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full shadow-3d-small"></div>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full shadow-3d-small"></div>
+              <div className="absolute top-1/2 -left-2 transform -translate-y-1/2 w-3 h-3 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full shadow-3d-small"></div>
+              <div className="absolute top-1/2 -right-2 transform -translate-y-1/2 w-3 h-3 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full shadow-3d-small"></div>
             </div>
           </div>
 
