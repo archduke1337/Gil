@@ -467,11 +467,11 @@ export default function About() {
                 </div>
                 <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                   <span className="font-medium text-foreground">Colored Stones</span>
-                  <span className="text-[#8c745c] font-semibold">AGTA Guidelines</span>
+                  <span className="text-[#8c745c] font-semibold">GIL Guidelines</span>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                   <span className="font-medium text-foreground">Pearls</span>
-                  <span className="text-[#8c745c] font-semibold">CIBJO Standards</span>
+                  <span className="text-[#8c745c] font-semibold">GIL Standards</span>
                 </div>
               </div>
             </div>
