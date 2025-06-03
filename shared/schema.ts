@@ -39,6 +39,7 @@ export const admins = pgTable("admins", {
 export const insertCertificateSchema = createInsertSchema(certificates).omit({
   id: true,
   uploadDate: true,
+  issueDate: true,
 });
 
 export const insertAdminSchema = createInsertSchema(admins).omit({

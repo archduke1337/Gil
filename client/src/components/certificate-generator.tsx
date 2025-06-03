@@ -86,14 +86,41 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
   const onSubmit = async (data: CertificateForm) => {
     setIsGenerating(true);
     try {
+      // Transform form data to match database schema
+      const certificateData = {
+        referenceNumber: data.referenceNumber,
+        gemType: data.gemType,
+        shape: data.shape,
+        dimensions: data.dimensions,
+        caratWeight: data.caratWeight,
+        colorGrade: data.colorGrade,
+        clarityGrade: data.clarityGrade,
+        cutGrade: data.cutGrade,
+        polish: data.polish || "Excellent",
+        symmetry: data.symmetry || "Excellent",
+        fluorescence: data.fluorescence || "None",
+        treatment: data.treatment || "None detected",
+        origin: data.origin || "Natural",
+        inscription: data.inscription || "",
+        comments: data.comments || "",
+        certificationDate: data.certificationDate,
+        examinedBy: data.examinedBy,
+        approvedBy: data.approvedBy,
+        labLocation: data.labLocation || "GIL Headquarters",
+        equipmentUsed: data.equipmentUsed || "Gemological microscope, spectroscopy, precision scale",
+        filename: null,
+        isActive: true,
+      };
+
       const response = await fetch("/api/certificates", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(certificateData),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to create certificate");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create certificate");
       }
 
       const certificate = await response.json();
@@ -106,9 +133,10 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
 
       onSuccess();
     } catch (error) {
+      console.error("Certificate generation error:", error);
       toast({
         title: "Error",
-        description: "Failed to generate certificate. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to generate certificate. Please try again.",
         variant: "destructive",
       });
     } finally {
