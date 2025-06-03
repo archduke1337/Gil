@@ -416,10 +416,10 @@ export default function AnalysisGrading() {
               </CardContent>
             </Card>
 
-            <Card className="border-border">
+            <Card className="border-0 rounded-xl soft-shadow hover:shadow-xl transition-all duration-300">
               <CardContent className="p-6">
                 <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-foreground mb-3">Certified Gemologists</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-3 text-ultra-smooth">Certified Gemologists</h3>
                 <p className="text-muted-foreground">
                   Our team consists of certified gemologists with extensive training and experience in diamond grading.
                 </p>
@@ -433,8 +433,8 @@ export default function AnalysisGrading() {
       <div className="py-16 bg-muted/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Professional 3D Gem Analysis</h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-4 text-ultra-smooth">Professional 3D Gem Analysis</h2>
+            <p className="text-xl text-muted-foreground mb-8 text-ultra-smooth">
               Advanced gemological examination with comprehensive analysis tools and professional-grade assessment capabilities
             </p>
           </div>
