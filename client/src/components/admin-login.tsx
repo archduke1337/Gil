@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import GemLoadingSpinner from "@/components/gem-loading-spinner";
 
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
@@ -119,8 +120,17 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
                   disabled={isLoading}
                   className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
                 >
-                  <LogIn className="w-5 h-5" />
-                  <span>{isLoading ? "Logging in..." : "Login to Dashboard"}</span>
+                  {isLoading ? (
+                    <>
+                      <GemLoadingSpinner size="sm" />
+                      <span>Logging in...</span>
+                    </>
+                  ) : (
+                    <>
+                      <LogIn className="w-5 h-5" />
+                      <span>Login to Dashboard</span>
+                    </>
+                  )}
                 </Button>
               </form>
             </Form>

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import logoPath from "@assets/1000119055-removebg-preview.png";
 
 interface GemLoadingSpinnerProps {
   size?: "sm" | "md" | "lg";
@@ -46,46 +47,17 @@ export default function GemLoadingSpinner({ size = "md", className = "" }: GemLo
 
   return (
     <div className={`relative flex items-center justify-center ${className}`}>
-      {/* Main rotating gem */}
+      {/* Main rotating GIL logo */}
       <motion.div
         className={`${sizeClasses[size]} relative`}
         variants={gemVariants}
         animate="rotate"
       >
-        <svg
-          viewBox="0 0 120 120"
-          className="w-full h-full"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient id="loadingGem" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#e3f2fd" />
-              <stop offset="50%" stopColor="#2196f3" />
-              <stop offset="100%" stopColor="#0d47a1" />
-            </linearGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-          
-          {/* Diamond shape */}
-          <polygon 
-            points="60,15 95,45 85,65 35,65 25,45" 
-            fill="url(#loadingGem)" 
-            stroke="#1976d2" 
-            strokeWidth="2"
-            filter="url(#glow)"
-          />
-          
-          {/* Inner facets */}
-          <polygon points="45,35 75,35 80,50 70,55 50,55 40,50" fill="#bbdefb" opacity="0.8"/>
-          <path d="M60 15 L60 35" stroke="#0d47a1" strokeWidth="1"/>
-          <path d="M25 45 L60 50 L95 45" stroke="#0d47a1" strokeWidth="1"/>
-        </svg>
+        <img 
+          src={logoPath} 
+          alt="GIL Logo" 
+          className="w-full h-full object-contain"
+        />
       </motion.div>
 
       {/* Sparkle effects */}
@@ -150,7 +122,7 @@ export function GemLoadingPage() {
             }
           }}
         >
-          Loading Gemstone Data
+          Loading GIL Database
         </motion.h2>
         <motion.p 
           className="text-muted-foreground"
@@ -164,7 +136,7 @@ export function GemLoadingPage() {
             }
           }}
         >
-          Analyzing crystalline structures...
+          Accessing gemological certification data...
         </motion.p>
       </div>
     </div>

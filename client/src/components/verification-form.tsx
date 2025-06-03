@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { Certificate } from "@shared/schema";
+import GemLoadingSpinner from "@/components/gem-loading-spinner";
 
 const verificationSchema = z.object({
   referenceNumber: z.string().min(1, "Reference number is required"),
@@ -95,8 +96,17 @@ export default function VerificationForm({ onResult }: VerificationFormProps) {
           disabled={isLoading}
           className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
         >
-          <Search className="w-5 h-5" />
-          <span>{isLoading ? "Verifying..." : "Verify Certificate"}</span>
+          {isLoading ? (
+            <>
+              <GemLoadingSpinner size="sm" />
+              <span>Verifying...</span>
+            </>
+          ) : (
+            <>
+              <Search className="w-5 h-5" />
+              <span>Verify Certificate</span>
+            </>
+          )}
         </Button>
       </form>
     </Form>
