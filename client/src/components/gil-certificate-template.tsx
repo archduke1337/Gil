@@ -4,7 +4,7 @@ import logoPath from "@assets/1000119055-removebg-preview.png";
 
 interface GILCertificateData {
   reportNumber: string;
-  reportDate: string;
+  reportDate: string | Date;
   shape: string;
   measurements: string;
   caratWeight: string;
@@ -14,10 +14,15 @@ interface GILCertificateData {
   polish: string;
   symmetry: string;
   fluorescence: string;
-  inscription: string;
-  comments: string;
+  inscription?: string;
+  comments?: string;
   gemologistName: string;
-  signatureDate: string;
+  signatureDate: string | Date;
+  digitallySignedBy?: boolean;
+  colorGradeDiagram?: boolean;
+  clarityPlotDiagram?: boolean;
+  certificateNotes?: string;
+  verifierUrl?: string;
   proportionsDiagram?: string;
   clarityDiagram1?: string;
   clarityDiagram2?: string;
@@ -29,7 +34,18 @@ interface GILCertificateTemplateProps {
 }
 
 export default function GILCertificateTemplate({ data, className = "" }: GILCertificateTemplateProps) {
-  const verificationUrl = `https://gilab.info/verify/${data.reportNumber}`;
+  const formatDate = (date: string | Date): string => {
+    if (date instanceof Date) {
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    if (typeof date === 'string') {
+      const parsedDate = new Date(date);
+      return parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    return String(date);
+  };
+
+  const verificationUrl = `${data.verifierUrl || 'https://gilab.info/verify'}/${data.reportNumber}`;
 
   return (
     <div className={`bg-[#f5f5f0] p-8 font-serif text-black ${className}`} style={{ width: '297mm', height: '210mm', fontSize: '10px' }}>

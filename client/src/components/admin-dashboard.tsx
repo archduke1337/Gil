@@ -11,7 +11,7 @@ import CertificateList from "@/components/certificate-list";
 import BulkUpload from "@/components/bulk-upload";
 import AdvancedSearch from "@/components/advanced-search";
 import CertificateGenerator from "@/components/certificate-generator";
-import GILCertificateGenerator from "@/components/gil-certificate-generator";
+import EnhancedGILCertificateGenerator from "@/components/enhanced-gil-certificate-generator";
 import { useToast } from "@/hooks/use-toast";
 import type { Certificate } from "@shared/schema";
 import logoPath from "@assets/1000119055-removebg-preview.png";
@@ -201,7 +201,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <GILCertificateGenerator onSuccess={handleUploadSuccess} />
+              <EnhancedGILCertificateGenerator onSuccess={handleUploadSuccess} />
             </motion.div>
           </TabsContent>
 

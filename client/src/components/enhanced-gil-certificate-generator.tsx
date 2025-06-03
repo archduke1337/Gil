@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { gilCertificateSchema } from "@/shared/schema";
+import { gilCertificateSchema } from "@shared/schema";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -68,7 +68,12 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
 
   const handlePreview = () => {
     const data = form.getValues();
-    setPreviewData(data);
+    const formattedData = {
+      ...data,
+      reportDate: data.reportDate instanceof Date ? data.reportDate.toISOString().split('T')[0] : data.reportDate,
+      signatureDate: data.signatureDate instanceof Date ? data.signatureDate.toISOString().split('T')[0] : data.signatureDate,
+    };
+    setPreviewData(formattedData);
     setShowPreview(true);
   };
 
