@@ -88,14 +88,14 @@ export default function AnalysisGrading() {
       <Navigation />
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
+      <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6 soft-shadow">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <Microscope className="w-8 h-8 text-primary-foreground" />
+          <div className="w-24 h-24 bg-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-8 soft-shadow">
+            <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center">
+              <Microscope className="w-10 h-10 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display text-ultra-smooth">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-display text-ultra-smooth">
             Analysis & Grading Services
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
@@ -114,29 +114,29 @@ export default function AnalysisGrading() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 soft-shadow">
-                <Eye className="w-8 h-8 text-primary" />
+              <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                <Eye className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2 text-ultra-smooth">Initial Inspection</h3>
-              <p className="text-sm text-muted-foreground text-ultra-smooth">
+              <h3 className="font-semibold text-foreground mb-3 text-ultra-smooth text-lg">Initial Inspection</h3>
+              <p className="text-muted-foreground text-ultra-smooth">
                 Visual examination to assess overall condition and identify key characteristics
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 soft-shadow">
-                <Microscope className="w-8 h-8 text-primary" />
+              <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                <Microscope className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2 text-ultra-smooth">Microscopic Analysis</h3>
-              <p className="text-sm text-muted-foreground text-ultra-smooth">
+              <h3 className="font-semibold text-foreground mb-3 text-ultra-smooth text-lg">Microscopic Analysis</h3>
+              <p className="text-muted-foreground text-ultra-smooth">
                 Detailed examination using high-powered microscopes to identify inclusions and treatments
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 soft-shadow">
+              <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
                 <Scale className="w-8 h-8 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground mb-2 text-ultra-smooth">Measurement</h3>

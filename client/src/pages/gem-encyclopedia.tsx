@@ -434,42 +434,45 @@ export default function GemEncyclopedia() {
         <Navigation />
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
+      <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <Sparkles className="w-8 h-8 text-primary-foreground" />
+          <div className="w-24 h-24 bg-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-8 soft-shadow">
+            <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center">
+              <Sparkles className="w-10 h-10 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-ultra-smooth">
             Gem Encyclopedia
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
             Explore our comprehensive database of gemstones and learn about their unique characteristics, formation, and properties
           </p>
         </div>
       </div>
 
       {/* Search and Filter Section */}
-      <div className="py-12 bg-card">
+      <div className="py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="flex flex-col md:flex-row gap-6 mb-10">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-muted-foreground" />
               <Input
                 placeholder="Search gemstones..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                className="pl-14 pr-6 py-4 text-lg border-0 rounded-2xl focus:ring-2 focus:ring-primary/30 bg-white/80 backdrop-blur-sm soft-shadow"
               />
             </div>
-            <div className="flex space-x-2">
+            <div className="flex space-x-3">
               {categories.map((category) => (
                 <Button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   variant={selectedCategory === category ? "default" : "outline"}
-                  className={selectedCategory === category ? "lab-bg-primary text-white" : "border-border hover:bg-primary/10"}
+                  className={selectedCategory === category ? 
+                    "bg-primary text-white rounded-2xl px-6 py-3 soft-shadow" : 
+                    "border-0 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 soft-shadow hover:bg-primary/10"
+                  }
                 >
                   {category}
                 </Button>
@@ -503,7 +506,7 @@ export default function GemEncyclopedia() {
                   className="group gem-card"
                 >
                   <Link href={`/gem/${gem.id}`} className="block">
-                    <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white rounded-xl group cursor-pointer relative overflow-hidden">
+                    <Card className="border-0 soft-shadow hover:shadow-xl transition-all duration-300 bg-white/90 backdrop-blur-sm rounded-3xl group cursor-pointer relative overflow-hidden">
                       {/* Optimized hover effects */}
                       {animationConfig.complexity === 'full' && (
                         <>
