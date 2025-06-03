@@ -14,7 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, Gem, FileCheck, ShieldCheck, QrCode, Eye, Download, Sparkles } from "lucide-react";
+import { CalendarIcon, Gem, FileCheck, ShieldCheck, QrCode, Eye, Download, Sparkles, Diamond, FileText, Clipboard, Award } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -195,29 +195,33 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8">
-      <div className="text-center space-y-2">
-        <div className="flex items-center justify-center space-x-2">
-          <Gem className="h-8 w-8 text-amber-600" />
-          <h1 className="text-3xl font-bold text-body">GIL Diamond Certificate Generator</h1>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50">
+      <div className="max-w-7xl mx-auto p-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl shadow-lg mb-6">
+            <Diamond className="w-10 h-10 text-white" />
+          </div>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent mb-3">
+            GIL Diamond Certificate Generator
+          </h1>
+          <p className="text-slate-600 text-lg font-medium">
+            Professional diamond grading report with digital verification
+          </p>
         </div>
-        <p className="text-body-secondary">Professional Diamond Grading Report System</p>
-        <Badge variant="secondary" className="bg-amber-100 text-amber-800">
-          Enhanced Professional Edition
-        </Badge>
-      </div>
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           
           {/* Report Information Section */}
-          <Card className="border-amber-200">
-            <CardHeader className="bg-gradient-to-r from-amber-50 to-yellow-50">
-              <CardTitle className="flex items-center space-x-2">
-                <FileCheck className="h-5 w-5 text-amber-600" />
-                <span>Report Information</span>
+          <Card className="bg-white/70 backdrop-blur-sm border-emerald-100 shadow-xl hover:shadow-2xl transition-all duration-300">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center text-2xl text-slate-800">
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center mr-4">
+                  <FileText className="w-6 h-6 text-white" />
+                </div>
+                Report Information
               </CardTitle>
-              <CardDescription>Basic certificate identification and dates</CardDescription>
             </CardHeader>
             <CardContent className="pt-6 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -813,6 +817,7 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
           </div>
         </form>
       </Form>
+      </div>
     </div>
   );
 }
