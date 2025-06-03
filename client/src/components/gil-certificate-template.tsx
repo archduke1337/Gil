@@ -279,26 +279,54 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
         </div>
       </div>
 
-      {/* Footer */}
+      {/* Footer with Enhanced Features */}
       <div className="mt-8 pt-4 border-t border-gray-400">
-        <div className="grid grid-cols-2 gap-8 text-xs">
+        <div className="grid grid-cols-3 gap-8 text-xs">
           <div>
             <div className="font-bold mb-2">Security Features</div>
             <div className="space-y-1">
               <div>• Digital verification via QR code</div>
               <div>• Unique report number tracking</div>
               <div>• Tamper-evident design elements</div>
+              {data.colorGradeDiagram && <div>• Color grade diagram included</div>}
+              {data.clarityPlotDiagram && <div>• Clarity plot diagram included</div>}
             </div>
           </div>
+          
+          <div className="text-center">
+            <div className="font-bold mb-2">Verification QR Code</div>
+            <div className="flex justify-center mb-2">
+              <QRCodeSVG 
+                value={verificationUrl}
+                size={80}
+                level="M"
+                includeMargin={true}
+              />
+            </div>
+            <div className="text-xs">Scan to verify authenticity</div>
+          </div>
+          
           <div className="text-right">
             <div className="font-bold mb-2">Gemologist Certification</div>
             <div className="space-y-1">
               <div>Gemologist: {data.gemologistName}</div>
-              <div>Date: {data.signatureDate}</div>
-              <div className="text-xs italic">Digitally signed and verified</div>
+              <div>Date: {formatDate(data.signatureDate)}</div>
+              {data.digitallySignedBy && (
+                <div className="text-xs font-bold text-green-700">
+                  Digitally Signed by {data.gemologistName}
+                </div>
+              )}
+              <div className="text-xs italic">Certified and verified</div>
             </div>
           </div>
         </div>
+        
+        {data.certificateNotes && (
+          <div className="mt-4 pt-2 border-t border-gray-300">
+            <div className="font-bold text-xs mb-1">Additional Notes:</div>
+            <div className="text-xs text-gray-700">{data.certificateNotes}</div>
+          </div>
+        )}
       </div>
     </div>
   );
