@@ -121,7 +121,7 @@ export default function About() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 transform-gpu">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-xl soft-shadow">
                   <Shield className="w-5 h-5 mr-2" />
                   Verify Certificate
                 </Button>
