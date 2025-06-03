@@ -185,29 +185,29 @@ export default function CommunityShowcase() {
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardContent className="p-6">
+      <Card className="rounded-3xl soft-shadow bg-white/80 backdrop-blur-sm border-none">
+        <CardContent className="p-8">
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Users className="w-6 h-6 text-primary" />
-                <h3 className="text-xl font-semibold">Community Gem Showcase</h3>
+              <div className="flex items-center space-x-3">
+                <Users className="w-8 h-8 text-primary" />
+                <h3 className="text-heading font-heading text-ultra-smooth">Community Gem Showcase</h3>
               </div>
               
-              <Button onClick={() => setShowSubmissionForm(!showSubmissionForm)}>
-                <Upload className="w-4 h-4 mr-2" />
+              <Button onClick={() => setShowSubmissionForm(!showSubmissionForm)} className="rounded-2xl text-body font-body text-ultra-smooth">
+                <Upload className="w-5 h-5 mr-2" />
                 Submit Gem
               </Button>
             </div>
 
-            <div className="flex items-center space-x-2 overflow-x-auto pb-2">
+            <div className="flex items-center space-x-3 overflow-x-auto pb-2">
               {categories.map(category => (
                 <Button
                   key={category}
                   variant={filter === category ? "default" : "outline"}
                   size="sm"
                   onClick={() => setFilter(category)}
-                  className="whitespace-nowrap"
+                  className="whitespace-nowrap rounded-2xl text-body-sm font-body text-ultra-smooth"
                 >
                   {category === "all" ? "All Gems" : category}
                 </Button>
@@ -218,9 +218,9 @@ export default function CommunityShowcase() {
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
-                className="bg-muted/50 rounded-lg p-6"
+                className="bg-muted/30 backdrop-blur-sm rounded-3xl p-6"
               >
-                <h4 className="text-lg font-semibold mb-4">Submit Your Gem</h4>
+                <h4 className="text-body-lg font-heading mb-6 text-ultra-smooth">Submit Your Gem</h4>
                 <div className="grid md:grid-cols-2 gap-4">
                   <Input 
                     placeholder="Gem Title" 

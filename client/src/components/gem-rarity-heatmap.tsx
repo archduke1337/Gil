@@ -151,20 +151,21 @@ export default function GemRarityHeatmap() {
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardContent className="p-6">
+      <Card className="rounded-3xl soft-shadow bg-white/80 backdrop-blur-sm border-none">
+        <CardContent className="p-8">
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Map className="w-6 h-6 text-primary" />
-                <h3 className="text-xl font-semibold">Interactive Gem Rarity Heat Map</h3>
+              <div className="flex items-center space-x-3">
+                <Map className="w-8 h-8 text-primary" />
+                <h3 className="text-heading font-heading text-ultra-smooth">Interactive Gem Rarity Heat Map</h3>
               </div>
               
-              <div className="flex space-x-2">
+              <div className="flex space-x-3">
                 <Button
                   variant={viewMode === "grid" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setViewMode("grid")}
+                  className="rounded-2xl text-body-sm font-body text-ultra-smooth"
                 >
                   Grid View
                 </Button>
@@ -172,30 +173,31 @@ export default function GemRarityHeatmap() {
                   variant={viewMode === "map" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setViewMode("map")}
+                  className="rounded-2xl text-body-sm font-body text-ultra-smooth"
                 >
-                  <Globe className="w-4 h-4 mr-1" />
+                  <Globe className="w-4 h-4 mr-2" />
                   Map View
                 </Button>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center space-x-4 text-sm">
-                <span className="font-medium">Rarity Scale:</span>
+            <div className="space-y-6">
+              <div className="flex items-center space-x-6 text-body-sm font-body text-ultra-smooth">
+                <span className="font-body">Rarity Scale:</span>
                 <div className="flex items-center space-x-2">
-                  <div className="w-4 h-4 bg-green-500 rounded"></div>
+                  <div className="w-5 h-5 bg-green-500 rounded-xl"></div>
                   <span>Common (1-2)</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-4 h-4 bg-blue-500 rounded"></div>
+                  <div className="w-5 h-5 bg-blue-500 rounded-xl"></div>
                   <span>Uncommon (3-4)</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-4 h-4 bg-yellow-500 rounded"></div>
+                  <div className="w-5 h-5 bg-yellow-500 rounded-xl"></div>
                   <span>Rare (5-6)</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-4 h-4 bg-orange-500 rounded"></div>
+                  <div className="w-5 h-5 bg-orange-500 rounded-xl"></div>
                   <span>Very Rare (7-8)</span>
                 </div>
                 <div className="flex items-center space-x-2">

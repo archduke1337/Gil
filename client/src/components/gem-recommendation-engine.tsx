@@ -248,34 +248,34 @@ export default function GemRecommendationEngine() {
                     <div className="flex justify-between items-start">
                       <div>
                         <h5 className="text-body-lg font-body text-ultra-smooth">{rec.name}</h5>
-                        <p className="text-muted-foreground">{rec.type} • {rec.color} • {rec.size}</p>
+                        <p className="text-body font-body text-muted-foreground text-ultra-smooth">{rec.type} • {rec.color} • {rec.size}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-xl font-bold text-primary">{rec.price}</p>
-                        <Badge variant={rec.rarity === "Very Rare" ? "default" : "secondary"}>
+                        <p className="text-body-xl font-heading text-primary text-ultra-smooth">{rec.price}</p>
+                        <Badge variant={rec.rarity === "Very Rare" ? "default" : "secondary"} className="rounded-xl text-ultra-smooth">
                           {rec.rarity}
                         </Badge>
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-2">
-                      <span className="text-sm font-medium">AI Confidence:</span>
-                      <div className="flex-1 bg-muted rounded-full h-2">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-body-sm font-body text-ultra-smooth">AI Confidence:</span>
+                      <div className="flex-1 bg-muted rounded-2xl h-3">
                         <div 
-                          className="bg-primary h-2 rounded-full transition-all duration-500"
+                          className="bg-primary h-3 rounded-2xl transition-all duration-500"
                           style={{ width: `${rec.confidence}%` }}
                         />
                       </div>
-                      <span className="text-sm font-bold">{rec.confidence}%</span>
+                      <span className="text-body-sm font-heading text-ultra-smooth">{rec.confidence}%</span>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <h6 className="text-sm font-medium mb-2">Why Recommended:</h6>
-                        <ul className="text-sm space-y-1">
+                        <h6 className="text-body font-body mb-3 text-ultra-smooth">Why Recommended:</h6>
+                        <ul className="text-body-sm font-body space-y-2 text-ultra-smooth">
                           {rec.reasons.map((reason, i) => (
-                            <li key={i} className="flex items-center space-x-2">
-                              <Star className="w-3 h-3 text-yellow-500" />
+                            <li key={i} className="flex items-center space-x-3">
+                              <Star className="w-4 h-4 text-yellow-500 flex-shrink-0" />
                               <span>{reason}</span>
                             </li>
                           ))}
@@ -283,10 +283,10 @@ export default function GemRecommendationEngine() {
                       </div>
 
                       <div>
-                        <h6 className="text-sm font-medium mb-2">Key Characteristics:</h6>
-                        <div className="flex flex-wrap gap-1">
+                        <h6 className="text-body font-body mb-3 text-ultra-smooth">Key Characteristics:</h6>
+                        <div className="flex flex-wrap gap-2">
                           {rec.characteristics.map((char, i) => (
-                            <Badge key={i} variant="outline" className="text-xs">
+                            <Badge key={i} variant="outline" className="text-body-xs font-body rounded-xl text-ultra-smooth">
                               {char}
                             </Badge>
                           ))}
