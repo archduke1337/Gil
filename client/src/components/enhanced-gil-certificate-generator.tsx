@@ -412,26 +412,26 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="colorGrade"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-body font-semibold">Color Grade</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select color" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="D">D (Colorless)</SelectItem>
-                          <SelectItem value="E">E (Colorless)</SelectItem>
-                          <SelectItem value="F">F (Colorless)</SelectItem>
-                          <SelectItem value="G">G (Near Colorless)</SelectItem>
-                          <SelectItem value="H">H (Near Colorless)</SelectItem>
-                          <SelectItem value="I">I (Near Colorless)</SelectItem>
-                          <SelectItem value="J">J (Near Colorless)</SelectItem>
-                          <SelectItem value="K">K (Faint Yellow)</SelectItem>
-                          <SelectItem value="L">L (Faint Yellow)</SelectItem>
-                          <SelectItem value="M">M (Faint Yellow)</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <FormLabel className="text-slate-700 font-medium">Color Grade</FormLabel>
+                      <FormControl>
+                        <div className="flex flex-wrap gap-2">
+                          {["D", "E", "F", "G", "H", "I", "J", "K", "L", "M"].map((grade) => (
+                            <Button
+                              key={grade}
+                              type="button"
+                              variant={field.value === grade ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => field.onChange(grade)}
+                              className={field.value === grade 
+                                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white" 
+                                : "border-blue-200 text-blue-700 hover:bg-blue-50"
+                              }
+                            >
+                              {grade}
+                            </Button>
+                          ))}
+                        </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -442,27 +442,26 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="clarityGrade"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-body font-semibold">Clarity Grade</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select clarity" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="FL">FL (Flawless)</SelectItem>
-                          <SelectItem value="IF">IF (Internally Flawless)</SelectItem>
-                          <SelectItem value="VVS1">VVS1 (Very Very Slightly Included)</SelectItem>
-                          <SelectItem value="VVS2">VVS2 (Very Very Slightly Included)</SelectItem>
-                          <SelectItem value="VS1">VS1 (Very Slightly Included)</SelectItem>
-                          <SelectItem value="VS2">VS2 (Very Slightly Included)</SelectItem>
-                          <SelectItem value="SI1">SI1 (Slightly Included)</SelectItem>
-                          <SelectItem value="SI2">SI2 (Slightly Included)</SelectItem>
-                          <SelectItem value="I1">I1 (Included)</SelectItem>
-                          <SelectItem value="I2">I2 (Included)</SelectItem>
-                          <SelectItem value="I3">I3 (Included)</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <FormLabel className="text-slate-700 font-medium">Clarity Grade</FormLabel>
+                      <FormControl>
+                        <div className="flex flex-wrap gap-2">
+                          {["FL", "IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "I1", "I2", "I3"].map((grade) => (
+                            <Button
+                              key={grade}
+                              type="button"
+                              variant={field.value === grade ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => field.onChange(grade)}
+                              className={field.value === grade 
+                                ? "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white" 
+                                : "border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                              }
+                            >
+                              {grade}
+                            </Button>
+                          ))}
+                        </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -473,21 +472,26 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="cutGrade"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-body font-semibold">Cut Grade</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select cut" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Excellent">Excellent</SelectItem>
-                          <SelectItem value="Very Good">Very Good</SelectItem>
-                          <SelectItem value="Good">Good</SelectItem>
-                          <SelectItem value="Fair">Fair</SelectItem>
-                          <SelectItem value="Poor">Poor</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <FormLabel className="text-slate-700 font-medium">Cut Grade</FormLabel>
+                      <FormControl>
+                        <div className="flex flex-wrap gap-2">
+                          {["Excellent", "Very Good", "Good", "Fair", "Poor"].map((grade) => (
+                            <Button
+                              key={grade}
+                              type="button"
+                              variant={field.value === grade ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => field.onChange(grade)}
+                              className={field.value === grade 
+                                ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white" 
+                                : "border-amber-200 text-amber-700 hover:bg-amber-50"
+                              }
+                            >
+                              {grade}
+                            </Button>
+                          ))}
+                        </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -498,21 +502,26 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="polish"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-body font-semibold">Polish</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select polish" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Excellent">Excellent</SelectItem>
-                          <SelectItem value="Very Good">Very Good</SelectItem>
-                          <SelectItem value="Good">Good</SelectItem>
-                          <SelectItem value="Fair">Fair</SelectItem>
-                          <SelectItem value="Poor">Poor</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <FormLabel className="text-slate-700 font-medium">Polish</FormLabel>
+                      <FormControl>
+                        <div className="flex flex-wrap gap-2">
+                          {["Excellent", "Very Good", "Good", "Fair", "Poor"].map((grade) => (
+                            <Button
+                              key={grade}
+                              type="button"
+                              variant={field.value === grade ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => field.onChange(grade)}
+                              className={field.value === grade 
+                                ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white" 
+                                : "border-purple-200 text-purple-700 hover:bg-purple-50"
+                              }
+                            >
+                              {grade}
+                            </Button>
+                          ))}
+                        </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -525,21 +534,26 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="symmetry"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-body font-semibold">Symmetry</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select symmetry" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Excellent">Excellent</SelectItem>
-                          <SelectItem value="Very Good">Very Good</SelectItem>
-                          <SelectItem value="Good">Good</SelectItem>
-                          <SelectItem value="Fair">Fair</SelectItem>
-                          <SelectItem value="Poor">Poor</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <FormLabel className="text-slate-700 font-medium">Symmetry</FormLabel>
+                      <FormControl>
+                        <div className="flex flex-wrap gap-2">
+                          {["Excellent", "Very Good", "Good", "Fair", "Poor"].map((grade) => (
+                            <Button
+                              key={grade}
+                              type="button"
+                              variant={field.value === grade ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => field.onChange(grade)}
+                              className={field.value === grade 
+                                ? "bg-gradient-to-r from-rose-500 to-rose-600 text-white" 
+                                : "border-rose-200 text-rose-700 hover:bg-rose-50"
+                              }
+                            >
+                              {grade}
+                            </Button>
+                          ))}
+                        </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
