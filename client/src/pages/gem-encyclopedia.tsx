@@ -552,16 +552,18 @@ export default function GemEncyclopedia() {
                         </div>
                       )}
                       <CardContent className="p-4 md:p-6">
-                      <div className="flex items-center gap-3 mb-4">
+                      {/* Centered Gem Icon */}
+                      <div className="flex justify-center mb-6">
                         <motion.div 
-                          className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl flex items-center justify-center shadow-inner relative overflow-hidden flex-shrink-0"
+                          className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center shadow-lg border border-primary/20 relative overflow-hidden"
                           whileHover={animationConfig.enabled ? { 
                             rotate: 360,
+                            scale: 1.05,
                             transition: { duration: 0.6, ease: "easeInOut" }
                           } : {}}
                         >
-                          <div className="w-8 h-8 md:w-10 md:h-10 z-10 relative">
-                            <IconComponent />
+                          <div className="w-12 h-12 md:w-14 md:h-14 z-10 relative">
+                            <IconComponent className="w-full h-full" />
                           </div>
                           {animationConfig.enabled && (
                             <motion.div
@@ -572,10 +574,12 @@ export default function GemEncyclopedia() {
                             />
                           )}
                         </motion.div>
-                        <div className="min-w-0 flex-1">
-                          <h3 className="text-lg md:text-xl font-semibold text-foreground truncate">{gem.name}</h3>
-                          <Badge variant="secondary" className="text-xs mt-1">{gem.category}</Badge>
-                        </div>
+                      </div>
+                      
+                      {/* Gem Information */}
+                      <div className="text-center mb-4">
+                        <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2">{gem.name}</h3>
+                        <Badge variant="secondary" className="text-xs">{gem.category}</Badge>
                       </div>
 
                       <p className="text-muted-foreground mb-4 line-clamp-3">
