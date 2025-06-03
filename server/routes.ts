@@ -168,22 +168,71 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create certificate from generator (admin only)
   app.post("/api/certificates", async (req, res) => {
     try {
-      const validationResult = insertCertificateSchema.safeParse(req.body);
+      // Try GIL format first
+      const gilValidation = gilCertificateSchema.safeParse(req.body);
       
-      if (!validationResult.success) {
+      if (gilValidation.success) {
+        // GIL Certificate format
+        const data = gilValidation.data;
+        
+        // Check if report number already exists
+        const existingCertificate = await storage.getCertificateByReference(data.reportNumber);
+        if (existingCertificate) {
+          return res.status(409).json({ message: "Report number already exists" });
+        }
+
+        // Convert GIL format to database format
+        const certificateData = {
+          reportNumber: data.reportNumber,
+          reportDate: data.reportDate,
+          shape: data.shape,
+          measurements: data.measurements,
+          caratWeight: data.caratWeight.toString(),
+          colorGrade: data.colorGrade,
+          clarityGrade: data.clarityGrade,
+          cutGrade: data.cutGrade,
+          polish: data.polish,
+          symmetry: data.symmetry,
+          fluorescence: data.fluorescence,
+          inscription: data.inscription,
+          comments: data.comments,
+          gemologistName: data.gemologistName,
+          signatureDate: data.signatureDate,
+          isActive: data.isActive,
+          // Legacy compatibility fields
+          referenceNumber: data.reportNumber,
+          gemType: "Diamond",
+          dimensions: data.measurements,
+          certificationDate: data.signatureDate.toISOString(),
+          examinedBy: data.gemologistName,
+          approvedBy: data.gemologistName,
+        };
+
+        const certificate = await storage.createCertificate(certificateData);
+        res.status(201).json({ certificate });
+        return;
+      }
+
+      // Fallback to legacy format
+      const legacyValidation = insertCertificateSchema.safeParse(req.body);
+      
+      if (!legacyValidation.success) {
         return res.status(400).json({ 
           message: "Invalid certificate data",
-          errors: validationResult.error.issues 
+          errors: legacyValidation.error.issues 
         });
       }
 
       // Check if reference number already exists
-      const existingCertificate = await storage.getCertificateByReference(validationResult.data.referenceNumber);
-      if (existingCertificate) {
-        return res.status(409).json({ message: "Reference number already exists" });
+      const referenceNumber = legacyValidation.data.referenceNumber || legacyValidation.data.reportNumber;
+      if (referenceNumber) {
+        const existingCertificate = await storage.getCertificateByReference(referenceNumber);
+        if (existingCertificate) {
+          return res.status(409).json({ message: "Reference number already exists" });
+        }
       }
 
-      const certificate = await storage.createCertificate(validationResult.data);
+      const certificate = await storage.createCertificate(legacyValidation.data);
       res.status(201).json({ certificate });
     } catch (error) {
       console.error("Error creating certificate:", error);
