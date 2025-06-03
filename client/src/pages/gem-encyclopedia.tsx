@@ -500,10 +500,10 @@ export default function GemEncyclopedia() {
                     y: -4,
                     transition: { duration: 0.2, ease: "easeOut" }
                   } : {}}
-                  className="group"
+                  className="group gem-card"
                 >
                   <Link href={`/gem/${gem.id}`}>
-                    <Card className="border-border hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 bg-gradient-to-br from-white to-muted/20 group cursor-pointer card-3d relative overflow-hidden hover:border-primary/50">
+                    <Card className="border-border hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 bg-gradient-to-br from-white to-muted/20 group cursor-pointer card-3d relative overflow-hidden hover:border-primary/50 focus:outline-none focus:ring-0 focus:shadow-2xl focus:border-primary/50">
                       {/* Optimized hover effects */}
                       {animationConfig.complexity === 'full' && (
                         <>

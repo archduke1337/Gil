@@ -40,6 +40,17 @@ img {
   height: auto;
 }
 
+/* Remove blur effects on gem cards */
+.gem-card:focus,
+.gem-card:active,
+.gem-card a:focus,
+.gem-card a:active {
+  outline: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
 /* Mobile touch optimization */
 @media (hover: none) and (pointer: coarse) {
   .hover\:shadow-xl:hover {
