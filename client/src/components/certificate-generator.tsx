@@ -705,30 +705,26 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                   </motion.div>
 
                   {/* Submit Button */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 }}
-                    className="flex justify-center pt-6"
-                  >
+                  <div className="flex justify-center pt-8 pb-4">
                     <Button 
                       type="submit" 
                       disabled={isGenerating}
-                      className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold py-3 px-8 rounded-2xl soft-shadow transition-all duration-300 hover:scale-105 min-w-[200px] h-14"
+                      size="lg"
+                      className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold py-4 px-12 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 min-w-[280px] h-16 text-lg"
                     >
                       {isGenerating ? (
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          Generating...
+                        <div className="flex items-center gap-3">
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                          <span>Generating Certificate...</span>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-2">
-                          <Sparkles className="w-5 h-5" />
-                          Generate Professional Certificate
+                        <div className="flex items-center gap-3">
+                          <Sparkles className="w-6 h-6" />
+                          <span>Generate Professional Certificate</span>
                         </div>
                       )}
                     </Button>
-                  </motion.div>
+                  </div>
                 </form>
               </Form>
             </CardContent>

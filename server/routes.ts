@@ -71,7 +71,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Certificate not found" });
       }
 
-      const filePath = path.join(uploadsDir, certificate.filename);
+      const filePath = path.join(uploadsDir, certificate.filename || '');
       
       if (!fs.existsSync(filePath)) {
         return res.status(404).json({ message: "Certificate file not found" });
