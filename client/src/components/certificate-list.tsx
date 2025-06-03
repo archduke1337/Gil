@@ -23,7 +23,218 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
   );
 
   const handleViewCertificate = (certificate: Certificate) => {
-    window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
+    // If certificate has a file, open it
+    if (certificate.filename) {
+      window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
+    } else {
+      // For generated certificates, show certificate details in a modal or new page
+      showCertificateDetails(certificate);
+    }
+  };
+
+  const showCertificateDetails = (certificate: Certificate) => {
+    // Create a new window with certificate details
+    const newWindow = window.open('', '_blank');
+    if (newWindow) {
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Certificate ${certificate.referenceNumber}</title>
+          <style>
+            body { 
+              font-family: 'Inter', sans-serif; 
+              max-width: 800px; 
+              margin: 0 auto; 
+              padding: 20px; 
+              background: #f8f9fa;
+            }
+            .certificate { 
+              background: white; 
+              padding: 40px; 
+              border-radius: 12px; 
+              box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+              margin: 20px 0;
+            }
+            .header { 
+              text-align: center; 
+              border-bottom: 2px solid #8c745c; 
+              padding-bottom: 20px; 
+              margin-bottom: 30px;
+            }
+            .title { 
+              color: #8c745c; 
+              font-size: 28px; 
+              font-weight: bold; 
+              margin: 0;
+            }
+            .subtitle { 
+              color: #666; 
+              font-size: 16px; 
+              margin: 5px 0 0 0;
+            }
+            .content { 
+              display: grid; 
+              grid-template-columns: 1fr 1fr; 
+              gap: 20px; 
+              margin: 20px 0;
+            }
+            .field { 
+              margin-bottom: 15px;
+            }
+            .label { 
+              font-weight: 600; 
+              color: #333; 
+              font-size: 14px;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+            }
+            .value { 
+              color: #666; 
+              font-size: 16px; 
+              margin-top: 4px;
+            }
+            .full-width { 
+              grid-column: 1 / -1;
+            }
+            .reference { 
+              background: #8c745c; 
+              color: white; 
+              padding: 10px 20px; 
+              border-radius: 6px; 
+              font-weight: bold; 
+              text-align: center; 
+              margin: 20px 0;
+            }
+            @media print {
+              body { background: white; margin: 0; padding: 0; }
+              .certificate { box-shadow: none; margin: 0; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="certificate">
+            <div class="header">
+              <h1 class="title">GEMOLOGICAL CERTIFICATE</h1>
+              <p class="subtitle">Gemological Institute Laboratories</p>
+            </div>
+            
+            <div class="reference">
+              Certificate No: ${certificate.referenceNumber}
+            </div>
+            
+            <div class="content">
+              <div class="field">
+                <div class="label">Gem Type</div>
+                <div class="value">${certificate.gemType}</div>
+              </div>
+              <div class="field">
+                <div class="label">Shape</div>
+                <div class="value">${certificate.shape}</div>
+              </div>
+              <div class="field">
+                <div class="label">Dimensions</div>
+                <div class="value">${certificate.dimensions}</div>
+              </div>
+              <div class="field">
+                <div class="label">Carat Weight</div>
+                <div class="value">${certificate.caratWeight}</div>
+              </div>
+              <div class="field">
+                <div class="label">Color Grade</div>
+                <div class="value">${certificate.colorGrade}</div>
+              </div>
+              <div class="field">
+                <div class="label">Clarity Grade</div>
+                <div class="value">${certificate.clarityGrade}</div>
+              </div>
+              <div class="field">
+                <div class="label">Cut Grade</div>
+                <div class="value">${certificate.cutGrade}</div>
+              </div>
+              <div class="field">
+                <div class="label">Polish</div>
+                <div class="value">${certificate.polish || 'Not specified'}</div>
+              </div>
+              <div class="field">
+                <div class="label">Symmetry</div>
+                <div class="value">${certificate.symmetry || 'Not specified'}</div>
+              </div>
+              <div class="field">
+                <div class="label">Fluorescence</div>
+                <div class="value">${certificate.fluorescence || 'Not specified'}</div>
+              </div>
+              <div class="field">
+                <div class="label">Treatment</div>
+                <div class="value">${certificate.treatment || 'Not specified'}</div>
+              </div>
+              <div class="field">
+                <div class="label">Origin</div>
+                <div class="value">${certificate.origin || 'Not specified'}</div>
+              </div>
+              ${certificate.tablePercentage ? `
+              <div class="field">
+                <div class="label">Table %</div>
+                <div class="value">${certificate.tablePercentage}</div>
+              </div>
+              ` : ''}
+              ${certificate.depthPercentage ? `
+              <div class="field">
+                <div class="label">Depth %</div>
+                <div class="value">${certificate.depthPercentage}</div>
+              </div>
+              ` : ''}
+              ${certificate.crownAngle ? `
+              <div class="field">
+                <div class="label">Crown Angle</div>
+                <div class="value">${certificate.crownAngle}</div>
+              </div>
+              ` : ''}
+              ${certificate.pavilionAngle ? `
+              <div class="field">
+                <div class="label">Pavilion Angle</div>
+                <div class="value">${certificate.pavilionAngle}</div>
+              </div>
+              ` : ''}
+              ${certificate.inscription ? `
+              <div class="field full-width">
+                <div class="label">Inscription</div>
+                <div class="value">${certificate.inscription}</div>
+              </div>
+              ` : ''}
+              ${certificate.comments ? `
+              <div class="field full-width">
+                <div class="label">Comments</div>
+                <div class="value">${certificate.comments}</div>
+              </div>
+              ` : ''}
+              <div class="field">
+                <div class="label">Certification Date</div>
+                <div class="value">${new Date(certificate.certificationDate).toLocaleDateString()}</div>
+              </div>
+              <div class="field">
+                <div class="label">Examined By</div>
+                <div class="value">${certificate.examinedBy}</div>
+              </div>
+              <div class="field">
+                <div class="label">Approved By</div>
+                <div class="value">${certificate.approvedBy}</div>
+              </div>
+              <div class="field">
+                <div class="label">Lab Location</div>
+                <div class="value">${certificate.labLocation || 'GIL Headquarters'}</div>
+              </div>
+            </div>
+          </div>
+          <script>
+            // Auto print on load if desired
+            // window.print();
+          </script>
+        </body>
+        </html>
+      `);
+      newWindow.document.close();
+    }
   };
 
   const handleDeleteCertificate = async (certificate: Certificate) => {

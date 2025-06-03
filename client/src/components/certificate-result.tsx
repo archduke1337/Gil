@@ -16,18 +16,278 @@ export default function CertificateResult({ result }: CertificateResultProps) {
 
   const handleViewCertificate = () => {
     if (certificate) {
-      window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
+      // If certificate has a file, open it
+      if (certificate.filename) {
+        window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
+      } else {
+        // For generated certificates, show certificate details in a new window
+        showCertificateDetails(certificate);
+      }
+    }
+  };
+
+  const showCertificateDetails = (certificate: Certificate) => {
+    const newWindow = window.open('', '_blank');
+    if (newWindow) {
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Certificate ${certificate.referenceNumber}</title>
+          <style>
+            body { 
+              font-family: 'Inter', sans-serif; 
+              max-width: 800px; 
+              margin: 0 auto; 
+              padding: 20px; 
+              background: #f8f9fa;
+              line-height: 1.6;
+            }
+            .certificate { 
+              background: white; 
+              padding: 40px; 
+              border-radius: 12px; 
+              box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+              margin: 20px 0;
+            }
+            .header { 
+              text-align: center; 
+              border-bottom: 3px solid #8c745c; 
+              padding-bottom: 20px; 
+              margin-bottom: 30px;
+            }
+            .logo { 
+              color: #8c745c; 
+              font-size: 32px; 
+              font-weight: bold; 
+              margin: 0 0 10px 0;
+              letter-spacing: 2px;
+            }
+            .title { 
+              color: #333; 
+              font-size: 24px; 
+              font-weight: bold; 
+              margin: 0;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            }
+            .subtitle { 
+              color: #666; 
+              font-size: 16px; 
+              margin: 5px 0 0 0;
+            }
+            .content { 
+              display: grid; 
+              grid-template-columns: 1fr 1fr; 
+              gap: 25px; 
+              margin: 30px 0;
+            }
+            .field { 
+              margin-bottom: 20px;
+              padding: 12px;
+              background: #f8f9fa;
+              border-radius: 6px;
+              border-left: 4px solid #8c745c;
+            }
+            .label { 
+              font-weight: 600; 
+              color: #333; 
+              font-size: 12px;
+              text-transform: uppercase;
+              letter-spacing: 0.8px;
+              margin-bottom: 6px;
+            }
+            .value { 
+              color: #444; 
+              font-size: 16px; 
+              font-weight: 500;
+            }
+            .full-width { 
+              grid-column: 1 / -1;
+            }
+            .reference { 
+              background: linear-gradient(135deg, #8c745c, #725d47); 
+              color: white; 
+              padding: 15px 25px; 
+              border-radius: 8px; 
+              font-weight: bold; 
+              text-align: center; 
+              margin: 20px 0;
+              font-size: 18px;
+              letter-spacing: 1px;
+            }
+            .footer {
+              margin-top: 40px;
+              padding-top: 20px;
+              border-top: 2px solid #8c745c;
+              text-align: center;
+              color: #666;
+              font-size: 14px;
+            }
+            .print-btn {
+              background: #8c745c;
+              color: white;
+              border: none;
+              padding: 12px 24px;
+              border-radius: 6px;
+              font-size: 16px;
+              cursor: pointer;
+              margin: 20px auto;
+              display: block;
+              font-weight: 600;
+            }
+            .print-btn:hover {
+              background: #725d47;
+            }
+            @media print {
+              body { background: white; margin: 0; padding: 0; }
+              .certificate { box-shadow: none; margin: 0; }
+              .print-btn { display: none; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="certificate">
+            <div class="header">
+              <div class="logo">GIL</div>
+              <h1 class="title">Gemological Certificate</h1>
+              <p class="subtitle">Gemological Institute Laboratories</p>
+            </div>
+            
+            <div class="reference">
+              Certificate No: ${certificate.referenceNumber}
+            </div>
+            
+            <div class="content">
+              <div class="field">
+                <div class="label">Gem Type</div>
+                <div class="value">${certificate.gemType}</div>
+              </div>
+              <div class="field">
+                <div class="label">Shape</div>
+                <div class="value">${certificate.shape}</div>
+              </div>
+              <div class="field">
+                <div class="label">Dimensions</div>
+                <div class="value">${certificate.dimensions}</div>
+              </div>
+              <div class="field">
+                <div class="label">Carat Weight</div>
+                <div class="value">${certificate.caratWeight}</div>
+              </div>
+              <div class="field">
+                <div class="label">Color Grade</div>
+                <div class="value">${certificate.colorGrade}</div>
+              </div>
+              <div class="field">
+                <div class="label">Clarity Grade</div>
+                <div class="value">${certificate.clarityGrade}</div>
+              </div>
+              <div class="field">
+                <div class="label">Cut Grade</div>
+                <div class="value">${certificate.cutGrade}</div>
+              </div>
+              <div class="field">
+                <div class="label">Polish</div>
+                <div class="value">${certificate.polish || 'Not specified'}</div>
+              </div>
+              <div class="field">
+                <div class="label">Symmetry</div>
+                <div class="value">${certificate.symmetry || 'Not specified'}</div>
+              </div>
+              <div class="field">
+                <div class="label">Fluorescence</div>
+                <div class="value">${certificate.fluorescence || 'Not specified'}</div>
+              </div>
+              <div class="field">
+                <div class="label">Treatment</div>
+                <div class="value">${certificate.treatment || 'Not specified'}</div>
+              </div>
+              <div class="field">
+                <div class="label">Origin</div>
+                <div class="value">${certificate.origin || 'Not specified'}</div>
+              </div>
+              ${certificate.tablePercentage ? `
+              <div class="field">
+                <div class="label">Table Percentage</div>
+                <div class="value">${certificate.tablePercentage}</div>
+              </div>
+              ` : ''}
+              ${certificate.depthPercentage ? `
+              <div class="field">
+                <div class="label">Depth Percentage</div>
+                <div class="value">${certificate.depthPercentage}</div>
+              </div>
+              ` : ''}
+              ${certificate.crownAngle ? `
+              <div class="field">
+                <div class="label">Crown Angle</div>
+                <div class="value">${certificate.crownAngle}</div>
+              </div>
+              ` : ''}
+              ${certificate.pavilionAngle ? `
+              <div class="field">
+                <div class="label">Pavilion Angle</div>
+                <div class="value">${certificate.pavilionAngle}</div>
+              </div>
+              ` : ''}
+              ${certificate.inscription ? `
+              <div class="field full-width">
+                <div class="label">Inscription</div>
+                <div class="value">${certificate.inscription}</div>
+              </div>
+              ` : ''}
+              ${certificate.comments ? `
+              <div class="field full-width">
+                <div class="label">Comments</div>
+                <div class="value">${certificate.comments}</div>
+              </div>
+              ` : ''}
+              <div class="field">
+                <div class="label">Certification Date</div>
+                <div class="value">${new Date(certificate.certificationDate).toLocaleDateString()}</div>
+              </div>
+              <div class="field">
+                <div class="label">Examined By</div>
+                <div class="value">${certificate.examinedBy}</div>
+              </div>
+              <div class="field">
+                <div class="label">Approved By</div>
+                <div class="value">${certificate.approvedBy}</div>
+              </div>
+              <div class="field">
+                <div class="label">Lab Location</div>
+                <div class="value">${certificate.labLocation || 'GIL Headquarters'}</div>
+              </div>
+            </div>
+            
+            <button class="print-btn" onclick="window.print()">Print Certificate</button>
+            
+            <div class="footer">
+              <p>This certificate is digitally verified and authenticated by GIL.</p>
+              <p>Certificate generated on ${new Date(certificate.issueDate || certificate.certificationDate).toLocaleDateString()}</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `);
+      newWindow.document.close();
     }
   };
 
   const handleDownloadCertificate = () => {
     if (certificate) {
-      const link = document.createElement('a');
-      link.href = `/api/certificates/file/${certificate.referenceNumber}`;
-      link.download = `${certificate.referenceNumber}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      if (certificate.filename) {
+        const link = document.createElement('a');
+        link.href = `/api/certificates/file/${certificate.referenceNumber}`;
+        link.download = `${certificate.referenceNumber}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        // For generated certificates, open the printable view
+        showCertificateDetails(certificate);
+      }
     }
   };
 
