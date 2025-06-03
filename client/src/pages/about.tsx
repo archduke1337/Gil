@@ -289,12 +289,12 @@ export default function About() {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Gem className="w-4 h-4 text-[#8c745c]" />
+                  <div className="w-12 h-12 bg-[#ece5dc] rounded-3xl flex items-center justify-center flex-shrink-0 mt-1 soft-shadow">
+                    <Gem className="w-6 h-6 text-[#8c745c]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">Advanced Technology</h4>
-                    <p className="text-muted-foreground">
+                    <h4 className="text-heading-xs font-heading text-foreground mb-3 text-ultra-smooth">Advanced Technology</h4>
+                    <p className="text-body font-body text-muted-foreground text-ultra-smooth">
                       We utilize the latest gemological instruments and scientific methods for precise diamond analysis.
                     </p>
                   </div>
