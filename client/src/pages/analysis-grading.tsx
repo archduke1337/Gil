@@ -406,18 +406,123 @@ export default function AnalysisGrading() {
       </div>
 
       {/* Enhanced 3D Gem Analysis */}
-      <div className="py-16 bg-muted/10">
+      <div className="py-20 bg-gradient-to-br from-background via-muted/5 to-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4 text-ultra-smooth">Professional 3D Gem Analysis</h2>
-            <p className="text-xl text-muted-foreground mb-8 text-ultra-smooth">
-              Advanced gemological examination with comprehensive analysis tools and professional-grade assessment capabilities
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-primary/10 rounded-full mb-6">
+              <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+              <span className="text-primary font-medium">Advanced Technology</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-ultra-smooth">
+              Professional 3D Gem Analysis
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8 text-ultra-smooth max-w-4xl mx-auto leading-relaxed">
+              Experience cutting-edge gemological examination with our state-of-the-art 3D visualization technology, 
+              comprehensive analysis tools, and professional-grade assessment capabilities used by leading gemologists worldwide
             </p>
-          </div>
+            
+            {/* Feature highlights */}
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3"
+              >
+                <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center">
+                  <Eye className="w-5 h-5 text-primary" />
+                </div>
+                <span className="text-foreground font-medium text-ultra-smooth">360° Examination</span>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3"
+              >
+                <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-primary" />
+                </div>
+                <span className="text-foreground font-medium text-ultra-smooth">Real-time Analysis</span>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3"
+              >
+                <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center">
+                  <Award className="w-5 h-5 text-primary" />
+                </div>
+                <span className="text-foreground font-medium text-ultra-smooth">Professional Grade</span>
+              </motion.div>
+            </div>
+          </motion.div>
           
-          <div className="max-w-6xl mx-auto">
-            <EnhancedGemAnalysis gemType="diamond" />
-          </div>
+          {/* Enhanced Analysis Container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl soft-shadow border border-white/20 p-8 md:p-12">
+              <EnhancedGemAnalysis gemType="diamond" />
+            </div>
+          </motion.div>
+          
+          {/* Analysis Benefits */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            <div className="text-center p-6 bg-white/30 backdrop-blur-sm rounded-xl soft-shadow">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-6 h-6 text-green-600" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2 text-ultra-smooth">Precision Measurement</h3>
+              <p className="text-sm text-muted-foreground">Accurate dimensional analysis to 0.001mm precision</p>
+            </div>
+            
+            <div className="text-center p-6 bg-white/30 backdrop-blur-sm rounded-xl soft-shadow">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Microscope className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2 text-ultra-smooth">Inclusion Mapping</h3>
+              <p className="text-sm text-muted-foreground">Detailed internal characteristic identification</p>
+            </div>
+            
+            <div className="text-center p-6 bg-white/30 backdrop-blur-sm rounded-xl soft-shadow">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Palette className="w-6 h-6 text-purple-600" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2 text-ultra-smooth">Color Analysis</h3>
+              <p className="text-sm text-muted-foreground">Spectral color grading and tone assessment</p>
+            </div>
+            
+            <div className="text-center p-6 bg-white/30 backdrop-blur-sm rounded-xl soft-shadow">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <FileText className="w-6 h-6 text-orange-600" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2 text-ultra-smooth">Detailed Reports</h3>
+              <p className="text-sm text-muted-foreground">Comprehensive certification documentation</p>
+            </div>
+          </motion.div>
         </div>
       </div>
 
