@@ -198,6 +198,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
           comments: data.comments,
           gemologistName: data.gemologistName,
           signatureDate: data.signatureDate,
+          digitallySignedBy: data.digitallySignedBy,
+          colorGradeDiagram: data.colorGradeDiagram,
+          clarityPlotDiagram: data.clarityPlotDiagram,
+          certificateNotes: data.certificateNotes,
+          verifierUrl: data.verifierUrl,
           isActive: data.isActive,
           // Legacy compatibility fields
           referenceNumber: data.reportNumber,
