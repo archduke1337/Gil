@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Shield, ShieldCheck, AlertTriangle, Clock, Eye, FileText, QrCode, Globe } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import QRCodeSVG from "qrcode.react";
+import { QRCodeSVG } from "qrcode.react";
 
 interface VerificationResult {
   isValid: boolean;
