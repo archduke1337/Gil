@@ -35,31 +35,26 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-primary/15 to-primary/5 perspective-container">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10 parallax-3d">
-          <div className="absolute inset-0 rotate-3d" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23${encodeURIComponent('725D47')}' fill-opacity='0.1'%3E%3Cpath d='M30 30l15-15v30l-15-15zm-15 0l15 15v-30l-15 15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '60px 60px'
-          }} />
-        </div>
+      <section className="relative py-16 lg:py-24 overflow-hidden">
+        {/* Clean gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#8c745c]/5 via-white to-[#8c745c]/10" />
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 depth-layer">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20, rotateX: -15 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="mb-8 perspective-container"
+              className="mb-8"
             >
               <img 
                 src={logoPath} 
                 alt="GIL - Gemological Institute Laboratories" 
-                className="h-32 md:h-40 w-auto mx-auto mb-8 floating-animation pulse-glow transform-gpu"
+                className="h-24 md:h-32 w-auto mx-auto mb-6"
               />
             </motion.div>
             
@@ -67,35 +62,35 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
             >
               Gemological Institute
-              <span className="block text-foreground">Laboratories</span>
+              <span className="block text-[#8c745c]">Laboratories</span>
             </motion.h1>
             
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed"
             >
               Leading the industry in diamond certification and gemological 
               expertise with cutting-edge technology and uncompromising standards
             </motion.p>
             
             <motion.div
-              initial={{ opacity: 0, y: 20, rotateX: -10 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center perspective-container"
+              className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 button-3d transform-gpu"
+                className="bg-[#8c745c] hover:bg-[#725d47] text-white px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Link href="/verify">
-                  <Search className="mr-2 h-5 w-5 icon-3d" />
+                  <Search className="mr-2 h-5 w-5" />
                   Verify Certificate
                 </Link>
               </Button>
@@ -104,10 +99,10 @@ export default function Home() {
                 asChild 
                 variant="outline" 
                 size="lg" 
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 button-3d transform-gpu"
+                className="border-[#8c745c] text-[#8c745c] hover:bg-[#8c745c] hover:text-white px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Link href="/about">
-                  <FileCheck className="mr-2 h-5 w-5 icon-3d" />
+                  <Award className="mr-2 h-5 w-5" />
                   About Us
                 </Link>
               </Button>
@@ -117,7 +112,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-card">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -126,47 +121,46 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Professional Services
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive gemological services backed by decades of expertise and cutting-edge technology
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-container">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20, rotateX: -15, rotateY: -5 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 5, 
-                  rotateX: 5,
+                  y: -5,
                   transition: { duration: 0.3 }
                 }}
-                className="transform-gpu"
               >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border border-border shadow-lg group cursor-pointer bg-card card-3d">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 border border-gray-200 shadow-lg group cursor-pointer bg-white">
                   <Link href={feature.link}>
                     <CardContent className="p-8 text-center">
                       <div className="mb-6 flex justify-center">
-                        <div className="p-4 bg-secondary rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 icon-3d floating-animation">
-                          {feature.icon}
+                        <div className="p-4 bg-[#8c745c]/10 rounded-full group-hover:bg-[#8c745c] group-hover:text-white transition-all duration-300">
+                          <div className="text-[#8c745c] group-hover:text-white">
+                            {feature.icon}
+                          </div>
                         </div>
                       </div>
-                      <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-[#8c745c] transition-colors duration-300">
                         {feature.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-gray-600 leading-relaxed">
                         {feature.description}
                       </p>
-                      <div className="mt-6 flex items-center justify-center text-primary font-semibold group-hover:text-foreground transition-colors duration-300">
+                      <div className="mt-6 flex items-center justify-center text-[#8c745c] font-semibold group-hover:text-gray-900 transition-colors duration-300">
                         Learn More
-                        <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300 icon-3d" />
+                        <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                       </div>
                     </CardContent>
                   </Link>
