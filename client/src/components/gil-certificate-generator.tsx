@@ -77,22 +77,21 @@ export default function GILCertificateGenerator({ onSuccess }: GILCertificateGen
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          referenceNumber: data.reportNumber,
-          gemType: "Diamond",
+          reportNumber: data.reportNumber,
+          reportDate: data.reportDate,
           shape: data.shape,
-          dimensions: data.measurements,
-          caratWeight: parseFloat(data.caratWeight),
+          measurements: data.measurements,
+          caratWeight: data.caratWeight,
           colorGrade: data.colorGrade,
           clarityGrade: data.clarityGrade,
           cutGrade: data.cutGrade,
           polish: data.polish,
           symmetry: data.symmetry,
           fluorescence: data.fluorescence,
-          inscription: data.inscription,
-          comments: data.comments,
-          certificationDate: data.signatureDate,
-          examinedBy: data.gemologistName,
-          approvedBy: data.gemologistName,
+          inscription: data.inscription || "",
+          comments: data.comments || "",
+          gemologistName: data.gemologistName,
+          signatureDate: data.signatureDate,
           isActive: true,
         }),
       });
@@ -563,7 +562,8 @@ export default function GILCertificateGenerator({ onSuccess }: GILCertificateGen
                       <FormControl>
                         <Input 
                           placeholder="GIL G2141436895" 
-                          {...field} 
+                          {...field}
+                          value={field.value || ""}
                           className="rounded-2xl text-body font-body text-ultra-smooth"
                         />
                       </FormControl>
@@ -600,7 +600,8 @@ export default function GILCertificateGenerator({ onSuccess }: GILCertificateGen
                     <FormControl>
                       <Textarea 
                         placeholder="Clouds are not shown. Pinpoints are not shown." 
-                        {...field} 
+                        {...field}
+                        value={field.value || ""}
                         className="rounded-2xl text-body font-body text-ultra-smooth"
                         rows={3}
                       />

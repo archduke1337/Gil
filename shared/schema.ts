@@ -57,23 +57,23 @@ export const admins = pgTable("admins", {
 });
 
 // GIL Certificate Schema (Primary)
-export const gilCertificateSchema = createInsertSchema(certificates).pick({
-  reportNumber: true,
-  reportDate: true,
-  shape: true,
-  measurements: true,
-  caratWeight: true,
-  colorGrade: true,
-  clarityGrade: true,
-  cutGrade: true,
-  polish: true,
-  symmetry: true,
-  fluorescence: true,
-  inscription: true,
-  comments: true,
-  gemologistName: true,
-  signatureDate: true,
-  isActive: true,
+export const gilCertificateSchema = z.object({
+  reportNumber: z.string().min(1, "Report number is required"),
+  reportDate: z.date({ required_error: "Report date is required" }),
+  shape: z.string().min(1, "Shape is required"),
+  measurements: z.string().min(1, "Measurements are required"),
+  caratWeight: z.string().min(1, "Carat weight is required"),
+  colorGrade: z.string().min(1, "Color grade is required"),
+  clarityGrade: z.string().min(1, "Clarity grade is required"),
+  cutGrade: z.string().min(1, "Cut grade is required"),
+  polish: z.string().min(1, "Polish is required"),
+  symmetry: z.string().min(1, "Symmetry is required"),
+  fluorescence: z.string().min(1, "Fluorescence is required"),
+  inscription: z.string().optional(),
+  comments: z.string().optional(),
+  gemologistName: z.string().min(1, "Gemologist name is required"),
+  signatureDate: z.date({ required_error: "Signature date is required" }),
+  isActive: z.boolean().default(true),
 });
 
 // Legacy Certificate Schema (Backward compatibility)
