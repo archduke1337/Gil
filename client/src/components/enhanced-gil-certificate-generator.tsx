@@ -332,26 +332,26 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="shape"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-body font-semibold">Shape</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="rounded-xl">
-                            <SelectValue placeholder="Select shape" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Round">Round</SelectItem>
-                          <SelectItem value="Princess">Princess</SelectItem>
-                          <SelectItem value="Emerald">Emerald</SelectItem>
-                          <SelectItem value="Asscher">Asscher</SelectItem>
-                          <SelectItem value="Oval">Oval</SelectItem>
-                          <SelectItem value="Radiant">Radiant</SelectItem>
-                          <SelectItem value="Cushion">Cushion</SelectItem>
-                          <SelectItem value="Heart">Heart</SelectItem>
-                          <SelectItem value="Pear">Pear</SelectItem>
-                          <SelectItem value="Marquise">Marquise</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <FormLabel className="text-slate-700 font-medium">Shape</FormLabel>
+                      <FormControl>
+                        <div className="flex flex-wrap gap-2">
+                          {["Round", "Princess", "Emerald", "Asscher", "Oval", "Radiant", "Cushion", "Heart", "Pear", "Marquise"].map((shape) => (
+                            <Button
+                              key={shape}
+                              type="button"
+                              variant={field.value === shape ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => field.onChange(shape)}
+                              className={field.value === shape 
+                                ? "bg-gradient-to-r from-indigo-500 to-indigo-600 text-white" 
+                                : "border-indigo-200 text-indigo-700 hover:bg-indigo-50"
+                              }
+                            >
+                              {shape}
+                            </Button>
+                          ))}
+                        </div>
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
