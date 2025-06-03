@@ -230,11 +230,11 @@ export default function FAQs() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <Gem className="w-6 h-6 text-primary-foreground" />
-                </div>
-              </div>
+              <img 
+                src={logoPath} 
+                alt="GIL - Gemological Institute Laboratories" 
+                className="h-16 w-auto mb-4 brightness-0 invert"
+              />
               <p className="text-muted-foreground leading-relaxed">
                 Leading the world in gemological excellence, education, and certification services.
               </p>
