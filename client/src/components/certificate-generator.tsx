@@ -32,26 +32,24 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import ProfessionalCertificateTemplate from "./professional-certificate-template";
+import GILCertificateTemplate from "./gil-certificate-template";
 
 const certificateSchema = z.object({
-  referenceNumber: z.string().min(1, "Reference number is required").regex(/^GIL-\d{4}-\d{6}$/, "Reference number must follow format: GIL-YYYY-XXXXXX"),
-  gemType: z.string().min(1, "Gem type is required"),
-  shape: z.string().min(1, "Shape is required"),
-  dimensions: z.string().min(1, "Dimensions are required").regex(/^\d+\.?\d*\s*x\s*\d+\.?\d*\s*x\s*\d+\.?\d*$/, "Dimensions must be in format: L x W x H (e.g., 6.52 x 6.48 x 4.05)"),
+  reportNumber: z.string().min(1, "Report number is required").regex(/^G\d{10}$/, "Report number must follow format: G followed by 10 digits (e.g., G2141436895)"),
+  reportDate: z.date({ required_error: "Report date is required" }),
+  shape: z.string().min(1, "Shape and cutting style is required"),
+  measurements: z.string().min(1, "Measurements are required").regex(/^\d+\.?\d*\s*x\s*\d+\.?\d*\s*x\s*\d+\.?\d*$/, "Measurements must be in format: L x W x H (e.g., 7.49 x 7.49 x 5.18)"),
   caratWeight: z.string().min(1, "Carat weight is required").refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, "Carat weight must be a positive number"),
   colorGrade: z.string().min(1, "Color grade is required"),
   clarityGrade: z.string().min(1, "Clarity grade is required"),
   cutGrade: z.string().min(1, "Cut grade is required"),
-  polish: z.string().optional(),
-  symmetry: z.string().optional(),
-  fluorescence: z.string().optional(),
-  treatment: z.string().optional(),
-  origin: z.string().optional(),
+  polish: z.string().min(1, "Polish is required"),
+  symmetry: z.string().min(1, "Symmetry is required"),
+  fluorescence: z.string().min(1, "Fluorescence is required"),
   inscription: z.string().optional(),
   comments: z.string().optional(),
-  certificationDate: z.date(),
-  examinedBy: z.string().min(1, "Examiner name is required"),
-  approvedBy: z.string().min(1, "Approver name is required"),
+  gemologistName: z.string().min(1, "Gemologist name is required"),
+  signatureDate: z.date({ required_error: "Signature date is required" }),
   labLocation: z.string().optional(),
   equipmentUsed: z.string().optional(),
   tablePercentage: z.string().optional(),
