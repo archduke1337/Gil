@@ -110,29 +110,30 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardContent className="p-6">
+      <Card className="rounded-3xl soft-shadow bg-white/80 backdrop-blur-sm border-none">
+        <CardContent className="p-8">
           <div className="space-y-6">
-            <div className="flex items-center space-x-2">
-              <Search className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-semibold">Advanced Search & Filtering</h3>
+            <div className="flex items-center space-x-3">
+              <Search className="w-6 h-6 text-primary" />
+              <h3 className="text-heading font-heading text-ultra-smooth">Advanced Search & Filtering</h3>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="reference">Reference Number</Label>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="space-y-3">
+                <Label htmlFor="reference" className="text-body font-body text-ultra-smooth">Reference Number</Label>
                 <Input
                   id="reference"
                   placeholder="Search by reference..."
                   value={filters.referenceNumber}
                   onChange={(e) => handleFilterChange("referenceNumber", e.target.value)}
+                  className="rounded-2xl text-body font-body text-ultra-smooth"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="color">Color Grade</Label>
+              <div className="space-y-3">
+                <Label htmlFor="color" className="text-body font-body text-ultra-smooth">Color Grade</Label>
                 <Select value={filters.colorGrade} onValueChange={(value) => handleFilterChange("colorGrade", value)}>
-                  <SelectTrigger>
+                  <SelectTrigger className="rounded-2xl text-body font-body text-ultra-smooth">
                     <SelectValue placeholder="Select color grade" />
                   </SelectTrigger>
                   <SelectContent>
@@ -147,10 +148,10 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
                 </Select>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="clarity">Clarity Grade</Label>
+              <div className="space-y-3">
+                <Label htmlFor="clarity" className="text-body font-body text-ultra-smooth">Clarity Grade</Label>
                 <Select value={filters.clarityGrade} onValueChange={(value) => handleFilterChange("clarityGrade", value)}>
-                  <SelectTrigger>
+                  <SelectTrigger className="rounded-2xl text-body font-body text-ultra-smooth">
                     <SelectValue placeholder="Select clarity grade" />
                   </SelectTrigger>
                   <SelectContent>
@@ -166,10 +167,10 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
                 </Select>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="cut">Cut Grade</Label>
+              <div className="space-y-3">
+                <Label htmlFor="cut" className="text-body font-body text-ultra-smooth">Cut Grade</Label>
                 <Select value={filters.cutGrade} onValueChange={(value) => handleFilterChange("cutGrade", value)}>
-                  <SelectTrigger>
+                  <SelectTrigger className="rounded-2xl text-body font-body text-ultra-smooth">
                     <SelectValue placeholder="Select cut grade" />
                   </SelectTrigger>
                   <SelectContent>
@@ -182,20 +183,21 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
                 </Select>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="carat">Carat Weight</Label>
+              <div className="space-y-3">
+                <Label htmlFor="carat" className="text-body font-body text-ultra-smooth">Carat Weight</Label>
                 <Input
                   id="carat"
                   placeholder="e.g. 1.00"
                   value={filters.caratWeight}
                   onChange={(e) => handleFilterChange("caratWeight", e.target.value)}
+                  className="rounded-2xl text-body font-body text-ultra-smooth"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="status">Status</Label>
+              <div className="space-y-3">
+                <Label htmlFor="status" className="text-body font-body text-ultra-smooth">Status</Label>
                 <Select value={filters.isActive} onValueChange={(value) => handleFilterChange("isActive", value)}>
-                  <SelectTrigger>
+                  <SelectTrigger className="rounded-2xl text-body font-body text-ultra-smooth">
                     <SelectValue placeholder="Select status" />
                   </SelectTrigger>
                   <SelectContent>
@@ -210,12 +212,12 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
-                className="space-y-2"
+                className="space-y-3"
               >
-                <Label>Active Filters</Label>
-                <div className="flex flex-wrap gap-2">
+                <Label className="text-body font-body text-ultra-smooth">Active Filters</Label>
+                <div className="flex flex-wrap gap-3">
                   {activeFilters.map(filter => (
-                    <Badge key={filter} variant="secondary" className="flex items-center space-x-1">
+                    <Badge key={filter} variant="secondary" className="flex items-center space-x-2 rounded-2xl text-body-xs font-body text-ultra-smooth">
                       <span className="capitalize">{filter.replace(/([A-Z])/g, ' $1').trim()}</span>
                       <Button
                         size="sm"
@@ -231,14 +233,14 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
               </motion.div>
             )}
 
-            <div className="flex space-x-3">
-              <Button onClick={applyFilters} className="flex items-center space-x-2">
-                <Filter className="w-4 h-4" />
+            <div className="flex space-x-4">
+              <Button onClick={applyFilters} className="flex items-center space-x-2 rounded-2xl text-body font-body text-ultra-smooth">
+                <Filter className="w-5 h-5" />
                 <span>Apply Filters</span>
               </Button>
               
               {activeFilters.length > 0 && (
-                <Button onClick={clearAllFilters} variant="outline">
+                <Button onClick={clearAllFilters} variant="outline" className="rounded-2xl text-body font-body text-ultra-smooth">
                   Clear All
                 </Button>
               )}
