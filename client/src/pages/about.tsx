@@ -630,9 +630,9 @@ export default function About() {
 
             {/* Contact Form */}
             <div>
-              <Card className="border-border">
+              <Card className="border-0 rounded-xl soft-shadow">
                 <CardContent className="p-8">
-                  <h4 className="text-2xl font-semibold text-foreground mb-6">Send us a Message</h4>
+                  <h4 className="text-2xl font-semibold text-foreground mb-6 text-ultra-smooth">Send us a Message</h4>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -701,7 +701,7 @@ export default function About() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full lab-bg-primary hover:bg-primary/90 text-white font-medium py-3"
+                      className="w-full bg-[#8c745c] hover:bg-[#725d47] text-white font-medium py-3 rounded-xl soft-shadow text-ultra-smooth transition-all duration-300"
                     >
                       {isSubmitting ? "Sending Message..." : "Send Message"}
                     </Button>
