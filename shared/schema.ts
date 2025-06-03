@@ -44,6 +44,13 @@ export const certificates = pgTable("certificates", {
   photoIncluded: boolean("photo_included").default(false),
   plotDiagram: boolean("plot_diagram").default(false),
   
+  // Enhanced GIL Fields
+  digitallySignedBy: boolean("digitally_signed_by").default(false),
+  colorGradeDiagram: boolean("color_grade_diagram").default(false),
+  clarityPlotDiagram: boolean("clarity_plot_diagram").default(false),
+  certificateNotes: text("certificate_notes"),
+  verifierUrl: text("verifier_url").default("https://gilab.info/verify"),
+  
   // System Fields
   issueDate: timestamp("issue_date").defaultNow(),
   uploadDate: timestamp("upload_date").defaultNow(),
@@ -56,10 +63,10 @@ export const admins = pgTable("admins", {
   password: text("password").notNull(),
 });
 
-// GIL Certificate Schema (Primary)
+// GIL Certificate Schema (Primary) - Enhanced
 export const gilCertificateSchema = z.object({
   reportNumber: z.string().min(1, "Report number is required"),
-  reportDate: z.date({ required_error: "Report date is required" }),
+  reportDate: z.coerce.date({ required_error: "Report date is required" }),
   shape: z.string().min(1, "Shape is required"),
   measurements: z.string().min(1, "Measurements are required"),
   caratWeight: z.string().min(1, "Carat weight is required"),
@@ -72,8 +79,14 @@ export const gilCertificateSchema = z.object({
   inscription: z.string().optional(),
   comments: z.string().optional(),
   gemologistName: z.string().min(1, "Gemologist name is required"),
-  signatureDate: z.date({ required_error: "Signature date is required" }),
+  signatureDate: z.coerce.date({ required_error: "Signature date is required" }),
   isActive: z.boolean().default(true),
+  // Enhanced fields
+  digitallySignedBy: z.boolean().default(false),
+  colorGradeDiagram: z.boolean().default(false),
+  clarityPlotDiagram: z.boolean().default(false),
+  certificateNotes: z.string().optional(),
+  verifierUrl: z.string().default("https://gilab.info/verify"),
 });
 
 // Legacy Certificate Schema (Backward compatibility)
