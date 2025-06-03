@@ -165,6 +165,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create certificate from generator (admin only)
+  app.post("/api/certificates", async (req, res) => {
+    try {
+      const validationResult = insertCertificateSchema.safeParse(req.body);
+      
+      if (!validationResult.success) {
+        return res.status(400).json({ 
+          message: "Invalid certificate data",
+          errors: validationResult.error.issues 
+        });
+      }
+
+      // Check if reference number already exists
+      const existingCertificate = await storage.getCertificateByReference(validationResult.data.referenceNumber);
+      if (existingCertificate) {
+        return res.status(409).json({ message: "Reference number already exists" });
+      }
+
+      const certificate = await storage.createCertificate(validationResult.data);
+      res.status(201).json({ certificate });
+    } catch (error) {
+      console.error("Error creating certificate:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   // Get all certificates (admin only)
   app.get("/api/certificates", async (req, res) => {
     try {
