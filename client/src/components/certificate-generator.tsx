@@ -53,6 +53,11 @@ const certificateSchema = z.object({
   approvedBy: z.string().min(1, "Approver name is required"),
   labLocation: z.string().optional(),
   equipmentUsed: z.string().optional(),
+  tablePercentage: z.string().optional(),
+  depthPercentage: z.string().optional(),
+  crownAngle: z.string().optional(),
+  pavilionAngle: z.string().optional(),
+  gemImage: z.any().optional(),
 });
 
 type CertificateForm = z.infer<typeof certificateSchema>;
@@ -64,6 +69,8 @@ interface CertificateGeneratorProps {
 export default function CertificateGenerator({ onSuccess }: CertificateGeneratorProps) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedCertificate, setGeneratedCertificate] = useState<CertificateForm | null>(null);
+  const [gemImageFile, setGemImageFile] = useState<File | null>(null);
+  const [gemImagePreview, setGemImagePreview] = useState<string | null>(null);
   const certificateRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -80,8 +87,24 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
       labLocation: "GIL Headquarters",
       equipmentUsed: "Gemological microscope, spectroscopy, precision scale",
       inscription: "",
+      tablePercentage: "57%",
+      depthPercentage: "62.3%",
+      crownAngle: "34.5°",
+      pavilionAngle: "40.8°",
     },
   });
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setGemImageFile(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setGemImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const onSubmit = async (data: CertificateForm) => {
     setIsGenerating(true);
@@ -398,6 +421,65 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                         </FormItem>
                       )}
                     />
+
+                    {/* Gem Photo Upload Section */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.15 }}
+                      className="col-span-full"
+                    >
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 bg-gradient-to-br from-indigo-500/20 to-indigo-600/30 rounded-xl flex items-center justify-center">
+                          <Diamond className="w-5 h-5 text-indigo-600" />
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold text-foreground text-ultra-smooth">Gem Photography</h4>
+                          <p className="text-sm text-muted-foreground">Upload a high-quality image of the gemstone</p>
+                        </div>
+                      </div>
+
+                      <div className="border-2 border-dashed border-primary/30 rounded-2xl p-8 bg-gradient-to-br from-primary/5 to-primary/10">
+                        <div className="text-center">
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            className="hidden"
+                            id="gem-image-upload"
+                          />
+                          <label
+                            htmlFor="gem-image-upload"
+                            className="cursor-pointer flex flex-col items-center gap-4"
+                          >
+                            {gemImagePreview ? (
+                              <div className="relative">
+                                <img
+                                  src={gemImagePreview}
+                                  alt="Gem preview"
+                                  className="w-32 h-32 object-cover rounded-2xl border-2 border-primary/30"
+                                />
+                                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="w-32 h-32 border-2 border-dashed border-primary/40 rounded-2xl flex items-center justify-center bg-white/50">
+                                <Diamond className="w-12 h-12 text-primary/60" />
+                              </div>
+                            )}
+                            <div className="text-center">
+                              <p className="text-sm font-medium text-foreground">
+                                {gemImagePreview ? "Click to change image" : "Click to upload gem image"}
+                              </p>
+                              <p className="text-xs text-muted-foreground">PNG, JPG up to 10MB</p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </motion.div>
                   </motion.div>
 
                   <Separator className="my-8" />
@@ -591,6 +673,72 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                           </FormItem>
                         )}
                       />
+                    </div>
+
+                    {/* Technical Measurements Section */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <Microscope className="w-5 h-5 text-blue-600" />
+                        <h5 className="text-lg font-semibold text-foreground">Technical Measurements</h5>
+                      </div>
+                      
+                      <div className="grid md:grid-cols-4 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="tablePercentage"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-ultra-smooth font-medium">Table %</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="57%" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="depthPercentage"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-ultra-smooth font-medium">Depth %</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="62.3%" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="crownAngle"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-ultra-smooth font-medium">Crown Angle</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="34.5°" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="pavilionAngle"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-ultra-smooth font-medium">Pavilion Angle</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="40.8°" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
