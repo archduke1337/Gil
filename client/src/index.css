@@ -59,16 +59,14 @@ img {
   height: auto;
 }
 
-/* Premium 3D Effects */
-.card-3d {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+/* Smooth Card Effects */
+.card-smooth {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
 }
 
-.card-3d:hover {
-  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-8px) scale(1.02);
+.card-smooth:hover {
+  transform: translateY(-4px);
 }
 
 /* Professional Interactive Elements */
@@ -140,20 +138,13 @@ img {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Premium Visual Effects */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+/* Soft Visual Effects */
+.soft-shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.gradient-shadow {
-  box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06),
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+.soft-shadow:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 /* Accessibility Enhancements */
