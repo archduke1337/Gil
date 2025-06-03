@@ -1,4 +1,48 @@
 import { QRCodeSVG } from 'qrcode.react';
+import gilLogoPath from "@assets/1000119055-removebg-preview.png";
+
+// Helper function to generate clarity plot diagram based on clarity grade
+const generateClarityPlotDiagram = (clarityGrade: string) => {
+  const inclusionPatterns: { [key: string]: Array<{x: number, y: number, size: number, type: string}> } = {
+    'FL': [], // Flawless - no inclusions
+    'IF': [], // Internally Flawless - no inclusions
+    'VVS1': [
+      { x: 45, y: 25, size: 0.5, type: 'pinpoint' }
+    ],
+    'VVS2': [
+      { x: 35, y: 30, size: 0.8, type: 'pinpoint' },
+      { x: 50, y: 45, size: 0.6, type: 'pinpoint' }
+    ],
+    'VS1': [
+      { x: 30, y: 25, size: 1, type: 'inclusion' },
+      { x: 55, y: 40, size: 0.8, type: 'pinpoint' }
+    ],
+    'VS2': [
+      { x: 25, y: 30, size: 1.2, type: 'inclusion' },
+      { x: 45, y: 35, size: 1, type: 'inclusion' },
+      { x: 35, y: 50, size: 0.8, type: 'pinpoint' }
+    ],
+    'SI1': [
+      { x: 30, y: 25, size: 1.5, type: 'inclusion' },
+      { x: 50, y: 40, size: 1.2, type: 'inclusion' },
+      { x: 40, y: 55, size: 1, type: 'inclusion' }
+    ],
+    'SI2': [
+      { x: 25, y: 30, size: 2, type: 'inclusion' },
+      { x: 45, y: 25, size: 1.5, type: 'inclusion' },
+      { x: 35, y: 45, size: 1.8, type: 'inclusion' },
+      { x: 55, y: 50, size: 1, type: 'inclusion' }
+    ],
+    'I1': [
+      { x: 20, y: 25, size: 2.5, type: 'inclusion' },
+      { x: 40, y: 30, size: 2, type: 'inclusion' },
+      { x: 30, y: 50, size: 2.2, type: 'inclusion' },
+      { x: 55, y: 45, size: 1.8, type: 'inclusion' }
+    ]
+  };
+  
+  return inclusionPatterns[clarityGrade] || inclusionPatterns['VS1'];
+};
 
 interface GILCertificateData {
   reportNumber: string;
@@ -24,6 +68,12 @@ interface GILCertificateData {
   proportionsDiagram?: string;
   clarityDiagram1?: string;
   clarityDiagram2?: string;
+  tablePercentage?: string;
+  depthPercentage?: string;
+  crownAngle?: string;
+  pavilionAngle?: string;
+  girdleThickness?: string;
+  culetSize?: string;
 }
 
 interface GILCertificateTemplateProps {
@@ -151,7 +201,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
         <div className="flex items-center">
           <div className="relative w-16 h-16 mr-3">
             <img 
-              src="/attached_assets/1000119055-removebg-preview.png" 
+              src={gilLogoPath} 
               alt="GIL - Gemological Institute Laboratory" 
               className="w-full h-full object-contain"
             />
@@ -278,26 +328,57 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               {/* Diamond Proportions Diagram */}
               <div className="mb-4">
                 <svg width="200" height="150" viewBox="0 0 200 150" className="mx-auto">
-                  {/* Profile diagram with measurements */}
                   <text x="100" y="15" textAnchor="middle" fontSize="10" fill="#666">Profile to actual proportions</text>
                   
                   {/* Diamond outline */}
                   <path d="M50 40 L150 40 L130 80 L70 80 Z" fill="none" stroke="#333" strokeWidth="1"/>
                   <path d="M70 80 L100 120 L130 80" fill="none" stroke="#333" strokeWidth="1"/>
                   
-                  {/* Measurement lines and labels */}
+                  {/* Measurement lines and labels using actual data */}
                   <line x1="30" y1="40" x2="170" y2="40" stroke="#666" strokeWidth="0.5"/>
-                  <text x="100" y="35" textAnchor="middle" fontSize="8" fill="#666">50%</text>
+                  <text x="100" y="35" textAnchor="middle" fontSize="8" fill="#666">
+                    {data.tablePercentage || "57%"}
+                  </text>
                   
                   <line x1="60" y1="80" x2="140" y2="80" stroke="#666" strokeWidth="0.5"/>
-                  <text x="100" y="95" textAnchor="middle" fontSize="8" fill="#666">57%</text>
+                  <text x="100" y="95" textAnchor="middle" fontSize="8" fill="#666">
+                    {data.depthPercentage || "62.3%"}
+                  </text>
                   
                   {/* Side measurements */}
-                  <text x="25" y="70" fontSize="8" fill="#666">15.0%</text>
-                  <text x="175" y="70" fontSize="8" fill="#666">35.0%</text>
-                  <text x="60" y="110" fontSize="8" fill="#666">43.5%</text>
-                  <text x="140" y="110" fontSize="8" fill="#666">41.0%</text>
+                  <text x="25" y="70" fontSize="8" fill="#666">{data.crownAngle || "34.5°"}</text>
+                  <text x="175" y="70" fontSize="8" fill="#666">{data.pavilionAngle || "40.8°"}</text>
+                  <text x="60" y="110" fontSize="8" fill="#666">{data.girdleThickness || "Medium"}</text>
+                  <text x="140" y="110" fontSize="8" fill="#666">{data.culetSize || "None"}</text>
                 </svg>
+              </div>
+
+              {/* Proportions Details */}
+              <div className="text-xs space-y-1 mb-4">
+                <div className="flex justify-between">
+                  <span>Table:</span>
+                  <span>{data.tablePercentage || "57%"}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Depth:</span>
+                  <span>{data.depthPercentage || "62.3%"}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Crown Angle:</span>
+                  <span>{data.crownAngle || "34.5°"}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Pavilion Angle:</span>
+                  <span>{data.pavilionAngle || "40.8°"}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Girdle:</span>
+                  <span>{data.girdleThickness || "Medium to Slightly Thick"}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Culet:</span>
+                  <span>{data.culetSize || "None"}</span>
+                </div>
               </div>
 
               {/* Crown and Pavilion Diagrams */}
@@ -306,14 +387,18 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                   <div className="text-xs font-bold mb-2">Crown</div>
                   <svg width="80" height="60" viewBox="0 0 80 60">
                     <path d="M10 40 L70 40 L60 20 L20 20 Z" fill="none" stroke="#333" strokeWidth="1"/>
-                    <text x="40" y="55" textAnchor="middle" fontSize="8" fill="#666">Crown Angle</text>
+                    <text x="40" y="55" textAnchor="middle" fontSize="8" fill="#666">
+                      {data.crownAngle || "34.5°"}
+                    </text>
                   </svg>
                 </div>
                 <div>
                   <div className="text-xs font-bold mb-2">Pavilion</div>
                   <svg width="80" height="60" viewBox="0 0 80 60">
                     <path d="M20 20 L60 20 L40 50 Z" fill="none" stroke="#333" strokeWidth="1"/>
-                    <text x="40" y="55" textAnchor="middle" fontSize="8" fill="#666">Pavilion Angle</text>
+                    <text x="40" y="55" textAnchor="middle" fontSize="8" fill="#666">
+                      {data.pavilionAngle || "40.8°"}
+                    </text>
                   </svg>
                 </div>
               </div>
@@ -385,7 +470,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               <div className="text-center mb-4">
                 <div className="inline-block relative">
                   <img 
-                    src="/attached_assets/1000119055-removebg-preview.png" 
+                    src={gilLogoPath} 
                     alt="GIL Seal" 
                     className="w-12 h-12 object-contain"
                   />
