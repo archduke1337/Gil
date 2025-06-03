@@ -557,6 +557,7 @@ export default function AnalysisGrading() {
               <ul className="space-y-2">
                 <li><Link href="/faqs" className="text-gray-400 hover:text-white transition-colors">FAQs</Link></li>
                 <li><Link href="/about#contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
+                <li><Link href="/admin" className="text-gray-400 hover:text-white transition-colors">Admin Panel</Link></li>
               </ul>
             </div>
           </div>

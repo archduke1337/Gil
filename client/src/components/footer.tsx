@@ -120,6 +120,18 @@ export default function Footer({ variant = "dark" }: FooterProps) {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link 
+                  href="/admin" 
+                  className={`transition-colors ${
+                    isDark 
+                      ? "text-gray-400 hover:text-white" 
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Admin Panel
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
