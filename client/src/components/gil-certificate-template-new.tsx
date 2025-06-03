@@ -500,19 +500,21 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
             </div>
           </div>
 
-          {/* QR Code Section - Positioned below ADDITIONAL INFORMATION */}
-          <div className="text-center mt-4">
-            <div className="inline-block bg-white border-2 border-gray-400 p-2">
-              <QRCodeSVG 
-                value={data.verifierUrl || `https://gilab.info/verify/${data.reportNumber}`}
-                size={60}
-                bgColor="#ffffff"
-                fgColor="#000000"
-                level="H"
-                includeMargin={false}
-              />
+          {/* QR Code Section - Centered below ADDITIONAL INFORMATION */}
+          <div className="w-full flex justify-center mt-6 mb-4">
+            <div className="text-center">
+              <div className="inline-block bg-white border-2 border-gray-400 p-3 rounded">
+                <QRCodeSVG 
+                  value={data.verifierUrl || `https://gilab.info/verify/${data.reportNumber}`}
+                  size={80}
+                  bgColor="#ffffff"
+                  fgColor="#000000"
+                  level="H"
+                  includeMargin={false}
+                />
+              </div>
+              <div className="text-xs mt-2 text-gray-600 font-medium">Scan to verify at gilab.info</div>
             </div>
-            <div className="text-xs mt-2 text-gray-600">Scan to verify at gilab.info</div>
           </div>
 
           {/* GIL Seal */}
