@@ -29,13 +29,18 @@ export default function GemServices() {
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6">
+          <motion.div 
+            className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6 soft-shadow"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
               <Sparkles className="w-8 h-8 text-primary-foreground" />
             </div>
-          </div>
+          </motion.div>
           <motion.h1 
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className="text-4xl md:text-5xl font-bold mb-6 font-display text-ultra-smooth"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -43,7 +48,7 @@ export default function GemServices() {
             Advanced Gem Services
           </motion.h1>
           <motion.p 
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-xl text-muted-foreground max-w-3xl mx-auto text-ultra-smooth"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -55,20 +60,20 @@ export default function GemServices() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Tabs defaultValue="ai-recommendations" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto p-1">
-            <TabsTrigger value="ai-recommendations" className="flex flex-col items-center space-y-2 p-4">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto p-1 rounded-xl soft-shadow bg-white">
+            <TabsTrigger value="ai-recommendations" className="flex flex-col items-center space-y-2 p-4 rounded-lg text-ultra-smooth">
               <Sparkles className="w-5 h-5" />
               <span className="text-sm font-medium">AI Recommendations</span>
             </TabsTrigger>
-            <TabsTrigger value="rarity-map" className="flex flex-col items-center space-y-2 p-4">
+            <TabsTrigger value="rarity-map" className="flex flex-col items-center space-y-2 p-4 rounded-lg text-ultra-smooth">
               <Map className="w-5 h-5" />
               <span className="text-sm font-medium">Rarity Heat Map</span>
             </TabsTrigger>
-            <TabsTrigger value="community" className="flex flex-col items-center space-y-2 p-4">
+            <TabsTrigger value="community" className="flex flex-col items-center space-y-2 p-4 rounded-lg text-ultra-smooth">
               <Users className="w-5 h-5" />
               <span className="text-sm font-medium">Community Showcase</span>
             </TabsTrigger>
-            <TabsTrigger value="search" className="flex flex-col items-center space-y-2 p-4">
+            <TabsTrigger value="search" className="flex flex-col items-center space-y-2 p-4 rounded-lg text-ultra-smooth">
               <Search className="w-5 h-5" />
               <span className="text-sm font-medium">Advanced Search</span>
             </TabsTrigger>
