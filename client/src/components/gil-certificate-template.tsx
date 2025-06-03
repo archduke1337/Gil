@@ -47,6 +47,96 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
   const verificationUrl = `${data.verifierUrl || 'https://gilab.info/verify'}/${data.reportNumber}`;
 
+  // Generate clarity plot diagram based on clarity grade
+  const generateClarityPlotDiagram = (clarityGrade: string) => {
+    const clarityInclusionPatterns: { [key: string]: Array<{ x: number, y: number, size: number, type: 'inclusion' | 'blemish' }> } = {
+      'FL': [], // Flawless - no inclusions
+      'IF': [], // Internally Flawless - no inclusions
+      'VVS1': [
+        { x: 55, y: 35, size: 0.8, type: 'inclusion' }
+      ],
+      'VVS2': [
+        { x: 45, y: 40, size: 1, type: 'inclusion' },
+        { x: 65, y: 45, size: 0.8, type: 'inclusion' }
+      ],
+      'VS1': [
+        { x: 50, y: 35, size: 1.2, type: 'inclusion' },
+        { x: 60, y: 50, size: 1, type: 'inclusion' }
+      ],
+      'VS2': [
+        { x: 45, y: 40, size: 1.5, type: 'inclusion' },
+        { x: 55, y: 55, size: 1.2, type: 'inclusion' },
+        { x: 65, y: 45, size: 1, type: 'inclusion' }
+      ],
+      'SI1': [
+        { x: 45, y: 40, size: 2, type: 'inclusion' },
+        { x: 55, y: 55, size: 1.8, type: 'inclusion' },
+        { x: 65, y: 45, size: 1.5, type: 'inclusion' },
+        { x: 50, y: 65, size: 1.2, type: 'inclusion' }
+      ],
+      'SI2': [
+        { x: 40, y: 40, size: 2.5, type: 'inclusion' },
+        { x: 55, y: 50, size: 2.2, type: 'inclusion' },
+        { x: 70, y: 45, size: 2, type: 'inclusion' },
+        { x: 50, y: 65, size: 1.8, type: 'inclusion' },
+        { x: 35, y: 60, size: 1.5, type: 'inclusion' }
+      ],
+      'I1': [
+        { x: 40, y: 40, size: 3, type: 'inclusion' },
+        { x: 55, y: 50, size: 2.8, type: 'inclusion' },
+        { x: 70, y: 45, size: 2.5, type: 'inclusion' },
+        { x: 50, y: 65, size: 2.2, type: 'inclusion' },
+        { x: 35, y: 60, size: 2, type: 'inclusion' },
+        { x: 60, y: 35, size: 1.8, type: 'inclusion' }
+      ],
+      'I2': [
+        { x: 35, y: 35, size: 4, type: 'inclusion' },
+        { x: 55, y: 50, size: 3.5, type: 'inclusion' },
+        { x: 75, y: 45, size: 3, type: 'inclusion' },
+        { x: 45, y: 70, size: 2.8, type: 'inclusion' },
+        { x: 30, y: 65, size: 2.5, type: 'inclusion' },
+        { x: 65, y: 30, size: 2.2, type: 'inclusion' },
+        { x: 50, y: 35, size: 2, type: 'inclusion' }
+      ],
+      'I3': [
+        { x: 30, y: 30, size: 5, type: 'inclusion' },
+        { x: 55, y: 50, size: 4.5, type: 'inclusion' },
+        { x: 80, y: 45, size: 4, type: 'inclusion' },
+        { x: 40, y: 75, size: 3.5, type: 'inclusion' },
+        { x: 25, y: 70, size: 3, type: 'inclusion' },
+        { x: 70, y: 25, size: 2.8, type: 'inclusion' },
+        { x: 45, y: 30, size: 2.5, type: 'inclusion' },
+        { x: 60, y: 65, size: 2.2, type: 'inclusion' }
+      ]
+    };
+
+    return clarityInclusionPatterns[clarityGrade] || clarityInclusionPatterns['VS2'];
+  };
+
+  // Generate color grade diagram based on color grade
+  const generateColorGradeDiagram = (colorGrade: string) => {
+    const colorGradients: { [key: string]: { start: string, end: string, description: string } } = {
+      'D': { start: '#ffffff', end: '#f8f9fa', description: 'Absolutely Colorless' },
+      'E': { start: '#f8f9fa', end: '#f1f3f4', description: 'Colorless' },
+      'F': { start: '#f1f3f4', end: '#e8eaed', description: 'Colorless' },
+      'G': { start: '#e8eaed', end: '#dadce0', description: 'Near Colorless' },
+      'H': { start: '#dadce0', end: '#bdc1c6', description: 'Near Colorless' },
+      'I': { start: '#bdc1c6', end: '#9aa0a6', description: 'Near Colorless' },
+      'J': { start: '#9aa0a6', end: '#80868b', description: 'Near Colorless' },
+      'K': { start: '#fef7e0', end: '#fef3c7', description: 'Faint Yellow' },
+      'L': { start: '#fef3c7', end: '#fde68a', description: 'Faint Yellow' },
+      'M': { start: '#fde68a', end: '#fcd34d', description: 'Faint Yellow' },
+      'N': { start: '#fcd34d', end: '#f59e0b', description: 'Very Light Yellow' },
+      'O': { start: '#f59e0b', end: '#d97706', description: 'Very Light Yellow' },
+      'P': { start: '#d97706', end: '#b45309', description: 'Very Light Yellow' },
+      'Q': { start: '#b45309', end: '#92400e', description: 'Light Yellow' },
+      'R': { start: '#92400e', end: '#78350f', description: 'Light Yellow' },
+      'S': { start: '#78350f', end: '#451a03', description: 'Light Yellow' }
+    };
+
+    return colorGradients[colorGrade] || colorGradients['H'];
+  };
+
   return (
     <div className={`bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-8 font-serif text-black ${className}`} 
          style={{ 
@@ -246,30 +336,92 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-amber-50 border-2 border-amber-300 p-3 rounded-lg shadow-sm" style={{ height: '130px' }}>
-              <div className="text-center text-xs mb-2 font-medium text-amber-800">Crown View</div>
-              <div className="flex justify-center items-center h-20">
-                <svg width="110" height="110" viewBox="0 0 110 110">
-                  <polygon points="55,15 85,40 85,70 55,95 25,70 25,40" fill="none" stroke="#92400e" strokeWidth="1.5"/>
-                  <circle cx="55" cy="55" r="2.5" fill="#dc2626"/>
-                  <circle cx="48" cy="45" r="1.5" fill="#dc2626"/>
-                  <circle cx="62" cy="48" r="1" fill="#dc2626"/>
-                </svg>
+          {data.clarityPlotDiagram ? (
+            // Dynamic Clarity Plot Diagram based on actual clarity grade
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-amber-50 border-2 border-amber-300 p-3 rounded-lg shadow-sm" style={{ height: '140px' }}>
+                <div className="text-center text-xs mb-2 font-medium text-amber-800">Crown View - {data.clarityGrade}</div>
+                <div className="flex justify-center items-center h-24">
+                  <svg width="120" height="120" viewBox="0 0 120 120">
+                    {/* Diamond outline */}
+                    <polygon points="60,15 95,45 95,75 60,105 25,75 25,45" fill="none" stroke="#92400e" strokeWidth="1.8"/>
+                    <polygon points="60,25 85,45 85,75 60,95 35,75 35,45" fill="none" stroke="#d97706" strokeWidth="1"/>
+                    
+                    {/* Dynamic inclusions based on clarity grade */}
+                    {generateClarityPlotDiagram(data.clarityGrade).map((inclusion, index) => (
+                      <circle 
+                        key={`crown-${index}`}
+                        cx={inclusion.x + 5} 
+                        cy={inclusion.y + 5} 
+                        r={inclusion.size} 
+                        fill={inclusion.type === 'inclusion' ? "#dc2626" : "#f59e0b"}
+                        opacity="0.8"
+                      />
+                    ))}
+                    
+                    {/* Grade label */}
+                    <text x="60" y="115" fontSize="8" fill="#92400e" fontFamily="Georgia" textAnchor="middle">
+                      Clarity: {data.clarityGrade}
+                    </text>
+                  </svg>
+                </div>
+              </div>
+              
+              <div className="bg-amber-50 border-2 border-amber-300 p-3 rounded-lg shadow-sm" style={{ height: '140px' }}>
+                <div className="text-center text-xs mb-2 font-medium text-amber-800">Profile View - {data.clarityGrade}</div>
+                <div className="flex justify-center items-center h-24">
+                  <svg width="120" height="120" viewBox="0 0 120 120">
+                    {/* Diamond profile outline */}
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="#92400e" strokeWidth="1.8"/>
+                    <circle cx="60" cy="60" r="35" fill="none" stroke="#d97706" strokeWidth="1"/>
+                    
+                    {/* Dynamic inclusions based on clarity grade */}
+                    {generateClarityPlotDiagram(data.clarityGrade).map((inclusion, index) => (
+                      <circle 
+                        key={`profile-${index}`}
+                        cx={inclusion.x + 5} 
+                        cy={inclusion.y + 5} 
+                        r={inclusion.size} 
+                        fill={inclusion.type === 'inclusion' ? "#dc2626" : "#f59e0b"}
+                        opacity="0.8"
+                      />
+                    ))}
+                    
+                    {/* Grade label */}
+                    <text x="60" y="115" fontSize="8" fill="#92400e" fontFamily="Georgia" textAnchor="middle">
+                      Profile: {data.clarityGrade}
+                    </text>
+                  </svg>
+                </div>
               </div>
             </div>
-            <div className="bg-amber-50 border-2 border-amber-300 p-3 rounded-lg shadow-sm" style={{ height: '130px' }}>
-              <div className="text-center text-xs mb-2 font-medium text-amber-800">Profile View</div>
-              <div className="flex justify-center items-center h-20">
-                <svg width="110" height="110" viewBox="0 0 110 110">
-                  <circle cx="55" cy="55" r="45" fill="none" stroke="#92400e" strokeWidth="1.5"/>
-                  <circle cx="55" cy="55" r="2.5" fill="#dc2626"/>
-                  <circle cx="48" cy="45" r="1.5" fill="#dc2626"/>
-                  <circle cx="62" cy="48" r="1" fill="#dc2626"/>
-                </svg>
+          ) : (
+            // Standard clarity diagrams when clarity plot is not selected
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-amber-50 border-2 border-amber-300 p-3 rounded-lg shadow-sm" style={{ height: '130px' }}>
+                <div className="text-center text-xs mb-2 font-medium text-amber-800">Crown View</div>
+                <div className="flex justify-center items-center h-20">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <polygon points="55,15 85,40 85,70 55,95 25,70 25,40" fill="none" stroke="#92400e" strokeWidth="1.5"/>
+                    <circle cx="55" cy="55" r="2.5" fill="#dc2626"/>
+                    <circle cx="48" cy="45" r="1.5" fill="#dc2626"/>
+                    <circle cx="62" cy="48" r="1" fill="#dc2626"/>
+                  </svg>
+                </div>
+              </div>
+              <div className="bg-amber-50 border-2 border-amber-300 p-3 rounded-lg shadow-sm" style={{ height: '130px' }}>
+                <div className="text-center text-xs mb-2 font-medium text-amber-800">Profile View</div>
+                <div className="flex justify-center items-center h-20">
+                  <svg width="110" height="110" viewBox="0 0 110 110">
+                    <circle cx="55" cy="55" r="45" fill="none" stroke="#92400e" strokeWidth="1.5"/>
+                    <circle cx="55" cy="55" r="2.5" fill="#dc2626"/>
+                    <circle cx="48" cy="45" r="1.5" fill="#dc2626"/>
+                    <circle cx="62" cy="48" r="1" fill="#dc2626"/>
+                  </svg>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Right Column */}
@@ -323,6 +475,81 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               </div>
             </div>
           </div>
+
+          {/* Color Grade Diagram - Conditional */}
+          {data.colorGradeDiagram && (
+            <div className="bg-amber-50 border-2 border-amber-300 p-3 rounded-lg shadow-sm">
+              <div className="text-xs font-bold mb-3 text-center text-amber-900 tracking-wider" style={{ fontFamily: 'Georgia, serif' }}>
+                COLOR GRADE: {data.colorGrade}
+              </div>
+              
+              <div className="space-y-3">
+                {/* Color grade visualization */}
+                <div className="bg-white p-3 rounded border border-amber-200">
+                  <div className="text-center text-xs mb-2 font-medium text-amber-800">
+                    {generateColorGradeDiagram(data.colorGrade).description}
+                  </div>
+                  
+                  {/* Color gradient display */}
+                  <div className="relative h-12 rounded border border-amber-300 overflow-hidden">
+                    <div 
+                      className="absolute inset-0"
+                      style={{
+                        background: `linear-gradient(to right, ${generateColorGradeDiagram(data.colorGrade).start}, ${generateColorGradeDiagram(data.colorGrade).end})`
+                      }}
+                    ></div>
+                    
+                    {/* Grade marker */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                      <div className="bg-amber-900 text-white px-2 py-1 rounded text-xs font-bold border border-amber-700">
+                        {data.colorGrade}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Color scale reference */}
+                  <div className="mt-2 flex justify-between text-xs text-amber-700">
+                    <span>D (Colorless)</span>
+                    <span>Z (Light Yellow)</span>
+                  </div>
+                </div>
+                
+                {/* Diamond silhouette with color */}
+                <div className="bg-white p-3 rounded border border-amber-200 text-center">
+                  <div className="text-xs mb-2 font-medium text-amber-800">Diamond Color Representation</div>
+                  <div className="flex justify-center">
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                      <defs>
+                        <linearGradient id={`colorGrade-${data.colorGrade}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor={generateColorGradeDiagram(data.colorGrade).start} />
+                          <stop offset="100%" stopColor={generateColorGradeDiagram(data.colorGrade).end} />
+                        </linearGradient>
+                      </defs>
+                      
+                      {/* Diamond shape */}
+                      <polygon 
+                        points="40,8 65,28 65,52 40,72 15,52 15,28" 
+                        fill={`url(#colorGrade-${data.colorGrade})`}
+                        stroke="#92400e" 
+                        strokeWidth="1.5"
+                      />
+                      <polygon 
+                        points="40,18 55,28 55,52 40,62 25,52 25,28" 
+                        fill="none" 
+                        stroke="#d97706" 
+                        strokeWidth="1"
+                      />
+                      
+                      {/* Grade label */}
+                      <text x="40" y="76" fontSize="8" fill="#92400e" fontFamily="Georgia" textAnchor="middle">
+                        Grade: {data.colorGrade}
+                      </text>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Enhanced GIL Seal */}
           <div className="text-center">
