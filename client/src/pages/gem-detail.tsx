@@ -917,6 +917,7 @@ const gemDetailData: { [key: string]: GemDetail } = {
 };
 
 export default function GemDetail() {
+  usePageTitle("Gemstone Details - Comprehensive Analysis");
   const { id } = useParams();
   
   if (!id || !gemDetailData[id]) {

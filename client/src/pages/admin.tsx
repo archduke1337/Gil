@@ -8,6 +8,7 @@ import logoPath from "@assets/1000119055-removebg-preview.png";
 import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function Admin() {
+  usePageTitle("Admin Dashboard - Certificate Management");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (

@@ -685,7 +685,7 @@ export default function Interactive3DGem({ gemType, className = "" }: Interactiv
                     <h5 className="text-sm font-semibold mb-2">Inclusions</h5>
                     <ul className="text-sm space-y-1">
                       {data.inclusions.map((inclusion, index) => (
-                        <li key={index}>• {inclusion}</li>
+                        <li key={index}>• {inclusion.type} ({inclusion.location}) - {inclusion.impact}</li>
                       ))}
                     </ul>
                   </div>

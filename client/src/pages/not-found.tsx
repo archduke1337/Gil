@@ -1,8 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function NotFound() {
+  usePageTitle("Page Not Found - 404 Error");
+  
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#ece5dc] to-white">
       <Card className="w-full max-w-md mx-4 border-[#8c745c]/20">

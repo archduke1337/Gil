@@ -102,6 +102,7 @@ const faqs = [
 ];
 
 export default function FAQs() {
+  usePageTitle("Frequently Asked Questions - Gemological Services Help");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);

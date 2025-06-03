@@ -13,6 +13,7 @@ import type { Certificate } from "@shared/schema";
 import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function GemServices() {
+  usePageTitle("Gem Services - Advanced Tools & Community");
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);
 
   const { data: certificatesData } = useQuery<{ certificates: Certificate[] }>({
