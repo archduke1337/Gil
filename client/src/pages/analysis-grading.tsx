@@ -158,30 +158,6 @@ export default function AnalysisGrading() {
         </div>
       </div>
 
-      {/* Interactive 3D Gem Examination */}
-      <div className="py-16 bg-card">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-foreground mb-4 text-ultra-smooth">Interactive 3D Gem Examination</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-ultra-smooth">
-                Experience our advanced 3D visualization technology for detailed gemstone analysis
-              </p>
-            </div>
-            <div className="text-center text-muted-foreground text-ultra-smooth">
-              Interactive 3D analysis available in the enhanced section below
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-
-
       {/* Diamond Grading - 4Cs */}
       <div className="py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
