@@ -318,11 +318,11 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
                   <div className="flex-1">
                     <h3 className="font-semibold text-gray-900">{certificate.referenceNumber}</h3>
                     <p className="text-sm text-gray-600">
-                      Uploaded: {new Date(certificate.uploadDate).toLocaleDateString('en-US', {
+                      Uploaded: {certificate.uploadDate ? new Date(certificate.uploadDate).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric'
-                      })}
+                      }) : 'Date not available'}
                     </p>
                     <div className="flex items-center space-x-4 mt-2 text-xs text-gray-500">
                       {certificate.caratWeight && <span>{certificate.caratWeight} ct</span>}

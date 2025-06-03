@@ -321,11 +321,11 @@ export default function CertificateResult({ result }: CertificateResultProps) {
                     <div className="flex justify-between">
                       <dt className="text-gray-600">Issue Date:</dt>
                       <dd className="font-medium text-gray-900">
-                        {new Date(certificate.issueDate).toLocaleDateString('en-US', {
+                        {certificate.issueDate ? new Date(certificate.issueDate).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric'
-                        })}
+                        }) : 'Not specified'}
                       </dd>
                     </div>
                     <div className="flex justify-between">

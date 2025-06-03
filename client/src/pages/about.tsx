@@ -94,7 +94,7 @@ export default function About() {
             </motion.div>
           </motion.div>
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="text-hero font-heading mb-8 text-ultra-smooth"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -102,7 +102,7 @@ export default function About() {
             Gemological Institute Laboratories
           </motion.h1>
           <motion.p 
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8"
+            className="text-body-lg font-body text-muted-foreground max-w-3xl mx-auto mb-10 text-ultra-smooth"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -121,7 +121,7 @@ export default function About() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-xl soft-shadow">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-3xl soft-shadow">
                   <Shield className="w-5 h-5 mr-2" />
                   Verify Certificate
                 </Button>
@@ -133,7 +133,7 @@ export default function About() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 rounded-xl soft-shadow">
+                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 rounded-3xl soft-shadow">
                   <Gem className="w-5 h-5 mr-2" />
                   Explore Services
                 </Button>
