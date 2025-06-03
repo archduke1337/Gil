@@ -92,7 +92,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
         gemType: data.gemType,
         shape: data.shape,
         dimensions: data.dimensions,
-        caratWeight: data.caratWeight,
+        caratWeight: parseFloat(data.caratWeight).toString(),
         colorGrade: data.colorGrade,
         clarityGrade: data.clarityGrade,
         cutGrade: data.cutGrade,
