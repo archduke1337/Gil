@@ -65,7 +65,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+              className="text-hero font-heading text-gray-900 mb-6 text-ultra-smooth"
             >
               Gemological Institute
               <span className="block text-[#8c745c]">Laboratories</span>
@@ -75,7 +75,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed"
+              className="text-body-lg font-body text-gray-600 mb-8 max-w-4xl mx-auto text-ultra-smooth"
             >
               Leading the industry in diamond certification and gemological 
               expertise with cutting-edge technology and uncompromising standards
