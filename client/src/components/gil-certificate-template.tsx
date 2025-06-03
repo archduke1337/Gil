@@ -138,199 +138,317 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
   };
 
   return (
-    <div className={`relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-8 font-serif text-black ${className}`} 
+    <div className={`bg-stone-100 p-6 font-sans text-black ${className}`} 
          style={{ 
            width: '297mm', 
            height: '210mm', 
-           fontSize: '10px',
-           background: 'linear-gradient(135deg, #FEF7ED 0%, #FED7AA 20%, #FDBA74 40%, #FB923C 60%, #F97316 80%, #EA580C 100%)',
-           fontFamily: 'Georgia, "Times New Roman", serif',
-           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-           filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
+           fontSize: '11px',
+           backgroundColor: '#F5F5DC',
+           fontFamily: 'Arial, sans-serif',
+           lineHeight: '1.2'
          }}>
       
-      {/* Enhanced Paper Texture with Security Pattern */}
-      <div className="absolute inset-0 paper-texture certificate-watermark opacity-10 pointer-events-none"></div>
-      
-      {/* Animated Security Watermark */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-3 pointer-events-none transform rotate-45"
-           style={{ animation: 'securityPattern 6s ease-in-out infinite' }}>
-        <div className="text-8xl font-bold text-amber-800" 
-             style={{ 
-               fontFamily: 'Georgia, serif',
-               textShadow: '4px 4px 8px rgba(146, 64, 14, 0.2)',
-               background: 'linear-gradient(45deg, #92400e, #d97706, #92400e)',
-               WebkitBackgroundClip: 'text',
-               WebkitTextFillColor: 'transparent'
-             }}>
-          GIL AUTHENTIC
+      {/* Header Section */}
+      <div className="flex justify-between items-start mb-6">
+        {/* GIL Logo */}
+        <div className="flex items-center">
+          <div className="relative w-16 h-16 mr-3">
+            <svg viewBox="0 0 100 100" className="w-full h-full">
+              <circle cx="50" cy="50" r="48" fill="none" stroke="#8B7355" strokeWidth="2"/>
+              <g transform="translate(50,50)">
+                {/* Radiating lines */}
+                {[...Array(24)].map((_, i) => (
+                  <line 
+                    key={i}
+                    x1="0" y1="-35" 
+                    x2="0" y2="-40" 
+                    stroke="#8B7355" 
+                    strokeWidth="1"
+                    transform={`rotate(${i * 15})`}
+                  />
+                ))}
+                <circle cx="0" cy="0" r="25" fill="none" stroke="#8B7355" strokeWidth="2"/>
+                <text x="0" y="5" textAnchor="middle" fontSize="12" fill="#8B7355" fontWeight="bold">GIL</text>
+              </g>
+            </svg>
+          </div>
+          <div className="text-2xl font-bold text-black tracking-wider">GIL°</div>
+        </div>
+
+        {/* Center - Report Info */}
+        <div className="text-center">
+          <div className="text-sm text-gray-600 mb-1">GIL REPORT</div>
+          <div className="text-3xl font-bold text-black tracking-wider">{data.reportNumber}</div>
+          <div className="text-xs text-gray-600 mt-1">Verify this report at gilgem.com</div>
+        </div>
+
+        {/* Right - Facsimile */}
+        <div className="text-right text-xs max-w-48">
+          <div className="font-bold mb-2 text-black">FACSIMILE</div>
+          <div className="text-gray-700 leading-tight">
+            This is a digital representation of the original GIL Report. This representation might not
+            be accepted in lieu of the original GIL Report in certain circumstances. The original GIL
+            Report includes security features which are not reproduced in this facsimile.
+          </div>
         </div>
       </div>
-      
-      {/* Elegant Header with 3D Effects */}
-      <div className="relative mb-6 transform perspective-1000">
-        {/* Multi-layer shadow effect */}
-        <div className="absolute -inset-3 bg-gradient-to-r from-amber-900 via-orange-800 to-amber-900 rounded-lg opacity-10 blur-sm"></div>
-        <div className="absolute -inset-2 bg-gradient-to-r from-amber-800 via-orange-700 to-amber-800 rounded-lg opacity-15 blur-sm"></div>
-        <div className="absolute -inset-1 border-2 border-amber-700 rounded-lg shadow-lg"></div>
+
+      {/* Main Content Layout */}
+      <div className="grid grid-cols-3 gap-6">
         
-        {/* Main header with 3D depth */}
-        <div className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 p-6 rounded-lg border-2 border-amber-400"
-             style={{
-               boxShadow: `
-                 0 8px 32px rgba(251, 146, 60, 0.3),
-                 inset 0 1px 0 rgba(255, 255, 255, 0.5),
-                 inset 0 -1px 0 rgba(251, 146, 60, 0.2),
-                 0 4px 8px rgba(0, 0, 0, 0.1)
-               `,
-               background: 'linear-gradient(145deg, #fef3c7, #fed7aa, #fdba74)',
-               transform: 'translateZ(0)'
-             }}>
-          
-          {/* Embossed border effect */}
-          <div className="absolute inset-2 border border-amber-300 rounded-lg"
-               style={{
-                 boxShadow: 'inset 2px 2px 4px rgba(251, 146, 60, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.3)'
-               }}>
-          </div>
-          
-          <div className="relative flex items-start justify-between z-10">
-            
-            {/* Left: Enhanced 3D Logo and Company Name */}
-            <div className="flex items-center space-x-6">
-              <div className="relative transform-gpu">
-                {/* Multiple shadow layers for depth */}
-                <div className="absolute -inset-2 bg-amber-900 rounded-full opacity-20 blur-md transform rotate-6"></div>
-                <div className="absolute -inset-1 bg-amber-800 rounded-full opacity-25 blur-sm transform rotate-3"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-700 to-orange-800 rounded-full transform rotate-12 opacity-40"></div>
-                
-                {/* Layered background for 3D effect */}
-                <div className="absolute inset-1 bg-gradient-to-br from-yellow-200 via-amber-400 to-orange-500 rounded-full"
-                     style={{
-                       boxShadow: 'inset 2px 2px 8px rgba(146, 64, 14, 0.3), inset -2px -2px 8px rgba(255, 255, 255, 0.4)'
-                     }}>
-                </div>
-                
-                {/* Main logo with enhanced effects */}
-                <img src={logoPath} alt="GIL Logo" 
-                     className="relative w-20 h-20 rounded-full border-4 border-amber-700 z-10" 
-                     style={{
-                       boxShadow: `
-                         0 8px 16px rgba(146, 64, 14, 0.4),
-                         0 4px 8px rgba(0, 0, 0, 0.2),
-                         inset 0 2px 0 rgba(255, 255, 255, 0.3),
-                         inset 0 -2px 0 rgba(146, 64, 14, 0.2)
-                       `,
-                       filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))'
-                     }} />
-                
-                {/* Holographic effect overlay */}
-                <div className="absolute inset-2 rounded-full opacity-20 pointer-events-none"
-                     style={{
-                       background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%)',
-                       animation: 'shimmer 3s ease-in-out infinite'
-                     }}>
-                </div>
-              </div>
-              
-              <div>
-                <div className="text-4xl font-bold tracking-wide text-amber-900 mb-1" 
-                     style={{ 
-                       fontFamily: 'Georgia, serif', 
-                       textShadow: '2px 2px 4px rgba(146, 64, 14, 0.3), 0 0 8px rgba(251, 146, 60, 0.2)',
-                       background: 'linear-gradient(135deg, #92400e, #d97706, #f59e0b)',
-                       WebkitBackgroundClip: 'text',
-                       WebkitTextFillColor: 'transparent',
-                       filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.1))'
-                     }}>
-                  GIL°
-                </div>
-                <div className="text-sm text-amber-800 font-semibold tracking-wide"
-                     style={{ 
-                       textShadow: '1px 1px 2px rgba(146, 64, 14, 0.2)' 
-                     }}>
-                  Gemological Institute Laboratory
-                </div>
-                <div className="text-xs text-amber-700 italic mt-1">Excellence in Diamond Certification</div>
-              </div>
-            </div>
-            
-            {/* Center: Enhanced 3D Report Number */}
-            <div className="text-center relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-amber-700 to-orange-700 rounded-lg opacity-20 blur-md"></div>
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-lg opacity-30"></div>
-              <div className="relative bg-gradient-to-br from-white via-amber-50 to-orange-50 rounded-lg p-4 border-3 border-amber-600"
-                   style={{
-                     boxShadow: `
-                       0 12px 30px rgba(251, 146, 60, 0.4),
-                       inset 0 3px 0 rgba(255, 255, 255, 0.8),
-                       inset 0 -3px 0 rgba(251, 146, 60, 0.3),
-                       0 6px 12px rgba(0, 0, 0, 0.15)
-                     `,
-                     transform: 'translateZ(0)'
-                   }}>
-                <div className="text-sm font-bold text-amber-800 mb-2 tracking-wider" 
-                     style={{ textShadow: '1px 1px 3px rgba(146, 64, 14, 0.3)' }}>
-                  GIL REPORT
-                </div>
-                <div className="text-2xl font-bold tracking-wider text-amber-900 mb-2" 
-                     style={{ 
-                       fontFamily: 'Georgia, serif',
-                       textShadow: '3px 3px 6px rgba(146, 64, 14, 0.4), 0 0 10px rgba(251, 146, 60, 0.3)',
-                       background: 'linear-gradient(135deg, #92400e, #d97706, #f59e0b)',
-                       WebkitBackgroundClip: 'text',
-                       WebkitTextFillColor: 'transparent',
-                       filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.2))'
-                     }}>
-                  {data.reportNumber}
-                </div>
-                <div className="text-xs text-amber-700 italic font-medium" 
-                     style={{ textShadow: '1px 1px 2px rgba(146, 64, 14, 0.2)' }}>
-                  Verify this report at gilgem.com
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Facsimile Notice */}
-            <div className="text-right max-w-48">
-              <div className="text-xs font-bold mb-2 text-amber-900 tracking-wider">FACSIMILE</div>
-              <div className="text-xs leading-tight text-amber-800 bg-amber-50 p-2 rounded border border-amber-200">
-                This is a digital representation of the original GIL Report. This representation might not
-                be accepted in lieu of the original GIL Report in certain circumstances. The original GIL
-                Report includes security features which are not reproduced in this facsimile.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-12 gap-6">
         {/* Left Column */}
-        <div className="col-span-4 space-y-4">
-          {/* Natural Diamond Grading Report */}
-          <div className="bg-gradient-to-r from-amber-800 to-orange-800 text-white p-3 rounded-lg shadow-md border border-amber-600">
-            <div className="text-xs font-bold text-center tracking-wider" style={{ fontFamily: 'Georgia, serif' }}>
+        <div className="space-y-4">
+          
+          {/* GIL Natural Diamond Grading Report Section */}
+          <div>
+            <div className="bg-amber-900 text-white p-2 text-sm font-bold tracking-wide" style={{ backgroundColor: '#8B7355' }}>
               GIL NATURAL DIAMOND GRADING REPORT
             </div>
+            <div className="bg-white border border-gray-300 p-3 space-y-2 text-sm">
+              <div className="text-center font-bold mb-2">JULY 26, 2025</div>
+              <div className="flex justify-between">
+                <span>GIL Report Number</span>
+                <span className="font-mono">{data.reportNumber}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Shape and Cutting Style</span>
+                <span>{data.shape}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Measurement</span>
+                <span>{data.measurements}</span>
+              </div>
+            </div>
           </div>
+
+          {/* Grading Result Section */}
+          <div>
+            <div className="bg-amber-900 text-white p-2 text-sm font-bold tracking-wide" style={{ backgroundColor: '#8B7355' }}>
+              GRADING RESULT
+            </div>
+            <div className="bg-white border border-gray-300 p-3 space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span>Carat Weight</span>
+                <span className="font-bold">{data.caratWeight} carat</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Color Grade</span>
+                <span className="font-bold">{data.colorGrade}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Clarity Grade</span>
+                <span className="font-bold">{data.clarityGrade}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Grading Information Section */}
+          <div>
+            <div className="bg-amber-900 text-white p-2 text-sm font-bold tracking-wide" style={{ backgroundColor: '#8B7355' }}>
+              ADDITIONAL GRADING INFORMATION
+            </div>
+            <div className="bg-white border border-gray-300 p-3 space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span>Polish</span>
+                <span>{data.polish}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Symmetry</span>
+                <span>{data.symmetry}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Fluorescence</span>
+                <span>{data.fluorescence}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Inscription(s)</span>
+                <span className="font-mono text-xs">{data.inscription || `GIL ${data.reportNumber}`}</span>
+              </div>
+              <div className="mt-3">
+                <div className="text-xs font-bold mb-1">Comments:</div>
+                <div className="text-xs">{data.comments || "Clouds are not shown. Pinpoints are not shown."}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Center Column - Additional Information */}
+        <div className="space-y-4">
           
-          <div className="bg-amber-50 p-3 rounded-lg border border-amber-200 shadow-sm">
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between border-b border-amber-200 pb-1">
-                <span className="text-amber-800 font-medium">{formatDate(data.reportDate)}</span>
+          {/* Additional Information Section */}
+          <div>
+            <div className="bg-amber-900 text-white p-2 text-sm font-bold tracking-wide" style={{ backgroundColor: '#8B7355' }}>
+              ADDITIONAL INFORMATION
+            </div>
+            <div className="bg-white border border-gray-300 p-3">
+              
+              {/* Diamond Proportions Diagram */}
+              <div className="mb-4">
+                <svg width="200" height="150" viewBox="0 0 200 150" className="mx-auto">
+                  {/* Profile diagram with measurements */}
+                  <text x="100" y="15" textAnchor="middle" fontSize="10" fill="#666">Profile to actual proportions</text>
+                  
+                  {/* Diamond outline */}
+                  <path d="M50 40 L150 40 L130 80 L70 80 Z" fill="none" stroke="#333" strokeWidth="1"/>
+                  <path d="M70 80 L100 120 L130 80" fill="none" stroke="#333" strokeWidth="1"/>
+                  
+                  {/* Measurement lines and labels */}
+                  <line x1="30" y1="40" x2="170" y2="40" stroke="#666" strokeWidth="0.5"/>
+                  <text x="100" y="35" textAnchor="middle" fontSize="8" fill="#666">50%</text>
+                  
+                  <line x1="60" y1="80" x2="140" y2="80" stroke="#666" strokeWidth="0.5"/>
+                  <text x="100" y="95" textAnchor="middle" fontSize="8" fill="#666">57%</text>
+                  
+                  {/* Side measurements */}
+                  <text x="25" y="70" fontSize="8" fill="#666">15.0%</text>
+                  <text x="175" y="70" fontSize="8" fill="#666">35.0%</text>
+                  <text x="60" y="110" fontSize="8" fill="#666">43.5%</text>
+                  <text x="140" y="110" fontSize="8" fill="#666">41.0%</text>
+                </svg>
               </div>
-              <div className="flex justify-between">
-                <span className="text-amber-700">GIL Report Number</span>
-                <span className="font-mono font-bold text-amber-900">{data.reportNumber}</span>
+
+              {/* Crown and Pavilion Diagrams */}
+              <div className="grid grid-cols-2 gap-4 text-center">
+                <div>
+                  <div className="text-xs font-bold mb-2">Crown</div>
+                  <svg width="80" height="60" viewBox="0 0 80 60">
+                    <path d="M10 40 L70 40 L60 20 L20 20 Z" fill="none" stroke="#333" strokeWidth="1"/>
+                    <text x="40" y="55" textAnchor="middle" fontSize="8" fill="#666">Crown Angle</text>
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-xs font-bold mb-2">Pavilion</div>
+                  <svg width="80" height="60" viewBox="0 0 80 60">
+                    <path d="M20 20 L60 20 L40 50 Z" fill="none" stroke="#333" strokeWidth="1"/>
+                    <text x="40" y="55" textAnchor="middle" fontSize="8" fill="#666">Pavilion Angle</text>
+                  </svg>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-amber-700">Shape and Cutting Style</span>
-                <span className="font-medium text-amber-900">{data.shape}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column */}
+        <div className="space-y-4">
+          
+          {/* Clarity Characteristics Section */}
+          <div>
+            <div className="bg-amber-900 text-white p-2 text-sm font-bold tracking-wide" style={{ backgroundColor: '#8B7355' }}>
+              CLARITY CHARACTERISTICS
+            </div>
+            <div className="bg-white border border-gray-300 p-3">
+              
+              {data.clarityPlotDiagram ? (
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="text-center">
+                    <div className="text-xs mb-2">Crown View</div>
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                      <polygon points="40,10 65,30 65,50 40,70 15,50 15,30" fill="none" stroke="#333" strokeWidth="1"/>
+                      {generateClarityPlotDiagram(data.clarityGrade).map((inclusion, index) => (
+                        <circle 
+                          key={`crown-${index}`}
+                          cx={inclusion.x + 10} 
+                          cy={inclusion.y + 10} 
+                          r={inclusion.size} 
+                          fill={inclusion.type === 'inclusion' ? "#666" : "#999"}
+                          opacity="0.8"
+                        />
+                      ))}
+                    </svg>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs mb-2">Profile View</div>
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                      <circle cx="40" cy="40" r="30" fill="none" stroke="#333" strokeWidth="1"/>
+                      {generateClarityPlotDiagram(data.clarityGrade).map((inclusion, index) => (
+                        <circle 
+                          key={`profile-${index}`}
+                          cx={inclusion.x + 10} 
+                          cy={inclusion.y + 10} 
+                          r={inclusion.size} 
+                          fill={inclusion.type === 'inclusion' ? "#666" : "#999"}
+                          opacity="0.8"
+                        />
+                      ))}
+                    </svg>
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="text-center">
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                      <polygon points="40,10 65,30 65,50 40,70 15,50 15,30" fill="none" stroke="#333" strokeWidth="1"/>
+                    </svg>
+                  </div>
+                  <div className="text-center">
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                      <circle cx="40" cy="40" r="30" fill="none" stroke="#333" strokeWidth="1"/>
+                    </svg>
+                  </div>
+                </div>
+              )}
+
+              {/* GIL Seal */}
+              <div className="text-center mb-4">
+                <div className="inline-block">
+                  <svg viewBox="0 0 60 60" className="w-12 h-12">
+                    <circle cx="30" cy="30" r="28" fill="none" stroke="#8B7355" strokeWidth="2"/>
+                    <g transform="translate(30,30)">
+                      {[...Array(16)].map((_, i) => (
+                        <line 
+                          key={i}
+                          x1="0" y1="-20" 
+                          x2="0" y2="-25" 
+                          stroke="#8B7355" 
+                          strokeWidth="1"
+                          transform={`rotate(${i * 22.5})`}
+                        />
+                      ))}
+                      <circle cx="0" cy="0" r="15" fill="none" stroke="#8B7355" strokeWidth="1"/>
+                      <text x="0" y="3" textAnchor="middle" fontSize="8" fill="#8B7355" fontWeight="bold">GIL</text>
+                    </g>
+                  </svg>
+                </div>
+                <div className="text-xs mt-1">gilgem.com</div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-amber-700">Measurements</span>
-                <span className="font-mono text-amber-900">{data.measurements}</span>
+
+              {/* Verification Text */}
+              <div className="text-xs text-gray-700 mb-3">
+                The results documented in this report refer only to the
+                diamond described and were obtained using the techniques
+                and equipment used by GIL at the time of examination.
+                This certificate does not guarantee the characteristics
+                and important gemstone identification and assessment
+                process are often not enough for a complete and correct as
+                assessed.
               </div>
+
+              {/* Security Features */}
+              <div className="flex items-center justify-between text-xs">
+                <div className="text-gray-600">No security features in this document, including no holograms 
+                digital report. Other security measures may be in use.</div>
+              </div>
+            </div>
+          </div>
+
+          {/* QR Code Section */}
+          <div className="text-center">
+            <div className="inline-block bg-white border-2 border-gray-400 p-2">
+              <QRCodeSVG 
+                value={data.verifierUrl || `https://gilgem.com/verify/${data.reportNumber}`}
+                size={60}
+                bgColor="#ffffff"
+                fgColor="#000000"
+                level="H"
+                includeMargin={false}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
             </div>
           </div>
 
