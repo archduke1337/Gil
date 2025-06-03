@@ -242,17 +242,17 @@ export default function AnalysisGrading() {
               </Card>
             </motion.div>
 
-            <Card className="border-border">
+            <Card className="border-0 rounded-xl soft-shadow">
               <CardContent className="p-8">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl flex items-center justify-center soft-shadow">
                     <div className="w-12 h-12">
                       <CutDiagramSVG />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground">Cut Quality</h3>
-                    <p className="text-muted-foreground">Precision of diamond proportions</p>
+                    <h3 className="text-2xl font-bold text-foreground text-ultra-smooth">Cut Quality</h3>
+                    <p className="text-muted-foreground text-ultra-smooth">Precision of diamond proportions</p>
                   </div>
                 </div>
                 <p className="text-muted-foreground mb-4">
@@ -274,17 +274,17 @@ export default function AnalysisGrading() {
               </CardContent>
             </Card>
 
-            <Card className="border-border">
+            <Card className="border-0 rounded-xl soft-shadow">
               <CardContent className="p-8">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl flex items-center justify-center soft-shadow">
                     <div className="w-12 h-12">
                       <ColorDiagramSVG />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground">Color Grade</h3>
-                    <p className="text-muted-foreground">Absence of color in white diamonds</p>
+                    <h3 className="text-2xl font-bold text-foreground text-ultra-smooth">Color Grade</h3>
+                    <p className="text-muted-foreground text-ultra-smooth">Absence of color in white diamonds</p>
                   </div>
                 </div>
                 <p className="text-muted-foreground mb-4">
@@ -311,17 +311,17 @@ export default function AnalysisGrading() {
               </CardContent>
             </Card>
 
-            <Card className="border-border">
+            <Card className="border-0 rounded-xl soft-shadow">
               <CardContent className="p-8">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center soft-shadow">
                     <div className="w-12 h-12">
                       <ClarityDiagramSVG />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground">Clarity Grade</h3>
-                    <p className="text-muted-foreground">Internal and external characteristics</p>
+                    <h3 className="text-2xl font-bold text-foreground text-ultra-smooth">Clarity Grade</h3>
+                    <p className="text-muted-foreground text-ultra-smooth">Internal and external characteristics</p>
                   </div>
                 </div>
                 <p className="text-muted-foreground mb-4">
@@ -351,43 +351,43 @@ export default function AnalysisGrading() {
       <div className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Advanced Equipment</h2>
-            <p className="text-xl text-muted-foreground">
+            <h2 className="text-3xl font-bold text-foreground mb-4 text-ultra-smooth">Advanced Equipment</h2>
+            <p className="text-xl text-muted-foreground text-ultra-smooth">
               Our laboratory is equipped with the latest gemological instruments
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-border">
+            <Card className="border-0 rounded-xl soft-shadow hover:shadow-xl transition-all duration-300">
               <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 soft-shadow">
                   <Microscope className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Gemological Microscopes</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3 text-ultra-smooth">Gemological Microscopes</h3>
                 <p className="text-muted-foreground">
                   High-powered binocular microscopes with darkfield illumination for detailed inclusion analysis and identification.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-border">
+            <Card className="border-0 rounded-xl soft-shadow hover:shadow-xl transition-all duration-300">
               <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 soft-shadow">
                   <Target className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Spectroscopy Equipment</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3 text-ultra-smooth">Spectroscopy Equipment</h3>
                 <p className="text-muted-foreground">
                   FTIR and UV-Vis spectroscopy for identifying treatments, synthetic materials, and origin determination.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-border">
+            <Card className="border-0 rounded-xl soft-shadow hover:shadow-xl transition-all duration-300">
               <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 soft-shadow">
                   <Scale className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Precision Instruments</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3 text-ultra-smooth">Precision Instruments</h3>
                 <p className="text-muted-foreground">
                   Calibrated carat scales, proportion analyzers, and photogoniometers for accurate measurements.
                 </p>
@@ -400,16 +400,16 @@ export default function AnalysisGrading() {
       {/* Certification Standards */}
       <div className="py-16 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">Certification Standards</h2>
-          <p className="text-xl text-muted-foreground mb-8">
+          <h2 className="text-3xl font-bold text-foreground mb-4 text-ultra-smooth">Certification Standards</h2>
+          <p className="text-xl text-muted-foreground mb-8 text-ultra-smooth">
             Our reports meet international gemological standards and are recognized worldwide
           </p>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="border-border">
+            <Card className="border-0 rounded-xl soft-shadow hover:shadow-xl transition-all duration-300">
               <CardContent className="p-6">
                 <CheckCircle className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-foreground mb-3">International Standards</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-3 text-ultra-smooth">International Standards</h3>
                 <p className="text-muted-foreground">
                   All our grading follows internationally recognized standards established by leading gemological institutes.
                 </p>
