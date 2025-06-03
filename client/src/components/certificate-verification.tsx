@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Shield, ShieldCheck, AlertTriangle, Clock, Eye, FileText, QrCode, Globe } from "lucide-react";
+import { Shield, ShieldCheck, AlertTriangle, Clock, Eye, FileText, QrCode, Globe, Download } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { QRCodeSVG } from "qrcode.react";
+import GILCertificateTemplate from "./gil-certificate-template-new";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 interface VerificationResult {
   isValid: boolean;
@@ -28,6 +31,8 @@ interface VerificationResult {
 export default function CertificateVerification() {
   const [reportNumber, setReportNumber] = useState("");
   const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null);
+  const [showCertificatePreview, setShowCertificatePreview] = useState(false);
+  const certificateRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   const { data: verification, isLoading, refetch } = useQuery({
@@ -80,6 +85,70 @@ export default function CertificateVerification() {
       'enterprise': <Badge className="text-purple-600 bg-purple-50"><ShieldCheck className="w-3 h-3 mr-1" />Enterprise</Badge>,
     };
     return badges[level as keyof typeof badges] || badges.standard;
+  };
+
+  const handleDownloadCertificate = async () => {
+    if (!certificateRef.current || !verificationResult?.certificate) return;
+
+    try {
+      const canvas = await html2canvas(certificateRef.current, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#f8f9fa'
+      });
+
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      
+      const imgWidth = 210;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save(`GIL-Certificate-${verificationResult.certificate.reportNumber}.pdf`);
+
+      toast({
+        title: "Certificate Downloaded",
+        description: "Certificate PDF has been saved to your downloads",
+      });
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: "Unable to generate PDF. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const formatCertificateData = (certificate: any) => {
+    return {
+      reportNumber: certificate.reportNumber,
+      reportDate: new Date(certificate.reportDate).toLocaleDateString(),
+      shape: certificate.shape,
+      measurements: certificate.measurements,
+      caratWeight: certificate.caratWeight,
+      colorGrade: certificate.colorGrade,
+      clarityGrade: certificate.clarityGrade,
+      cutGrade: certificate.cutGrade,
+      polish: certificate.polish,
+      symmetry: certificate.symmetry,
+      fluorescence: certificate.fluorescence,
+      inscription: certificate.inscription,
+      comments: certificate.comments,
+      gemologistName: certificate.gemologistName,
+      signatureDate: new Date(certificate.reportDate).toLocaleDateString(),
+      digitallySignedBy: certificate.digitallySignedBy || true,
+      colorGradeDiagram: certificate.colorGradeDiagram || false,
+      clarityPlotDiagram: certificate.clarityPlotDiagram || true,
+      certificateNotes: certificate.certificateNotes,
+      verifierUrl: `https://gilab.info/verify/${certificate.reportNumber}`,
+      tablePercentage: certificate.tablePercentage || "57%",
+      depthPercentage: certificate.depthPercentage || "62.3%",
+      crownAngle: certificate.crownAngle || "34.5°",
+      pavilionAngle: certificate.pavilionAngle || "40.8°",
+      girdleThickness: certificate.girdleThickness || "Medium to Slightly Thick",
+      culetSize: certificate.culetSize || "None"
+    };
   };
 
   return (
@@ -267,8 +336,53 @@ export default function CertificateVerification() {
                     <p className="text-sm text-gray-500 mb-2">Last Verified</p>
                     <p className="font-medium">{new Date(verificationResult.lastVerified).toLocaleString()}</p>
                   </div>
+
+                  <Separator />
+
+                  {/* Certificate Actions */}
+                  <div className="flex space-x-3">
+                    <Button 
+                      onClick={() => setShowCertificatePreview(!showCertificatePreview)}
+                      variant="outline"
+                      className="flex items-center space-x-2"
+                    >
+                      <Eye className="w-4 h-4" />
+                      <span>{showCertificatePreview ? 'Hide Certificate' : 'View Certificate'}</span>
+                    </Button>
+                    {showCertificatePreview && (
+                      <Button 
+                        onClick={handleDownloadCertificate}
+                        className="flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700"
+                      >
+                        <Download className="w-4 h-4" />
+                        <span>Download PDF</span>
+                      </Button>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
+
+              {/* Certificate Preview */}
+              {showCertificatePreview && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <FileText className="w-5 h-5" />
+                      <span>Certificate Preview</span>
+                    </CardTitle>
+                    <CardDescription>
+                      Complete GIL certificate as issued and verified through gilab.info
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div ref={certificateRef} className="bg-white p-4 rounded-lg border">
+                      <GILCertificateTemplate 
+                        data={formatCertificateData(verificationResult.certificate)}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
               {/* Verification History */}
               {verificationResult.verificationHistory && verificationResult.verificationHistory.length > 0 && (
