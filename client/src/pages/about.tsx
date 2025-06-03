@@ -147,8 +147,8 @@ export default function About() {
       <div className="py-16 bg-card">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Our Story</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <h2 className="text-display font-heading text-foreground mb-6 text-ultra-smooth">Our Story</h2>
+            <p className="text-body-lg font-body text-muted-foreground max-w-3xl mx-auto text-ultra-smooth">
               Founded with a mission to bring transparency and trust to the diamond industry, 
               GIL has become a respected authority in gemological certification.
             </p>
@@ -200,13 +200,13 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.1 }}
               whileHover={{ scale: 1.02, y: -5 }}
             >
-              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-card h-full">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-8 h-8 text-primary-foreground" />
+              <Card className="text-center border-0 hover:shadow-xl transition-all duration-300 bg-card/90 backdrop-blur-sm h-full rounded-3xl soft-shadow">
+                <CardContent className="p-8">
+                  <div className="w-20 h-20 bg-primary rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                    <Shield className="w-10 h-10 text-primary-foreground" />
                   </div>
-                  <h4 className="text-xl font-semibold text-foreground mb-3">Integrity</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="text-heading-sm font-heading text-foreground mb-4 text-ultra-smooth">Integrity</h4>
+                  <p className="text-body font-body text-muted-foreground text-ultra-smooth">
                     We maintain the highest ethical standards in all our evaluations, 
                     ensuring honest and unbiased assessments of every diamond.
                   </p>
@@ -220,13 +220,13 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.2 }}
               whileHover={{ scale: 1.02, y: -5 }}
             >
-              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-card h-full">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Star className="w-8 h-8 text-primary-foreground" />
+              <Card className="text-center border-0 hover:shadow-xl transition-all duration-300 bg-card/90 backdrop-blur-sm h-full rounded-3xl soft-shadow">
+                <CardContent className="p-8">
+                  <div className="w-20 h-20 bg-primary rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                    <Star className="w-10 h-10 text-primary-foreground" />
                   </div>
-                  <h4 className="text-xl font-semibold text-foreground mb-3">Excellence</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="text-heading-sm font-heading text-foreground mb-4 text-ultra-smooth">Excellence</h4>
+                  <p className="text-body font-body text-muted-foreground text-ultra-smooth">
                     Our certified gemologists use cutting-edge technology and rigorous 
                     procedures to deliver the most accurate certifications possible.
                   </p>
@@ -240,13 +240,13 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.3 }}
               whileHover={{ scale: 1.02, y: -5 }}
             >
-              <Card className="text-center border-border hover:shadow-xl transition-all duration-300 bg-card h-full">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-8 h-8 text-primary-foreground" />
+              <Card className="text-center border-0 hover:shadow-xl transition-all duration-300 bg-card/90 backdrop-blur-sm h-full rounded-3xl soft-shadow">
+                <CardContent className="p-8">
+                  <div className="w-20 h-20 bg-primary rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                    <Users className="w-10 h-10 text-primary-foreground" />
                   </div>
-                  <h4 className="text-xl font-semibold text-foreground mb-3">Service</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="text-heading-sm font-heading text-foreground mb-4 text-ultra-smooth">Service</h4>
+                  <p className="text-body font-body text-muted-foreground text-ultra-smooth">
                     We're committed to providing exceptional customer service and 
                     support to all our clients, from individual consumers to major retailers.
                   </p>
@@ -262,27 +262,27 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-3xl font-bold text-foreground mb-6">Our Expertise</h3>
+              <h3 className="text-display font-heading text-foreground mb-8 text-ultra-smooth">Our Expertise</h3>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Clock className="w-4 h-4 text-[#8c745c]" />
+                  <div className="w-12 h-12 bg-[#ece5dc] rounded-3xl flex items-center justify-center flex-shrink-0 mt-1 soft-shadow">
+                    <Clock className="w-6 h-6 text-[#8c745c]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">Decades of Experience</h4>
-                    <p className="text-muted-foreground">
+                    <h4 className="text-heading-xs font-heading text-foreground mb-3 text-ultra-smooth">Decades of Experience</h4>
+                    <p className="text-body font-body text-muted-foreground text-ultra-smooth">
                       Our team brings over 50 years of combined experience in gemological analysis and diamond grading.
                     </p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Award className="w-4 h-4 text-[#8c745c]" />
+                  <div className="w-12 h-12 bg-[#ece5dc] rounded-3xl flex items-center justify-center flex-shrink-0 mt-1 soft-shadow">
+                    <Award className="w-6 h-6 text-[#8c745c]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">Certified Professionals</h4>
-                    <p className="text-muted-foreground">
+                    <h4 className="text-heading-xs font-heading text-foreground mb-3 text-ultra-smooth">Certified Professionals</h4>
+                    <p className="text-body font-body text-muted-foreground text-ultra-smooth">
                       All our gemologists hold certifications from internationally recognized gemological institutions.
                     </p>
                   </div>
