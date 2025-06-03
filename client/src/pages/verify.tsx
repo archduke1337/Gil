@@ -8,6 +8,7 @@ import logoPath from "@assets/1000119055-removebg-preview.png";
 import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function Verify() {
+  usePageTitle("Certificate Verification - Diamond Report Check");
   const [verificationResult, setVerificationResult] = useState<{
     certificate: Certificate | null;
     found: boolean;

@@ -10,6 +10,7 @@ import CommunityShowcase from "@/components/community-showcase";
 import AdvancedSearch from "@/components/advanced-search";
 import { useQuery } from "@tanstack/react-query";
 import type { Certificate } from "@shared/schema";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function GemServices() {
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);

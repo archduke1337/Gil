@@ -355,6 +355,7 @@ const gemstones = [
 ];
 
 export default function GemEncyclopedia() {
+  usePageTitle("Gem Encyclopedia - Comprehensive Gemstone Database");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");

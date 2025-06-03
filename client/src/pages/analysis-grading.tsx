@@ -82,6 +82,7 @@ const CaratDiagramSVG = () => (
 );
 
 export default function AnalysisGrading() {
+  usePageTitle("Gem Analysis & Grading Services");
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background">
       <Navigation />

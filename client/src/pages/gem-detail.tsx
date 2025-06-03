@@ -9,6 +9,7 @@ import Navigation from "@/components/navigation";
 import { Link } from "wouter";
 import { gemIcons } from "@/components/gem-svg-icons";
 import GemDimensionDiagram from "@/components/gem-dimension-diagram";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 interface GemDetail {
   name: string;

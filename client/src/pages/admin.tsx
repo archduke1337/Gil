@@ -5,6 +5,7 @@ import AdminLogin from "@/components/admin-login";
 import AdminDashboard from "@/components/admin-dashboard";
 import { Button } from "@/components/ui/button";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function Admin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

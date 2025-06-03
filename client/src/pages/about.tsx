@@ -14,6 +14,7 @@ import { useState } from "react";
 import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function About() {
+  usePageTitle("About Us - Professional Gemological Services");
   const [formData, setFormData] = useState({
     name: '',
     email: '',
