@@ -137,20 +137,20 @@ export default function AnalysisGrading() {
 
             <div className="text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
-                <Scale className="w-8 h-8 text-primary" />
+                <Scale className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2 text-ultra-smooth">Measurement</h3>
-              <p className="text-sm text-muted-foreground text-ultra-smooth">
+              <h3 className="font-semibold text-foreground mb-3 text-ultra-smooth text-lg">Measurement</h3>
+              <p className="text-muted-foreground text-ultra-smooth">
                 Precise measurements of dimensions, weight, and optical properties
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 soft-shadow">
-                <Award className="w-8 h-8 text-primary" />
+              <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                <Award className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2 text-ultra-smooth">Final Grading</h3>
-              <p className="text-sm text-muted-foreground text-ultra-smooth">
+              <h3 className="font-semibold text-foreground mb-3 text-ultra-smooth text-lg">Final Grading</h3>
+              <p className="text-muted-foreground text-ultra-smooth">
                 Comprehensive grading based on international standards and expert assessment
               </p>
             </div>
@@ -174,11 +174,11 @@ export default function AnalysisGrading() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <Card className="border-0 rounded-xl soft-shadow hover:shadow-xl transition-all duration-300 group">
-                <CardContent className="p-8">
-                  <div className="flex items-center space-x-4 mb-6">
+              <Card className="border-0 rounded-3xl soft-shadow hover:shadow-xl transition-all duration-300 group bg-white/90 backdrop-blur-sm">
+                <CardContent className="p-10">
+                  <div className="flex items-center space-x-6 mb-8">
                     <motion.div 
-                      className="w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 rounded-xl flex items-center justify-center relative overflow-hidden"
+                      className="w-20 h-20 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl flex items-center justify-center relative overflow-hidden soft-shadow"
                       whileHover={{ scale: 1.05, rotate: 5 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -218,11 +218,11 @@ export default function AnalysisGrading() {
               </Card>
             </motion.div>
 
-            <Card className="border-0 rounded-xl soft-shadow">
-              <CardContent className="p-8">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl flex items-center justify-center soft-shadow">
-                    <div className="w-12 h-12">
+            <Card className="border-0 rounded-3xl soft-shadow bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-10">
+                <div className="flex items-center space-x-6 mb-8">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl flex items-center justify-center soft-shadow">
+                    <div className="w-14 h-14">
                       <CutDiagramSVG />
                     </div>
                   </div>
@@ -250,11 +250,11 @@ export default function AnalysisGrading() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 rounded-xl soft-shadow">
-              <CardContent className="p-8">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl flex items-center justify-center soft-shadow">
-                    <div className="w-12 h-12">
+            <Card className="border-0 rounded-3xl soft-shadow bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-10">
+                <div className="flex items-center space-x-6 mb-8">
+                  <div className="w-20 h-20 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-3xl flex items-center justify-center soft-shadow">
+                    <div className="w-14 h-14">
                       <ColorDiagramSVG />
                     </div>
                   </div>
@@ -287,11 +287,11 @@ export default function AnalysisGrading() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 rounded-xl soft-shadow">
-              <CardContent className="p-8">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center soft-shadow">
-                    <div className="w-12 h-12">
+            <Card className="border-0 rounded-3xl soft-shadow bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-10">
+                <div className="flex items-center space-x-6 mb-8">
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl flex items-center justify-center soft-shadow">
+                    <div className="w-14 h-14">
                       <ClarityDiagramSVG />
                     </div>
                   </div>
@@ -333,38 +333,38 @@ export default function AnalysisGrading() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-0 rounded-xl soft-shadow hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 soft-shadow">
-                  <Microscope className="w-8 h-8 text-primary" />
+          <div className="grid md:grid-cols-3 gap-10">
+            <Card className="border-0 rounded-3xl soft-shadow hover:shadow-xl transition-all duration-300 bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-8 text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                  <Microscope className="w-10 h-10 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3 text-ultra-smooth">Gemological Microscopes</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-xl font-semibold text-foreground mb-4 text-ultra-smooth">Gemological Microscopes</h3>
+                <p className="text-muted-foreground text-ultra-smooth">
                   High-powered binocular microscopes with darkfield illumination for detailed inclusion analysis and identification.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 rounded-xl soft-shadow hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 soft-shadow">
-                  <Target className="w-8 h-8 text-primary" />
+            <Card className="border-0 rounded-3xl soft-shadow hover:shadow-xl transition-all duration-300 bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-8 text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                  <Target className="w-10 h-10 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3 text-ultra-smooth">Spectroscopy Equipment</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-xl font-semibold text-foreground mb-4 text-ultra-smooth">Spectroscopy Equipment</h3>
+                <p className="text-muted-foreground text-ultra-smooth">
                   FTIR and UV-Vis spectroscopy for identifying treatments, synthetic materials, and origin determination.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 rounded-xl soft-shadow hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 soft-shadow">
-                  <Scale className="w-8 h-8 text-primary" />
+            <Card className="border-0 rounded-3xl soft-shadow hover:shadow-xl transition-all duration-300 bg-white/90 backdrop-blur-sm">
+              <CardContent className="p-8 text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
+                  <Scale className="w-10 h-10 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3 text-ultra-smooth">Precision Instruments</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-xl font-semibold text-foreground mb-4 text-ultra-smooth">Precision Instruments</h3>
+                <p className="text-muted-foreground text-ultra-smooth">
                   Calibrated carat scales, proportion analyzers, and photogoniometers for accurate measurements.
                 </p>
               </CardContent>
