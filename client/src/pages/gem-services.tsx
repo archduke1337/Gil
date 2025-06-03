@@ -30,17 +30,17 @@ export default function GemServices() {
       <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div 
-            className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6 soft-shadow"
+            className="w-24 h-24 bg-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-8 soft-shadow"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <Sparkles className="w-8 h-8 text-primary-foreground" />
+            <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center">
+              <Sparkles className="w-10 h-10 text-primary-foreground" />
             </div>
           </motion.div>
           <motion.h1 
-            className="text-4xl md:text-5xl font-bold mb-6 font-display text-ultra-smooth"
+            className="text-hero font-heading mb-8 text-ultra-smooth"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
