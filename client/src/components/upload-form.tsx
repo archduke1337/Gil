@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import GemLoadingSpinner from "@/components/gem-loading-spinner";
 
 const uploadSchema = z.object({
   referenceNumber: z.string().min(1, "Reference number is required"),
