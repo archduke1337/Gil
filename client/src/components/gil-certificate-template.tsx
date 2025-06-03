@@ -192,7 +192,13 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               GIL NATURAL DIAMOND GRADING REPORT
             </div>
             <div className="bg-white border border-gray-300 p-3 space-y-2 text-sm">
-              <div className="text-center font-bold mb-2">JULY 26, 2025</div>
+              <div className="text-center font-bold mb-2">
+                {new Date(data.reportDate).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                }).toUpperCase()}
+              </div>
               <div className="flex justify-between">
                 <span>GIL Report Number</span>
                 <span className="font-mono">{data.reportNumber}</span>
