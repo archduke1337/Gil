@@ -91,12 +91,12 @@ export default function GemRecommendationEngine() {
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardContent className="p-6">
+      <Card className="rounded-3xl soft-shadow bg-white/80 backdrop-blur-sm border-none">
+        <CardContent className="p-8">
           <div className="space-y-6">
-            <div className="flex items-center space-x-2">
-              <Brain className="w-6 h-6 text-primary" />
-              <h3 className="text-xl font-semibold">AI-Powered Gem Recommendation Engine</h3>
+            <div className="flex items-center space-x-3">
+              <Brain className="w-8 h-8 text-primary" />
+              <h3 className="text-heading font-heading text-ultra-smooth">AI-Powered Gem Recommendation Engine</h3>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">

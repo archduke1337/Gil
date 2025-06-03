@@ -48,7 +48,7 @@ export default function GemServices() {
             Advanced Gem Services
           </motion.h1>
           <motion.p 
-            className="text-xl text-muted-foreground max-w-3xl mx-auto text-ultra-smooth"
+            className="text-body-lg font-body text-muted-foreground max-w-3xl mx-auto text-ultra-smooth"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -60,22 +60,22 @@ export default function GemServices() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Tabs defaultValue="ai-recommendations" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto p-1 rounded-xl soft-shadow bg-white">
-            <TabsTrigger value="ai-recommendations" className="flex flex-col items-center space-y-2 p-4 rounded-lg text-ultra-smooth">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto p-2 rounded-3xl soft-shadow bg-white/80 backdrop-blur-sm">
+            <TabsTrigger value="ai-recommendations" className="flex flex-col items-center space-y-2 p-4 rounded-2xl text-ultra-smooth">
               <Sparkles className="w-5 h-5" />
-              <span className="text-sm font-medium">AI Recommendations</span>
+              <span className="text-body-sm font-body">AI Recommendations</span>
             </TabsTrigger>
-            <TabsTrigger value="rarity-map" className="flex flex-col items-center space-y-2 p-4 rounded-lg text-ultra-smooth">
+            <TabsTrigger value="rarity-map" className="flex flex-col items-center space-y-2 p-4 rounded-2xl text-ultra-smooth">
               <Map className="w-5 h-5" />
-              <span className="text-sm font-medium">Rarity Heat Map</span>
+              <span className="text-body-sm font-body">Rarity Heat Map</span>
             </TabsTrigger>
-            <TabsTrigger value="community" className="flex flex-col items-center space-y-2 p-4 rounded-lg text-ultra-smooth">
+            <TabsTrigger value="community" className="flex flex-col items-center space-y-2 p-4 rounded-2xl text-ultra-smooth">
               <Users className="w-5 h-5" />
-              <span className="text-sm font-medium">Community Showcase</span>
+              <span className="text-body-sm font-body">Community Showcase</span>
             </TabsTrigger>
-            <TabsTrigger value="search" className="flex flex-col items-center space-y-2 p-4 rounded-lg text-ultra-smooth">
+            <TabsTrigger value="search" className="flex flex-col items-center space-y-2 p-4 rounded-2xl text-ultra-smooth">
               <Search className="w-5 h-5" />
-              <span className="text-sm font-medium">Advanced Search</span>
+              <span className="text-body-sm font-body">Advanced Search</span>
             </TabsTrigger>
           </TabsList>
 
@@ -86,8 +86,8 @@ export default function GemServices() {
               transition={{ duration: 0.5 }}
             >
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-4">AI-Powered Gem Recommendations</h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                <h2 className="text-display font-heading text-foreground mb-6 text-ultra-smooth">AI-Powered Gem Recommendations</h2>
+                <p className="text-body-lg font-body text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
                   Get personalized gemstone recommendations based on your preferences, budget, and requirements
                 </p>
               </div>
@@ -102,8 +102,8 @@ export default function GemServices() {
               transition={{ duration: 0.5 }}
             >
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-4">Interactive Gem Rarity Heat Map</h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                <h2 className="text-display font-heading text-foreground mb-6 text-ultra-smooth">Interactive Gem Rarity Heat Map</h2>
+                <p className="text-body-lg font-body text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
                   Explore the rarity and market trends of different gemstones with our interactive visualization
                 </p>
               </div>
@@ -118,8 +118,8 @@ export default function GemServices() {
               transition={{ duration: 0.5 }}
             >
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-4">Community Gem Showcase</h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                <h2 className="text-display font-heading text-foreground mb-6 text-ultra-smooth">Community Gem Showcase</h2>
+                <p className="text-body-lg font-body text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
                   Discover exceptional gemstones shared by our community and showcase your own collection
                 </p>
               </div>
@@ -134,8 +134,8 @@ export default function GemServices() {
               transition={{ duration: 0.5 }}
             >
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-4">Advanced Certificate Search</h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                <h2 className="text-display font-heading text-foreground mb-6 text-ultra-smooth">Advanced Certificate Search</h2>
+                <p className="text-body-lg font-body text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
                   Search and filter through our certificate database with advanced criteria
                 </p>
               </div>
@@ -143,16 +143,16 @@ export default function GemServices() {
               
               {searchResults.length > 0 && (
                 <div className="mt-8">
-                  <h3 className="text-xl font-semibold mb-4">Search Results ({searchResults.length})</h3>
+                  <h3 className="text-heading font-heading mb-6 text-ultra-smooth">Search Results ({searchResults.length})</h3>
                   <div className="grid gap-4">
                     {searchResults.map((cert) => (
-                      <div key={cert.id} className="bg-white p-6 rounded-lg shadow-sm border">
+                      <div key={cert.id} className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl soft-shadow">
                         <div className="flex justify-between items-start mb-4">
                           <div>
-                            <h4 className="text-lg font-semibold">{cert.referenceNumber}</h4>
-                            <p className="text-muted-foreground">Diamond Certificate</p>
+                            <h4 className="text-body-lg font-body text-ultra-smooth">{cert.referenceNumber}</h4>
+                            <p className="text-body font-body text-muted-foreground text-ultra-smooth">Diamond Certificate</p>
                           </div>
-                          <span className={`px-2 py-1 rounded text-xs font-medium ${
+                          <span className={`px-3 py-1 rounded-xl text-body-sm font-body text-ultra-smooth ${
                             cert.isActive 
                               ? "bg-green-100 text-green-800" 
                               : "bg-gray-100 text-gray-800"
