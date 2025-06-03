@@ -21,20 +21,26 @@ import { useToast } from "@/hooks/use-toast";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 
 const certificateSchema = z.object({
-  referenceNumber: z.string().min(1, "Reference number is required"),
+  referenceNumber: z.string().min(1, "Reference number is required").regex(/^GIL-\d{4}-\d{6}$/, "Reference number must follow format: GIL-YYYY-XXXXXX"),
   gemType: z.string().min(1, "Gem type is required"),
   shape: z.string().min(1, "Shape is required"),
-  dimensions: z.string().min(1, "Dimensions are required"),
-  caratWeight: z.string().min(1, "Carat weight is required"),
+  dimensions: z.string().min(1, "Dimensions are required").regex(/^\d+\.?\d*\s*x\s*\d+\.?\d*\s*x\s*\d+\.?\d*$/, "Dimensions must be in format: L x W x H (e.g., 6.52 x 6.48 x 4.05)"),
+  caratWeight: z.string().min(1, "Carat weight is required").refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, "Carat weight must be a positive number"),
   colorGrade: z.string().min(1, "Color grade is required"),
   clarityGrade: z.string().min(1, "Clarity grade is required"),
   cutGrade: z.string().min(1, "Cut grade is required"),
+  polish: z.string().optional(),
+  symmetry: z.string().optional(),
+  fluorescence: z.string().optional(),
   treatment: z.string().optional(),
   origin: z.string().optional(),
+  inscription: z.string().optional(),
   comments: z.string().optional(),
   certificationDate: z.date(),
   examinedBy: z.string().min(1, "Examiner name is required"),
   approvedBy: z.string().min(1, "Approver name is required"),
+  labLocation: z.string().optional(),
+  equipmentUsed: z.string().optional(),
 });
 
 type CertificateForm = z.infer<typeof certificateSchema>;
@@ -55,8 +61,14 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
     defaultValues: {
       referenceNumber: `GIL-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`,
       certificationDate: new Date(),
-      treatment: "None",
+      treatment: "None detected",
       origin: "Natural",
+      polish: "Excellent",
+      symmetry: "Excellent", 
+      fluorescence: "None",
+      labLocation: "GIL Headquarters",
+      equipmentUsed: "Gemological microscope, spectroscopy, precision scale",
+      inscription: "",
     },
   });
 
@@ -614,18 +626,32 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
 
                 <FormField
                   control={form.control}
-                  name="dimensions"
+                  name="caratWeight"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Dimensions (mm)</FormLabel>
+                      <FormLabel className="text-ultra-smooth">Carat Weight</FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder="6.52 x 6.48 x 4.05" />
+                        <Input {...field} placeholder="1.25" type="number" step="0.001" className="rounded-xl border-0 bg-white/50 backdrop-blur-sm soft-shadow" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
+
+              <FormField
+                control={form.control}
+                name="dimensions"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-ultra-smooth">Dimensions (mm)</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="6.52 x 6.48 x 4.05" className="rounded-xl border-0 bg-white/50 backdrop-blur-sm soft-shadow" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <Separator />
 
