@@ -31,6 +31,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import ProfessionalCertificateTemplate from "./professional-certificate-template";
 
 const certificateSchema = z.object({
   referenceNumber: z.string().min(1, "Reference number is required").regex(/^GIL-\d{4}-\d{6}$/, "Reference number must follow format: GIL-YYYY-XXXXXX"),
@@ -940,73 +941,25 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                 </div>
               </CardHeader>
               <CardContent>
-                <div ref={certificateRef} className="p-8 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl">
-                  {/* Certificate content here */}
-                  <div className="text-center mb-8">
-                    <img src={logoPath} alt="GIL Logo" className="w-24 h-24 mx-auto mb-4" />
-                    <h1 className="text-3xl font-bold text-primary mb-2">Gemological Institute Laboratories</h1>
-                    <h2 className="text-xl font-semibold text-muted-foreground">Certificate of Authenticity</h2>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-3">
-                      <h3 className="text-lg font-semibold border-b border-primary/20 pb-2">Gem Information</h3>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between">
-                          <span className="font-medium">Reference:</span>
-                          <span>{generatedCertificate.referenceNumber}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Gem Type:</span>
-                          <span>{generatedCertificate.gemType}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Shape:</span>
-                          <span>{generatedCertificate.shape}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Carat Weight:</span>
-                          <span>{generatedCertificate.caratWeight} ct</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Dimensions:</span>
-                          <span>{generatedCertificate.dimensions} mm</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <h3 className="text-lg font-semibold border-b border-primary/20 pb-2">Grading Results</h3>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between">
-                          <span className="font-medium">Color Grade:</span>
-                          <span>{generatedCertificate.colorGrade}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Clarity Grade:</span>
-                          <span>{generatedCertificate.clarityGrade}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Cut Grade:</span>
-                          <span>{generatedCertificate.cutGrade}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Polish:</span>
-                          <span>{generatedCertificate.polish}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Symmetry:</span>
-                          <span>{generatedCertificate.symmetry}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-8 text-center text-xs text-muted-foreground">
-                    <p>Certified on {format(generatedCertificate.certificationDate, "MMMM dd, yyyy")}</p>
-                    <p>Examined by: {generatedCertificate.examinedBy} | Approved by: {generatedCertificate.approvedBy}</p>
-                  </div>
-                </div>
+                <ProfessionalCertificateTemplate
+                  ref={certificateRef}
+                  data={{
+                    ...generatedCertificate,
+                    polish: generatedCertificate.polish || "Excellent",
+                    symmetry: generatedCertificate.symmetry || "Excellent",
+                    fluorescence: generatedCertificate.fluorescence || "None",
+                    treatment: generatedCertificate.treatment || "None detected",
+                    origin: generatedCertificate.origin || "Natural",
+                    inscription: generatedCertificate.inscription || "",
+                    comments: generatedCertificate.comments || "",
+                    labLocation: generatedCertificate.labLocation || "GIL Headquarters",
+                    equipmentUsed: generatedCertificate.equipmentUsed || "Gemological microscope, spectroscopy, precision scale",
+                    tablePercentage: generatedCertificate.tablePercentage || "57%",
+                    depthPercentage: generatedCertificate.depthPercentage || "62.3%",
+                    crownAngle: generatedCertificate.crownAngle || "34.5°",
+                    pavilionAngle: generatedCertificate.pavilionAngle || "40.8°"
+                  }}
+                />
               </CardContent>
             </Card>
           </motion.div>
