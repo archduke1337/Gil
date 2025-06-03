@@ -133,7 +133,7 @@ export default function About() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 transform-gpu">
+                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 rounded-xl soft-shadow">
                   <Gem className="w-5 h-5 mr-2" />
                   Explore Services
                 </Button>
