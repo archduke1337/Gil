@@ -456,10 +456,10 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
         </div>
       </div>
 
-      <Card className="border-0 rounded-xl soft-shadow">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileText className="w-5 h-5" />
+      <Card className="border-0 rounded-2xl soft-shadow bg-white/70 backdrop-blur-sm">
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-ultra-smooth">
+            <FileText className="w-5 h-5 text-primary" />
             Certificate Information
           </CardTitle>
         </CardHeader>
@@ -473,9 +473,9 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                   name="referenceNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Reference Number</FormLabel>
+                      <FormLabel className="text-ultra-smooth">Reference Number</FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder="GIL-2024-123456" />
+                        <Input {...field} placeholder="GIL-2024-123456" className="rounded-xl border-0 bg-white/50 backdrop-blur-sm soft-shadow" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -487,14 +487,14 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                   name="certificationDate"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Certification Date</FormLabel>
+                      <FormLabel className="text-ultra-smooth">Certification Date</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
                               variant="outline"
                               className={cn(
-                                "w-full pl-3 text-left font-normal",
+                                "w-full pl-3 text-left font-normal rounded-xl border-0 bg-white/50 backdrop-blur-sm soft-shadow",
                                 !field.value && "text-muted-foreground"
                               )}
                             >
@@ -525,12 +525,14 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                 />
               </div>
 
-              <Separator />
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
 
               {/* Gem Information */}
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                  <Gem className="w-5 h-5" />
+                <h4 className="text-lg font-semibold text-foreground flex items-center gap-2 text-ultra-smooth">
+                  <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center">
+                    <Gem className="w-4 h-4 text-primary" />
+                  </div>
                   Gemstone Details
                 </h4>
                 
@@ -540,14 +542,14 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                     name="gemType"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Gem Type</FormLabel>
+                        <FormLabel className="text-ultra-smooth">Gem Type</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className="rounded-xl border-0 bg-white/50 backdrop-blur-sm soft-shadow">
                               <SelectValue placeholder="Select gem type" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent>
+                          <SelectContent className="rounded-xl border-0 bg-white/95 backdrop-blur-sm soft-shadow">
                             <SelectItem value="Diamond">Diamond</SelectItem>
                             <SelectItem value="Ruby">Ruby</SelectItem>
                             <SelectItem value="Sapphire">Sapphire</SelectItem>
@@ -570,14 +572,14 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                     name="shape"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Shape</FormLabel>
+                        <FormLabel className="text-ultra-smooth">Shape</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className="rounded-xl border-0 bg-white/50 backdrop-blur-sm soft-shadow">
                               <SelectValue placeholder="Select shape" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent>
+                          <SelectContent className="rounded-xl border-0 bg-white/95 backdrop-blur-sm soft-shadow">
                             <SelectItem value="Round">Round</SelectItem>
                             <SelectItem value="Oval">Oval</SelectItem>
                             <SelectItem value="Emerald">Emerald</SelectItem>
