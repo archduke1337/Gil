@@ -21,22 +21,22 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="bg-white shadow-sm border-b border-[#ece5dc] sticky top-0 z-50">
+    <nav className="bg-white/95 backdrop-blur-lg shadow-sm border-b border-[#ece5dc] sticky top-0 z-50 glass-effect">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/">
-            <div className="flex items-center space-x-2 sm:space-x-3 cursor-pointer">
+            <div className="flex items-center space-x-2 sm:space-x-3 cursor-pointer interactive-element gpu-accelerated touch-friendly">
               <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
                 <img 
                   src={logoPath} 
                   alt="GIL Logo" 
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain crisp-edges"
                 />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-lg sm:text-xl font-bold text-foreground">GIL</h1>
-                <p className="text-xs text-muted-foreground hidden md:block">Gemological Institute Laboratories</p>
+                <h1 className="text-lg sm:text-xl font-bold text-foreground font-display text-ultra-smooth">GIL</h1>
+                <p className="text-xs text-muted-foreground hidden md:block text-ultra-smooth">Gemological Institute Laboratories</p>
               </div>
             </div>
           </Link>
@@ -48,10 +48,10 @@ export default function Navigation() {
                 <Button 
                   variant="ghost" 
                   size="sm"
-                  className={isActive(item.href) 
+                  className={`btn-premium text-ultra-smooth touch-friendly ${isActive(item.href) 
                     ? "text-[#8c745c] border-b-2 border-[#8c745c] rounded-none" 
                     : "text-gray-600 hover:text-[#8c745c]"
-                  }
+                  }`}
                 >
                   {item.label}
                 </Button>
