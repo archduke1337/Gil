@@ -44,8 +44,18 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getCertificateByReference(referenceNumber: string): Promise<Certificate | undefined> {
-    const [certificate] = await db.select().from(certificates).where(eq(certificates.referenceNumber, referenceNumber));
-    return certificate || undefined;
+    // Check both reportNumber (GIL format) and referenceNumber (legacy format)
+    const [certificate] = await db.select().from(certificates).where(
+      eq(certificates.reportNumber, referenceNumber)
+    );
+    
+    if (certificate) return certificate;
+    
+    // Fallback to legacy referenceNumber field
+    const [legacyCertificate] = await db.select().from(certificates).where(
+      eq(certificates.referenceNumber, referenceNumber)
+    );
+    return legacyCertificate || undefined;
   }
 
   async createCertificate(insertCertificate: InsertCertificate): Promise<Certificate> {
