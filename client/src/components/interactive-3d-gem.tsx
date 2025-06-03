@@ -115,7 +115,7 @@ const gemAnalysisData: { [key: string]: GemAnalysisData } = {
       }
     },
     certification: {
-      institute: "GIA",
+      institute: "GIL",
       reportNumber: "2185749631",
       date: "2024-03-15",
       authenticity: "Natural diamond"

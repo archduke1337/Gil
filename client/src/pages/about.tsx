@@ -461,7 +461,7 @@ export default function About() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                   <span className="font-medium text-foreground">Diamond Grading</span>
-                  <span className="text-[#8c745c] font-semibold">GIA Standards</span>
+                  <span className="text-[#8c745c] font-semibold">GIL Standards</span>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                   <span className="font-medium text-foreground">Colored Stones</span>

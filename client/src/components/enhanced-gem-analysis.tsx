@@ -140,7 +140,7 @@ const comprehensiveGemData: { [key: string]: ComprehensiveGemData } = {
       }
     },
     certification: {
-      institute: "GIA",
+      institute: "GIL",
       reportNumber: "2185749631",
       date: "2024-03-15",
       authenticity: "Natural diamond",
