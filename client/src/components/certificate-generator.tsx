@@ -178,116 +178,265 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
           </div>
         </div>
 
-        <div ref={certificateRef} className="bg-white border-2 border-primary/20 rounded-lg p-8 shadow-lg">
-          {/* Certificate Header */}
-          <div className="text-center mb-8 border-b border-gray-200 pb-6">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <img src={logoPath} alt="GIL Logo" className="h-16 w-auto" />
-              <div>
-                <h1 className="text-3xl font-bold text-primary">GIL</h1>
-                <p className="text-sm text-gray-600">Gemological Institute Laboratories</p>
+        <div ref={certificateRef} className="bg-[#f5f2ed] w-full max-w-4xl mx-auto" style={{ aspectRatio: '1.4/1', minHeight: '800px' }}>
+          {/* Certificate Layout */}
+          <div className="grid grid-cols-12 h-full">
+            {/* Left Column */}
+            <div className="col-span-5 p-6 space-y-4">
+              {/* Header */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-16 h-16 rounded-full border-4 border-[#8b6f47] flex items-center justify-center bg-white">
+                  <img src={logoPath} alt="GIL" className="w-10 h-10" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold text-[#8b6f47]">GIL</h1>
+                </div>
+              </div>
+
+              {/* Report Header */}
+              <div className="bg-[#8b6f47] text-white p-3 text-center">
+                <h2 className="text-sm font-bold">GIL NATURAL DIAMOND GRADING REPORT</h2>
+              </div>
+
+              {/* Basic Information */}
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">{format(generatedCertificate.certificationDate, "MMMM dd, yyyy")}</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">GIL Report Number</span>
+                  <span className="font-semibold">{generatedCertificate.referenceNumber}</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">Shape and Cutting Style</span>
+                  <span className="font-semibold">{generatedCertificate.shape}</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">Measurements</span>
+                  <span className="font-semibold">{generatedCertificate.dimensions} mm</span>
+                </div>
+              </div>
+
+              {/* Grading Result */}
+              <div className="bg-[#8b6f47] text-white p-3">
+                <h3 className="text-sm font-bold">GRADING RESULT</h3>
+              </div>
+
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">Carat Weight</span>
+                  <span className="font-bold text-lg">{generatedCertificate.caratWeight} carat</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">Color Grade</span>
+                  <span className="font-bold text-lg">{generatedCertificate.colorGrade}</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">Clarity Grade</span>
+                  <span className="font-bold text-lg">{generatedCertificate.clarityGrade}</span>
+                </div>
+              </div>
+
+              {/* Additional Grading Information */}
+              <div className="bg-[#8b6f47] text-white p-3">
+                <h3 className="text-sm font-bold">ADDITIONAL GRADING INFORMATION</h3>
+              </div>
+
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">Polish</span>
+                  <span className="font-semibold">Excellent</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">Symmetry</span>
+                  <span className="font-semibold">Excellent</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">Fluorescence</span>
+                  <span className="font-semibold">Faint</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-300 pb-1">
+                  <span className="text-gray-600">Inscription(s)</span>
+                  <span className="font-semibold">GIL {generatedCertificate.referenceNumber}</span>
+                </div>
+                
+                {generatedCertificate.comments && (
+                  <div className="text-xs text-gray-600 mt-2">
+                    <p className="font-semibold">Comments:</p>
+                    <p>{generatedCertificate.comments}</p>
+                  </div>
+                )}
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">GEMSTONE IDENTIFICATION & GRADING REPORT</h2>
-            <p className="text-gray-600">Certificate Number: {generatedCertificate.referenceNumber}</p>
-          </div>
 
-          {/* Certificate Body */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Left Column */}
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Gem Type:</p>
-                  <p className="text-lg font-bold text-primary">{generatedCertificate.gemType}</p>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Shape:</p>
-                  <p className="text-gray-800">{generatedCertificate.shape}</p>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Carat Weight:</p>
-                  <p className="text-lg font-bold text-primary">{generatedCertificate.caratWeight} ct</p>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Dimensions:</p>
-                  <p className="text-gray-800">{generatedCertificate.dimensions}</p>
-                </div>
+            {/* Middle Column */}
+            <div className="col-span-4 p-6">
+              {/* Report Number */}
+              <div className="text-right mb-4">
+                <h2 className="text-sm font-bold text-gray-600">GIL REPORT</h2>
+                <h1 className="text-2xl font-bold text-gray-800">{generatedCertificate.referenceNumber}</h1>
+                <p className="text-xs text-gray-500">Verify this report at gilgem.com</p>
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Color:</p>
-                  <p className="text-gray-800 font-medium">{generatedCertificate.colorGrade}</p>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Clarity:</p>
-                  <p className="text-gray-800 font-medium">{generatedCertificate.clarityGrade}</p>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Cut:</p>
-                  <p className="text-gray-800 font-medium">{generatedCertificate.cutGrade}</p>
+              {/* Additional Information */}
+              <div className="bg-[#8b6f47] text-white p-2 text-center mb-4">
+                <h3 className="text-xs font-bold">ADDITIONAL INFORMATION</h3>
+              </div>
+
+              {/* Proportions Diagram */}
+              <div className="bg-white border border-gray-300 p-4 mb-4">
+                <div className="text-center">
+                  <svg width="200" height="120" viewBox="0 0 200 120" className="mx-auto">
+                    {/* Crown */}
+                    <polygon points="100,20 70,60 130,60" fill="none" stroke="#333" strokeWidth="1"/>
+                    <polygon points="70,60 50,50 85,50" fill="none" stroke="#333" strokeWidth="1"/>
+                    <polygon points="130,60 150,50 115,50" fill="none" stroke="#333" strokeWidth="1"/>
+                    
+                    {/* Girdle */}
+                    <line x1="50" y1="60" x2="150" y2="60" stroke="#333" strokeWidth="2"/>
+                    
+                    {/* Pavilion */}
+                    <polygon points="70,60 100,100 130,60" fill="none" stroke="#333" strokeWidth="1"/>
+                    <polygon points="70,60 50,70 85,70" fill="none" stroke="#333" strokeWidth="1"/>
+                    <polygon points="130,60 150,70 115,70" fill="none" stroke="#333" strokeWidth="1"/>
+                    
+                    {/* Measurements */}
+                    <text x="30" y="35" fontSize="8" fill="#666">50%</text>
+                    <text x="30" y="50" fontSize="8" fill="#666">16.0%</text>
+                    <text x="30" y="85" fontSize="8" fill="#666">80%</text>
+                    <text x="165" y="35" fontSize="8" fill="#666">57%</text>
+                    <text x="165" y="50" fontSize="8" fill="#666">35.0°</text>
+                    <text x="165" y="75" fontSize="8" fill="#666">41.0°</text>
+                  </svg>
+                  <p className="text-xs text-gray-600 mt-2">Profile to actual proportions</p>
                 </div>
               </div>
 
-              {generatedCertificate.treatment && (
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Treatment:</p>
-                  <p className="text-gray-800">{generatedCertificate.treatment}</p>
+              {/* Diamond Diagram */}
+              <div className="bg-white border border-gray-300 p-4">
+                <div className="text-center">
+                  <svg width="120" height="80" viewBox="0 0 120 80" className="mx-auto">
+                    {/* Top view */}
+                    <circle cx="30" cy="40" r="25" fill="none" stroke="#333" strokeWidth="1"/>
+                    <polygon points="30,20 20,30 40,30" fill="none" stroke="#333" strokeWidth="0.5"/>
+                    <polygon points="30,60 20,50 40,50" fill="none" stroke="#333" strokeWidth="0.5"/>
+                    <line x1="15" y1="40" x2="45" y2="40" stroke="#333" strokeWidth="0.5"/>
+                    <line x1="30" y1="15" x2="30" y2="65" stroke="#333" strokeWidth="0.5"/>
+                    
+                    {/* Side view */}
+                    <polygon points="90,25 75,40 90,55 105,40" fill="none" stroke="#333" strokeWidth="1"/>
+                    <polygon points="90,25 85,35 95,35" fill="none" stroke="#333" strokeWidth="0.5"/>
+                    <polygon points="90,55 85,45 95,45" fill="none" stroke="#333" strokeWidth="0.5"/>
+                  </svg>
                 </div>
-              )}
-
-              {generatedCertificate.origin && (
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Origin:</p>
-                  <p className="text-gray-800">{generatedCertificate.origin}</p>
-                </div>
-              )}
+              </div>
             </div>
 
             {/* Right Column */}
-            <div className="space-y-4">
-              <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
-                <p className="text-sm font-semibold text-gray-700 mb-2">Gemstone Representation</p>
-                <div className="h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center">
-                  <Gem className="w-16 h-16 text-primary" />
-                </div>
+            <div className="col-span-3 p-6">
+              {/* Facsimile */}
+              <div className="text-right text-xs text-gray-500 mb-8">
+                <p className="font-bold">FACSIMILE</p>
+                <p className="text-[8px] leading-tight">This is a digital representation of the original GIL Report. This representation might not be accepted in lieu of the original GIL Report in certain circumstances. The original GIL Report includes security features which are not reproducible on this facsimile.</p>
               </div>
 
-              {generatedCertificate.comments && (
+              {/* Grading Scales */}
+              <div className="bg-[#8b6f47] text-white p-2 text-center mb-2">
+                <h3 className="text-xs font-bold">GRADING SCALES</h3>
+              </div>
+
+              {/* Color and Clarity Scales */}
+              <div className="space-y-4 text-xs">
                 <div>
-                  <p className="text-sm font-semibold text-gray-700">Comments:</p>
-                  <p className="text-gray-800 text-sm">{generatedCertificate.comments}</p>
+                  <p className="font-bold mb-1">COLORLESS</p>
+                  <div className="flex gap-1">
+                    <span className="bg-gray-200 px-1">D</span>
+                    <span className="bg-gray-200 px-1">E</span>
+                    <span className="bg-gray-200 px-1">F</span>
+                  </div>
                 </div>
-              )}
-            </div>
-          </div>
+                
+                <div>
+                  <p className="font-bold mb-1">NEAR COLORLESS</p>
+                  <div className="flex gap-1">
+                    <span className="bg-gray-200 px-1">G</span>
+                    <span className="bg-gray-200 px-1">H</span>
+                    <span className="bg-gray-200 px-1">I</span>
+                    <span className="bg-gray-200 px-1">J</span>
+                  </div>
+                </div>
 
-          {/* Certificate Footer */}
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <div className="grid md:grid-cols-3 gap-6 text-sm">
-              <div>
-                <p className="font-semibold text-gray-700">Examined By:</p>
-                <p className="text-gray-800">{generatedCertificate.examinedBy}</p>
-                <p className="text-gray-600">Certified Gemologist</p>
+                <div>
+                  <p className="font-bold mb-1">FAINT YELLOW</p>
+                  <div className="flex gap-1">
+                    <span className="bg-gray-200 px-1">K</span>
+                    <span className="bg-gray-200 px-1">L</span>
+                    <span className="bg-gray-200 px-1">M</span>
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <p className="font-bold mb-1">CLARITY</p>
+                  <div className="space-y-1">
+                    <div className="flex gap-1">
+                      <span className="bg-gray-200 px-1 text-[8px]">FL</span>
+                      <span className="bg-gray-200 px-1 text-[8px]">IF</span>
+                    </div>
+                    <div className="flex gap-1">
+                      <span className="bg-gray-200 px-1 text-[8px]">VVS1</span>
+                      <span className="bg-gray-200 px-1 text-[8px]">VVS2</span>
+                    </div>
+                    <div className="flex gap-1">
+                      <span className="bg-gray-200 px-1 text-[8px]">VS1</span>
+                      <span className="bg-gray-200 px-1 text-[8px]">VS2</span>
+                    </div>
+                    <div className="flex gap-1">
+                      <span className="bg-gray-200 px-1 text-[8px]">SI1</span>
+                      <span className="bg-gray-200 px-1 text-[8px]">SI2</span>
+                    </div>
+                    <div className="flex gap-1">
+                      <span className="bg-gray-200 px-1 text-[8px]">I1</span>
+                      <span className="bg-gray-200 px-1 text-[8px]">I2</span>
+                      <span className="bg-gray-200 px-1 text-[8px]">I3</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p className="font-semibold text-gray-700">Approved By:</p>
-                <p className="text-gray-800">{generatedCertificate.approvedBy}</p>
-                <p className="text-gray-600">Laboratory Director</p>
+
+              {/* Bottom sections */}
+              <div className="mt-8">
+                <div className="bg-[#8b6f47] text-white p-2 text-center mb-2">
+                  <h3 className="text-xs font-bold">CLARITY CHARACTERISTICS</h3>
+                </div>
+                
+                <div className="flex justify-center gap-4 my-4">
+                  <svg width="40" height="30" viewBox="0 0 40 30">
+                    <polygon points="20,5 10,15 30,15 20,25" fill="none" stroke="#333" strokeWidth="1"/>
+                  </svg>
+                  <svg width="40" height="30" viewBox="0 0 40 30">
+                    <circle cx="20" cy="15" r="10" fill="none" stroke="#333" strokeWidth="1"/>
+                  </svg>
+                </div>
+
+                {/* GIL Logo */}
+                <div className="text-center my-4">
+                  <div className="w-12 h-12 rounded-full border-2 border-[#8b6f47] flex items-center justify-center mx-auto">
+                    <img src={logoPath} alt="GIL" className="w-8 h-8" />
+                  </div>
+                </div>
+
+                {/* Footer text */}
+                <div className="text-[8px] text-gray-600 text-center space-y-1">
+                  <p>@gilgem.com</p>
+                  <div className="w-16 h-16 bg-gray-300 mx-auto mb-2"></div>
+                  <p className="leading-tight">The results documented in this report refer only to the diamond described and were obtained using the techniques and equipment used by GIL at the time of examination.</p>
+                  <p className="leading-tight">This certificate is void if altered and duplications are subject to applicable law. © 2025 Gemological Institute of America.</p>
+                  <div className="flex items-center justify-center gap-1 mt-2">
+                    <div className="w-3 h-3 bg-gray-400"></div>
+                    <span className="text-[6px]">SECURITY FEATURES: Electronic certificate is independently verified. Security screening against watch lists for known problem diamonds. Chain of custody protocol.</span>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p className="font-semibold text-gray-700">Date:</p>
-                <p className="text-gray-800">{format(generatedCertificate.certificationDate, "MMMM dd, yyyy")}</p>
-              </div>
-            </div>
-            
-            <div className="mt-6 text-center text-xs text-gray-500">
-              <p>This certificate is issued by GIL (Gemological Institute Laboratories) and represents our professional opinion based on gemological examination.</p>
-              <p>For verification, visit our website and enter certificate number: {generatedCertificate.referenceNumber}</p>
             </div>
           </div>
         </div>
