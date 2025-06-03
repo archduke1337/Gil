@@ -123,7 +123,7 @@ export default function CertificateVerification() {
   const formatCertificateData = (certificate: any) => {
     return {
       reportNumber: certificate.reportNumber,
-      reportDate: new Date(certificate.reportDate).toLocaleDateString(),
+      reportDate: certificate.reportDate,
       shape: certificate.shape,
       measurements: certificate.measurements,
       caratWeight: certificate.caratWeight,
@@ -136,10 +136,10 @@ export default function CertificateVerification() {
       inscription: certificate.inscription,
       comments: certificate.comments,
       gemologistName: certificate.gemologistName,
-      signatureDate: new Date(certificate.reportDate).toLocaleDateString(),
-      digitallySignedBy: certificate.digitallySignedBy || true,
-      colorGradeDiagram: certificate.colorGradeDiagram || false,
-      clarityPlotDiagram: certificate.clarityPlotDiagram || true,
+      signatureDate: certificate.reportDate,
+      digitallySignedBy: true,
+      colorGradeDiagram: false,
+      clarityPlotDiagram: true,
       certificateNotes: certificate.certificateNotes,
       verifierUrl: `https://gilab.info/verify/${certificate.reportNumber}`,
       tablePercentage: certificate.tablePercentage || "57%",
@@ -147,7 +147,13 @@ export default function CertificateVerification() {
       crownAngle: certificate.crownAngle || "34.5°",
       pavilionAngle: certificate.pavilionAngle || "40.8°",
       girdleThickness: certificate.girdleThickness || "Medium to Slightly Thick",
-      culetSize: certificate.culetSize || "None"
+      culetSize: certificate.culetSize || "None",
+      // Additional fields for complete certificate
+      origin: certificate.origin || "Natural",
+      treatment: certificate.treatment || "None detected",
+      clarityDiagram1: certificate.clarityDiagram1,
+      clarityDiagram2: certificate.clarityDiagram2,
+      proportionsDiagram: certificate.proportionsDiagram
     };
   };
 
@@ -374,8 +380,8 @@ export default function CertificateVerification() {
                       Complete GIL certificate as issued and verified through gilab.info
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <div ref={certificateRef} className="bg-white p-4 rounded-lg border">
+                  <CardContent className="p-0">
+                    <div ref={certificateRef} className="w-full">
                       <GILCertificateTemplate 
                         data={formatCertificateData(verificationResult.certificate)}
                       />
