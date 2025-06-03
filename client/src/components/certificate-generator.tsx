@@ -103,7 +103,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
         origin: data.origin || "Natural",
         inscription: data.inscription || "",
         comments: data.comments || "",
-        certificationDate: data.certificationDate,
+        certificationDate: data.certificationDate.toISOString(),
         examinedBy: data.examinedBy,
         approvedBy: data.approvedBy,
         labLocation: data.labLocation || "GIL Headquarters",

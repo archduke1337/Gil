@@ -20,7 +20,7 @@ export const certificates = pgTable("certificates", {
   origin: text("origin"),
   inscription: text("inscription"),
   comments: text("comments"),
-  certificationDate: timestamp("certification_date").notNull(),
+  certificationDate: text("certification_date").notNull(),
   examinedBy: text("examined_by").notNull(),
   approvedBy: text("approved_by").notNull(),
   labLocation: text("lab_location"),
