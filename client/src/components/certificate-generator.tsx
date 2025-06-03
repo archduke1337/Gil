@@ -210,7 +210,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
               <div className="w-12 h-12 bg-gradient-to-br from-green-500/20 to-green-600/30 rounded-xl flex items-center justify-center">
                 <Shield className="w-6 h-6 text-green-600" />
               </div>
-              <span className="text-sm font-medium text-foreground">GIA Standards</span>
+              <span className="text-body-sm font-body text-foreground text-ultra-smooth">GIA Standards</span>
             </motion.div>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -221,7 +221,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-xl flex items-center justify-center">
                 <Award className="w-6 h-6 text-blue-600" />
               </div>
-              <span className="text-sm font-medium text-foreground">Professional Format</span>
+              <span className="text-body-sm font-body text-foreground text-ultra-smooth">Professional Format</span>
             </motion.div>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -232,7 +232,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
               <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-xl flex items-center justify-center">
                 <Microscope className="w-6 h-6 text-purple-600" />
               </div>
-              <span className="text-sm font-medium text-foreground">Digital Verification</span>
+              <span className="text-body-sm font-body text-foreground text-ultra-smooth">Digital Verification</span>
             </motion.div>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -243,7 +243,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
               <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-orange-600/30 rounded-xl flex items-center justify-center">
                 <Download className="w-6 h-6 text-orange-600" />
               </div>
-              <span className="text-sm font-medium text-foreground">Instant Download</span>
+              <span className="text-body-sm font-body text-foreground text-ultra-smooth">Instant Download</span>
             </motion.div>
           </div>
         </motion.div>
@@ -279,8 +279,8 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                         <Diamond className="w-5 h-5 text-emerald-600" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-foreground text-ultra-smooth">Basic Gem Information</h3>
-                        <p className="text-sm text-muted-foreground">Essential gemstone identification details</p>
+                        <h3 className="text-heading-md font-heading text-foreground text-ultra-smooth">Basic Gem Information</h3>
+                        <p className="text-body-sm font-body text-muted-foreground text-ultra-smooth">Essential gemstone identification details</p>
                       </div>
                     </div>
 
@@ -290,7 +290,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                         name="referenceNumber"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-ultra-smooth font-medium">Reference Number</FormLabel>
+                            <FormLabel className="text-ultra-smooth font-body">Reference Number</FormLabel>
                             <FormControl>
                               <Input {...field} placeholder="GIL-2024-123456" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
                             </FormControl>
