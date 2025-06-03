@@ -195,8 +195,8 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
               <Sparkles className="w-10 h-10 text-white" />
             </div>
             <div className="text-left">
-              <h1 className="text-4xl font-bold text-foreground text-ultra-smooth mb-2">Professional Certificate Generator</h1>
-              <p className="text-xl text-muted-foreground text-ultra-smooth">Create industry-standard gemological certification reports</p>
+              <h1 className="text-display font-heading text-foreground text-ultra-smooth mb-2">Professional Certificate Generator</h1>
+              <p className="text-body-lg font-body text-muted-foreground text-ultra-smooth">Create industry-standard gemological certification reports</p>
             </div>
           </div>
           

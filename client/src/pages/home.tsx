@@ -155,10 +155,10 @@ export default function Home() {
                           </div>
                         </div>
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-[#8c745c] transition-colors duration-300">
+                      <h3 className="text-heading-sm font-heading text-gray-900 mb-4 group-hover:text-[#8c745c] transition-colors duration-300 text-ultra-smooth">
                         {feature.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-body font-body text-gray-600 text-ultra-smooth">
                         {feature.description}
                       </p>
                       <div className="mt-6 flex items-center justify-center text-[#8c745c] font-semibold group-hover:text-gray-900 transition-colors duration-300">

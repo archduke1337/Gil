@@ -441,10 +441,10 @@ export default function GemEncyclopedia() {
               <Sparkles className="w-10 h-10 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-ultra-smooth">
+          <h1 className="text-hero font-heading mb-6 text-ultra-smooth">
             Gem Encyclopedia
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
+          <p className="text-body-lg font-body text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
             Explore our comprehensive database of gemstones and learn about their unique characteristics, formation, and properties
           </p>
         </div>

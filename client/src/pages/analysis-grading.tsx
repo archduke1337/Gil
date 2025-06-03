@@ -95,10 +95,10 @@ export default function AnalysisGrading() {
               <Microscope className="w-10 h-10 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-display text-ultra-smooth">
+          <h1 className="text-hero font-heading mb-6 text-ultra-smooth">
             Analysis & Grading Services
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
+          <p className="text-body-lg font-body text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
             Professional gemological analysis using advanced instruments and internationally recognized grading standards
           </p>
         </div>
@@ -108,8 +108,8 @@ export default function AnalysisGrading() {
       <div className="py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4 text-ultra-smooth">Our Analysis Process</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-ultra-smooth">
+            <h2 className="text-display font-heading text-foreground mb-4 text-ultra-smooth">Our Analysis Process</h2>
+            <p className="text-body-lg font-body text-muted-foreground max-w-3xl mx-auto text-ultra-smooth">
               Every gemstone undergoes rigorous examination using state-of-the-art equipment and expert evaluation
             </p>
           </div>
@@ -119,8 +119,8 @@ export default function AnalysisGrading() {
               <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 soft-shadow">
                 <Eye className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-3 text-ultra-smooth text-lg">Initial Inspection</h3>
-              <p className="text-muted-foreground text-ultra-smooth">
+              <h3 className="font-heading text-heading-sm text-foreground mb-3 text-ultra-smooth">Initial Inspection</h3>
+              <p className="font-body text-body text-muted-foreground text-ultra-smooth">
                 Visual examination to assess overall condition and identify key characteristics
               </p>
             </div>
