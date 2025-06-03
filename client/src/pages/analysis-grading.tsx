@@ -10,6 +10,7 @@ import logoPath from "@assets/1000119055-removebg-preview.png";
 import EnhancedGemAnalysis from "@/components/enhanced-gem-analysis";
 import ARGemIdentification from "@/components/ar-gem-identification";
 import { GemTermTooltip, InfoIconTooltip } from "@/components/educational-tooltips";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 // SVG Components for the 4Cs
 const CutDiagramSVG = () => (

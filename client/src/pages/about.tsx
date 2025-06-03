@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import emailjs from '@emailjs/browser';
 import { useState } from "react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function About() {
   const [formData, setFormData] = useState({

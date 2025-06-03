@@ -12,6 +12,7 @@ import { gemIcons } from "@/components/gem-svg-icons";
 import { GemTermTooltip, InfoIconTooltip } from "@/components/educational-tooltips";
 import GemLoadingSpinner from "@/components/gem-loading-spinner";
 import { debounce, getOptimizedAnimationConfig } from "@/utils/performance";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 // SVG Components for Gemstones
 const DiamondSVG = () => (

@@ -5,6 +5,7 @@ import CertificateResult from "@/components/certificate-result";
 import Navigation from "@/components/navigation";
 import type { Certificate } from "@shared/schema";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function Verify() {
   const [verificationResult, setVerificationResult] = useState<{
