@@ -20,15 +20,15 @@ export default function Verify() {
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6 soft-shadow">
             <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
               <Shield className="w-8 h-8 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display text-ultra-smooth">
             Certificate Verification
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8 text-ultra-smooth">
             Verify the authenticity of your diamond certificate using our secure verification system
           </p>
         </div>
@@ -37,10 +37,10 @@ export default function Verify() {
       {/* Verification Form Section */}
       <div className="py-16 bg-card">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-card rounded-2xl shadow-xl border border-border p-8">
+          <div className="bg-card rounded-2xl soft-shadow border-0 p-8">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-foreground mb-2">Enter Certificate Reference</h2>
-              <p className="text-muted-foreground">Input your diamond certificate reference number to view details</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2 text-ultra-smooth">Enter Certificate Reference</h2>
+              <p className="text-muted-foreground text-ultra-smooth">Input your diamond certificate reference number to view details</p>
             </div>
             
             <VerificationForm onResult={setVerificationResult} />

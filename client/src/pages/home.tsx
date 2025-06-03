@@ -90,7 +90,7 @@ export default function Home() {
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-[#8c745c] hover:bg-[#725d47] text-white px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-[#8c745c] hover:bg-[#725d47] text-white px-8 py-3 text-lg font-semibold rounded-xl soft-shadow hover:shadow-xl transition-all duration-300 text-ultra-smooth"
               >
                 <Link href="/verify">
                   <Search className="mr-2 h-5 w-5" />
@@ -102,7 +102,7 @@ export default function Home() {
                 asChild 
                 variant="outline" 
                 size="lg" 
-                className="border-[#8c745c] text-[#8c745c] hover:bg-[#8c745c] hover:text-white px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                className="border-[#8c745c] text-[#8c745c] hover:bg-[#8c745c] hover:text-white px-8 py-3 text-lg font-semibold rounded-xl soft-shadow hover:shadow-xl transition-all duration-300 text-ultra-smooth"
               >
                 <Link href="/about">
                   <Award className="mr-2 h-5 w-5" />
@@ -145,7 +145,7 @@ export default function Home() {
                   transition: { duration: 0.3 }
                 }}
               >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border border-gray-200 shadow-lg group cursor-pointer bg-white">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 rounded-xl soft-shadow group cursor-pointer bg-white">
                   <Link href={feature.link}>
                     <CardContent className="p-8 text-center">
                       <div className="mb-6 flex justify-center">

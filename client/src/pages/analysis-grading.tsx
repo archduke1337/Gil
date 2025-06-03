@@ -90,12 +90,12 @@ export default function AnalysisGrading() {
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-6 soft-shadow">
             <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
               <Microscope className="w-8 h-8 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display text-ultra-smooth">
             Analysis & Grading Services
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
