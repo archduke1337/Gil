@@ -332,8 +332,8 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               </svg>
             </div>
             <div className="text-center">
-              <div className="text-sm font-bold mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>Pavilion</div>
-              <svg viewBox="0 0 140 140" className="w-32 h-32 border-2 border-black mx-auto">
+              <div className="font-bold mb-1" style={{ fontFamily: 'Arial, sans-serif', fontSize: '9px' }}>Pavilion</div>
+              <svg viewBox="0 0 140 140" className="w-24 h-24 border border-black mx-auto">
                 <circle
                   cx="70"
                   cy="70"
@@ -357,24 +357,24 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
           </div>
 
           {/* Symbol Key */}
-          <div className="mb-6">
-            <div className="text-sm font-bold mb-2" style={{ fontFamily: 'Times New Roman, serif' }}>Key to Symbols</div>
-            <div className="space-y-1 text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
+          <div className="mb-2">
+            <div className="font-bold mb-1" style={{ fontFamily: 'Arial, sans-serif', fontSize: '9px' }}>Key to Symbols</div>
+            <div className="space-y-0.5" style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>
               <div className="flex items-center">
-                <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
+                <div className="w-1.5 h-1.5 bg-black rounded-full mr-1"></div>
                 <span>Crystal, Included mineral, Needle</span>
               </div>
               <div className="flex items-center">
-                <div className="w-2 h-2 bg-gray-600 rounded-full mr-2"></div>
+                <div className="w-1.5 h-1.5 bg-gray-600 rounded-full mr-1"></div>
                 <span>Cloud, Pinpoint</span>
               </div>
             </div>
           </div>
 
           {/* Important Notice */}
-          <div className="text-xs leading-tight p-3 border border-black" style={{ fontFamily: 'Arial, sans-serif' }}>
-            <div className="font-bold mb-2">IMPORTANT LIMITATIONS</div>
-            <div className="mb-2">
+          <div className="leading-tight p-2 border border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>
+            <div className="font-bold mb-1">IMPORTANT LIMITATIONS</div>
+            <div className="mb-1">
               The results documented in this report refer only to the diamond described, and were obtained using the techniques and equipment available to GIL at the time of examination.
             </div>
             <div>
@@ -385,19 +385,19 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
       </div>
 
       {/* Professional Footer */}
-      <div className="mt-8 pt-4 border-t-4 border-black">
+      <div className="mt-4 pt-2 border-t-2 border-black">
         <div className="flex justify-between items-end">
           {/* Left - GIL Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="w-20 h-20 flex items-center justify-center">
+          <div className="flex items-center space-x-2">
+            <div className="w-12 h-12 flex items-center justify-center">
               <img 
                 src={gilLogoPath} 
                 alt="GIL Laboratory" 
-                className="w-full h-full object-contain max-w-20 max-h-20"
+                className="w-full h-full object-contain"
                 style={{ filter: 'contrast(1.2) brightness(1.1)' }}
               />
             </div>
-            <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>
               <div className="font-bold">Gemological Institute Laboratory</div>
               <div>gilab.info</div>
             </div>
@@ -405,38 +405,38 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
           {/* Center - Authentication */}
           <div className="text-center">
-            <div className="mb-2">
+            <div className="mb-1">
               <QRCodeSVG 
                 value={data.verifierUrl || `https://gilab.info/verify/${data.reportNumber}`}
-                size={80}
+                size={60}
                 level="H"
                 includeMargin={true}
-                className="border-2 border-black"
+                className="border border-black"
               />
             </div>
-            <div className="text-xs font-bold" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>
               Verify this report at gilab.info
             </div>
-            <div className="text-xs mt-1" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '7px' }}>
               Report Number: {data.reportNumber}
             </div>
           </div>
 
           {/* Right - Signature Block */}
           <div className="text-right">
-            <div className="mb-4">
-              <div className="text-xs mb-1" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div className="mb-2">
+              <div className="mb-1" style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>
                 {data.signatureDate instanceof Date ? data.signatureDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : new Date(data.signatureDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </div>
-              <div className="border-b border-black w-48 mb-1 ml-auto"></div>
-              <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
+              <div className="border-b border-black w-32 mb-1 ml-auto"></div>
+              <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>
                 {data.gemologistName}
               </div>
-              <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
+              <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '7px' }}>
                 Staff Gemologist
               </div>
             </div>
-            <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '7px' }}>
               <div>© {new Date().getFullYear()} Gemological Institute Laboratory</div>
               <div>All rights reserved worldwide</div>
             </div>
