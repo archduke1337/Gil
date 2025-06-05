@@ -412,7 +412,7 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="colorGrade"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-slate-700 font-medium">Color Grade</FormLabel>
+                      <FormLabel className="text-foreground font-medium">Color Grade</FormLabel>
                       <FormControl>
                         <div className="flex flex-wrap gap-2">
                           {["D", "E", "F", "G", "H", "I", "J", "K", "L", "M"].map((grade) => (
@@ -423,8 +423,8 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                               size="sm"
                               onClick={() => field.onChange(grade)}
                               className={field.value === grade 
-                                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-600 shadow-md" 
-                                : "border-blue-300 text-blue-800 hover:bg-blue-50 hover:border-blue-400"
+                                ? "bg-gradient-to-r from-primary to-primary/80 text-white border-primary shadow-md" 
+                                : "border-primary/30 text-primary hover:bg-card hover:border-primary/60"
                               }
                             >
                               {grade}
@@ -442,7 +442,7 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="clarityGrade"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-slate-700 font-medium">Clarity Grade</FormLabel>
+                      <FormLabel className="text-foreground font-medium">Clarity Grade</FormLabel>
                       <FormControl>
                         <div className="flex flex-wrap gap-2">
                           {["FL", "IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "I1", "I2", "I3"].map((grade) => (
@@ -453,8 +453,8 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                               size="sm"
                               onClick={() => field.onChange(grade)}
                               className={field.value === grade 
-                                ? "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white border-emerald-600 shadow-md" 
-                                : "border-emerald-300 text-emerald-800 hover:bg-emerald-50 hover:border-emerald-400"
+                                ? "bg-gradient-to-r from-primary to-primary/80 text-white border-primary shadow-md" 
+                                : "border-primary/30 text-primary hover:bg-card hover:border-primary/60"
                               }
                             >
                               {grade}
@@ -472,7 +472,7 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="cutGrade"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-slate-700 font-medium">Cut Grade</FormLabel>
+                      <FormLabel className="text-foreground font-medium">Cut Grade</FormLabel>
                       <FormControl>
                         <div className="flex flex-wrap gap-2">
                           {["Excellent", "Very Good", "Good", "Fair", "Poor"].map((grade) => (
@@ -483,8 +483,8 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                               size="sm"
                               onClick={() => field.onChange(grade)}
                               className={field.value === grade 
-                                ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white border-amber-600 shadow-md" 
-                                : "border-amber-300 text-amber-800 hover:bg-amber-50 hover:border-amber-400"
+                                ? "bg-gradient-to-r from-primary to-primary/80 text-white border-primary shadow-md" 
+                                : "border-primary/30 text-primary hover:bg-card hover:border-primary/60"
                               }
                             >
                               {grade}
@@ -502,7 +502,7 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="polish"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-slate-700 font-medium">Polish</FormLabel>
+                      <FormLabel className="text-foreground font-medium">Polish</FormLabel>
                       <FormControl>
                         <div className="flex flex-wrap gap-2">
                           {["Excellent", "Very Good", "Good", "Fair", "Poor"].map((grade) => (
@@ -513,8 +513,8 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                               size="sm"
                               onClick={() => field.onChange(grade)}
                               className={field.value === grade 
-                                ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white border-purple-600 shadow-md" 
-                                : "border-purple-300 text-purple-800 hover:bg-purple-50 hover:border-purple-400"
+                                ? "bg-gradient-to-r from-primary to-primary/80 text-white border-primary shadow-md" 
+                                : "border-primary/30 text-primary hover:bg-card hover:border-primary/60"
                               }
                             >
                               {grade}
@@ -590,10 +590,10 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
           </Card>
 
           {/* Technical Measurements Section */}
-          <Card className="border-blue-200">
-            <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
+          <Card className="border-primary/20">
+            <CardHeader className="bg-gradient-to-r from-card to-background">
               <CardTitle className="flex items-center space-x-2">
-                <Ruler className="h-5 w-5 text-blue-600" />
+                <Ruler className="h-5 w-5 text-primary" />
                 <span>Technical Measurements</span>
               </CardTitle>
               <CardDescription>Detailed proportions and technical specifications</CardDescription>
@@ -736,10 +736,10 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
           </Card>
 
           {/* Additional Information Section */}
-          <Card className="border-purple-200">
-            <CardHeader className="bg-gradient-to-r from-purple-50 to-violet-50">
+          <Card className="border-primary/20">
+            <CardHeader className="bg-gradient-to-r from-card to-background">
               <CardTitle className="flex items-center space-x-2">
-                <QrCode className="h-5 w-5 text-purple-600" />
+                <QrCode className="h-5 w-5 text-primary" />
                 <span>Additional Information</span>
               </CardTitle>
               <CardDescription>Optional details and verification settings</CardDescription>
@@ -960,7 +960,7 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
             <Button 
               type="submit" 
               disabled={isGenerating}
-              className="bg-amber-600 hover:bg-amber-700 rounded-xl"
+              className="bg-primary hover:bg-primary/90 rounded-xl"
             >
               {isGenerating ? (
                 <>
