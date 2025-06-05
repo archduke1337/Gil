@@ -167,13 +167,13 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Eye className="h-5 w-5 text-amber-600" />
-            <h2 className="text-2xl font-semibold text-body">Certificate Preview</h2>
+            <Eye className="h-5 w-5 text-primary" />
+            <h2 className="text-2xl font-semibold text-foreground">Certificate Preview</h2>
           </div>
           <div className="flex space-x-2">
             <Button 
               onClick={handleDownloadPDF}
-              className="bg-amber-600 hover:bg-amber-700"
+              className="bg-primary hover:bg-primary/90"
             >
               <Download className="h-4 w-4 mr-2" />
               Download PDF
@@ -195,17 +195,17 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50">
+    <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">
       <div className="max-w-7xl mx-auto p-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl shadow-lg mb-6">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl shadow-lg mb-6">
             <Diamond className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent mb-3">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mb-3">
             GIL Diamond Certificate Generator
           </h1>
-          <p className="text-slate-600 text-lg font-medium">
+          <p className="text-muted-foreground text-lg font-medium">
             Professional diamond grading report with digital verification
           </p>
         </div>
@@ -214,10 +214,10 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           
           {/* Report Information Section */}
-          <Card className="bg-white/70 backdrop-blur-sm border-emerald-100 shadow-xl hover:shadow-2xl transition-all duration-300">
+          <Card className="bg-card/70 backdrop-blur-sm border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300">
             <CardHeader className="pb-4">
-              <CardTitle className="flex items-center text-2xl text-slate-800">
-                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center mr-4">
+              <CardTitle className="flex items-center text-2xl text-foreground">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center mr-4">
                   <FileText className="w-6 h-6 text-white" />
                 </div>
                 Report Information
@@ -317,10 +317,10 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
           </Card>
 
           {/* Diamond Specifications Section */}
-          <Card className="border-blue-200">
-            <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
+          <Card className="border-primary/20">
+            <CardHeader className="bg-gradient-to-r from-card to-background">
               <CardTitle className="flex items-center space-x-2">
-                <Gem className="h-5 w-5 text-blue-600" />
+                <Gem className="h-5 w-5 text-primary" />
                 <span>Diamond Specifications</span>
               </CardTitle>
               <CardDescription>Physical characteristics and measurements</CardDescription>
@@ -332,7 +332,7 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                   name="shape"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-slate-700 font-medium">Shape</FormLabel>
+                      <FormLabel className="text-foreground font-medium">Shape</FormLabel>
                       <FormControl>
                         <div className="flex flex-wrap gap-2">
                           {["Round", "Princess", "Emerald", "Asscher", "Oval", "Radiant", "Cushion", "Heart", "Pear", "Marquise"].map((shape) => (
@@ -343,8 +343,8 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
                               size="sm"
                               onClick={() => field.onChange(shape)}
                               className={field.value === shape 
-                                ? "bg-gradient-to-r from-indigo-500 to-indigo-600 text-white border-indigo-600 shadow-md" 
-                                : "border-indigo-300 text-indigo-800 hover:bg-indigo-50 hover:border-indigo-400"
+                                ? "bg-gradient-to-r from-primary to-primary/80 text-white border-primary shadow-md" 
+                                : "border-primary/30 text-primary hover:bg-card hover:border-primary/60"
                               }
                             >
                               {shape}
@@ -397,10 +397,10 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
           </Card>
 
           {/* Grading Results Section */}
-          <Card className="border-green-200">
-            <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50">
+          <Card className="border-primary/20">
+            <CardHeader className="bg-gradient-to-r from-card to-background">
               <CardTitle className="flex items-center space-x-2">
-                <ShieldCheck className="h-5 w-5 text-green-600" />
+                <ShieldCheck className="h-5 w-5 text-primary" />
                 <span>Grading Results</span>
               </CardTitle>
               <CardDescription>4Cs grading assessment and quality factors</CardDescription>
