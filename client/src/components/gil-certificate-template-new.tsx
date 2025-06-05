@@ -381,41 +381,56 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
       </div>
 
       {/* Professional Footer */}
-      <div className="mt-8 pt-6 border-t-2 border-gray-800">
-        <div className="flex justify-between items-center">
-          {/* Left - Laboratory Signature */}
-          <div className="text-left">
-            <div className="mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>
-              <div className="text-sm font-bold" style={{ color: '#000000' }}>Gemologist:</div>
-              <div className="text-sm" style={{ color: '#000000' }}>{data.gemologistName}</div>
-              <div className="text-xs" style={{ color: '#000000' }}>
-                {data.signatureDate instanceof Date ? data.signatureDate.toLocaleDateString() : new Date(data.signatureDate).toLocaleDateString()}
-              </div>
+      <div className="mt-8 pt-4 border-t-4 border-black">
+        <div className="grid grid-cols-3 gap-8 items-end">
+          {/* Left - Laboratory Information */}
+          <div>
+            <div className="text-xs mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>
+              <div className="font-bold">Gemological Institute Laboratory</div>
+              <div>The Robert Mouawad Campus</div>
+              <div>5355 Armada Drive</div>
+              <div>Carlsbad, CA 92008</div>
+              <div>T 760 603 4500 F 760 603 4595</div>
+              <div>gilab.info</div>
             </div>
           </div>
 
-          {/* Center - QR Code Verification */}
+          {/* Center - Authentication */}
           <div className="text-center">
             <div className="mb-2">
               <QRCodeSVG 
                 value={data.verifierUrl || `https://gilab.info/verify/${data.reportNumber}`}
-                size={60}
+                size={80}
                 level="H"
                 includeMargin={true}
-                className="border border-gray-400"
+                className="border-2 border-black"
               />
             </div>
-            <div className="text-xs" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
-              Verify at gilab.info
+            <div className="text-xs font-bold" style={{ fontFamily: 'Arial, sans-serif' }}>
+              Verify this report at gilab.info
+            </div>
+            <div className="text-xs mt-1" style={{ fontFamily: 'Arial, sans-serif' }}>
+              Report Number: {data.reportNumber}
             </div>
           </div>
 
-          {/* Right - Certificate Information */}
+          {/* Right - Signature Block */}
           <div className="text-right">
-            <div className="text-xs" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
-              <div>© {new Date().getFullYear()} GIL</div>
-              <div>All Rights Reserved</div>
-              <div className="mt-1">Page 1 of 1</div>
+            <div className="mb-4">
+              <div className="text-xs mb-1" style={{ fontFamily: 'Arial, sans-serif' }}>
+                {data.signatureDate instanceof Date ? data.signatureDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : new Date(data.signatureDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </div>
+              <div className="border-b border-black w-48 mb-1 ml-auto"></div>
+              <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
+                {data.gemologistName}
+              </div>
+              <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
+                Staff Gemologist
+              </div>
+            </div>
+            <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
+              <div>© {new Date().getFullYear()} Gemological Institute Laboratory</div>
+              <div>All rights reserved worldwide</div>
             </div>
           </div>
         </div>
