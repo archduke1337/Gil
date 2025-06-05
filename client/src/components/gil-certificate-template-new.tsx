@@ -458,7 +458,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                   />
                 </div>
                 <div className="mt-3 text-xs">
-                  <div className="font-medium text-blue-900 mb-1">Scan to Verify</div>
+                  <div className="font-medium text-primary mb-1">Scan to Verify</div>
                   <div className="text-gray-600">
                     {data.verifierUrl || `gilab.info/verify/${data.reportNumber}`}
                   </div>
@@ -468,14 +468,14 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
             {/* Digital Signature */}
             <div className="border border-gray-400">
-              <div className="bg-blue-900 text-white p-3 text-center">
+              <div className="bg-primary text-white p-3 text-center">
                 <div className="font-bold text-sm tracking-wide">DIGITAL AUTHENTICATION</div>
               </div>
               <div className="bg-white p-4 text-center">
                 <div className="space-y-3">
                   <div className="text-xs">
                     <div className="font-medium mb-1">Digitally Signed By:</div>
-                    <div className="text-blue-900 font-medium">{data.gemologistName}</div>
+                    <div className="text-primary font-medium">{data.gemologistName}</div>
                     <div className="text-gray-600">Certified Gemologist</div>
                   </div>
                   
@@ -488,7 +488,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                   </div>
                   
                   <div className="border-t border-gray-200 pt-3">
-                    <div className="text-xs text-blue-900 font-medium">
+                    <div className="text-xs text-primary font-medium">
                       This document has been digitally signed and is protected by cryptographic security measures.
                     </div>
                   </div>
@@ -504,7 +504,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
             <div className="text-xs text-gray-600">
               © {new Date().getFullYear()} Gemological Institute Laboratory (GIL). All rights reserved.
             </div>
-            <div className="text-xs text-blue-900 font-medium">
+            <div className="text-xs text-primary font-medium">
               Verify at gilab.info | Report #{data.reportNumber}
             </div>
             <div className="text-xs text-gray-600">
