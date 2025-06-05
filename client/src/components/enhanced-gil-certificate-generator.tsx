@@ -68,12 +68,7 @@ export default function EnhancedGILCertificateGenerator({ onSuccess }: EnhancedG
 
   const handlePreview = () => {
     const data = form.getValues();
-    const formattedData = {
-      ...data,
-      reportDate: data.reportDate instanceof Date ? data.reportDate.toISOString().split('T')[0] : data.reportDate,
-      signatureDate: data.signatureDate instanceof Date ? data.signatureDate.toISOString().split('T')[0] : data.signatureDate,
-    };
-    setPreviewData(formattedData);
+    setPreviewData(data);
     setShowPreview(true);
   };
 

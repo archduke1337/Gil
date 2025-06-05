@@ -2,10 +2,10 @@ import { forwardRef } from "react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 
 interface CertificateData {
-  referenceNumber: string;
-  gemType: string;
+  reportNumber: string;
+  reportDate: Date;
   shape: string;
-  dimensions: string;
+  measurements: string;
   caratWeight: string;
   colorGrade: string;
   clarityGrade: string;
@@ -13,13 +13,10 @@ interface CertificateData {
   polish: string;
   symmetry: string;
   fluorescence: string;
-  treatment: string;
-  origin: string;
   inscription: string;
   comments: string;
-  certificationDate: Date;
-  examinedBy: string;
-  approvedBy: string;
+  gemologistName: string;
+  signatureDate: Date;
   labLocation: string;
   equipmentUsed: string;
   tablePercentage: string;
@@ -157,7 +154,7 @@ const ProfessionalCertificateTemplate = forwardRef<HTMLDivElement, ProfessionalC
           
           <div className="text-right">
             <div className="text-lg font-semibold text-[#8B7355] mb-2">GIL REPORT</div>
-            <div className="text-3xl font-bold text-[#4a4a4a] tracking-widest">{data.referenceNumber}</div>
+            <div className="text-3xl font-bold text-[#4a4a4a] tracking-widest">{data.reportNumber}</div>
             <div className="text-sm mt-2">Verify this report at gilgem.com</div>
           </div>
           
@@ -177,11 +174,11 @@ const ProfessionalCertificateTemplate = forwardRef<HTMLDivElement, ProfessionalC
             
             <div className="space-y-3 text-sm">
               <div className="flex justify-between border-b border-gray-300 pb-1">
-                <span>{formatDate(data.certificationDate)}</span>
+                <span>{formatDate(data.reportDate)}</span>
               </div>
               <div className="flex justify-between border-b border-gray-300 pb-1">
                 <span>GIL Report Number</span>
-                <span className="font-mono">{data.referenceNumber}</span>
+                <span className="font-mono">{data.reportNumber}</span>
               </div>
               <div className="flex justify-between border-b border-gray-300 pb-1">
                 <span>Shape and Cutting Style</span>
@@ -189,7 +186,7 @@ const ProfessionalCertificateTemplate = forwardRef<HTMLDivElement, ProfessionalC
               </div>
               <div className="flex justify-between border-b border-gray-300 pb-1">
                 <span>Measurements</span>
-                <span>{data.dimensions}</span>
+                <span>{data.measurements}</span>
               </div>
             </div>
 
@@ -237,7 +234,7 @@ const ProfessionalCertificateTemplate = forwardRef<HTMLDivElement, ProfessionalC
               </div>
               <div className="flex justify-between border-b border-gray-300 pb-1">
                 <span>Inscription(s)</span>
-                <span className="font-mono">{data.inscription || data.referenceNumber}</span>
+                <span className="font-mono">{data.inscription || data.reportNumber}</span>
               </div>
               {data.comments && (
                 <div className="text-xs leading-tight">
@@ -339,8 +336,8 @@ const ProfessionalCertificateTemplate = forwardRef<HTMLDivElement, ProfessionalC
         {/* Examiner Information */}
         <div className="mt-8 flex justify-between text-xs">
           <div>
-            <div className="font-semibold">Examined by: {data.examinedBy}</div>
-            <div>Approved by: {data.approvedBy}</div>
+            <div className="font-semibold">Gemologist: {data.gemologistName}</div>
+            <div>Signature Date: {formatDate(data.signatureDate)}</div>
           </div>
           <div className="text-right">
             <div>{data.labLocation}</div>
