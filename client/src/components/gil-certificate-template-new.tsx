@@ -208,12 +208,10 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                 <span className="font-medium" style={{ color: '#8b7355' }}>Inscription(s)</span>
                 <span className="text-right font-mono text-xs" style={{ color: '#8b7355' }}>{data.inscription || `GIL ${data.reportNumber}`}</span>
               </div>
-              {data.comments && (
-                <div className="mt-3">
-                  <div className="text-xs font-bold mb-1" style={{ color: '#8b7355' }}>Comments:</div>
-                  <div className="text-xs" style={{ color: '#8b7355' }}>{data.comments || "Clouds are not shown. Pinpoints are not shown."}</div>
-                </div>
-              )}
+              <div className="mt-3">
+                <div className="text-xs font-bold mb-1" style={{ color: '#8b7355' }}>Comments:</div>
+                <div className="text-xs" style={{ color: '#8b7355' }}>{data.comments || "Clouds are not shown. Pinpoints are not shown."}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -237,8 +235,8 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                   />
                   {/* Table */}
                   <line x1="70" y1="80" x2="130" y2="80" stroke="#8b7355" strokeWidth="2"/>
-                  <text x="100" y="70" textAnchor="middle" className="text-xs" fill="#8b7355">50%</text>
-                  <text x="45" y="75" textAnchor="middle" className="text-xs" fill="#8b7355">57%</text>
+                  <text x="100" y="70" textAnchor="middle" className="text-xs" fill="#8b7355">Table</text>
+                  <text x="45" y="75" textAnchor="middle" className="text-xs" fill="#8b7355">{data.tablePercentage || "57%"}</text>
                   
                   {/* Crown */}
                   <polygon
@@ -247,6 +245,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                     stroke="#8b7355"
                     strokeWidth="1"
                   />
+                  <text x="80" y="50" className="text-xs" fill="#8b7355">Crown</text>
                   
                   {/* Pavilion */}
                   <polygon
@@ -255,13 +254,14 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                     stroke="#8b7355"
                     strokeWidth="1"
                   />
+                  <text x="110" y="130" className="text-xs" fill="#8b7355">Pavilion</text>
                   
                   {/* Measurements */}
-                  <text x="165" y="25" className="text-xs" fill="#8b7355">15.0%</text>
-                  <text x="165" y="40" className="text-xs" fill="#8b7355">35.0°</text>
-                  <text x="165" y="55" className="text-xs" fill="#8b7355">8.3%</text>
-                  <text x="165" y="70" className="text-xs" fill="#8b7355">43.5%</text>
-                  <text x="165" y="85" className="text-xs" fill="#8b7355">41.0°</text>
+                  <text x="165" y="25" className="text-xs" fill="#8b7355">Crown Ht: {data.crownAngle || "15.0%"}</text>
+                  <text x="165" y="40" className="text-xs" fill="#8b7355">Crown Angle: {data.crownAngle || "35.0°"}</text>
+                  <text x="165" y="55" className="text-xs" fill="#8b7355">Star Length: 50%</text>
+                  <text x="165" y="70" className="text-xs" fill="#8b7355">Pavilion Depth: {data.depthPercentage || "43.5%"}</text>
+                  <text x="165" y="85" className="text-xs" fill="#8b7355">Pavilion Angle: {data.pavilionAngle || "40.8°"}</text>
                 </svg>
               </div>
               <div className="text-xs mb-4" style={{ color: '#8b7355' }}>
