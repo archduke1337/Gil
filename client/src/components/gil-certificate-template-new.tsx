@@ -110,7 +110,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                 GEMOLOGICAL INSTITUTE LABORATORY
               </div>
               <div className="text-sm" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
-                A Wholly Owned Subsidiary of Gemological Institute of America
+                Independent Gemological Testing Laboratory
               </div>
               <div className="text-xs mt-1" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
                 CARLSBAD • NEW YORK • BANGKOK • MUMBAI
