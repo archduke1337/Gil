@@ -99,13 +99,12 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
         <div className="flex justify-between items-start">
           {/* Left - Laboratory Information */}
           <div className="flex items-center space-x-6">
-            <div className="relative w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: 'hsl(var(--primary))' }}>
+            <div className="relative w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-primary/20">
               <img 
                 src={gilLogoPath} 
                 alt="GIL Laboratory" 
-                className="w-16 h-16 object-contain drop-shadow-sm"
+                className="w-16 h-16 object-contain"
               />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/15 to-primary/15"></div>
             </div>
             <div>
               <div className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent tracking-wide font-display text-primary">GIL°</div>
