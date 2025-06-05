@@ -93,18 +93,18 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
         backgroundColor: '#ffffff',
         border: '2px solid #000000',
         fontFamily: 'Arial, sans-serif',
-        padding: '0.5in',
+        padding: '0.3in',
         boxSizing: 'border-box',
-        fontSize: '12px',
-        lineHeight: '1.4'
+        fontSize: '11px',
+        lineHeight: '1.2'
       }}>
       
       {/* Professional Header */}
-      <div className="border-b-2 border-black pb-3 mb-4">
+      <div className="border-b-2 border-black pb-2 mb-3">
         <div className="flex justify-between items-center">
           {/* Left - Laboratory Seal */}
-          <div className="flex items-center space-x-3">
-            <div className="w-16 h-16 flex items-center justify-center">
+          <div className="flex items-center space-x-2">
+            <div className="w-12 h-12 flex items-center justify-center">
               <img 
                 src={gilLogoPath} 
                 alt="GIL Laboratory" 
@@ -113,10 +113,10 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               />
             </div>
             <div>
-              <div className="text-lg font-bold" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
+              <div className="font-bold" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '16px' }}>
                 GEMOLOGICAL INSTITUTE LABORATORY
               </div>
-              <div className="text-xs" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '10px' }}>
+              <div style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '9px' }}>
                 Independent Gemological Testing Laboratory
               </div>
             </div>
@@ -124,13 +124,13 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
           {/* Right - Report Details */}
           <div className="text-right">
-            <div className="text-base font-bold mb-1" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
+            <div className="font-bold mb-1" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '13px' }}>
               DIAMOND GRADING REPORT
             </div>
-            <div className="text-sm mb-2" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '11px' }}>
+            <div className="mb-1" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '10px' }}>
               {data.reportDate instanceof Date ? data.reportDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : new Date(data.reportDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </div>
-            <div className="font-bold border border-black px-3 py-1 inline-block" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '16px' }}>
+            <div className="font-bold border border-black px-2 py-1 inline-block" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
               {data.reportNumber}
             </div>
           </div>
@@ -138,16 +138,16 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
       </div>
 
       {/* Professional Content Layout */}
-      <div className="grid grid-cols-12 gap-4 mb-6">
+      <div className="grid grid-cols-12 gap-3 mb-4">
         
         {/* Left Column - Identification & Results */}
-        <div className="col-span-5 space-y-3">
+        <div className="col-span-5 space-y-2">
           {/* This Report */}
           <div>
-            <div className="font-bold mb-2 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
+            <div className="font-bold mb-1 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '11px' }}>
               This Report
             </div>
-            <div className="space-y-1" style={{ fontFamily: 'Arial, sans-serif', fontSize: '10px' }}>
+            <div className="space-y-0.5" style={{ fontFamily: 'Arial, sans-serif', fontSize: '9px' }}>
               <div className="flex justify-between">
                 <span>GIL Report Number</span>
                 <span className="font-bold">{data.reportNumber}</span>
@@ -165,26 +165,26 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
           {/* Grading Results */}
           <div>
-            <div className="font-bold mb-2 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
+            <div className="font-bold mb-1 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '11px' }}>
               Grading Results
             </div>
-            <div className="space-y-2">
-              <div className="text-center py-2 border border-black">
-                <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '9px' }}>Carat Weight</div>
-                <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>{data.caratWeight}</div>
+            <div className="space-y-1">
+              <div className="text-center py-1 border border-black">
+                <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>Carat Weight</div>
+                <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '16px' }}>{data.caratWeight}</div>
               </div>
               <div className="grid grid-cols-3 gap-1">
                 <div className="text-center py-1 border border-black">
-                  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>Color Grade</div>
-                  <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>{data.colorGrade}</div>
+                  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '7px' }}>Color Grade</div>
+                  <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>{data.colorGrade}</div>
                 </div>
                 <div className="text-center py-1 border border-black">
-                  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>Clarity Grade</div>
-                  <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>{data.clarityGrade}</div>
+                  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '7px' }}>Clarity Grade</div>
+                  <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>{data.clarityGrade}</div>
                 </div>
                 <div className="text-center py-1 border border-black">
-                  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>Cut Grade</div>
-                  <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>{data.cutGrade}</div>
+                  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '7px' }}>Cut Grade</div>
+                  <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>{data.cutGrade}</div>
                 </div>
               </div>
             </div>
@@ -192,10 +192,10 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
           {/* Additional Grading Information */}
           <div>
-            <div className="font-bold mb-2 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
+            <div className="font-bold mb-1 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '11px' }}>
               Additional Grading Information
             </div>
-            <div className="space-y-1" style={{ fontFamily: 'Arial, sans-serif', fontSize: '10px' }}>
+            <div className="space-y-0.5" style={{ fontFamily: 'Arial, sans-serif', fontSize: '9px' }}>
               <div className="flex justify-between">
                 <span>Polish</span>
                 <span>{data.polish}</span>
@@ -217,10 +217,10 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
           {/* Comments */}
           <div>
-            <div className="font-bold mb-2 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
+            <div className="font-bold mb-1 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '11px' }}>
               Comments
             </div>
-            <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '10px' }}>
+            <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '9px' }}>
               {data.comments || "Clouds are not shown. Pinpoints are not shown."}
             </div>
           </div>
@@ -228,12 +228,12 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
         {/* Center Column - Proportions */}
         <div className="col-span-4">
-          <div className="text-lg font-bold mb-4 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+          <div className="font-bold mb-1 pb-1 border-b border-black text-center" style={{ fontFamily: 'Arial, sans-serif', fontSize: '11px' }}>
             Proportions
           </div>
           <div className="text-center">
             {/* Professional Diamond Profile */}
-            <svg viewBox="0 0 300 400" className="w-full h-80 border border-black">
+            <svg viewBox="0 0 300 400" className="w-full h-60 border border-black">
               {/* Main Diamond Profile */}
               <polygon
                 points="150,50 220,140 150,350 80,140"
@@ -304,15 +304,15 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
         {/* Right Column - Clarity Characteristics */}
         <div className="col-span-3">
-          <div className="text-lg font-bold mb-4 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+          <div className="font-bold mb-1 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '11px' }}>
             Clarity Characteristics
           </div>
           
           {/* Professional Clarity Plots */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div className="text-center">
-              <div className="text-sm font-bold mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>Crown</div>
-              <svg viewBox="0 0 140 140" className="w-32 h-32 border-2 border-black mx-auto">
+              <div className="font-bold mb-1" style={{ fontFamily: 'Arial, sans-serif', fontSize: '9px' }}>Crown</div>
+              <svg viewBox="0 0 140 140" className="w-24 h-24 border border-black mx-auto">
                 <polygon
                   points="70,20 110,50 70,120 30,50"
                   fill="white"
