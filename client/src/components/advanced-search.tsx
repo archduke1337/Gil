@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
+import { useDebounce } from "@/hooks/use-debounce";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -37,7 +38,9 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
 
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
-  const handleFilterChange = (key: keyof SearchFilters, value: string) => {
+  const debouncedFilters = useDebounce(filters, 300);
+
+  const handleFilterChange = useCallback((key: keyof SearchFilters, value: string) => {
     setFilters(prev => ({ ...prev, [key]: value }));
     
     if (value && !activeFilters.includes(key)) {
@@ -45,7 +48,7 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
     } else if (!value && activeFilters.includes(key)) {
       setActiveFilters(prev => prev.filter(f => f !== key));
     }
-  };
+  }, [activeFilters]);
 
   const clearFilter = (key: keyof SearchFilters) => {
     setFilters(prev => ({ ...prev, [key]: "" }));
@@ -71,7 +74,7 @@ export default function AdvancedSearch({ certificates, onSearchResults }: Advanc
 
     if (filters.referenceNumber) {
       filtered = filtered.filter(cert => 
-        cert.referenceNumber.toLowerCase().includes(filters.referenceNumber.toLowerCase())
+        cert.referenceNumber ? cert.referenceNumber.toLowerCase().includes(filters.referenceNumber.toLowerCase()) : false
       );
     }
 

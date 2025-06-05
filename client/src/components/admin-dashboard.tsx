@@ -52,6 +52,36 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
     [searchResults, certificates]
   );
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <div className="flex items-center justify-center py-20">
+          <GemLoadingSpinner size="lg" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <DashboardSkeleton />
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-red-600 mb-4">Error Loading Dashboard</h2>
+            <p className="text-gray-600 mb-6">Unable to load certificates. Please try again.</p>
+            <Button onClick={() => refetch()} className="bg-primary hover:bg-primary/90">
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Retry
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="bg-white/80 backdrop-blur-sm shadow-sm border-0 rounded-b-3xl">
