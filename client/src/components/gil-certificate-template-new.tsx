@@ -85,56 +85,56 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
   
   return (
     <div 
-      className={`bg-gradient-to-br from-yellow-50 via-amber-25 to-yellow-50 p-10 max-w-6xl mx-auto font-display border-4 border-yellow-600 shadow-2xl ${className}`}
+      className={`bg-gradient-to-br from-background via-card to-background p-10 max-w-6xl mx-auto font-display border-4 border-primary shadow-2xl ${className}`}
       style={{ 
         minHeight: '1100px',
-        backgroundImage: 'radial-gradient(circle at 30px 30px, rgba(180, 83, 9, 0.08) 1px, transparent 0)',
+        backgroundImage: 'radial-gradient(circle at 30px 30px, hsl(var(--primary) / 0.08) 1px, transparent 0)',
         backgroundSize: '60px 60px',
-        boxShadow: '0 25px 50px -12px rgba(180, 83, 9, 0.3), 0 0 0 1px rgba(180, 83, 9, 0.1)',
-        backgroundColor: '#fffef7'
+        boxShadow: '0 25px 50px -12px hsl(var(--primary) / 0.3), 0 0 0 1px hsl(var(--primary) / 0.1)',
+        backgroundColor: 'hsl(var(--background))'
       }}>
       
-      {/* Golden Brown Header Section - Logo Matching */}
-      <div className="bg-gradient-to-r from-yellow-100 via-amber-50 to-yellow-100 border-b-4 border-yellow-700 pb-8 mb-8 rounded-t-lg" style={{ backgroundColor: '#fefce8' }}>
+      {/* Header Section */}
+      <div className="bg-gradient-to-r from-primary/10 via-card to-primary/10 border-b-4 border-primary pb-8 mb-8 rounded-t-lg" style={{ backgroundColor: 'hsl(var(--card))' }}>
         <div className="flex justify-between items-start">
           {/* Left - Laboratory Information */}
           <div className="flex items-center space-x-6">
-            <div className="relative w-20 h-20 bg-gradient-to-br from-yellow-600 to-amber-700 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: '#b45309' }}>
+            <div className="relative w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: 'hsl(var(--primary))' }}>
               <img 
                 src={gilLogoPath} 
                 alt="GIL Laboratory" 
                 className="w-16 h-16 object-contain drop-shadow-sm"
               />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-500/15 to-amber-600/15"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/15 to-primary/15"></div>
             </div>
             <div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-yellow-800 to-amber-800 bg-clip-text text-transparent tracking-wide font-display" style={{ color: '#92400e' }}>GIL°</div>
-              <div className="text-sm font-heading tracking-wide" style={{ color: '#92400e' }}>Gemological Institute</div>
-              <div className="text-sm font-heading tracking-wide" style={{ color: '#92400e' }}>Laboratory</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent tracking-wide font-display text-primary">GIL°</div>
+              <div className="text-sm font-heading tracking-wide text-primary">Gemological Institute</div>
+              <div className="text-sm font-heading tracking-wide text-primary">Laboratory</div>
             </div>
           </div>
 
           {/* Center - Report Title */}
           <div className="text-center">
-            <div className="text-4xl font-bold bg-gradient-to-r from-yellow-900 to-amber-900 bg-clip-text text-transparent mb-3 tracking-wide font-display" style={{ color: '#78350f' }}>NATURAL DIAMOND</div>
-            <div className="text-2xl font-semibold bg-gradient-to-r from-yellow-800 to-amber-800 bg-clip-text text-transparent mb-2 tracking-wide font-heading" style={{ color: '#92400e' }}>GRADING REPORT</div>
-            <div className="text-sm mb-4 font-body" style={{ color: '#a16207' }}>
+            <div className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mb-3 tracking-wide font-display text-primary">NATURAL DIAMOND</div>
+            <div className="text-2xl font-semibold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mb-2 tracking-wide font-heading text-primary">GRADING REPORT</div>
+            <div className="text-sm mb-4 font-body text-primary/70">
               {data.reportDate instanceof Date ? data.reportDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : new Date(data.reportDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </div>
-            <div className="text-2xl font-bold bg-white/90 px-6 py-3 tracking-wider rounded-lg shadow-md font-display border-3" style={{ color: '#78350f', borderColor: '#a16207' }}>
+            <div className="text-2xl font-bold bg-card/90 px-6 py-3 tracking-wider rounded-lg shadow-md font-display border-3 border-primary text-primary">
               {data.reportNumber}
             </div>
           </div>
 
           {/* Right - Security Information */}
-          <div className="text-right text-xs max-w-48 bg-white/80 p-4 rounded-lg shadow-sm border-2" style={{ borderColor: '#a16207' }}>
-            <div className="mb-2 font-bold font-heading" style={{ color: '#92400e' }}>AUTHENTICITY</div>
-            <div className="leading-tight mb-3 font-body" style={{ color: '#a16207' }}>
+          <div className="text-right text-xs max-w-48 bg-card/80 p-4 rounded-lg shadow-sm border-2 border-primary">
+            <div className="mb-2 font-bold font-heading text-primary">AUTHENTICITY</div>
+            <div className="leading-tight mb-3 font-body text-primary/70">
               This report includes advanced security features and is digitally verified through our secure database.
             </div>
-            <div className="text-xs font-semibold font-body" style={{ color: '#92400e' }}>
+            <div className="text-xs font-semibold font-body text-primary">
               Verify online at<br/>
-              <span style={{ color: '#b45309' }}>gilab.info</span>
+              <span className="text-primary">gilab.info</span>
             </div>
           </div>
         </div>
@@ -146,38 +146,38 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
         {/* Left Column - Identification & Grading Results */}
         <div className="space-y-6">
           {/* Identification Section */}
-          <div className="border-2 rounded-lg shadow-lg overflow-hidden" style={{ borderColor: '#a16207' }}>
-            <div className="text-white p-4 text-center" style={{ background: 'linear-gradient(to right, #b45309, #92400e)' }}>
+          <div className="border-2 border-primary rounded-lg shadow-lg overflow-hidden">
+            <div className="text-white p-4 text-center bg-gradient-to-r from-primary to-primary/80">
               <div className="font-bold text-sm tracking-wide font-heading">IDENTIFICATION</div>
             </div>
-            <div className="p-5 space-y-4 text-sm" style={{ background: 'linear-gradient(to bottom right, #ffffff, #fefce8)' }}>
-              <div className="grid grid-cols-2 gap-2 items-center border-b pb-3" style={{ borderColor: '#fbbf24' }}>
-                <span className="font-medium font-body" style={{ color: '#92400e' }}>Shape and Cutting Style:</span>
-                <span className="text-right font-semibold" style={{ color: '#78350f' }}>{data.shape}</span>
+            <div className="p-5 space-y-4 text-sm bg-gradient-to-br from-background to-card">
+              <div className="grid grid-cols-2 gap-2 items-center border-b border-primary/20 pb-3">
+                <span className="font-medium font-body text-primary">Shape and Cutting Style:</span>
+                <span className="text-right font-semibold text-primary/80">{data.shape}</span>
               </div>
-              <div className="grid grid-cols-2 gap-2 items-center border-b pb-3" style={{ borderColor: '#fbbf24' }}>
-                <span className="font-medium font-body" style={{ color: '#92400e' }}>Measurements:</span>
-                <span className="text-right font-mono text-xs" style={{ color: '#78350f' }}>{data.measurements}</span>
+              <div className="grid grid-cols-2 gap-2 items-center border-b border-primary/20 pb-3">
+                <span className="font-medium font-body text-primary">Measurements:</span>
+                <span className="text-right font-mono text-xs text-primary/80">{data.measurements}</span>
               </div>
             </div>
           </div>
 
           {/* Grading Results Section */}
-          <div className="border-2 border-amber-300 rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white p-4 text-center">
+          <div className="border-2 border-primary rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-gradient-to-r from-primary to-primary/80 text-white p-4 text-center">
               <div className="font-bold text-sm tracking-wide font-heading">GRADING RESULTS</div>
             </div>
-            <div className="bg-gradient-to-br from-white to-amber-25 p-5 space-y-4 text-sm">
-              <div className="grid grid-cols-2 gap-2 items-center border-b border-amber-200 pb-3">
-                <span className="font-medium text-amber-800 font-body">Carat Weight:</span>
-                <span className="text-right font-bold text-xl text-amber-900 font-display">{data.caratWeight}</span>
+            <div className="bg-gradient-to-br from-background to-card p-5 space-y-4 text-sm">
+              <div className="grid grid-cols-2 gap-2 items-center border-b border-primary/20 pb-3">
+                <span className="font-medium text-primary font-body">Carat Weight:</span>
+                <span className="text-right font-bold text-xl text-primary/80 font-display">{data.caratWeight}</span>
               </div>
-              <div className="grid grid-cols-2 gap-2 items-center border-b border-amber-200 pb-3">
-                <span className="font-medium text-amber-800 font-body">Color Grade:</span>
-                <span className="text-right font-bold text-xl text-amber-900 font-display">{data.colorGrade}</span>
+              <div className="grid grid-cols-2 gap-2 items-center border-b border-primary/20 pb-3">
+                <span className="font-medium text-primary font-body">Color Grade:</span>
+                <span className="text-right font-bold text-xl text-primary/80 font-display">{data.colorGrade}</span>
               </div>
-              <div className="grid grid-cols-2 gap-2 items-center border-b border-amber-200 pb-3">
-                <span className="font-medium text-amber-800 font-body">Clarity Grade:</span>
+              <div className="grid grid-cols-2 gap-2 items-center border-b border-primary/20 pb-3">
+                <span className="font-medium text-primary font-body">Clarity Grade:</span>
                 <span className="text-right font-bold text-xl text-amber-900 font-display">{data.clarityGrade}</span>
               </div>
               <div className="grid grid-cols-2 gap-2 items-center border-b border-amber-200 pb-3">
