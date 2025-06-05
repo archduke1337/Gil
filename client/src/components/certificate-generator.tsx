@@ -76,20 +76,20 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
   const form = useForm<CertificateForm>({
     resolver: zodResolver(certificateSchema),
     defaultValues: {
-      referenceNumber: `GIL-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`,
-      certificationDate: new Date(),
-      treatment: "None detected",
-      origin: "Natural",
+      reportNumber: `G${String(Date.now()).slice(-10)}`,
+      reportDate: new Date(),
+      signatureDate: new Date(),
       polish: "Excellent",
       symmetry: "Excellent", 
       fluorescence: "None",
-      labLocation: "GIL Headquarters",
-      equipmentUsed: "Gemological microscope, spectroscopy, precision scale",
       inscription: "",
       tablePercentage: "57%",
       depthPercentage: "62.3%",
       crownAngle: "34.5°",
       pavilionAngle: "40.8°",
+      gemologistName: "Dr. Sarah Johnson",
+      labLocation: "GIL Headquarters",
+      equipmentUsed: "Gemological microscope, spectroscopy, precision scale",
     },
   });
 
@@ -110,10 +110,10 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
     try {
       // Transform form data to match database schema
       const certificateData = {
-        referenceNumber: data.referenceNumber,
-        gemType: data.gemType,
+        reportNumber: data.reportNumber,
+        reportDate: data.reportDate.toISOString(),
         shape: data.shape,
-        dimensions: data.dimensions,
+        measurements: data.measurements,
         caratWeight: data.caratWeight,
         colorGrade: data.colorGrade,
         clarityGrade: data.clarityGrade,
@@ -121,21 +121,17 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
         polish: data.polish || "Excellent",
         symmetry: data.symmetry || "Excellent",
         fluorescence: data.fluorescence || "None",
-        treatment: data.treatment || "None detected",
-        origin: data.origin || "Natural",
         inscription: data.inscription || "",
         comments: data.comments || "",
-        certificationDate: data.certificationDate.toISOString().split('T')[0],
-        examinedBy: data.examinedBy,
-        approvedBy: data.approvedBy,
+        gemologistName: data.gemologistName,
+        signatureDate: data.signatureDate.toISOString(),
         labLocation: data.labLocation || "GIL Headquarters",
         equipmentUsed: data.equipmentUsed || "Gemological microscope, spectroscopy, precision scale",
         tablePercentage: data.tablePercentage || "57%",
         depthPercentage: data.depthPercentage || "62.3%",
         crownAngle: data.crownAngle || "34.5°",
         pavilionAngle: data.pavilionAngle || "40.8°",
-        filename: null,
-        gemImagePath: null,
+        gemType: "Diamond",
         isActive: true,
       };
 
@@ -154,8 +150,8 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
       setGeneratedCertificate(data);
       
       toast({
-        title: "Certificate Generated Successfully",
-        description: `Certificate ${data.referenceNumber} has been created and saved to the database.`,
+        title: "Certificate Generated Successfully", 
+        description: `Certificate ${data.reportNumber} has been created and saved to the database.`,
       });
 
       onSuccess();
@@ -286,12 +282,12 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                     <div className="grid md:grid-cols-2 gap-6">
                       <FormField
                         control={form.control}
-                        name="referenceNumber"
+                        name="reportNumber"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-ultra-smooth font-body text-foreground">Reference Number</FormLabel>
+                            <FormLabel className="text-ultra-smooth font-body text-foreground">Report Number</FormLabel>
                             <FormControl>
-                              <Input {...field} placeholder="GIL-2024-123456" className="rounded-xl border border-input bg-background/60 backdrop-blur-sm soft-shadow h-12" />
+                              <Input {...field} placeholder="G2141436895" className="rounded-xl border border-input bg-background/60 backdrop-blur-sm soft-shadow h-12" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -300,10 +296,10 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                       
                       <FormField
                         control={form.control}
-                        name="certificationDate"
+                        name="reportDate"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-ultra-smooth font-medium">Certification Date</FormLabel>
+                            <FormLabel className="text-ultra-smooth font-medium">Report Date</FormLabel>
                             <Popover>
                               <PopoverTrigger asChild>
                                 <FormControl>
@@ -335,38 +331,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                       />
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-6">
-                      <FormField
-                        control={form.control}
-                        name="gemType"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-ultra-smooth font-medium">Gem Type</FormLabel>
-                            <FormControl>
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <SelectTrigger className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12">
-                                  <SelectValue placeholder="Select gem type" />
-                                </SelectTrigger>
-                                <SelectContent className="rounded-xl border-0 bg-white/95 backdrop-blur-sm soft-shadow">
-                                  <SelectItem value="Diamond">Diamond</SelectItem>
-                                  <SelectItem value="Ruby">Ruby</SelectItem>
-                                  <SelectItem value="Sapphire">Sapphire</SelectItem>
-                                  <SelectItem value="Emerald">Emerald</SelectItem>
-                                  <SelectItem value="Tanzanite">Tanzanite</SelectItem>
-                                  <SelectItem value="Garnet">Garnet</SelectItem>
-                                  <SelectItem value="Amethyst">Amethyst</SelectItem>
-                                  <SelectItem value="Aquamarine">Aquamarine</SelectItem>
-                                  <SelectItem value="Topaz">Topaz</SelectItem>
-                                  <SelectItem value="Opal">Opal</SelectItem>
-                                  <SelectItem value="Other">Other</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
+                    <div className="grid md:grid-cols-2 gap-6">
                       <FormField
                         control={form.control}
                         name="shape"
