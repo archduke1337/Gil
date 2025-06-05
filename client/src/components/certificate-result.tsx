@@ -292,35 +292,35 @@ export default function CertificateResult({ result }: CertificateResultProps) {
   };
 
   return (
-    <div className="py-16 bg-gray-50">
+    <div className="py-16 bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {found && certificate ? (
           <Card className="bg-card rounded-2xl shadow-xl border border-border p-8">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-primary-foreground" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-foreground">Certificate Verified</h3>
                   <p className="text-muted-foreground">Valid certificate found in our database</p>
                 </div>
               </div>
-              <Badge className="bg-green-600 text-white">Authentic</Badge>
+              <Badge className="bg-primary text-primary-foreground">Authentic</Badge>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">Certificate Details</h4>
+                  <h4 className="text-lg font-semibold text-foreground mb-4">Certificate Details</h4>
                   <dl className="space-y-3">
                     <div className="flex justify-between">
-                      <dt className="text-gray-600">Reference Number:</dt>
-                      <dd className="font-medium text-gray-900">{certificate.referenceNumber}</dd>
+                      <dt className="text-muted-foreground">Reference Number:</dt>
+                      <dd className="font-medium text-foreground">{certificate.referenceNumber}</dd>
                     </div>
                     <div className="flex justify-between">
-                      <dt className="text-gray-600">Issue Date:</dt>
-                      <dd className="font-medium text-gray-900">
+                      <dt className="text-muted-foreground">Issue Date:</dt>
+                      <dd className="font-medium text-foreground">
                         {certificate.issueDate ? new Date(certificate.issueDate).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'long',
@@ -329,14 +329,14 @@ export default function CertificateResult({ result }: CertificateResultProps) {
                       </dd>
                     </div>
                     <div className="flex justify-between">
-                      <dt className="text-gray-600">Certificate Type:</dt>
-                      <dd className="font-medium text-gray-900">Diamond Grading Report</dd>
+                      <dt className="text-muted-foreground">Certificate Type:</dt>
+                      <dd className="font-medium text-foreground">Diamond Grading Report</dd>
                     </div>
                     <div className="flex justify-between">
-                      <dt className="text-gray-600">Status:</dt>
+                      <dt className="text-muted-foreground">Status:</dt>
                       <dd className="flex items-center space-x-2">
-                        <span className="w-2 h-2 bg-emerald-600 rounded-full"></span>
-                        <span className="text-emerald-600 font-medium">Valid</span>
+                        <span className="w-2 h-2 bg-primary rounded-full"></span>
+                        <span className="text-primary font-medium">Valid</span>
                       </dd>
                     </div>
                   </dl>
@@ -344,24 +344,24 @@ export default function CertificateResult({ result }: CertificateResultProps) {
 
                 {(certificate.caratWeight || certificate.colorGrade || certificate.clarityGrade || certificate.cutGrade) && (
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-4">Diamond Specifications</h4>
+                    <h4 className="text-lg font-semibold text-foreground mb-4">Diamond Specifications</h4>
                     <dl className="space-y-3">
                       {certificate.caratWeight && (
                         <div className="flex justify-between">
-                          <dt className="text-gray-600">Carat Weight:</dt>
-                          <dd className="font-medium text-gray-900">{certificate.caratWeight} ct</dd>
+                          <dt className="text-muted-foreground">Carat Weight:</dt>
+                          <dd className="font-medium text-foreground">{certificate.caratWeight} ct</dd>
                         </div>
                       )}
                       {certificate.colorGrade && (
                         <div className="flex justify-between">
-                          <dt className="text-gray-600">Color Grade:</dt>
-                          <dd className="font-medium text-gray-900">{certificate.colorGrade}</dd>
+                          <dt className="text-muted-foreground">Color Grade:</dt>
+                          <dd className="font-medium text-foreground">{certificate.colorGrade}</dd>
                         </div>
                       )}
                       {certificate.clarityGrade && (
                         <div className="flex justify-between">
-                          <dt className="text-gray-600">Clarity Grade:</dt>
-                          <dd className="font-medium text-gray-900">{certificate.clarityGrade}</dd>
+                          <dt className="text-muted-foreground">Clarity Grade:</dt>
+                          <dd className="font-medium text-foreground">{certificate.clarityGrade}</dd>
                         </div>
                       )}
                       {certificate.cutGrade && (
