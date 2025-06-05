@@ -178,43 +178,43 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               </div>
               <div className="grid grid-cols-2 gap-2 items-center border-b border-primary/20 pb-3">
                 <span className="font-medium text-primary font-body">Clarity Grade:</span>
-                <span className="text-right font-bold text-xl text-amber-900 font-display">{data.clarityGrade}</span>
+                <span className="text-right font-bold text-xl text-primary/80 font-display">{data.clarityGrade}</span>
               </div>
-              <div className="grid grid-cols-2 gap-2 items-center border-b border-amber-200 pb-3">
-                <span className="font-medium text-amber-800 font-body">Cut Grade:</span>
-                <span className="text-right font-bold text-xl text-amber-900 font-display">{data.cutGrade}</span>
+              <div className="grid grid-cols-2 gap-2 items-center border-b border-primary/20 pb-3">
+                <span className="font-medium text-primary font-body">Cut Grade:</span>
+                <span className="text-right font-bold text-xl text-primary/80 font-display">{data.cutGrade}</span>
               </div>
             </div>
           </div>
 
           {/* Additional Grading Information */}
-          <div className="border-2 border-amber-300 rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white p-4 text-center">
+          <div className="border-2 border-primary rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-gradient-to-r from-primary to-primary/80 text-white p-4 text-center">
               <div className="font-bold text-sm tracking-wide font-heading">ADDITIONAL GRADING INFORMATION</div>
             </div>
-            <div className="bg-gradient-to-br from-white to-amber-25 p-5 space-y-3 text-sm">
+            <div className="bg-gradient-to-br from-background to-card p-5 space-y-3 text-sm">
               <div className="grid grid-cols-2 gap-2 items-center">
-                <span className="font-medium text-amber-800 font-body">Polish:</span>
-                <span className="text-right text-amber-900 font-semibold">{data.polish}</span>
+                <span className="font-medium text-primary font-body">Polish:</span>
+                <span className="text-right text-primary/80 font-semibold">{data.polish}</span>
               </div>
               <div className="grid grid-cols-2 gap-2 items-center">
-                <span className="font-medium text-amber-800 font-body">Symmetry:</span>
-                <span className="text-right text-amber-900 font-semibold">{data.symmetry}</span>
+                <span className="font-medium text-primary font-body">Symmetry:</span>
+                <span className="text-right text-primary/80 font-semibold">{data.symmetry}</span>
               </div>
               <div className="grid grid-cols-2 gap-2 items-center">
-                <span className="font-medium text-amber-800 font-body">Fluorescence:</span>
-                <span className="text-right text-amber-900 font-semibold">{data.fluorescence}</span>
+                <span className="font-medium text-primary font-body">Fluorescence:</span>
+                <span className="text-right text-primary/80 font-semibold">{data.fluorescence}</span>
               </div>
               {data.inscription && (
-                <div className="grid grid-cols-2 gap-2 items-center pt-3 border-t border-amber-200">
-                  <span className="font-medium text-amber-800 font-body">Inscriptions:</span>
-                  <span className="text-right text-amber-900 font-mono text-xs">{data.inscription}</span>
+                <div className="grid grid-cols-2 gap-2 items-center pt-3 border-t border-primary/20">
+                  <span className="font-medium text-primary font-body">Inscriptions:</span>
+                  <span className="text-right text-primary/80 font-mono text-xs">{data.inscription}</span>
                 </div>
               )}
               {data.comments && (
-                <div className="pt-3 border-t border-amber-200">
-                  <div className="font-medium mb-2 text-amber-800 font-body">Comments:</div>
-                  <div className="text-xs text-amber-700 font-body leading-relaxed">{data.comments}</div>
+                <div className="pt-3 border-t border-primary/20">
+                  <div className="font-medium mb-2 text-primary font-body">Comments:</div>
+                  <div className="text-xs text-primary/70 font-body leading-relaxed">{data.comments}</div>
                 </div>
               )}
             </div>
@@ -223,63 +223,63 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
         {/* Center Column - Proportions Diagram */}
         <div className="space-y-6">
-          <div className="border-2 border-amber-300 rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white p-4 text-center">
+          <div className="border-2 border-primary rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-gradient-to-r from-primary to-primary/80 text-white p-4 text-center">
               <div className="font-bold text-sm tracking-wide font-heading">PROPORTIONS</div>
             </div>
-            <div className="bg-gradient-to-br from-white to-amber-25 p-6 text-center">
+            <div className="bg-gradient-to-br from-background to-card p-6 text-center">
               {/* Enhanced Diamond Diagram */}
               <div className="relative mx-auto w-52 h-52 mb-6">
                 <svg viewBox="0 0 200 200" className="w-full h-full">
-                  {/* Main Diamond Outline with Amber Theme */}
+                  {/* Main Diamond Outline with Primary Theme */}
                   <polygon
                     points="100,20 160,80 100,180 40,80"
                     fill="none"
-                    stroke="#d97706"
+                    stroke="hsl(var(--primary))"
                     strokeWidth="3"
                     className="drop-shadow-lg"
                   />
                   {/* Table */}
-                  <line x1="70" y1="80" x2="130" y2="80" stroke="#d97706" strokeWidth="3"/>
-                  <text x="100" y="72" textAnchor="middle" className="text-xs fill-amber-800 font-body font-semibold">Table: {data.tablePercentage || "57%"}</text>
+                  <line x1="70" y1="80" x2="130" y2="80" stroke="hsl(var(--primary))" strokeWidth="3"/>
+                  <text x="100" y="72" textAnchor="middle" className="text-xs font-body font-semibold" fill="hsl(var(--primary))">Table: {data.tablePercentage || "57%"}</text>
                   
                   {/* Crown with Gradient */}
                   <polygon
                     points="70,80 100,20 130,80"
-                    fill="rgba(251, 146, 60, 0.15)"
-                    stroke="#d97706"
+                    fill="hsl(var(--primary) / 0.15)"
+                    stroke="hsl(var(--primary))"
                     strokeWidth="2"
                   />
-                  <text x="82" y="50" textAnchor="middle" className="text-xs fill-amber-800 font-body font-medium">Crown</text>
+                  <text x="82" y="50" textAnchor="middle" className="text-xs font-body font-medium" fill="hsl(var(--primary))">Crown</text>
                   
                   {/* Pavilion with Gradient */}
                   <polygon
                     points="70,80 100,180 130,80"
-                    fill="rgba(251, 146, 60, 0.1)"
-                    stroke="#d97706"
+                    fill="hsl(var(--primary) / 0.1)"
+                    stroke="hsl(var(--primary))"
                     strokeWidth="2"
                   />
-                  <text x="118" y="130" textAnchor="middle" className="text-xs fill-amber-800 font-body font-medium">Pavilion</text>
+                  <text x="118" y="130" textAnchor="middle" className="text-xs font-body font-medium" fill="hsl(var(--primary))">Pavilion</text>
                   
                   {/* Depth Line */}
-                  <line x1="175" y1="20" x2="175" y2="180" stroke="#ea580c" strokeWidth="2" strokeDasharray="3,3"/>
-                  <text x="185" y="105" textAnchor="start" className="text-xs fill-orange-700 font-body font-semibold">Depth: {data.depthPercentage || "62.3%"}</text>
+                  <line x1="175" y1="20" x2="175" y2="180" stroke="hsl(var(--primary) / 0.8)" strokeWidth="2" strokeDasharray="3,3"/>
+                  <text x="185" y="105" textAnchor="start" className="text-xs font-body font-semibold" fill="hsl(var(--primary) / 0.8)">Depth: {data.depthPercentage || "62.3%"}</text>
                 </svg>
               </div>
 
-              {/* Technical Measurements with Amber Theme */}
+              {/* Technical Measurements with Primary Theme */}
               <div className="grid grid-cols-2 gap-4 text-xs">
-                <div className="text-left bg-amber-50 p-3 rounded border border-amber-200">
-                  <div className="font-semibold mb-2 text-amber-800 font-heading">Measurements:</div>
-                  <div className="text-amber-700 font-body">Table: {data.tablePercentage || "57%"}</div>
-                  <div className="text-amber-700 font-body">Depth: {data.depthPercentage || "62.3%"}</div>
-                  <div className="text-amber-700 font-body">Crown Angle: {data.crownAngle || "34.5°"}</div>
+                <div className="text-left bg-card p-3 rounded border border-primary/20">
+                  <div className="font-semibold mb-2 text-primary font-heading">Measurements:</div>
+                  <div className="text-primary/70 font-body">Table: {data.tablePercentage || "57%"}</div>
+                  <div className="text-primary/70 font-body">Depth: {data.depthPercentage || "62.3%"}</div>
+                  <div className="text-primary/70 font-body">Crown Angle: {data.crownAngle || "34.5°"}</div>
                 </div>
-                <div className="text-left bg-orange-50 p-3 rounded border border-orange-200">
-                  <div className="font-semibold mb-2 text-orange-800 font-heading">Details:</div>
-                  <div className="text-orange-700 font-body">Pavilion Angle: {data.pavilionAngle || "40.8°"}</div>
-                  <div className="text-orange-700 font-body">Girdle: {data.girdleThickness || "Medium"}</div>
-                  <div className="text-orange-700 font-body">Culet: {data.culetSize || "None"}</div>
+                <div className="text-left bg-card p-3 rounded border border-primary/20">
+                  <div className="font-semibold mb-2 text-primary font-heading">Details:</div>
+                  <div className="text-primary/70 font-body">Pavilion Angle: {data.pavilionAngle || "40.8°"}</div>
+                  <div className="text-primary/70 font-body">Girdle: {data.girdleThickness || "Medium"}</div>
+                  <div className="text-primary/70 font-body">Culet: {data.culetSize || "None"}</div>
                 </div>
               </div>
             </div>
@@ -288,19 +288,19 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
         {/* Right Column - Clarity Characteristics */}
         <div className="space-y-6">
-          <div className="border-2 border-amber-300 rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white p-4 text-center">
+          <div className="border-2 border-primary rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-gradient-to-r from-primary to-primary/80 text-white p-4 text-center">
               <div className="font-bold text-sm tracking-wide font-heading">CLARITY CHARACTERISTICS</div>
             </div>
-            <div className="bg-gradient-to-br from-white to-amber-25 p-6">
+            <div className="bg-gradient-to-br from-background to-card p-6">
               {/* Enhanced Clarity Plot Diagram */}
               <div className="mb-6">
-                <div className="relative mx-auto w-36 h-36 border-3 border-amber-400 rounded-full bg-gradient-to-br from-white to-amber-50 shadow-lg">
+                <div className="relative mx-auto w-36 h-36 border-3 border-primary rounded-full bg-gradient-to-br from-background to-card shadow-lg">
                   <svg viewBox="0 0 100 100" className="w-full h-full">
-                    {/* Main circle outline with amber theme */}
-                    <circle cx="50" cy="50" r="45" fill="white" stroke="#d97706" strokeWidth="2"/>
+                    {/* Main circle outline with primary theme */}
+                    <circle cx="50" cy="50" r="45" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2"/>
                     
-                    {/* Plot inclusions with amber theme colors */}
+                    {/* Plot inclusions with theme colors */}
                     {generateClarityPlotDiagram(data.clarityGrade).map((inclusion, index) => (
                       <g key={index}>
                         {inclusion.type === 'inclusion' ? (
@@ -326,35 +326,35 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                     ))}
                   </svg>
                 </div>
-                <div className="text-center text-xs text-amber-700 mt-3 font-body">
-                  Clarity Grade: <span className="font-bold text-amber-900 text-sm font-display">{data.clarityGrade}</span>
+                <div className="text-center text-xs text-primary/70 mt-3 font-body">
+                  Clarity Grade: <span className="font-bold text-primary text-sm font-display">{data.clarityGrade}</span>
                 </div>
               </div>
 
               {/* Enhanced Clarity Information */}
               <div className="space-y-4 text-xs">
-                <div className="bg-amber-50 p-3 rounded border border-amber-200">
-                  <div className="font-semibold mb-2 text-amber-800 font-heading">Clarity Grade:</div>
-                  <div className="text-2xl font-bold text-amber-900 font-display">{data.clarityGrade}</div>
+                <div className="bg-card p-3 rounded border border-primary/20">
+                  <div className="font-semibold mb-2 text-primary font-heading">Clarity Grade:</div>
+                  <div className="text-2xl font-bold text-primary font-display">{data.clarityGrade}</div>
                 </div>
                 
-                <div className="border-t border-amber-200 pt-4">
-                  <div className="font-semibold mb-3 text-amber-800 font-heading">Key to Symbols:</div>
+                <div className="border-t border-primary/20 pt-4">
+                  <div className="font-semibold mb-3 text-primary font-heading">Key to Symbols:</div>
                   <div className="space-y-2">
                     <div className="flex items-center">
                       <div className="w-3 h-3 bg-red-600 rounded-full mr-3 opacity-80 shadow-sm"></div>
-                      <span className="text-amber-700 font-body">Crystal, Needle, Pinpoint</span>
+                      <span className="text-primary/70 font-body">Crystal, Needle, Pinpoint</span>
                     </div>
                     <div className="flex items-center">
                       <div className="w-3 h-3 bg-green-600 rounded-full mr-3 opacity-70 shadow-sm"></div>
-                      <span className="text-amber-700 font-body">Surface Features</span>
+                      <span className="text-primary/70 font-body">Surface Features</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="border-t border-amber-200 pt-4">
-                  <div className="font-semibold mb-2 text-amber-800 font-heading">Clarity Analysis:</div>
-                  <div className="text-amber-700 font-body leading-relaxed">
+                <div className="border-t border-primary/20 pt-4">
+                  <div className="font-semibold mb-2 text-primary font-heading">Clarity Analysis:</div>
+                  <div className="text-primary/70 font-body leading-relaxed">
                     {(() => {
                       switch (data.clarityGrade) {
                         case 'FL':
@@ -383,35 +383,35 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
       </div>
 
       {/* Professional Footer Section - Authentication & Security */}
-      <div className="border-t-2 border-gray-400 pt-6 mt-8">
+      <div className="border-t-2 border-primary pt-6 mt-8">
         <div className="grid grid-cols-2 gap-8">
           {/* Left - Laboratory Information */}
           <div className="space-y-4">
-            <div className="border border-gray-400">
-              <div className="bg-blue-900 text-white p-3 text-center">
+            <div className="border border-primary">
+              <div className="bg-primary text-white p-3 text-center">
                 <div className="font-bold text-sm tracking-wide">LABORATORY INFORMATION</div>
               </div>
-              <div className="bg-white p-4 text-xs space-y-2">
+              <div className="bg-background p-4 text-xs space-y-2">
                 <div className="grid grid-cols-2 gap-2">
-                  <span className="font-medium">Report Number:</span>
-                  <span className="font-mono">{data.reportNumber}</span>
+                  <span className="font-medium text-primary">Report Number:</span>
+                  <span className="font-mono text-primary/80">{data.reportNumber}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                  <span className="font-medium">Report Date:</span>
-                  <span>{data.reportDate instanceof Date ? data.reportDate.toLocaleDateString() : new Date(data.reportDate).toLocaleDateString()}</span>
+                  <span className="font-medium text-primary">Report Date:</span>
+                  <span className="text-primary/80">{data.reportDate instanceof Date ? data.reportDate.toLocaleDateString() : new Date(data.reportDate).toLocaleDateString()}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                  <span className="font-medium">Gemologist:</span>
-                  <span>{data.gemologistName}</span>
+                  <span className="font-medium text-primary">Gemologist:</span>
+                  <span className="text-primary/80">{data.gemologistName}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                  <span className="font-medium">Signature Date:</span>
-                  <span>{data.signatureDate instanceof Date ? data.signatureDate.toLocaleDateString() : new Date(data.signatureDate).toLocaleDateString()}</span>
+                  <span className="font-medium text-primary">Signature Date:</span>
+                  <span className="text-primary/80">{data.signatureDate instanceof Date ? data.signatureDate.toLocaleDateString() : new Date(data.signatureDate).toLocaleDateString()}</span>
                 </div>
                 
-                <div className="border-t border-gray-200 pt-3 mt-3">
-                  <div className="font-medium mb-2">Security Features:</div>
-                  <div className="space-y-1 text-xs text-gray-700">
+                <div className="border-t border-primary/20 pt-3 mt-3">
+                  <div className="font-medium mb-2 text-primary">Security Features:</div>
+                  <div className="space-y-1 text-xs text-primary/70">
                     <div>• Digital signature verification</div>
                     <div>• Holographic security elements</div>
                     <div>• Tamper-evident materials</div>
@@ -422,11 +422,11 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
             </div>
 
             {/* Important Disclaimers */}
-            <div className="border border-gray-400">
-              <div className="bg-blue-900 text-white p-3 text-center">
+            <div className="border border-primary">
+              <div className="bg-primary text-white p-3 text-center">
                 <div className="font-bold text-sm tracking-wide">IMPORTANT LIMITATIONS</div>
               </div>
-              <div className="bg-white p-4 text-xs text-gray-700 leading-relaxed">
+              <div className="bg-background p-4 text-xs text-primary/70 leading-relaxed">
                 <div className="space-y-2">
                   <p>This report identifies the described unset diamond and provides an opinion of its quality based on the internationally accepted grading standards at the time of examination.</p>
                   
@@ -434,7 +434,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                   
                   <p>This report is not a guarantee or valuation. For additional information and important limitations and disclaimers, please see gilab.info/limitations.</p>
                   
-                  <p className="font-medium text-blue-900">Verify this report at gilab.info</p>
+                  <p className="font-medium text-primary">Verify this report at gilab.info</p>
                 </div>
               </div>
             </div>
@@ -442,11 +442,11 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
           {/* Right - QR Code and Verification */}
           <div className="space-y-4">
-            <div className="border border-gray-400">
-              <div className="bg-blue-900 text-white p-3 text-center">
+            <div className="border border-primary">
+              <div className="bg-primary text-white p-3 text-center">
                 <div className="font-bold text-sm tracking-wide">DIGITAL VERIFICATION</div>
               </div>
-              <div className="bg-white p-6 text-center">
+              <div className="bg-background p-6 text-center">
                 {/* QR Code for verification */}
                 <div className="inline-block">
                   <QRCodeSVG 
