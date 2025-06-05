@@ -85,298 +85,296 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
   
   return (
     <div 
-      className={`p-10 max-w-6xl mx-auto font-display shadow-2xl ${className}`}
+      id="certificate-preview"
+      className={`mx-auto shadow-2xl ${className}`}
       style={{ 
-        minHeight: '1100px',
-        backgroundColor: '#f5f1eb',
-        backgroundImage: 'linear-gradient(135deg, #f5f1eb 0%, #ede5db 50%, #f5f1eb 100%)',
-        border: '3px solid #8b7355',
-        boxShadow: '0 25px 50px -12px rgba(139, 115, 85, 0.3), 0 0 0 1px rgba(139, 115, 85, 0.1)'
+        width: '8.5in',
+        minHeight: '11in',
+        backgroundColor: '#ffffff',
+        border: '3px solid #000000',
+        fontFamily: 'Times New Roman, serif',
+        padding: '0.75in',
+        boxSizing: 'border-box'
       }}>
       
-      {/* Professional Header Section */}
-      <div className="pb-6 mb-6" style={{ backgroundColor: '#f5f1eb' }}>
-        <div className="flex justify-between items-center">
-          {/* Left - Laboratory Information */}
+      {/* Professional Header */}
+      <div className="border-b-4 border-black pb-4 mb-6">
+        <div className="flex justify-between items-start">
+          {/* Left - Laboratory Seal */}
           <div className="flex items-center space-x-4">
-            <div className="w-24 h-24 rounded-full flex items-center justify-center shadow-md" style={{ backgroundColor: '#8b7355' }}>
-              <img 
-                src={gilLogoPath} 
-                alt="GIL Laboratory" 
-                className="w-20 h-20 object-contain"
-              />
+            <div className="w-20 h-20 border-2 border-black rounded-full flex items-center justify-center" style={{ backgroundColor: '#ffffff' }}>
+              <div className="text-2xl font-bold" style={{ color: '#000000', fontFamily: 'Times New Roman, serif' }}>GIL</div>
             </div>
             <div>
-              <div className="text-4xl font-bold tracking-tight" style={{ color: '#8b7355', fontFamily: 'Times New Roman, serif' }}>GIL</div>
-              <div className="text-base font-medium" style={{ color: '#8b7355', fontFamily: 'Arial, sans-serif' }}>Gemological Institute Laboratory</div>
-              <div className="text-sm" style={{ color: '#8b7355', fontFamily: 'Arial, sans-serif' }}>A Subsidiary of Gemological Institute of America</div>
+              <div className="text-2xl font-bold" style={{ color: '#000000', fontFamily: 'Times New Roman, serif' }}>
+                GEMOLOGICAL INSTITUTE LABORATORY
+              </div>
+              <div className="text-sm" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
+                A Wholly Owned Subsidiary of Gemological Institute of America
+              </div>
+              <div className="text-xs mt-1" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
+                CARLSBAD • NEW YORK • BANGKOK • MUMBAI
+              </div>
             </div>
           </div>
 
-          {/* Center - Report Title */}
-          <div className="text-center">
-            <div className="text-2xl font-bold mb-2" style={{ color: '#8b7355', fontFamily: 'Times New Roman, serif' }}>
-              NATURAL DIAMOND GRADING REPORT
+          {/* Right - Report Details */}
+          <div className="text-right">
+            <div className="text-xl font-bold mb-2" style={{ color: '#000000', fontFamily: 'Times New Roman, serif' }}>
+              DIAMOND GRADING REPORT
             </div>
-            <div className="text-lg mb-2" style={{ color: '#8b7355', fontFamily: 'Arial, sans-serif' }}>
+            <div className="text-lg mb-1" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
               {data.reportDate instanceof Date ? data.reportDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : new Date(data.reportDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </div>
-            <div className="text-2xl font-bold px-4 py-2 border-2 inline-block" style={{ color: '#8b7355', borderColor: '#8b7355', fontFamily: 'Arial, sans-serif' }}>
+            <div className="text-2xl font-bold border-2 border-black px-4 py-2 inline-block" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
               {data.reportNumber}
-            </div>
-          </div>
-
-          {/* Right - Security Features */}
-          <div className="text-right max-w-xs">
-            <div className="text-xs p-3 border" style={{ backgroundColor: '#ffffff', borderColor: '#8b7355', fontFamily: 'Arial, sans-serif' }}>
-              <div className="font-bold mb-2" style={{ color: '#8b7355' }}>SECURITY FEATURES</div>
-              <div className="space-y-1 text-xs" style={{ color: '#8b7355' }}>
-                <div>• Microprint border</div>
-                <div>• Security screen</div>
-                <div>• Hologram</div>
-                <div>• Security paper</div>
-                <div>• Digital verification</div>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content - Professional Three Column Layout */}
-      <div className="grid grid-cols-3 gap-8 mb-8">
+      {/* Professional Content Layout */}
+      <div className="grid grid-cols-12 gap-6 mb-8">
         
-        {/* Left Column - Diamond Details */}
-        <div className="space-y-4">
-          {/* Diamond Identification */}
-          <div className="border-2 border-gray-800">
-            <div className="text-white p-2 text-center font-bold text-sm" style={{ backgroundColor: '#8b7355', fontFamily: 'Arial, sans-serif' }}>
-              DIAMOND IDENTIFICATION
+        {/* Left Column - Identification & Results */}
+        <div className="col-span-5 space-y-4">
+          {/* This Report */}
+          <div>
+            <div className="text-lg font-bold mb-2 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+              This Report
             </div>
-            <div className="p-3 space-y-2 text-sm" style={{ backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }}>
-              <div className="flex justify-between border-b border-gray-300 pb-1">
-                <span className="font-medium" style={{ color: '#000000' }}>GIL Report Number:</span>
-                <span className="font-bold" style={{ color: '#000000' }}>{data.reportNumber}</span>
-              </div>
-              <div className="flex justify-between border-b border-gray-300 pb-1">
-                <span className="font-medium" style={{ color: '#000000' }}>Shape and Cutting Style:</span>
-                <span style={{ color: '#000000' }}>{data.shape}</span>
+            <div className="space-y-1 text-sm" style={{ fontFamily: 'Arial, sans-serif' }}>
+              <div className="flex justify-between">
+                <span>GIL Report Number</span>
+                <span className="font-bold">{data.reportNumber}</span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium" style={{ color: '#000000' }}>Measurements:</span>
-                <span className="font-mono text-xs" style={{ color: '#000000' }}>{data.measurements}</span>
+                <span>Shape and Cutting Style</span>
+                <span>{data.shape}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Measurements</span>
+                <span className="font-mono text-xs">{data.measurements}</span>
               </div>
             </div>
           </div>
 
           {/* Grading Results */}
-          <div className="border-2 border-gray-800">
-            <div className="text-white p-2 text-center font-bold text-sm" style={{ backgroundColor: '#8b7355', fontFamily: 'Arial, sans-serif' }}>
-              GRADING RESULTS
+          <div>
+            <div className="text-lg font-bold mb-2 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+              Grading Results
             </div>
-            <div className="p-3" style={{ backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }}>
-              <div className="space-y-3">
-                <div className="text-center">
-                  <div className="text-lg font-bold" style={{ color: '#000000' }}>Carat Weight</div>
-                  <div className="text-2xl font-bold" style={{ color: '#000000' }}>{data.caratWeight}</div>
+            <div className="space-y-2">
+              <div className="text-center py-3 border border-black">
+                <div className="text-sm" style={{ fontFamily: 'Arial, sans-serif' }}>Carat Weight</div>
+                <div className="text-3xl font-bold" style={{ fontFamily: 'Times New Roman, serif' }}>{data.caratWeight}</div>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="text-center py-2 border border-black">
+                  <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>Color Grade</div>
+                  <div className="text-2xl font-bold" style={{ fontFamily: 'Times New Roman, serif' }}>{data.colorGrade}</div>
                 </div>
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  <div>
-                    <div className="text-sm font-medium" style={{ color: '#000000' }}>Color Grade</div>
-                    <div className="text-xl font-bold" style={{ color: '#000000' }}>{data.colorGrade}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium" style={{ color: '#000000' }}>Clarity Grade</div>
-                    <div className="text-xl font-bold" style={{ color: '#000000' }}>{data.clarityGrade}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium" style={{ color: '#000000' }}>Cut Grade</div>
-                    <div className="text-xl font-bold" style={{ color: '#000000' }}>{data.cutGrade}</div>
-                  </div>
+                <div className="text-center py-2 border border-black">
+                  <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>Clarity Grade</div>
+                  <div className="text-2xl font-bold" style={{ fontFamily: 'Times New Roman, serif' }}>{data.clarityGrade}</div>
+                </div>
+                <div className="text-center py-2 border border-black">
+                  <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>Cut Grade</div>
+                  <div className="text-2xl font-bold" style={{ fontFamily: 'Times New Roman, serif' }}>{data.cutGrade}</div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Additional Grading Information */}
-          <div className="border-2 border-gray-800">
-            <div className="text-white p-2 text-center font-bold text-sm" style={{ backgroundColor: '#8b7355', fontFamily: 'Arial, sans-serif' }}>
-              ADDITIONAL GRADING INFORMATION
+          <div>
+            <div className="text-lg font-bold mb-2 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+              Additional Grading Information
             </div>
-            <div className="p-3 space-y-2 text-sm" style={{ backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }}>
-              <div className="flex justify-between border-b border-gray-300 pb-1">
-                <span className="font-medium" style={{ color: '#000000' }}>Polish:</span>
-                <span style={{ color: '#000000' }}>{data.polish}</span>
-              </div>
-              <div className="flex justify-between border-b border-gray-300 pb-1">
-                <span className="font-medium" style={{ color: '#000000' }}>Symmetry:</span>
-                <span style={{ color: '#000000' }}>{data.symmetry}</span>
-              </div>
-              <div className="flex justify-between border-b border-gray-300 pb-1">
-                <span className="font-medium" style={{ color: '#000000' }}>Fluorescence:</span>
-                <span style={{ color: '#000000' }}>{data.fluorescence}</span>
+            <div className="space-y-1 text-sm" style={{ fontFamily: 'Arial, sans-serif' }}>
+              <div className="flex justify-between">
+                <span>Polish</span>
+                <span>{data.polish}</span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium" style={{ color: '#000000' }}>Inscription(s):</span>
-                <span className="font-mono text-xs" style={{ color: '#000000' }}>{data.inscription || `GIL ${data.reportNumber}`}</span>
+                <span>Symmetry</span>
+                <span>{data.symmetry}</span>
               </div>
-              <div className="mt-3 pt-2 border-t border-gray-300">
-                <div className="text-xs font-bold mb-1" style={{ color: '#000000' }}>Comments:</div>
-                <div className="text-xs" style={{ color: '#000000' }}>{data.comments || "Clouds are not shown. Pinpoints are not shown."}</div>
+              <div className="flex justify-between">
+                <span>Fluorescence</span>
+                <span>{data.fluorescence}</span>
               </div>
+              <div className="flex justify-between">
+                <span>Inscription(s)</span>
+                <span className="font-mono text-xs">{data.inscription || `GIL ${data.reportNumber}`}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Comments */}
+          <div>
+            <div className="text-lg font-bold mb-2 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+              Comments
+            </div>
+            <div className="text-sm" style={{ fontFamily: 'Arial, sans-serif' }}>
+              {data.comments || "Clouds are not shown. Pinpoints are not shown."}
             </div>
           </div>
         </div>
 
         {/* Center Column - Proportions */}
-        <div className="space-y-4">
-          <div className="border-2 border-gray-800">
-            <div className="text-white p-2 text-center font-bold text-sm" style={{ backgroundColor: '#8b7355', fontFamily: 'Arial, sans-serif' }}>
-              PROPORTIONS
-            </div>
-            <div className="p-4 text-center" style={{ backgroundColor: '#ffffff' }}>
-              {/* Professional Diamond Diagram */}
-              <div className="relative mx-auto w-56 h-56 mb-4">
-                <svg viewBox="0 0 240 240" className="w-full h-full">
-                  {/* Main Diamond Profile */}
-                  <polygon
-                    points="120,30 180,90 120,210 60,90"
-                    fill="none"
-                    stroke="#000000"
-                    strokeWidth="2"
-                  />
-                  
-                  {/* Table Line */}
-                  <line x1="90" y1="90" x2="150" y2="90" stroke="#000000" strokeWidth="3"/>
-                  
-                  {/* Crown Section */}
-                  <polygon
-                    points="90,90 120,30 150,90"
-                    fill="rgba(200, 200, 200, 0.3)"
-                    stroke="#000000"
-                    strokeWidth="1"
-                  />
-                  
-                  {/* Pavilion Section */}
-                  <polygon
-                    points="90,90 120,210 150,90"
-                    fill="rgba(150, 150, 150, 0.2)"
-                    stroke="#000000"
-                    strokeWidth="1"
-                  />
-                  
-                  {/* Girdle */}
-                  <line x1="60" y1="90" x2="180" y2="90" stroke="#000000" strokeWidth="2"/>
-                  
-                  {/* Measurements and Labels */}
-                  <text x="30" y="95" className="text-xs font-medium" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
-                    Table: {data.tablePercentage || "57%"}
-                  </text>
-                  <text x="30" y="110" className="text-xs font-medium" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
-                    Depth: {data.depthPercentage || "62.3%"}
-                  </text>
-                  <text x="30" y="125" className="text-xs font-medium" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
-                    Crown Angle: {data.crownAngle || "34.5°"}
-                  </text>
-                  <text x="30" y="140" className="text-xs font-medium" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
-                    Pavilion Angle: {data.pavilionAngle || "40.8°"}
-                  </text>
-                  <text x="30" y="155" className="text-xs font-medium" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
-                    Girdle: {data.girdleThickness || "Medium"}
-                  </text>
-                  <text x="30" y="170" className="text-xs font-medium" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
-                    Culet: {data.culetSize || "None"}
-                  </text>
-                </svg>
-              </div>
-              <div className="text-xs" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
-                Actual size may vary
-              </div>
-            </div>
+        <div className="col-span-4">
+          <div className="text-lg font-bold mb-4 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+            Proportions
+          </div>
+          <div className="text-center">
+            {/* Professional Diamond Profile */}
+            <svg viewBox="0 0 300 400" className="w-full h-80 border border-black">
+              {/* Main Diamond Profile */}
+              <polygon
+                points="150,50 220,140 150,350 80,140"
+                fill="none"
+                stroke="#000000"
+                strokeWidth="3"
+              />
+              
+              {/* Table */}
+              <line x1="110" y1="140" x2="190" y2="140" stroke="#000000" strokeWidth="4"/>
+              <text x="150" y="130" textAnchor="middle" className="text-sm font-medium" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                TABLE
+              </text>
+              <text x="60" y="145" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                {data.tablePercentage || "57%"}
+              </text>
+              
+              {/* Crown */}
+              <polygon
+                points="110,140 150,50 190,140"
+                fill="rgba(200, 200, 200, 0.2)"
+                stroke="#000000"
+                strokeWidth="2"
+              />
+              <text x="100" y="95" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                CROWN
+              </text>
+              
+              {/* Pavilion */}
+              <polygon
+                points="110,140 150,350 190,140"
+                fill="rgba(150, 150, 150, 0.1)"
+                stroke="#000000"
+                strokeWidth="2"
+              />
+              <text x="200" y="245" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                PAVILION
+              </text>
+              
+              {/* Girdle */}
+              <line x1="80" y1="140" x2="220" y2="140" stroke="#000000" strokeWidth="3"/>
+              <text x="230" y="145" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                GIRDLE
+              </text>
+              
+              {/* Measurements */}
+              <text x="250" y="80" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                Table: {data.tablePercentage || "57%"}
+              </text>
+              <text x="250" y="100" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                Depth: {data.depthPercentage || "62.3%"}
+              </text>
+              <text x="250" y="120" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                Crown Angle: {data.crownAngle || "34.5°"}
+              </text>
+              <text x="250" y="140" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                Pavilion Angle: {data.pavilionAngle || "40.8°"}
+              </text>
+              <text x="250" y="160" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                Girdle: {data.girdleThickness || "Medium"}
+              </text>
+              <text x="250" y="180" className="text-xs" fill="#000000" style={{ fontFamily: 'Arial, sans-serif' }}>
+                Culet: {data.culetSize || "None"}
+              </text>
+            </svg>
           </div>
         </div>
 
         {/* Right Column - Clarity Characteristics */}
-        <div className="space-y-4">
-          <div className="border-2 border-gray-800">
-            <div className="text-white p-2 text-center font-bold text-sm" style={{ backgroundColor: '#8b7355', fontFamily: 'Arial, sans-serif' }}>
-              CLARITY CHARACTERISTICS
+        <div className="col-span-3">
+          <div className="text-lg font-bold mb-4 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+            Clarity Characteristics
+          </div>
+          
+          {/* Professional Clarity Plots */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="text-center">
+              <div className="text-sm font-bold mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>Crown</div>
+              <svg viewBox="0 0 140 140" className="w-32 h-32 border-2 border-black mx-auto">
+                <polygon
+                  points="70,20 110,50 70,120 30,50"
+                  fill="white"
+                  stroke="#000000"
+                  strokeWidth="2"
+                />
+                {generateClarityPlotDiagram(data.clarityGrade).map((inclusion, index) => (
+                  <circle
+                    key={index}
+                    cx={inclusion.x * 1.4}
+                    cy={inclusion.y * 1.4}
+                    r={inclusion.size * 1.2}
+                    fill="#000000"
+                    opacity="0.8"
+                  />
+                ))}
+              </svg>
             </div>
-            <div className="p-4" style={{ backgroundColor: '#ffffff' }}>
-              {/* Professional Clarity Plots */}
-              <div className="mb-4 flex justify-center space-x-6">
-                <div className="text-center">
-                  <div className="text-xs mb-2 font-medium" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>Crown View</div>
-                  <svg viewBox="0 0 120 120" className="w-24 h-24 border-2 border-gray-800">
-                    <polygon
-                      points="60,15 95,45 60,105 25,45"
-                      fill="white"
-                      stroke="#000000"
-                      strokeWidth="2"
-                    />
-                    {generateClarityPlotDiagram(data.clarityGrade).map((inclusion, index) => (
-                      <circle
-                        key={index}
-                        cx={inclusion.x * 1.2}
-                        cy={inclusion.y * 1.2}
-                        r={inclusion.size}
-                        fill={inclusion.type === 'inclusion' ? "#000000" : "#666666"}
-                        opacity="0.8"
-                      />
-                    ))}
-                  </svg>
-                </div>
-                <div className="text-center">
-                  <div className="text-xs mb-2 font-medium" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>Pavilion View</div>
-                  <svg viewBox="0 0 120 120" className="w-24 h-24 border-2 border-gray-800">
-                    <circle
-                      cx="60"
-                      cy="60"
-                      r="45"
-                      fill="white"
-                      stroke="#000000"
-                      strokeWidth="2"
-                    />
-                    {generateClarityPlotDiagram(data.clarityGrade).map((inclusion, index) => (
-                      <circle
-                        key={index}
-                        cx={inclusion.x * 1.2}
-                        cy={inclusion.y * 1.2}
-                        r={inclusion.size}
-                        fill={inclusion.type === 'inclusion' ? "#000000" : "#666666"}
-                        opacity="0.8"
-                      />
-                    ))}
-                  </svg>
-                </div>
-              </div>
+            <div className="text-center">
+              <div className="text-sm font-bold mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>Pavilion</div>
+              <svg viewBox="0 0 140 140" className="w-32 h-32 border-2 border-black mx-auto">
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="50"
+                  fill="white"
+                  stroke="#000000"
+                  strokeWidth="2"
+                />
+                {generateClarityPlotDiagram(data.clarityGrade).map((inclusion, index) => (
+                  <circle
+                    key={index}
+                    cx={inclusion.x * 1.4}
+                    cy={inclusion.y * 1.4}
+                    r={inclusion.size * 1.2}
+                    fill="#000000"
+                    opacity="0.8"
+                  />
+                ))}
+              </svg>
+            </div>
+          </div>
 
-              {/* Symbol Key */}
-              <div className="mb-4">
-                <div className="text-xs font-bold mb-2" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>Key to Symbols:</div>
-                <div className="space-y-1 text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    <span style={{ color: '#000000' }}>Crystal, Included mineral, Needle</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-gray-600 rounded-full mr-2"></div>
-                    <span style={{ color: '#000000' }}>Cloud, Pinpoint</span>
-                  </div>
-                </div>
+          {/* Symbol Key */}
+          <div className="mb-6">
+            <div className="text-sm font-bold mb-2" style={{ fontFamily: 'Times New Roman, serif' }}>Key to Symbols</div>
+            <div className="space-y-1 text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
+                <span>Crystal, Included mineral, Needle</span>
               </div>
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-gray-600 rounded-full mr-2"></div>
+                <span>Cloud, Pinpoint</span>
+              </div>
+            </div>
+          </div>
 
-              {/* Professional Footer */}
-              <div className="text-xs leading-tight" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
-                <div className="mb-2">
-                  The results documented in this report refer only to the diamond described, and were obtained using the techniques and equipment available to GIL at the time of examination.
-                </div>
-                <div className="mb-2">
-                  This report is not a guarantee or valuation. For additional information and important limitations and disclaimers, please see gilab.info/limitations.
-                </div>
-                <div className="text-center mt-4 pt-2 border-t border-gray-300">
-                  <div className="font-bold">GIL Report Number {data.reportNumber}</div>
-                </div>
-              </div>
+          {/* Important Notice */}
+          <div className="text-xs leading-tight p-3 border border-black" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div className="font-bold mb-2">IMPORTANT LIMITATIONS</div>
+            <div className="mb-2">
+              The results documented in this report refer only to the diamond described, and were obtained using the techniques and equipment available to GIL at the time of examination.
+            </div>
+            <div>
+              This report is not a guarantee or valuation. For additional information and important limitations and disclaimers, please see gilab.info/limitations.
             </div>
           </div>
         </div>
