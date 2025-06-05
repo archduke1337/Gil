@@ -107,18 +107,18 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               />
             </div>
             <div>
-              <div className="text-3xl font-bold tracking-wide font-display" style={{ color: '#8b7355' }}>GIA</div>
+              <div className="text-3xl font-bold tracking-wide font-display" style={{ color: '#8b7355' }}>GIL</div>
               <div className="text-sm font-heading tracking-wide" style={{ color: '#8b7355' }}>Gemological Institute</div>
-              <div className="text-sm font-heading tracking-wide" style={{ color: '#8b7355' }}>of America</div>
+              <div className="text-sm font-heading tracking-wide" style={{ color: '#8b7355' }}>Laboratory</div>
             </div>
           </div>
 
           {/* Center - Report Title */}
           <div className="text-center">
-            <div className="text-sm mb-2 font-heading tracking-wide" style={{ color: '#8b7355' }}>GIA REPORT</div>
+            <div className="text-sm mb-2 font-heading tracking-wide" style={{ color: '#8b7355' }}>GIL REPORT</div>
             <div className="text-4xl font-bold mb-3 tracking-wider font-display" style={{ color: '#8b7355' }}>{data.reportNumber}</div>
             <div className="text-sm mb-4 font-body" style={{ color: '#8b7355' }}>
-              Verify this report at gia.edu
+              Verify this report at gilab.info
             </div>
           </div>
 
@@ -147,7 +147,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
                 {data.reportDate instanceof Date ? data.reportDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase() : new Date(data.reportDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase()}
               </div>
               <div className="grid grid-cols-2 gap-2 items-center">
-                <span className="font-medium" style={{ color: '#8b7355' }}>GIA Report Number</span>
+                <span className="font-medium" style={{ color: '#8b7355' }}>GIL Report Number</span>
                 <span className="text-right font-mono text-sm" style={{ color: '#8b7355' }}>{data.reportNumber}</span>
               </div>
               <div className="grid grid-cols-2 gap-2 items-center">
@@ -338,13 +338,13 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               {/* Footer Information */}
               <div className="text-xs leading-relaxed" style={{ color: '#8b7355' }}>
                 <div className="mb-2">
-                  The results documented in this report refer only to the diamond described and were obtained using the techniques and equipment available to GIA at the time of examination.
+                  The results documented in this report refer only to the diamond described and were obtained using the techniques and equipment available to GIL at the time of examination.
                 </div>
                 <div className="mb-2">
-                  This report is not a guarantee or valuation. For additional information and important limitations and disclaimers, please see GIA.edu/report-check-landing.
+                  This report is not a guarantee or valuation. For additional information and important limitations and disclaimers, please see gilab.info/limitations.
                 </div>
                 <div className="text-xs">
-                  GIA Report Number {data.reportNumber}
+                  GIL Report Number {data.reportNumber}
                 </div>
               </div>
             </div>
@@ -356,7 +356,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
       <div className="mt-6 pt-4 border-t border-gray-300 text-center">
         <div className="flex justify-center">
           <QRCodeSVG 
-            value={data.verifierUrl || `https://www.gia.edu/report-check-landing?reportno=${data.reportNumber}`}
+            value={data.verifierUrl || `https://gilab.info/verify/${data.reportNumber}`}
             size={80}
             level="H"
             includeMargin={true}
@@ -364,7 +364,7 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
           />
         </div>
         <div className="mt-2 text-xs" style={{ color: '#8b7355' }}>
-          gia.edu/report-check-landing
+          gilab.info/verify
         </div>
       </div>
     </div>
