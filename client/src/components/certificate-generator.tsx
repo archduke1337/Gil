@@ -379,10 +379,10 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
 
                     <FormField
                       control={form.control}
-                      name="dimensions"
+                      name="measurements"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-ultra-smooth font-medium">Dimensions (mm)</FormLabel>
+                          <FormLabel className="text-ultra-smooth font-medium">Measurements (mm)</FormLabel>
                           <FormControl>
                             <Input {...field} placeholder="6.52 x 6.48 x 4.05" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
                           </FormControl>
@@ -710,35 +710,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <FormField
-                        control={form.control}
-                        name="treatment"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-ultra-smooth font-medium">Treatment</FormLabel>
-                            <FormControl>
-                              <Input {...field} placeholder="None detected, Heat treatment, etc." className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
 
-                      <FormField
-                        control={form.control}
-                        name="origin"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-ultra-smooth font-medium">Origin</FormLabel>
-                            <FormControl>
-                              <Input {...field} placeholder="Natural, Synthetic, etc." className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
 
                     <FormField
                       control={form.control}
@@ -791,12 +763,12 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                     <div className="grid md:grid-cols-2 gap-6">
                       <FormField
                         control={form.control}
-                        name="examinedBy"
+                        name="gemologistName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-ultra-smooth font-medium">Examined By</FormLabel>
+                            <FormLabel className="text-ultra-smooth font-medium">Gemologist Name</FormLabel>
                             <FormControl>
-                              <Input {...field} placeholder="Certified Gemologist Name" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
+                              <Input {...field} placeholder="Dr. Sarah Johnson" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -805,13 +777,37 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
 
                       <FormField
                         control={form.control}
-                        name="approvedBy"
+                        name="signatureDate"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-ultra-smooth font-medium">Approved By</FormLabel>
-                            <FormControl>
-                              <Input {...field} placeholder="Senior Gemologist Name" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
-                            </FormControl>
+                            <FormLabel className="text-ultra-smooth font-medium">Signature Date</FormLabel>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <FormControl>
+                                  <Button
+                                    variant="outline"
+                                    className={cn(
+                                      "w-full justify-start text-left font-normal rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12",
+                                      !field.value && "text-muted-foreground"
+                                    )}
+                                  >
+                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                    {field.value ? format(field.value, "PPP") : "Pick a date"}
+                                  </Button>
+                                </FormControl>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0 rounded-xl border-0 bg-white/90 backdrop-blur-sm soft-shadow">
+                                <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  onSelect={field.onChange}
+                                  disabled={(date) =>
+                                    date > new Date() || date < new Date("1900-01-01")
+                                  }
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -911,8 +907,6 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                     polish: generatedCertificate.polish || "Excellent",
                     symmetry: generatedCertificate.symmetry || "Excellent",
                     fluorescence: generatedCertificate.fluorescence || "None",
-                    treatment: generatedCertificate.treatment || "None detected",
-                    origin: generatedCertificate.origin || "Natural",
                     inscription: generatedCertificate.inscription || "",
                     comments: generatedCertificate.comments || "",
                     labLocation: generatedCertificate.labLocation || "GIL Headquarters",

@@ -1,0 +1,377 @@
+{
+  "id": "e23f4f09-06a4-4154-91d0-adcb31aa0604",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.admins": {
+      "name": "admins",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "username": {
+          "name": "username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "admins_username_unique": {
+          "name": "admins_username_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "username"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.certificates": {
+      "name": "certificates",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "report_number": {
+          "name": "report_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "report_date": {
+          "name": "report_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "shape": {
+          "name": "shape",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "measurements": {
+          "name": "measurements",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "carat_weight": {
+          "name": "carat_weight",
+          "type": "numeric(6, 3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "color_grade": {
+          "name": "color_grade",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "clarity_grade": {
+          "name": "clarity_grade",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cut_grade": {
+          "name": "cut_grade",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "polish": {
+          "name": "polish",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "symmetry": {
+          "name": "symmetry",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fluorescence": {
+          "name": "fluorescence",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "inscription": {
+          "name": "inscription",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "comments": {
+          "name": "comments",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gemologist_name": {
+          "name": "gemologist_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "signature_date": {
+          "name": "signature_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reference_number": {
+          "name": "reference_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "filename": {
+          "name": "filename",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gem_image_path": {
+          "name": "gem_image_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gem_type": {
+          "name": "gem_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'Diamond'"
+        },
+        "dimensions": {
+          "name": "dimensions",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "treatment": {
+          "name": "treatment",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "origin": {
+          "name": "origin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "certification_date": {
+          "name": "certification_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "examined_by": {
+          "name": "examined_by",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "approved_by": {
+          "name": "approved_by",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lab_location": {
+          "name": "lab_location",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "equipment_used": {
+          "name": "equipment_used",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "table_percentage": {
+          "name": "table_percentage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "depth_percentage": {
+          "name": "depth_percentage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "crown_angle": {
+          "name": "crown_angle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pavilion_angle": {
+          "name": "pavilion_angle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "girdle_thickness": {
+          "name": "girdle_thickness",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "culet_size": {
+          "name": "culet_size",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "laser_inscription": {
+          "name": "laser_inscription",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "photo_included": {
+          "name": "photo_included",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "plot_diagram": {
+          "name": "plot_diagram",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "digitally_signed_by": {
+          "name": "digitally_signed_by",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "color_grade_diagram": {
+          "name": "color_grade_diagram",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "clarity_plot_diagram": {
+          "name": "clarity_plot_diagram",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "certificate_notes": {
+          "name": "certificate_notes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "verifier_url": {
+          "name": "verifier_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'https://gilab.info/verify'"
+        },
+        "proportions_diagram": {
+          "name": "proportions_diagram",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "clarity_diagram1": {
+          "name": "clarity_diagram1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "clarity_diagram2": {
+          "name": "clarity_diagram2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "issue_date": {
+          "name": "issue_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "upload_date": {
+          "name": "upload_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "certificates_report_number_unique": {
+          "name": "certificates_report_number_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "report_number"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
