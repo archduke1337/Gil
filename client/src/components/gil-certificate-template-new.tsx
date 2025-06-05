@@ -46,7 +46,7 @@ const generateClarityPlotDiagram = (clarityGrade: string) => {
 
 interface GILCertificateData {
   reportNumber: string;
-  reportDate: string | Date;
+  reportDate: Date;
   shape: string;
   measurements: string;
   caratWeight: string;
@@ -59,7 +59,7 @@ interface GILCertificateData {
   inscription?: string;
   comments?: string;
   gemologistName: string;
-  signatureDate: string | Date;
+  signatureDate: Date;
   digitallySignedBy?: boolean;
   colorGradeDiagram?: boolean;
   clarityPlotDiagram?: boolean;
