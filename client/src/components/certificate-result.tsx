@@ -430,18 +430,18 @@ export default function CertificateResult({ result }: CertificateResultProps) {
             </div>
           </Card>
         ) : (
-          <Card className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+          <Card className="bg-card rounded-2xl shadow-xl border border-border p-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <AlertTriangle className="w-8 h-8 text-red-600" />
+              <div className="w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <AlertTriangle className="w-8 h-8 text-destructive" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Certificate Not Found</h3>
-              <p className="text-gray-600 mb-6">
+              <h3 className="text-xl font-bold text-foreground mb-2">Certificate Not Found</h3>
+              <p className="text-muted-foreground mb-6">
                 The certificate reference number you entered was not found in our database.
               </p>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-                <h4 className="font-medium text-yellow-800 mb-2">Please verify:</h4>
-                <ul className="text-sm text-yellow-700 space-y-1">
+              <div className="bg-secondary/20 border border-border rounded-lg p-4 mb-6">
+                <h4 className="font-medium text-foreground mb-2">Please verify:</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• The reference number is entered correctly</li>
                   <li>• All characters including dashes and numbers are accurate</li>
                   <li>• The certificate was issued by Gemological Institute Laboratories</li>
@@ -452,7 +452,7 @@ export default function CertificateResult({ result }: CertificateResultProps) {
                   const input = document.querySelector('input[name="referenceNumber"]') as HTMLInputElement;
                   if (input) input.focus();
                 }}
-                className="bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-6 rounded-lg transition-colors"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-6 rounded-lg transition-colors"
               >
                 Try Again
               </Button>

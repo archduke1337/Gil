@@ -289,9 +289,9 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                         name="referenceNumber"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-ultra-smooth font-body">Reference Number</FormLabel>
+                            <FormLabel className="text-ultra-smooth font-body text-foreground">Reference Number</FormLabel>
                             <FormControl>
-                              <Input {...field} placeholder="GIL-2024-123456" className="rounded-xl border-0 bg-white/60 backdrop-blur-sm soft-shadow h-12" />
+                              <Input {...field} placeholder="GIL-2024-123456" className="rounded-xl border border-input bg-background/60 backdrop-blur-sm soft-shadow h-12" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

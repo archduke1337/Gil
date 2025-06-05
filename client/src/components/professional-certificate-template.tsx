@@ -37,39 +37,39 @@ const DiamondCutDiagram = () => (
   <svg viewBox="0 0 300 200" className="w-full h-full">
     <defs>
       <linearGradient id="diamondGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style={{stopColor:"#f8f9fa", stopOpacity:1}} />
-        <stop offset="50%" style={{stopColor:"#e9ecef", stopOpacity:1}} />
-        <stop offset="100%" style={{stopColor:"#dee2e6", stopOpacity:1}} />
+        <stop offset="0%" style={{stopColor:"hsl(var(--background))", stopOpacity:1}} />
+        <stop offset="50%" style={{stopColor:"hsl(var(--muted))", stopOpacity:1}} />
+        <stop offset="100%" style={{stopColor:"hsl(var(--border))", stopOpacity:1}} />
       </linearGradient>
     </defs>
     
     {/* Main diamond outline */}
-    <polygon points="150,20 220,80 150,180 80,80" fill="url(#diamondGrad)" stroke="#6c757d" strokeWidth="1"/>
+    <polygon points="150,20 220,80 150,180 80,80" fill="url(#diamondGrad)" stroke="hsl(var(--primary))" strokeWidth="1"/>
     
     {/* Internal facet lines */}
-    <line x1="150" y1="20" x2="150" y2="80" stroke="#6c757d" strokeWidth="0.5"/>
-    <line x1="80" y1="80" x2="220" y2="80" stroke="#6c757d" strokeWidth="0.5"/>
-    <line x1="150" y1="80" x2="150" y2="180" stroke="#6c757d" strokeWidth="0.5"/>
+    <line x1="150" y1="20" x2="150" y2="80" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
+    <line x1="80" y1="80" x2="220" y2="80" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
+    <line x1="150" y1="80" x2="150" y2="180" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
     
     {/* Crown facets */}
-    <line x1="115" y1="50" x2="185" y2="50" stroke="#6c757d" strokeWidth="0.5"/>
-    <line x1="100" y1="65" x2="200" y2="65" stroke="#6c757d" strokeWidth="0.5"/>
+    <line x1="115" y1="50" x2="185" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
+    <line x1="100" y1="65" x2="200" y2="65" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
     
     {/* Pavilion facets */}
-    <line x1="120" y1="110" x2="180" y2="110" stroke="#6c757d" strokeWidth="0.5"/>
-    <line x1="135" y1="145" x2="165" y2="145" stroke="#6c757d" strokeWidth="0.5"/>
+    <line x1="120" y1="110" x2="180" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
+    <line x1="135" y1="145" x2="165" y2="145" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
     
     {/* Measurement lines and labels */}
-    <line x1="80" y1="200" x2="220" y2="200" stroke="#8B7355" strokeWidth="1" markerEnd="url(#arrowhead)"/>
-    <text x="150" y="195" textAnchor="middle" fontSize="8" fill="#8B7355">Table</text>
+    <line x1="80" y1="200" x2="220" y2="200" stroke="hsl(var(--primary))" strokeWidth="1" markerEnd="url(#arrowhead)"/>
+    <text x="150" y="195" textAnchor="middle" fontSize="8" fill="hsl(var(--primary))">Table</text>
     
-    <line x1="230" y1="20" x2="230" y2="180" stroke="#8B7355" strokeWidth="1"/>
-    <text x="235" y="100" textAnchor="start" fontSize="8" fill="#8B7355">Depth</text>
+    <line x1="230" y1="20" x2="230" y2="180" stroke="hsl(var(--primary))" strokeWidth="1"/>
+    <text x="235" y="100" textAnchor="start" fontSize="8" fill="hsl(var(--primary))">Depth</text>
     
     {/* Arrow marker */}
     <defs>
       <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-        <polygon points="0 0, 10 3.5, 0 7" fill="#8B7355"/>
+        <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--primary))"/>
       </marker>
     </defs>
   </svg>
@@ -80,23 +80,23 @@ const ClarityPlotDiagram = () => (
   <svg viewBox="0 0 200 200" className="w-full h-full">
     <defs>
       <radialGradient id="clarityGrad" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" style={{stopColor:"#ffffff", stopOpacity:0.9}} />
-        <stop offset="70%" style={{stopColor:"#f8f9fa", stopOpacity:0.8}} />
-        <stop offset="100%" style={{stopColor:"#e9ecef", stopOpacity:0.9}} />
+        <stop offset="0%" style={{stopColor:"hsl(var(--background))", stopOpacity:0.9}} />
+        <stop offset="70%" style={{stopColor:"hsl(var(--muted))", stopOpacity:0.8}} />
+        <stop offset="100%" style={{stopColor:"hsl(var(--border))", stopOpacity:0.9}} />
       </radialGradient>
     </defs>
     
     {/* Main diamond outline - top view */}
-    <circle cx="100" cy="100" r="80" fill="url(#clarityGrad)" stroke="#6c757d" strokeWidth="2"/>
+    <circle cx="100" cy="100" r="80" fill="url(#clarityGrad)" stroke="hsl(var(--primary))" strokeWidth="2"/>
     
     {/* Internal facet structure */}
-    <polygon points="100,30 160,70 160,130 100,170 40,130 40,70" fill="none" stroke="#6c757d" strokeWidth="1"/>
-    <polygon points="100,50 140,80 140,120 100,150 60,120 60,80" fill="none" stroke="#6c757d" strokeWidth="0.5"/>
+    <polygon points="100,30 160,70 160,130 100,170 40,130 40,70" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="1"/>
+    <polygon points="100,50 140,80 140,120 100,150 60,120 60,80" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
     
     {/* Sample inclusions */}
-    <circle cx="85" cy="75" r="2" fill="#d4691b" opacity="0.7"/>
-    <circle cx="120" cy="110" r="1.5" fill="#8B4513" opacity="0.6"/>
-    <circle cx="70" cy="125" r="1" fill="#A0522D" opacity="0.5"/>
+    <circle cx="85" cy="75" r="2" fill="hsl(var(--primary))" opacity="0.7"/>
+    <circle cx="120" cy="110" r="1.5" fill="hsl(var(--primary))" opacity="0.6"/>
+    <circle cx="70" cy="125" r="1" fill="hsl(var(--primary))" opacity="0.5"/>
     
     {/* Crown lines */}
     <line x1="100" y1="30" x2="100" y2="100" stroke="#6c757d" strokeWidth="0.5"/>
