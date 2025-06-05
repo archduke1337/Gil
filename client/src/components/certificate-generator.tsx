@@ -179,7 +179,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50/50 via-orange-50/30 to-red-50/50 p-6">
+    <div className="min-h-screen bg-background p-6">
       <div className="max-w-6xl mx-auto space-y-8">
         
         {/* Enhanced Header Section */}
@@ -191,7 +191,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
         >
           <div className="inline-flex items-center gap-6 mb-8">
             <div className="w-20 h-20 bg-gradient-to-br from-primary via-primary/80 to-primary/60 rounded-3xl flex items-center justify-center soft-shadow">
-              <Sparkles className="w-10 h-10 text-white" />
+              <Sparkles className="w-10 h-10 text-primary-foreground" />
             </div>
             <div className="text-left">
               <h1 className="text-display font-heading text-foreground text-ultra-smooth mb-2">Professional Certificate Generator</h1>
@@ -204,10 +204,10 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/50 backdrop-blur-sm soft-shadow"
+              className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-card/80 backdrop-blur-sm soft-shadow"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-green-500/20 to-green-600/30 rounded-xl flex items-center justify-center">
-                <Shield className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <Shield className="w-6 h-6 text-primary" />
               </div>
               <span className="text-body-sm font-body text-foreground text-ultra-smooth">GIA Standards</span>
             </motion.div>
@@ -215,10 +215,10 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/50 backdrop-blur-sm soft-shadow"
+              className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-card/80 backdrop-blur-sm soft-shadow"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-xl flex items-center justify-center">
-                <Award className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <Award className="w-6 h-6 text-primary" />
               </div>
               <span className="text-body-sm font-body text-foreground text-ultra-smooth">Professional Format</span>
             </motion.div>
@@ -226,10 +226,10 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/50 backdrop-blur-sm soft-shadow"
+              className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-card/80 backdrop-blur-sm soft-shadow"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-xl flex items-center justify-center">
-                <Microscope className="w-6 h-6 text-purple-600" />
+              <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <Microscope className="w-6 h-6 text-primary" />
               </div>
               <span className="text-body-sm font-body text-foreground text-ultra-smooth">Digital Verification</span>
             </motion.div>
@@ -237,10 +237,10 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/50 backdrop-blur-sm soft-shadow"
+              className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-card/80 backdrop-blur-sm soft-shadow"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-orange-600/30 rounded-xl flex items-center justify-center">
-                <Download className="w-6 h-6 text-orange-600" />
+              <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <Download className="w-6 h-6 text-primary" />
               </div>
               <span className="text-body-sm font-body text-foreground text-ultra-smooth">Instant Download</span>
             </motion.div>
@@ -253,9 +253,9 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <Card className="border-0 rounded-3xl soft-shadow bg-white/70 backdrop-blur-sm">
+          <Card className="border border-border rounded-3xl soft-shadow bg-card backdrop-blur-sm">
             <CardHeader className="pb-6">
-              <CardTitle className="flex items-center gap-3 text-ultra-smooth">
+              <CardTitle className="flex items-center gap-3 text-ultra-smooth text-foreground">
                 <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/30 rounded-xl flex items-center justify-center">
                   <FileText className="w-5 h-5 text-primary" />
                 </div>
@@ -274,8 +274,8 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                     className="space-y-6"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-xl flex items-center justify-center">
-                        <Diamond className="w-5 h-5 text-emerald-600" />
+                      <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                        <Diamond className="w-5 h-5 text-primary" />
                       </div>
                       <div>
                         <h3 className="text-heading-md font-heading text-foreground text-ultra-smooth">Basic Gem Information</h3>
