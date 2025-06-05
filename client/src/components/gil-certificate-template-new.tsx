@@ -85,43 +85,48 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
   
   return (
     <div 
-      className={`bg-amber-50 p-8 max-w-4xl mx-auto font-serif ${className}`}
+      className={`bg-gradient-to-br from-amber-50 via-white to-amber-25 p-10 max-w-5xl mx-auto font-serif border-4 border-amber-300 shadow-2xl ${className}`}
       style={{ 
-        minHeight: '800px',
-        backgroundImage: 'radial-gradient(circle at 20px 20px, rgba(139, 115, 85, 0.05) 1px, transparent 0)',
-        backgroundSize: '40px 40px'
+        minHeight: '900px',
+        backgroundImage: 'radial-gradient(circle at 30px 30px, rgba(139, 115, 85, 0.03) 1px, transparent 0)',
+        backgroundSize: '60px 60px'
       }}>
       
-      {/* Header Section */}
-      <div className="flex justify-between items-start mb-6">
-        {/* GIL Logo */}
-        <div className="flex items-center">
-          <div className="relative w-16 h-16 mr-3">
-            <img 
-              src={gilLogoPath} 
-              alt="GIL - Gemological Institute Laboratory" 
-              className="w-full h-full object-contain"
-            />
+      {/* Enhanced Header Section */}
+      <div className="relative bg-gradient-to-r from-amber-100 via-orange-50 to-amber-100 border-4 border-amber-400 rounded-lg p-8 mb-8 shadow-lg">
+        <div className="flex justify-between items-center">
+          {/* GIL Logo */}
+          <div className="flex items-center">
+            <div className="relative w-20 h-20 mr-4 bg-white rounded-full p-2 shadow-md">
+              <img 
+                src={gilLogoPath} 
+                alt="GIL - Gemological Institute Laboratory" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-amber-900 tracking-widest">GIL°</div>
+              <div className="text-sm text-amber-700 font-medium">Gemological Institute Laboratory</div>
+            </div>
           </div>
-          <div>
-            <div className="text-2xl font-bold text-black tracking-wider">GIL°</div>
-            <div className="text-xs text-gray-600">Gemological Institute Laboratory</div>
+
+          {/* Center - Report Info */}
+          <div className="text-center">
+            <div className="text-lg text-amber-800 mb-2 font-semibold uppercase tracking-wide">GIL Natural Diamond</div>
+            <div className="text-lg text-amber-800 mb-3 font-semibold uppercase tracking-wide">Grading Report</div>
+            <div className="text-4xl font-bold text-amber-900 tracking-wider mb-2">{data.reportNumber}</div>
+            <div className="text-sm text-amber-700 font-medium">
+              {data.reportDate instanceof Date ? data.reportDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : new Date(data.reportDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
           </div>
-        </div>
 
-        {/* Center - Report Info */}
-        <div className="text-center">
-          <div className="text-sm text-gray-600 mb-1">GIL REPORT</div>
-          <div className="text-3xl font-bold text-black tracking-wider">{data.reportNumber}</div>
-          <div className="text-xs text-gray-600 mt-1">Verify this report at gilab.info</div>
-        </div>
-
-        {/* Right - Facsimile */}
-        <div className="text-right text-xs max-w-48">
-          <div className="mb-2 font-bold">FACSIMILE</div>
-          <div className="text-gray-700 leading-tight">
-            This is a facsimile of the original GIL Report. This facsimile includes security features 
-            which are not reproduced in this facsimile.
+          {/* Right - Authentication */}
+          <div className="text-right text-sm max-w-48 bg-white bg-opacity-70 p-4 rounded-lg border border-amber-300">
+            <div className="mb-2 font-bold">FACSIMILE</div>
+            <div className="text-gray-700 leading-tight">
+              This is a facsimile of the original GIL Report. This facsimile includes security features 
+              which are not reproduced in this facsimile.
+            </div>
           </div>
         </div>
       </div>
@@ -133,10 +138,10 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
         <div className="space-y-4">
           {/* Report Info Section */}
           <div>
-            <div className="bg-amber-900 text-white p-2 text-sm font-bold tracking-wide" style={{ backgroundColor: '#8B7355' }}>
+            <div className="bg-gradient-to-r from-amber-800 to-orange-800 text-white p-3 text-sm font-bold tracking-wide shadow-md border-2 border-amber-600">
               GIL NATURAL DIAMOND GRADING REPORT
             </div>
-            <div className="bg-white border border-gray-300 p-3 space-y-2 text-sm">
+            <div className="bg-white border-2 border-gray-300 p-4 space-y-3 text-sm shadow-inner">
               <div className="text-center font-bold mb-2">
                 {new Date(data.reportDate).toLocaleDateString('en-US', { 
                   year: 'numeric', 
