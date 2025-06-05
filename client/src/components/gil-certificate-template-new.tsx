@@ -103,7 +103,11 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
           {/* Left - Laboratory Seal */}
           <div className="flex items-center space-x-4">
             <div className="w-20 h-20 border-2 border-black rounded-full flex items-center justify-center" style={{ backgroundColor: '#ffffff' }}>
-              <div className="text-2xl font-bold" style={{ color: '#000000', fontFamily: 'Times New Roman, serif' }}>GIL</div>
+              <img 
+                src={gilLogoPath} 
+                alt="GIL Laboratory" 
+                className="w-16 h-16 object-contain"
+              />
             </div>
             <div>
               <div className="text-2xl font-bold" style={{ color: '#000000', fontFamily: 'Times New Roman, serif' }}>
@@ -111,9 +115,6 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               </div>
               <div className="text-sm" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
                 Independent Gemological Testing Laboratory
-              </div>
-              <div className="text-xs mt-1" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
-                CARLSBAD • NEW YORK • BANGKOK • MUMBAI
               </div>
             </div>
           </div>
@@ -382,15 +383,18 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
       {/* Professional Footer */}
       <div className="mt-8 pt-4 border-t-4 border-black">
-        <div className="grid grid-cols-3 gap-8 items-end">
-          {/* Left - Laboratory Information */}
-          <div>
-            <div className="text-xs mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>
+        <div className="flex justify-between items-end">
+          {/* Left - GIL Logo */}
+          <div className="flex items-center space-x-3">
+            <div className="w-16 h-16 border border-black rounded-full flex items-center justify-center" style={{ backgroundColor: '#ffffff' }}>
+              <img 
+                src={gilLogoPath} 
+                alt="GIL Laboratory" 
+                className="w-12 h-12 object-contain"
+              />
+            </div>
+            <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
               <div className="font-bold">Gemological Institute Laboratory</div>
-              <div>The Robert Mouawad Campus</div>
-              <div>5355 Armada Drive</div>
-              <div>Carlsbad, CA 92008</div>
-              <div>T 760 603 4500 F 760 603 4595</div>
               <div>gilab.info</div>
             </div>
           </div>
