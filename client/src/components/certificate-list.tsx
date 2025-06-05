@@ -209,8 +209,8 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
               </div>
               ` : ''}
               <div class="field">
-                <div class="label">Certification Date</div>
-                <div class="value">${new Date(certificate.certificationDate).toLocaleDateString()}</div>
+                <div class="label">Report Date</div>
+                <div class="value">${certificate.reportDate ? new Date(certificate.reportDate).toLocaleDateString() : 'N/A'}</div>
               </div>
               <div class="field">
                 <div class="label">Examined By</div>

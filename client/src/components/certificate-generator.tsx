@@ -903,12 +903,21 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                 <ProfessionalCertificateTemplate
                   ref={certificateRef}
                   data={{
-                    ...generatedCertificate,
+                    reportNumber: generatedCertificate.reportNumber,
+                    reportDate: generatedCertificate.reportDate,
+                    shape: generatedCertificate.shape,
+                    measurements: generatedCertificate.measurements,
+                    caratWeight: generatedCertificate.caratWeight,
+                    colorGrade: generatedCertificate.colorGrade,
+                    clarityGrade: generatedCertificate.clarityGrade,
+                    cutGrade: generatedCertificate.cutGrade,
                     polish: generatedCertificate.polish || "Excellent",
                     symmetry: generatedCertificate.symmetry || "Excellent",
                     fluorescence: generatedCertificate.fluorescence || "None",
                     inscription: generatedCertificate.inscription || "",
                     comments: generatedCertificate.comments || "",
+                    gemologistName: generatedCertificate.gemologistName,
+                    signatureDate: generatedCertificate.signatureDate,
                     labLocation: generatedCertificate.labLocation || "GIL Headquarters",
                     equipmentUsed: generatedCertificate.equipmentUsed || "Gemological microscope, spectroscopy, precision scale",
                     tablePercentage: generatedCertificate.tablePercentage || "57%",

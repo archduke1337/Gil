@@ -244,8 +244,8 @@ export default function CertificateResult({ result }: CertificateResultProps) {
               </div>
               ` : ''}
               <div class="field">
-                <div class="label">Certification Date</div>
-                <div class="value">${new Date(certificate.certificationDate).toLocaleDateString()}</div>
+                <div class="label">Report Date</div>
+                <div class="value">${certificate.reportDate ? new Date(certificate.reportDate).toLocaleDateString() : 'N/A'}</div>
               </div>
               <div class="field">
                 <div class="label">Examined By</div>
@@ -265,7 +265,7 @@ export default function CertificateResult({ result }: CertificateResultProps) {
             
             <div class="footer">
               <p>This certificate is digitally verified and authenticated by GIL.</p>
-              <p>Certificate generated on ${new Date(certificate.issueDate || certificate.certificationDate).toLocaleDateString()}</p>
+              <p>Certificate generated on ${new Date().toLocaleDateString()}</p>
             </div>
           </div>
         </body>
