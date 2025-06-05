@@ -18,7 +18,7 @@ import { CalendarIcon, Gem, FileCheck, ShieldCheck, QrCode, Eye, Download, Spark
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import GILCertificateTemplate from "./gil-certificate-template";
+import GILCertificateTemplate from "./gil-certificate-template-new";
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
