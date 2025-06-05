@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Eye, Trash2, RefreshCw, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,8 +18,10 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
   const { toast } = useToast();
 
-  const filteredCertificates = certificates.filter(cert =>
-    cert.referenceNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false
+  const filteredCertificates = useMemo(() => 
+    certificates.filter(cert =>
+      cert.referenceNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false
+    ), [certificates, searchQuery]
   );
 
   const handleViewCertificate = (certificate: Certificate) => {

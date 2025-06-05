@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -93,9 +93,29 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
     },
   });
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        toast({
+          title: "File too large",
+          description: "Please select an image smaller than 5MB",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        toast({
+          title: "Invalid file type",
+          description: "Please select a valid image file",
+          variant: "destructive",
+        });
+        return;
+      }
+      
       setGemImageFile(file);
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -103,9 +123,9 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
       };
       reader.readAsDataURL(file);
     }
-  };
+  }, [toast]);
 
-  const onSubmit = async (data: CertificateForm) => {
+  const onSubmit = useCallback(async (data: CertificateForm) => {
     setIsGenerating(true);
     try {
       // Transform form data to match database schema
@@ -165,7 +185,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
     } finally {
       setIsGenerating(false);
     }
-  };
+  }, [toast, onSuccess]);
 
   const downloadCertificate = () => {
     if (!certificateRef.current) return;
@@ -861,7 +881,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                         {isGenerating ? (
                           <div className="flex items-center gap-4">
                             <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
-                            <span>Generating Certificate...</span>
+                            <span className="animate-pulse">Generating Certificate...</span>
                           </div>
                         ) : (
                           <div className="flex items-center gap-4">
