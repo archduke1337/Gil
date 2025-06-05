@@ -99,9 +99,9 @@ const ClarityPlotDiagram = () => (
     <circle cx="70" cy="125" r="1" fill="hsl(var(--primary))" opacity="0.5"/>
     
     {/* Crown lines */}
-    <line x1="100" y1="30" x2="100" y2="100" stroke="#6c757d" strokeWidth="0.5"/>
-    <line x1="40" y1="70" x2="160" y2="130" stroke="#6c757d" strokeWidth="0.5"/>
-    <line x1="160" y1="70" x2="40" y2="130" stroke="#6c757d" strokeWidth="0.5"/>
+    <line x1="100" y1="30" x2="100" y2="100" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
+    <line x1="40" y1="70" x2="160" y2="130" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
+    <line x1="160" y1="70" x2="40" y2="130" stroke="hsl(var(--muted-foreground))" strokeWidth="0.5"/>
   </svg>
 );
 
@@ -109,30 +109,30 @@ const ClarityPlotDiagram = () => (
 const ProportionsDiagram = () => (
   <svg viewBox="0 0 250 150" className="w-full h-full">
     {/* Side view of diamond */}
-    <polygon points="125,20 180,70 125,130 70,70" fill="#f8f9fa" stroke="#6c757d" strokeWidth="1"/>
+    <polygon points="125,20 180,70 125,130 70,70" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="1"/>
     
     {/* Table line */}
-    <line x1="95" y1="70" x2="155" y2="70" stroke="#8B7355" strokeWidth="2"/>
-    <text x="175" y="75" fontSize="8" fill="#8B7355">57%</text>
+    <line x1="95" y1="70" x2="155" y2="70" stroke="hsl(var(--primary))" strokeWidth="2"/>
+    <text x="175" y="75" fontSize="8" fill="hsl(var(--primary))">57%</text>
     
     {/* Crown height */}
-    <line x1="60" y1="20" x2="60" y2="70" stroke="#8B7355" strokeWidth="1"/>
-    <text x="45" y="45" fontSize="8" fill="#8B7355">15.0%</text>
+    <line x1="60" y1="20" x2="60" y2="70" stroke="hsl(var(--primary))" strokeWidth="1"/>
+    <text x="45" y="45" fontSize="8" fill="hsl(var(--primary))">15.0%</text>
     
     {/* Pavilion depth */}
-    <line x1="190" y1="70" x2="190" y2="130" stroke="#8B7355" strokeWidth="1"/>
-    <text x="195" y="100" fontSize="8" fill="#8B7355">43.5%</text>
+    <line x1="190" y1="70" x2="190" y2="130" stroke="hsl(var(--primary))" strokeWidth="1"/>
+    <text x="195" y="100" fontSize="8" fill="hsl(var(--primary))">43.5%</text>
     
     {/* Total depth */}
-    <line x1="200" y1="20" x2="200" y2="130" stroke="#8B7355" strokeWidth="1"/>
-    <text x="205" y="75" fontSize="8" fill="#8B7355">62.1%</text>
+    <line x1="200" y1="20" x2="200" y2="130" stroke="hsl(var(--primary))" strokeWidth="1"/>
+    <text x="205" y="75" fontSize="8" fill="hsl(var(--primary))">62.1%</text>
     
     {/* Angle measurements */}
-    <path d="M 125,70 L 145,50 A 20,20 0 0,1 155,70" fill="none" stroke="#8B7355" strokeWidth="1"/>
-    <text x="160" y="55" fontSize="8" fill="#8B7355">35.0°</text>
+    <path d="M 125,70 L 145,50 A 20,20 0 0,1 155,70" fill="none" stroke="hsl(var(--primary))" strokeWidth="1"/>
+    <text x="160" y="55" fontSize="8" fill="hsl(var(--primary))">35.0°</text>
     
-    <path d="M 125,70 L 145,90 A 20,20 0 0,0 155,70" fill="none" stroke="#8B7355" strokeWidth="1"/>
-    <text x="160" y="95" fontSize="8" fill="#8B7355">41.0°</text>
+    <path d="M 125,70 L 145,90 A 20,20 0 0,0 155,70" fill="none" stroke="hsl(var(--primary))" strokeWidth="1"/>
+    <text x="160" y="95" fontSize="8" fill="hsl(var(--primary))">41.0°</text>
   </svg>
 );
 
