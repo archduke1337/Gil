@@ -52,12 +52,12 @@ export default function CertificateResult({ result }: CertificateResultProps) {
             }
             .header { 
               text-align: center; 
-              border-bottom: 3px solid #8c745c; 
+              border-bottom: 3px solid hsl(24 95% 53%); 
               padding-bottom: 20px; 
               margin-bottom: 30px;
             }
             .logo { 
-              color: #8c745c; 
+              color: hsl(24 95% 53%); 
               font-size: 32px; 
               font-weight: bold; 
               margin: 0 0 10px 0;
@@ -85,9 +85,9 @@ export default function CertificateResult({ result }: CertificateResultProps) {
             .field { 
               margin-bottom: 20px;
               padding: 12px;
-              background: #f8f9fa;
+              background: hsl(210 40% 96%);
               border-radius: 6px;
-              border-left: 4px solid #8c745c;
+              border-left: 4px solid hsl(24 95% 53%);
             }
             .label { 
               font-weight: 600; 
@@ -106,7 +106,7 @@ export default function CertificateResult({ result }: CertificateResultProps) {
               grid-column: 1 / -1;
             }
             .reference { 
-              background: linear-gradient(135deg, #8c745c, #725d47); 
+              background: linear-gradient(135deg, hsl(24 95% 53%), hsl(24 95% 45%)); 
               color: white; 
               padding: 15px 25px; 
               border-radius: 8px; 
@@ -119,13 +119,13 @@ export default function CertificateResult({ result }: CertificateResultProps) {
             .footer {
               margin-top: 40px;
               padding-top: 20px;
-              border-top: 2px solid #8c745c;
+              border-top: 2px solid hsl(24 95% 53%);
               text-align: center;
-              color: #666;
+              color: hsl(210 3.7% 48%);
               font-size: 14px;
             }
             .print-btn {
-              background: #8c745c;
+              background: hsl(24 95% 53%);
               color: white;
               border: none;
               padding: 12px 24px;
@@ -137,7 +137,7 @@ export default function CertificateResult({ result }: CertificateResultProps) {
               font-weight: 600;
             }
             .print-btn:hover {
-              background: #725d47;
+              background: hsl(24 95% 45%);
             }
             @media print {
               body { background: white; margin: 0; padding: 0; }
@@ -295,18 +295,18 @@ export default function CertificateResult({ result }: CertificateResultProps) {
     <div className="py-16 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {found && certificate ? (
-          <Card className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+          <Card className="bg-card rounded-2xl shadow-xl border border-border p-8">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">Certificate Verified</h3>
-                  <p className="text-gray-600">Valid certificate found in our database</p>
+                  <h3 className="text-xl font-bold text-foreground">Certificate Verified</h3>
+                  <p className="text-muted-foreground">Valid certificate found in our database</p>
                 </div>
               </div>
-              <Badge className="bg-emerald-600 text-white">Authentic</Badge>
+              <Badge className="bg-green-600 text-white">Authentic</Badge>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">

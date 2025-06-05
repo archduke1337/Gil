@@ -19,7 +19,7 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
   const { toast } = useToast();
 
   const filteredCertificates = certificates.filter(cert =>
-    cert.referenceNumber.toLowerCase().includes(searchQuery.toLowerCase())
+    cert.referenceNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false
   );
 
   const handleViewCertificate = (certificate: Certificate) => {
@@ -58,12 +58,12 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
             }
             .header { 
               text-align: center; 
-              border-bottom: 2px solid #8c745c; 
+              border-bottom: 2px solid hsl(24 95% 53%); 
               padding-bottom: 20px; 
               margin-bottom: 30px;
             }
             .title { 
-              color: #8c745c; 
+              color: hsl(24 95% 53%); 
               font-size: 28px; 
               font-weight: bold; 
               margin: 0;
@@ -98,7 +98,7 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
               grid-column: 1 / -1;
             }
             .reference { 
-              background: #8c745c; 
+              background: hsl(24 95% 53%); 
               color: white; 
               padding: 10px 20px; 
               border-radius: 6px; 
