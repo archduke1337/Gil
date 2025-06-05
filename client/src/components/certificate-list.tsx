@@ -135,8 +135,8 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
                 <div class="value">${certificate.shape}</div>
               </div>
               <div class="field">
-                <div class="label">Dimensions</div>
-                <div class="value">${certificate.dimensions}</div>
+                <div class="label">Measurements</div>
+                <div class="value">${certificate.measurements}</div>
               </div>
               <div class="field">
                 <div class="label">Carat Weight</div>
@@ -215,12 +215,12 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
                 <div class="value">${certificate.reportDate && certificate.reportDate !== null ? new Date(certificate.reportDate).toLocaleDateString() : 'N/A'}</div>
               </div>
               <div class="field">
-                <div class="label">Examined By</div>
-                <div class="value">${certificate.examinedBy}</div>
+                <div class="label">Gemologist</div>
+                <div class="value">${certificate.gemologistName}</div>
               </div>
               <div class="field">
-                <div class="label">Approved By</div>
-                <div class="value">${certificate.approvedBy}</div>
+                <div class="label">Signature Date</div>
+                <div class="value">${certificate.signatureDate && certificate.signatureDate !== null ? new Date(certificate.signatureDate).toLocaleDateString() : 'N/A'}</div>
               </div>
               <div class="field">
                 <div class="label">Lab Location</div>

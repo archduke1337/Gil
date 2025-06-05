@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Gem, LogOut, Upload, List, RefreshCw, FileUp, Search, Filter, Map, BookOpen, Users, Eye, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,8 @@ import BulkUpload from "@/components/bulk-upload";
 import AdvancedSearch from "@/components/advanced-search";
 import CertificateGenerator from "@/components/certificate-generator";
 import EnhancedGILCertificateGenerator from "@/components/enhanced-gil-certificate-generator";
+import { DashboardSkeleton, CertificateListSkeleton } from "@/components/skeleton-loader";
+import GemLoadingSpinner from "@/components/gem-loading-spinner";
 import { useToast } from "@/hooks/use-toast";
 import type { Certificate } from "@shared/schema";
 import logoPath from "@assets/1000119055-removebg-preview.png";
@@ -24,26 +26,31 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);
   const { toast } = useToast();
 
-  const { data: certificatesData, refetch } = useQuery<{ certificates: Certificate[] }>({
+  const { data: certificatesData, refetch, isLoading, error } = useQuery<{ certificates: Certificate[] }>({
     queryKey: ["/api/certificates"],
     refetchInterval: 30000,
+    staleTime: 10000,
+    gcTime: 30000,
   });
 
   const certificates = certificatesData?.certificates || [];
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     toast({
       title: "Logged Out",
       description: "You have been logged out successfully",
     });
     onLogout();
-  };
+  }, [toast, onLogout]);
 
-  const handleUploadSuccess = () => {
+  const handleUploadSuccess = useCallback(() => {
     refetch();
-  };
+  }, [refetch]);
 
-  const displayCertificates = searchResults.length > 0 ? searchResults : certificates;
+  const displayCertificates = useMemo(() => 
+    searchResults.length > 0 ? searchResults : certificates,
+    [searchResults, certificates]
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
