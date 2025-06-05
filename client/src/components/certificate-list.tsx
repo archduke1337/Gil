@@ -336,7 +336,7 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
                       onClick={() => handleViewCertificate(certificate)}
                       variant="ghost"
                       size="sm"
-                      className="p-2 text-blue-700 hover:bg-blue-50 rounded transition-colors"
+                      className="p-2 text-primary hover:bg-primary/10 rounded transition-colors"
                       title="View Certificate"
                     >
                       <Eye className="w-4 h-4" />
@@ -346,7 +346,7 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
                       disabled={isDeleting === certificate.id}
                       variant="ghost"
                       size="sm"
-                      className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
+                      className="p-2 text-destructive hover:bg-destructive/10 rounded transition-colors"
                       title="Delete Certificate"
                     >
                       <Trash2 className={`w-4 h-4 ${isDeleting === certificate.id ? 'animate-spin' : ''}`} />
