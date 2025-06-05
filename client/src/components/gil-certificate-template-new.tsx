@@ -46,7 +46,7 @@ const generateClarityPlotDiagram = (clarityGrade: string) => {
 
 interface GILCertificateData {
   reportNumber: string;
-  reportDate: string | Date;
+  reportDate: Date;
   shape: string;
   measurements: string;
   caratWeight: string;
@@ -59,7 +59,7 @@ interface GILCertificateData {
   inscription?: string;
   comments?: string;
   gemologistName: string;
-  signatureDate: string | Date;
+  signatureDate: Date;
   digitallySignedBy?: boolean;
   colorGradeDiagram?: boolean;
   clarityPlotDiagram?: boolean;
@@ -178,6 +178,10 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               <div className="grid grid-cols-2 gap-2 items-center">
                 <span className="font-medium" style={{ color: '#8b7355' }}>Clarity Grade</span>
                 <span className="text-right font-bold text-lg" style={{ color: '#8b7355' }}>{data.clarityGrade}</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 items-center">
+                <span className="font-medium" style={{ color: '#8b7355' }}>Cut Grade</span>
+                <span className="text-right font-bold text-lg" style={{ color: '#8b7355' }}>{data.cutGrade}</span>
               </div>
             </div>
           </div>
