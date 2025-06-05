@@ -102,11 +102,12 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
         <div className="flex justify-between items-start">
           {/* Left - Laboratory Seal */}
           <div className="flex items-center space-x-4">
-            <div className="w-20 h-20 flex items-center justify-center">
+            <div className="w-24 h-24 flex items-center justify-center">
               <img 
                 src={gilLogoPath} 
                 alt="GIL Laboratory" 
-                className="w-20 h-20 object-contain"
+                className="w-full h-full object-contain max-w-24 max-h-24"
+                style={{ filter: 'contrast(1.2) brightness(1.1)' }}
               />
             </div>
             <div>
@@ -386,11 +387,12 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
         <div className="flex justify-between items-end">
           {/* Left - GIL Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-16 h-16 flex items-center justify-center">
+            <div className="w-20 h-20 flex items-center justify-center">
               <img 
                 src={gilLogoPath} 
                 alt="GIL Laboratory" 
-                className="w-16 h-16 object-contain"
+                className="w-full h-full object-contain max-w-20 max-h-20"
+                style={{ filter: 'contrast(1.2) brightness(1.1)' }}
               />
             </div>
             <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>
