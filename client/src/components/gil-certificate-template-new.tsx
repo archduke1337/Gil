@@ -86,35 +86,37 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
   return (
     <div 
       id="certificate-preview"
-      className={`mx-auto shadow-2xl ${className}`}
+      className={`mx-auto shadow-xl ${className}`}
       style={{ 
         width: '8.5in',
         minHeight: '11in',
         backgroundColor: '#ffffff',
-        border: '3px solid #000000',
-        fontFamily: 'Times New Roman, serif',
-        padding: '0.75in',
-        boxSizing: 'border-box'
+        border: '2px solid #000000',
+        fontFamily: 'Arial, sans-serif',
+        padding: '0.5in',
+        boxSizing: 'border-box',
+        fontSize: '12px',
+        lineHeight: '1.4'
       }}>
       
       {/* Professional Header */}
-      <div className="border-b-4 border-black pb-4 mb-6">
-        <div className="flex justify-between items-start">
+      <div className="border-b-2 border-black pb-3 mb-4">
+        <div className="flex justify-between items-center">
           {/* Left - Laboratory Seal */}
-          <div className="flex items-center space-x-4">
-            <div className="w-24 h-24 flex items-center justify-center">
+          <div className="flex items-center space-x-3">
+            <div className="w-16 h-16 flex items-center justify-center">
               <img 
                 src={gilLogoPath} 
                 alt="GIL Laboratory" 
-                className="w-full h-full object-contain max-w-24 max-h-24"
+                className="w-full h-full object-contain"
                 style={{ filter: 'contrast(1.2) brightness(1.1)' }}
               />
             </div>
             <div>
-              <div className="text-2xl font-bold" style={{ color: '#000000', fontFamily: 'Times New Roman, serif' }}>
+              <div className="text-lg font-bold" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
                 GEMOLOGICAL INSTITUTE LABORATORY
               </div>
-              <div className="text-sm" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
+              <div className="text-xs" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '10px' }}>
                 Independent Gemological Testing Laboratory
               </div>
             </div>
@@ -122,13 +124,13 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
           {/* Right - Report Details */}
           <div className="text-right">
-            <div className="text-xl font-bold mb-2" style={{ color: '#000000', fontFamily: 'Times New Roman, serif' }}>
+            <div className="text-base font-bold mb-1" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
               DIAMOND GRADING REPORT
             </div>
-            <div className="text-lg mb-1" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
+            <div className="text-sm mb-2" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '11px' }}>
               {data.reportDate instanceof Date ? data.reportDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : new Date(data.reportDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </div>
-            <div className="text-2xl font-bold border-2 border-black px-4 py-2 inline-block" style={{ color: '#000000', fontFamily: 'Arial, sans-serif' }}>
+            <div className="font-bold border border-black px-3 py-1 inline-block" style={{ color: '#000000', fontFamily: 'Arial, sans-serif', fontSize: '16px' }}>
               {data.reportNumber}
             </div>
           </div>
@@ -136,16 +138,16 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
       </div>
 
       {/* Professional Content Layout */}
-      <div className="grid grid-cols-12 gap-6 mb-8">
+      <div className="grid grid-cols-12 gap-4 mb-6">
         
         {/* Left Column - Identification & Results */}
-        <div className="col-span-5 space-y-4">
+        <div className="col-span-5 space-y-3">
           {/* This Report */}
           <div>
-            <div className="text-lg font-bold mb-2 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+            <div className="font-bold mb-2 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
               This Report
             </div>
-            <div className="space-y-1 text-sm" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div className="space-y-1" style={{ fontFamily: 'Arial, sans-serif', fontSize: '10px' }}>
               <div className="flex justify-between">
                 <span>GIL Report Number</span>
                 <span className="font-bold">{data.reportNumber}</span>
@@ -156,33 +158,33 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               </div>
               <div className="flex justify-between">
                 <span>Measurements</span>
-                <span className="font-mono text-xs">{data.measurements}</span>
+                <span className="font-mono">{data.measurements}</span>
               </div>
             </div>
           </div>
 
           {/* Grading Results */}
           <div>
-            <div className="text-lg font-bold mb-2 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+            <div className="font-bold mb-2 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
               Grading Results
             </div>
             <div className="space-y-2">
-              <div className="text-center py-3 border border-black">
-                <div className="text-sm" style={{ fontFamily: 'Arial, sans-serif' }}>Carat Weight</div>
-                <div className="text-3xl font-bold" style={{ fontFamily: 'Times New Roman, serif' }}>{data.caratWeight}</div>
+              <div className="text-center py-2 border border-black">
+                <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '9px' }}>Carat Weight</div>
+                <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>{data.caratWeight}</div>
               </div>
-              <div className="grid grid-cols-3 gap-2">
-                <div className="text-center py-2 border border-black">
-                  <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>Color Grade</div>
-                  <div className="text-2xl font-bold" style={{ fontFamily: 'Times New Roman, serif' }}>{data.colorGrade}</div>
+              <div className="grid grid-cols-3 gap-1">
+                <div className="text-center py-1 border border-black">
+                  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>Color Grade</div>
+                  <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>{data.colorGrade}</div>
                 </div>
-                <div className="text-center py-2 border border-black">
-                  <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>Clarity Grade</div>
-                  <div className="text-2xl font-bold" style={{ fontFamily: 'Times New Roman, serif' }}>{data.clarityGrade}</div>
+                <div className="text-center py-1 border border-black">
+                  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>Clarity Grade</div>
+                  <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>{data.clarityGrade}</div>
                 </div>
-                <div className="text-center py-2 border border-black">
-                  <div className="text-xs" style={{ fontFamily: 'Arial, sans-serif' }}>Cut Grade</div>
-                  <div className="text-2xl font-bold" style={{ fontFamily: 'Times New Roman, serif' }}>{data.cutGrade}</div>
+                <div className="text-center py-1 border border-black">
+                  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8px' }}>Cut Grade</div>
+                  <div className="font-bold" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>{data.cutGrade}</div>
                 </div>
               </div>
             </div>
@@ -190,10 +192,10 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
 
           {/* Additional Grading Information */}
           <div>
-            <div className="text-lg font-bold mb-2 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+            <div className="font-bold mb-2 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
               Additional Grading Information
             </div>
-            <div className="space-y-1 text-sm" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div className="space-y-1" style={{ fontFamily: 'Arial, sans-serif', fontSize: '10px' }}>
               <div className="flex justify-between">
                 <span>Polish</span>
                 <span>{data.polish}</span>
@@ -208,17 +210,17 @@ export default function GILCertificateTemplate({ data, className = "" }: GILCert
               </div>
               <div className="flex justify-between">
                 <span>Inscription(s)</span>
-                <span className="font-mono text-xs">{data.inscription || `GIL ${data.reportNumber}`}</span>
+                <span className="font-mono">{data.inscription || `GIL ${data.reportNumber}`}</span>
               </div>
             </div>
           </div>
 
           {/* Comments */}
           <div>
-            <div className="text-lg font-bold mb-2 pb-1 border-b-2 border-black" style={{ fontFamily: 'Times New Roman, serif' }}>
+            <div className="font-bold mb-2 pb-1 border-b border-black" style={{ fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
               Comments
             </div>
-            <div className="text-sm" style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '10px' }}>
               {data.comments || "Clouds are not shown. Pinpoints are not shown."}
             </div>
           </div>
