@@ -32,7 +32,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
     gcTime: 30000,
   });
 
-  const certificates = (certificatesData?.certificates as Certificate[]) || [];
+  const certificates = certificatesData?.certificates || [];
 
   const handleLogout = useCallback(() => {
     toast({
@@ -143,7 +143,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   <div className="ml-6">
                     <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Active Certificates</p>
                     <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">
-                      {certificates.filter(cert => cert.isActive).length}
+                      {certificates.filter((cert: Certificate) => cert.isActive).length}
                     </p>
                   </div>
                 </div>
@@ -185,7 +185,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   <div className="ml-6">
                     <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Uploads This Month</p>
                     <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">
-                      {certificates.filter(cert => {
+                      {certificates.filter((cert: Certificate) => {
                         if (!cert.uploadDate) return false;
                         const uploadDate = new Date(cert.uploadDate);
                         const now = new Date();
