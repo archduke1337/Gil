@@ -48,31 +48,6 @@ export default function Verify() {
             </div>
             
             <VerificationForm onResult={handleVerificationResult} />
-
-            {/* Sample Reference Numbers */}
-            <div className="mt-8 p-6 bg-secondary rounded-3xl">
-              <h3 className="text-body-sm font-heading text-foreground mb-3 text-ultra-smooth">Sample Reference Numbers for Testing:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-                <button 
-                  className="text-left p-2 hover:bg-card rounded cursor-pointer transition-colors"
-                  onClick={() => {
-                    const input = document.querySelector('input[name="referenceNumber"]') as HTMLInputElement;
-                    if (input) input.value = 'GIL-2024-001234';
-                  }}
-                >
-                  <code className="text-primary">GIL-2024-001234</code>
-                </button>
-                <button 
-                  className="text-left p-2 hover:bg-card rounded cursor-pointer transition-colors"
-                  onClick={() => {
-                    const input = document.querySelector('input[name="referenceNumber"]') as HTMLInputElement;
-                    if (input) input.value = 'GIL-2024-005678';
-                  }}
-                >
-                  <code className="text-primary">GIL-2024-005678</code>
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
