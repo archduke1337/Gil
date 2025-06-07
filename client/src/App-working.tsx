@@ -1,26 +1,34 @@
-import React, { useState, useCallback } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 
-// Simple certificate verification component
+interface Certificate {
+  id: number;
+  reportNumber: string;
+  caratWeight: string;
+  colorGrade: string;
+  clarityGrade: string;
+  cutGrade: string;
+  isActive: boolean;
+}
+
 function CertificateVerification() {
   const [referenceNumber, setReferenceNumber] = useState("");
-  const [result, setResult] = useState<any>(null);
+  const [verificationResult, setVerificationResult] = useState<any>(null);
   const [isVerifying, setIsVerifying] = useState(false);
 
-  const handleVerify = useCallback(async () => {
+  const handleVerify = async () => {
     if (!referenceNumber.trim()) return;
     
     setIsVerifying(true);
     try {
       const response = await fetch(`/api/certificates/verify/${encodeURIComponent(referenceNumber)}`);
       const data = await response.json();
-      setResult(data);
+      setVerificationResult(data);
     } catch (error) {
-      setResult({ isValid: false, message: "Verification failed" });
+      setVerificationResult({ isValid: false, message: "Verification failed" });
     } finally {
       setIsVerifying(false);
     }
-  }, [referenceNumber]);
+  };
 
   return (
     <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto" }}>
@@ -31,7 +39,7 @@ function CertificateVerification() {
           type="text"
           value={referenceNumber}
           onChange={(e) => setReferenceNumber(e.target.value)}
-          placeholder="Enter certificate reference number"
+          placeholder="Enter certificate reference number (e.g., G5096035810)"
           style={{
             width: "100%",
             padding: "12px",
@@ -59,31 +67,31 @@ function CertificateVerification() {
         {isVerifying ? "Verifying..." : "Verify Certificate"}
       </button>
 
-      {result && (
+      {verificationResult && (
         <div style={{ 
           marginTop: "2rem", 
           padding: "1rem", 
-          backgroundColor: result.isValid ? "#d4edda" : "#f8d7da",
-          border: `1px solid ${result.isValid ? "#c3e6cb" : "#f5c6cb"}`,
+          backgroundColor: verificationResult.isValid ? "#d4edda" : "#f8d7da",
+          border: `1px solid ${verificationResult.isValid ? "#c3e6cb" : "#f5c6cb"}`,
           borderRadius: "4px"
         }}>
-          {result.isValid ? (
+          {verificationResult.isValid ? (
             <div>
               <h3 style={{ color: "#155724", margin: "0 0 1rem 0" }}>Certificate Found</h3>
-              {result.certificate && (
+              {verificationResult.certificate && (
                 <div>
-                  <p><strong>Report Number:</strong> {result.certificate.reportNumber}</p>
-                  <p><strong>Carat Weight:</strong> {result.certificate.caratWeight}</p>
-                  <p><strong>Color Grade:</strong> {result.certificate.colorGrade}</p>
-                  <p><strong>Clarity Grade:</strong> {result.certificate.clarityGrade}</p>
-                  <p><strong>Cut Grade:</strong> {result.certificate.cutGrade}</p>
+                  <p><strong>Report Number:</strong> {verificationResult.certificate.reportNumber}</p>
+                  <p><strong>Carat Weight:</strong> {verificationResult.certificate.caratWeight}</p>
+                  <p><strong>Color Grade:</strong> {verificationResult.certificate.colorGrade}</p>
+                  <p><strong>Clarity Grade:</strong> {verificationResult.certificate.clarityGrade}</p>
+                  <p><strong>Cut Grade:</strong> {verificationResult.certificate.cutGrade}</p>
                 </div>
               )}
             </div>
           ) : (
             <div>
               <h3 style={{ color: "#721c24", margin: "0 0 1rem 0" }}>Certificate Not Found</h3>
-              <p>{result.message || "The reference number was not found in our database."}</p>
+              <p>{verificationResult.message || "The reference number was not found in our database."}</p>
             </div>
           )}
         </div>
@@ -92,14 +100,13 @@ function CertificateVerification() {
   );
 }
 
-// Simple admin login component
 function AdminLogin({ onLogin }: { onLogin: () => void }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
-  const handleLogin = useCallback(async () => {
-    setIsLoading(true);
+  const handleLogin = async () => {
+    setIsLoggingIn(true);
     try {
       const response = await fetch("/api/admin/login", {
         method: "POST",
@@ -110,14 +117,14 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
       if (response.ok) {
         onLogin();
       } else {
-        alert("Invalid credentials");
+        alert("Invalid credentials - use admin/admin123");
       }
     } catch (error) {
       alert("Login failed");
     } finally {
-      setIsLoading(false);
+      setIsLoggingIn(false);
     }
-  }, [username, password, onLogin]);
+  };
 
   return (
     <div style={{ padding: "2rem", maxWidth: "400px", margin: "2rem auto" }}>
@@ -128,7 +135,7 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
+          placeholder="Username (admin)"
           style={{
             width: "100%",
             padding: "12px",
@@ -141,7 +148,7 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
+          placeholder="Password (admin123)"
           style={{
             width: "100%",
             padding: "12px",
@@ -153,7 +160,7 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
       
       <button
         onClick={handleLogin}
-        disabled={isLoading}
+        disabled={isLoggingIn}
         style={{
           backgroundColor: "#8B5A3C",
           color: "white",
@@ -164,25 +171,33 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
           width: "100%"
         }}
       >
-        {isLoading ? "Logging in..." : "Login"}
+        {isLoggingIn ? "Logging in..." : "Login"}
       </button>
     </div>
   );
 }
 
-// Simple admin dashboard
 function AdminDashboard({ onLogout }: { onLogout: () => void }) {
-  const queryClient = useQueryClient();
-  
-  const { data: certificatesData, isLoading } = useQuery({
-    queryKey: ["/api/certificates"],
-    queryFn: async () => {
-      const response = await fetch("/api/certificates");
-      return response.json();
-    }
-  });
+  const [certificates, setCertificates] = useState<Certificate[]>([]);
+  const [isLoadingCerts, setIsLoadingCerts] = useState(false);
 
-  const certificates = certificatesData?.certificates || [];
+  const loadCertificates = async () => {
+    setIsLoadingCerts(true);
+    try {
+      const response = await fetch("/api/certificates");
+      const data = await response.json();
+      setCertificates(data.certificates || []);
+    } catch (error) {
+      console.error("Error loading certificates:", error);
+    } finally {
+      setIsLoadingCerts(false);
+    }
+  };
+
+  // Load certificates on mount
+  useEffect(() => {
+    loadCertificates();
+  }, []);
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -203,7 +218,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
         </button>
       </div>
 
-      {isLoading ? (
+      {isLoadingCerts ? (
         <p>Loading certificates...</p>
       ) : (
         <div>
@@ -221,7 +236,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
                 </tr>
               </thead>
               <tbody>
-                {certificates.map((cert: any) => (
+                {certificates.map((cert) => (
                   <tr key={cert.id}>
                     <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.reportNumber}</td>
                     <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.caratWeight}</td>
@@ -240,26 +255,28 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   );
 }
 
-// Main application component
 function WorkingApp() {
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState("verify");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const renderPage = () => {
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setCurrentPage("verify");
+  };
+
+  const renderCurrentPage = () => {
     if (currentPage === "admin") {
-      if (isLoggedIn) {
-        return <AdminDashboard onLogout={() => setIsLoggedIn(false)} />;
-      } else {
-        return <AdminLogin onLogin={() => setIsLoggedIn(true)} />;
-      }
+      return isLoggedIn ? <AdminDashboard onLogout={handleLogout} /> : <AdminLogin onLogin={handleLogin} />;
     }
-    
     return <CertificateVerification />;
   };
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
-      {/* Navigation */}
       <nav style={{ 
         backgroundColor: "#8B5A3C", 
         padding: "1rem 2rem",
@@ -269,9 +286,9 @@ function WorkingApp() {
           <h1 style={{ margin: 0, fontSize: "1.5rem" }}>GIL - Gemological Institute Laboratories</h1>
           <div>
             <button
-              onClick={() => setCurrentPage("home")}
+              onClick={() => setCurrentPage("verify")}
               style={{
-                backgroundColor: currentPage === "home" ? "rgba(255,255,255,0.2)" : "transparent",
+                backgroundColor: currentPage === "verify" ? "rgba(255,255,255,0.2)" : "transparent",
                 color: "white",
                 border: "1px solid rgba(255,255,255,0.3)",
                 padding: "8px 16px",
@@ -299,9 +316,8 @@ function WorkingApp() {
         </div>
       </nav>
 
-      {/* Main content */}
       <main>
-        {renderPage()}
+        {renderCurrentPage()}
       </main>
     </div>
   );
