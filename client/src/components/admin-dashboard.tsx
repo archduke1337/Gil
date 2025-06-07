@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, memo } from "react";
+import { useState, useMemo, useCallback, memo, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { LogOut, Upload, List, RefreshCw, FileUp, Search, Eye, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -24,18 +24,44 @@ interface AdminDashboardProps {
 
 const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);
+  const [certificates, setCertificates] = useState<Certificate[]>([]);
+  const [loadingState, setLoadingState] = useState<'loading' | 'success' | 'error'>('loading');
   const { toast } = useToast();
 
-  const { data: certificatesData, refetch, isLoading, error } = useQuery({
-    queryKey: ["/api/certificates"],
-    refetchInterval: 30000,
-    staleTime: 10000,
-    gcTime: 30000,
-    retry: 3,
-    retryDelay: 1000,
-  });
+  const loadCertificates = useCallback(async () => {
+    try {
+      setLoadingState('loading');
+      const response = await fetch("/api/certificates", {
+        credentials: "include",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      setCertificates(data.certificates || []);
+      setLoadingState('success');
+    } catch (error) {
+      console.error('Failed to load certificates:', error);
+      setLoadingState('error');
+      toast({
+        title: "Loading Error",
+        description: "Failed to load certificates. Please retry.",
+        variant: "destructive",
+      });
+    }
+  }, [toast]);
 
-  const certificates: Certificate[] = (certificatesData as any)?.certificates || [];
+  useEffect(() => {
+    loadCertificates();
+    const interval = setInterval(loadCertificates, 30000);
+    return () => clearInterval(interval);
+  }, [loadCertificates]);
 
   const handleLogout = useCallback(() => {
     toast({
@@ -46,15 +72,15 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
   }, [toast, onLogout]);
 
   const handleUploadSuccess = useCallback(() => {
-    refetch();
-  }, [refetch]);
+    loadCertificates();
+  }, [loadCertificates]);
 
   const displayCertificates = useMemo(() => 
     searchResults.length > 0 ? searchResults : certificates,
     [searchResults, certificates]
   );
 
-  if (isLoading) {
+  if (loadingState === 'loading') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="flex items-center justify-center py-20">
@@ -67,16 +93,14 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
     );
   }
 
-  if (error) {
-    console.error('Certificate loading error:', error);
+  if (loadingState === 'error') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-red-600 mb-4">Error Loading Dashboard</h2>
             <p className="text-gray-600 mb-4">Unable to load certificates. Please try again.</p>
-            <p className="text-sm text-gray-500 mb-6">Error: {error.message}</p>
-            <Button onClick={() => refetch()} className="bg-primary hover:bg-primary/90">
+            <Button onClick={() => loadCertificates()} className="bg-primary hover:bg-primary/90">
               <RefreshCw className="w-4 h-4 mr-2" />
               Retry
             </Button>
