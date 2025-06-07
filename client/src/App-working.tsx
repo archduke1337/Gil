@@ -241,7 +241,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
 }
 
 // Main application component
-function App() {
+function WorkingApp() {
   const [currentPage, setCurrentPage] = useState("home");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -307,4 +307,4 @@ function App() {
   );
 }
 
-export default App;
+export default WorkingApp;
