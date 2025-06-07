@@ -76,7 +76,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
           <div className="text-center">
             <h2 className="text-2xl font-bold text-red-600 mb-4">Error Loading Dashboard</h2>
             <p className="text-gray-600 mb-4">Unable to load certificates. Please try again.</p>
-            <p className="text-sm text-gray-500 mb-6">Error: {error}</p>
+            <p className="text-sm text-gray-500 mb-6">Error: {error?.message || 'Unknown error'}</p>
             <Button onClick={() => refetch()} className="bg-primary hover:bg-primary/90">
               <RefreshCw className="w-4 h-4 mr-2" />
               Retry
