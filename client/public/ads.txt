@@ -1,9 +1,0 @@
-# Google AdSense verification
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
-
-# Direct advertising partners
-gilab.info, direct, DIRECT
-
-# Reseller networks
-advertising.com, 1234, RESELLER
-doubleclick.net, 5678, RESELLER
