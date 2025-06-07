@@ -26,7 +26,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);
   const { toast } = useToast();
 
-  const { data: certificatesData, refetch, isLoading, error } = useQuery<{ certificates: Certificate[] }>({
+  const { data: certificatesData, refetch, isLoading, error } = useQuery({
     queryKey: ["/api/certificates"],
     refetchInterval: 30000,
     staleTime: 10000,
@@ -35,7 +35,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
     retryDelay: 1000,
   });
 
-  const certificates = certificatesData?.certificates || [];
+  const certificates = (certificatesData as any)?.certificates || [];
 
   const handleLogout = useCallback(() => {
     toast({
