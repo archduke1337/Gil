@@ -7,7 +7,7 @@ interface GemLoadingSpinnerProps {
   className?: string;
 }
 
-const GemLoadingSpinner = memo(function GemLoadingSpinner({ size = "md", className = "" }: GemLoadingSpinnerProps) {
+export default function GemLoadingSpinner({ size = "md", className = "" }: GemLoadingSpinnerProps) {
   const sizeClasses = {
     sm: "w-8 h-8",
     md: "w-16 h-16", 
@@ -105,9 +105,7 @@ const GemLoadingSpinner = memo(function GemLoadingSpinner({ size = "md", classNa
       />
     </div>
   );
-});
-
-export default GemLoadingSpinner;
+}
 
 export function GemLoadingPage() {
   return (
