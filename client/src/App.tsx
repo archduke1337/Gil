@@ -16,7 +16,7 @@ const FAQs = lazy(() => import("@/pages/faqs"));
 const Admin = lazy(() => import("@/pages/admin"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
-const LazyWrapper = memo(function LazyWrapper({ Component }: { Component: React.ComponentType }) {
+function LazyWrapper({ Component }: { Component: React.ComponentType }) {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-secondary/5">
@@ -26,7 +26,7 @@ const LazyWrapper = memo(function LazyWrapper({ Component }: { Component: React.
       <Component />
     </Suspense>
   );
-});
+}
 
 function Router() {
   return (

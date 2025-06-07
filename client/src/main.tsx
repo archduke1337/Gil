@@ -31,9 +31,7 @@ if (!rootElement) throw new Error("Root element not found");
 const root = createRoot(rootElement);
 
 root.render(
-  <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  </StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <App />
+  </QueryClientProvider>
 );
