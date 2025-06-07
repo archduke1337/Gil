@@ -1,5 +1,5 @@
-import { useState, useMemo, useCallback, memo } from "react";
-import { useCertificates } from "@/hooks/use-certificates";
+import { useState, useMemo, useCallback, memo, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { LogOut, Upload, List, RefreshCw, FileUp, Search, Eye, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -25,7 +25,19 @@ interface AdminDashboardProps {
 const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);
   const { toast } = useToast();
-  const { certificates, loading, error, refetch } = useCertificates();
+
+  const { data: certificatesData, isLoading: loading, error, refetch } = useQuery({
+    queryKey: ["/api/certificates"],
+    queryFn: async () => {
+      const response = await fetch("/api/certificates");
+      if (!response.ok) {
+        throw new Error(`Failed to fetch certificates: ${response.status}`);
+      }
+      return response.json();
+    },
+  });
+
+  const certificates = certificatesData?.certificates || [];
 
   const handleLogout = useCallback(() => {
     toast({
