@@ -1,6 +1,6 @@
 import { certificates, admins, type Certificate, type InsertCertificate, type Admin, type InsertAdmin } from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import fs from "fs";
 import path from "path";
 
@@ -128,7 +128,11 @@ export class DatabaseStorage implements IStorage {
     const cached = cache.get(cacheKey);
     if (cached) return cached;
 
-    const certificateList = await db.select().from(certificates).where(eq(certificates.isActive, true));
+    const certificateList = await db.select().from(certificates)
+      .where(eq(certificates.isActive, true))
+      .orderBy(desc(certificates.reportDate))
+      .limit(1000); // Limit for performance
+    
     cache.set(cacheKey, certificateList, 1000 * 60 * 5); // Cache for 5 minutes
     
     return certificateList;

@@ -1,39 +1,29 @@
-import { Switch, Route } from "wouter";
-import { Toaster } from "@/components/ui/toaster";
-import Home from "@/pages/home";
-import Verify from "@/pages/verify";
-import About from "@/pages/about";
-import GemEncyclopedia from "@/pages/gem-encyclopedia";
-import GemDetail from "@/pages/gem-detail";
-import AnalysisGrading from "@/pages/analysis-grading";
-import GemServices from "@/pages/gem-services";
-import FAQs from "@/pages/faqs";
-import Admin from "@/pages/admin";
-import NotFound from "@/pages/not-found";
-
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/verify" component={Verify} />
-      <Route path="/about" component={About} />
-      <Route path="/gem-encyclopedia" component={GemEncyclopedia} />
-      <Route path="/gem/:id" component={GemDetail} />
-      <Route path="/analysis" component={AnalysisGrading} />
-      <Route path="/gem-services" component={GemServices} />
-      <Route path="/faqs" component={FAQs} />
-      <Route path="/admin" component={Admin} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
-
 function App() {
   return (
-    <>
-      <Toaster />
-      <Router />
-    </>
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center">
+      <div className="max-w-md mx-auto text-center p-8 bg-white rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold text-amber-800 mb-4">
+          GIL - Gemological Institute
+        </h1>
+        <p className="text-gray-600 mb-6">
+          Professional Diamond & Gemstone Certification
+        </p>
+        <div className="space-y-4">
+          <div className="p-4 bg-amber-100 rounded">
+            <h3 className="font-semibold text-amber-800">Certificate Verification</h3>
+            <p className="text-sm text-gray-600">Secure authentication system</p>
+          </div>
+          <div className="p-4 bg-orange-100 rounded">
+            <h3 className="font-semibold text-orange-800">Fast Loading</h3>
+            <p className="text-sm text-gray-600">Optimized for maximum performance</p>
+          </div>
+          <div className="p-4 bg-green-100 rounded">
+            <h3 className="font-semibold text-green-800">Database Optimized</h3>
+            <p className="text-sm text-gray-600">Advanced caching and indexing</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

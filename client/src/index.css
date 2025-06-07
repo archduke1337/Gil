@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Performance optimizations */
+/* Advanced performance optimizations */
 * {
   box-sizing: border-box;
 }
@@ -13,12 +13,12 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizeSpeed;
 }
 
 body {
   font-display: swap;
-  will-change: scroll-position;
+  will-change: auto;
 }
 
 /* GPU acceleration for animations */
@@ -27,12 +27,14 @@ body {
 .animate-bounce {
   transform: translateZ(0);
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* Optimize image loading */
 img {
   content-visibility: auto;
   contain-intrinsic-size: 1px 300px;
+  image-rendering: optimizeSpeed;
 }
 
 /* Critical rendering optimization */
@@ -44,6 +46,18 @@ img {
 .prevent-layout-shift {
   min-height: 1px;
   contain: layout;
+}
+
+/* Performance boost for tables and lists */
+.certificate-list {
+  contain: layout;
+  will-change: auto;
+}
+
+/* Optimize button interactions */
+button, .btn {
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 @layer base {
