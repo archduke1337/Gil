@@ -31,6 +31,8 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
     refetchInterval: 30000,
     staleTime: 10000,
     gcTime: 30000,
+    retry: 3,
+    retryDelay: 1000,
   });
 
   const certificates = certificatesData?.certificates || [];
@@ -66,12 +68,14 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
   }
 
   if (error) {
+    console.error('Certificate loading error:', error);
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-red-600 mb-4">Error Loading Dashboard</h2>
-            <p className="text-gray-600 mb-6">Unable to load certificates. Please try again.</p>
+            <p className="text-gray-600 mb-4">Unable to load certificates. Please try again.</p>
+            <p className="text-sm text-gray-500 mb-6">Error: {error.message}</p>
             <Button onClick={() => refetch()} className="bg-primary hover:bg-primary/90">
               <RefreshCw className="w-4 h-4 mr-2" />
               Retry
