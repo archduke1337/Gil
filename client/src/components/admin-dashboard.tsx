@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, memo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Gem, LogOut, Upload, List, RefreshCw, FileUp, Search, Filter, Map, BookOpen, Users, Eye, Sparkles } from "lucide-react";
+import { LogOut, Upload, List, RefreshCw, FileUp, Search, Eye, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
