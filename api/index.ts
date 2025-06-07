@@ -1,7 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import compression from "compression";
-import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { registerRoutes } from "../server/routes";
+import { serveStatic } from "../server/vite";
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   if (req.path.startsWith('/api/')) {
     res.setHeader('Cache-Control', 'public, max-age=300'); // 5 minutes for API
   } else if (req.path.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg)$/)) {
-    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year for static assets
+    res.setHeader('Cache-Control', 'public, max-age=31536000'); // 1 year for static assets
   } else {
     res.setHeader('Cache-Control', 'public, max-age=3600'); // 1 hour for HTML
   }
@@ -36,13 +36,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: false, limit: '10mb' }));
-
+// Request logging middleware for API routes
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
+  let capturedJsonResponse: any = undefined;
 
   const originalResJson = res.json;
   res.json = function (bodyJson, ...args) {
@@ -62,53 +60,34 @@ app.use((req, res, next) => {
         logLine = logLine.slice(0, 79) + "…";
       }
 
-      log(logLine);
+      console.log(logLine);
     }
   });
 
   next();
 });
 
-// Initialize routes and error handling
-async function initializeApp() {
-  try {
-    const server = await registerRoutes(app);
+let isInitialized = false;
 
+async function initializeServer() {
+  if (isInitialized) return app;
+  
+  try {
+    await registerRoutes(app);
+    
+    // Error handling middleware
     app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
       const status = err.status || err.statusCode || 500;
       const message = err.message || "Internal Server Error";
-
+      
       res.status(status).json({ message });
       console.error('Server error:', err);
     });
-
-    // Setup serving based on environment
-    if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
-      serveStatic(app);
-    } else if (process.env.NODE_ENV === "development") {
-      await setupVite(app, server);
-    } else {
-      serveStatic(app);
-    }
-
-    // Only start server if not running on Vercel
-    if (!process.env.VERCEL) {
-      const port = parseInt(process.env.PORT || "5000", 10);
-      
-      server.on('error', (err: any) => {
-        if (err.code === 'EADDRINUSE') {
-          console.error(`Port ${port} is already in use. Attempting to kill existing processes...`);
-          process.exit(1);
-        } else {
-          console.error('Server error:', err);
-        }
-      });
-
-      server.listen(port, "0.0.0.0", () => {
-        log(`serving on port ${port}`);
-      });
-    }
-
+    
+    // Serve static files for non-API routes
+    serveStatic(app);
+    
+    isInitialized = true;
     return app;
   } catch (error) {
     console.error('Failed to initialize server:', error);
@@ -116,26 +95,12 @@ async function initializeApp() {
   }
 }
 
-// For Vercel serverless functions, export initialized app
-let appInstance: any = null;
-
-async function getApp() {
-  if (!appInstance) {
-    appInstance = await initializeApp();
-  }
-  return appInstance;
-}
-
-// For development/local mode
-if (!process.env.VERCEL) {
-  initializeApp().catch(error => {
-    console.error('Failed to start server:', error);
-    process.exit(1);
-  });
-}
-
-// Export for Vercel serverless functions
 export default async function handler(req: any, res: any) {
-  const app = await getApp();
-  return app(req, res);
+  try {
+    const server = await initializeServer();
+    return server(req, res);
+  } catch (error) {
+    console.error('Handler error:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 }
