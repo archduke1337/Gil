@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Allow: /verify
+Allow: /admin
+
+# Important pages for SEO
+Sitemap: https://gilab.info/sitemap.xml
+
+# Block sensitive admin areas
+Disallow: /api/admin/
+Disallow: /uploads/
+
+# Crawl delay for politeness
+Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: facebookexternalhit
+Allow: /
