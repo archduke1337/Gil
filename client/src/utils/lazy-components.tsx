@@ -4,7 +4,7 @@ import { FormSkeleton, CertificateListSkeleton } from "@/components/skeleton-loa
 
 // Lazy load heavy components for better performance
 export const LazyAdvancedSearch = lazy(() => import("@/components/advanced-search"));
-export const LazyBulkUpload = lazy(() => import("@/components/bulk-upload"));
+
 
 export const LazyARVisualization = lazy(() => import("@/components/ar-visualization"));
 export const LazyARGemIdentification = lazy(() => import("@/components/ar-gem-identification"));
@@ -21,13 +21,7 @@ export function LazyAdvancedSearchWrapper(props: any) {
   );
 }
 
-export function LazyBulkUploadWrapper(props: any) {
-  return (
-    <Suspense fallback={<FormSkeleton />}>
-      <LazyBulkUpload {...props} />
-    </Suspense>
-  );
-}
+
 
 
 

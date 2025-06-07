@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 import UploadForm from "@/components/upload-form";
 import CertificateList from "@/components/certificate-list";
-import BulkUpload from "@/components/bulk-upload";
+
 import AdvancedSearch from "@/components/advanced-search";
 
 import { DashboardSkeleton, CertificateListSkeleton } from "@/components/skeleton-loader";
@@ -135,7 +135,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
           </div>
 
           <Tabs defaultValue="certificates" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="certificates" className="flex items-center space-x-2">
                 <List className="w-4 h-4" />
                 <span>Certificates</span>
@@ -143,10 +143,6 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
               <TabsTrigger value="upload" className="flex items-center space-x-2">
                 <Upload className="w-4 h-4" />
                 <span>Upload</span>
-              </TabsTrigger>
-              <TabsTrigger value="bulk" className="flex items-center space-x-2">
-                <FileUp className="w-4 h-4" />
-                <span>Bulk Upload</span>
               </TabsTrigger>
               <TabsTrigger value="search" className="flex items-center space-x-2">
                 <Search className="w-4 h-4" />
@@ -163,10 +159,6 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
             <TabsContent value="upload" className="space-y-6">
               <UploadForm onSuccess={() => refetch()} />
-            </TabsContent>
-
-            <TabsContent value="bulk" className="space-y-6">
-              <BulkUpload onSuccess={() => refetch()} />
             </TabsContent>
 
             <TabsContent value="search" className="space-y-6">
@@ -298,7 +290,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
         </div>
 
         <Tabs defaultValue="certificates" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="certificates" className="flex items-center space-x-2">
               <List className="w-4 h-4" />
               <span>Certificates</span>
@@ -306,10 +298,6 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <TabsTrigger value="upload" className="flex items-center space-x-2">
               <Upload className="w-4 h-4" />
               <span>Upload</span>
-            </TabsTrigger>
-            <TabsTrigger value="bulk" className="flex items-center space-x-2">
-              <FileUp className="w-4 h-4" />
-              <span>Bulk Upload</span>
             </TabsTrigger>
             <TabsTrigger value="search" className="flex items-center space-x-2">
               <Search className="w-4 h-4" />
@@ -339,15 +327,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </motion.div>
           </TabsContent>
 
-          <TabsContent value="bulk" className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <BulkUpload onSuccess={handleUploadSuccess} />
-            </motion.div>
-          </TabsContent>
+
 
           <TabsContent value="search" className="space-y-6">
             <motion.div
