@@ -1,6 +1,15 @@
 import { useState, useEffect } from "react";
-import AdminLogin from "./components/admin-login";
-import AdminDashboard from "./components/admin-dashboard";
+
+interface Certificate {
+  id: number;
+  reportNumber: string;
+  referenceNumber: string;
+  caratWeight: string;
+  colorGrade: string;
+  clarityGrade: string;
+  cutGrade: string;
+  isActive: boolean;
+}
 
 function CertificateVerification() {
   const [referenceNumber, setReferenceNumber] = useState("");
