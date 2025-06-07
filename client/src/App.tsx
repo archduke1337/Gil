@@ -6,7 +6,6 @@ import GemLoadingSpinner from "@/components/gem-loading-spinner";
 
 // Lazy load pages for faster initial load
 const Home = lazy(() => import("@/pages/home"));
-const Verify = lazy(() => import("@/pages/verify"));
 const About = lazy(() => import("@/pages/about"));
 const GemEncyclopedia = lazy(() => import("@/pages/gem-encyclopedia"));
 const GemDetail = lazy(() => import("@/pages/gem-detail"));
