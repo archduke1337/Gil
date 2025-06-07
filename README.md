@@ -51,8 +51,8 @@ Set these in your Vercel dashboard:
 ## Admin Access
 
 Default admin credentials:
-- Username: `admin`
-- Password: `admin123`
+- Username: `admin@gillab.info`
+- Password: `jaishreeram`
 
 Change these in production by accessing the admin panel.
 

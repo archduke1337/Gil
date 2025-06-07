@@ -74,9 +74,9 @@ export class DatabaseStorage implements IStorage {
 
   private async initializeDefaultAdmin(): Promise<void> {
     try {
-      const existingAdmin = await this.getAdminByUsername('admin');
+      const existingAdmin = await this.getAdminByUsername('admin@gillab.info');
       if (!existingAdmin) {
-        await this.createAdmin({ username: 'admin', password: 'password' });
+        await this.createAdmin({ username: 'admin@gillab.info', password: 'jaishreeram' });
       }
     } catch (error) {
       console.error('Error initializing default admin:', error);
