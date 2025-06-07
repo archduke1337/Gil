@@ -338,7 +338,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       fs.renameSync(req.file.path, newFilePath);
 
-      // Create certificate with required fields and defaults
+      // Create certificate with all required fields and defaults
       const certificateData: any = {
         reportNumber: validationResult.data.referenceNumber,
         referenceNumber: validationResult.data.referenceNumber,
@@ -358,6 +358,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         filename: newFilename,
         gemType: "Diamond",
         certificationDate: new Date().toISOString(),
+        examinedBy: "GIL Certified Gemologist",
+        approvedBy: "GIL Laboratory Director",
       };
 
       const certificate = await storage.createCertificate(certificateData);
