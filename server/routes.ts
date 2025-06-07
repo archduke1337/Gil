@@ -345,7 +345,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         reportDate: new Date(),
         shape: "Round",
         measurements: "N/A",
-        dimensions: "N/A", // Required field
+        dimensions: "N/A",
         caratWeight: validationResult.data.caratWeight.toString(),
         colorGrade: validationResult.data.colorGrade,
         clarityGrade: validationResult.data.clarityGrade,
@@ -356,7 +356,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         gemologistName: "GIL Certified Gemologist",
         signatureDate: new Date(),
         filename: newFilename,
-        gemType: "Diamond", // Required field
+        gemType: "Diamond",
+        certificationDate: new Date().toISOString(),
       };
 
       const certificate = await storage.createCertificate(certificateData);
