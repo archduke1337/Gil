@@ -47,7 +47,7 @@ export default function Verify() {
               <p className="text-body font-body text-muted-foreground text-ultra-smooth">Input your diamond certificate reference number to view details</p>
             </div>
             
-            <VerificationForm onResult={setVerificationResult} />
+            <VerificationForm onResult={handleVerificationResult} />
 
             {/* Sample Reference Numbers */}
             <div className="mt-8 p-6 bg-secondary rounded-3xl">
