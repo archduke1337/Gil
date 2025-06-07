@@ -1,5 +1,5 @@
 import { Switch, Route } from "wouter";
-import AdminMinimal from "@/pages/admin-minimal";
+import AdminBasic from "@/pages/admin-basic";
 
 // Simple loading component without complex dependencies
 function SimpleLoading() {
@@ -16,7 +16,7 @@ function SimpleLoading() {
 function App() {
   return (
     <Switch>
-      <Route path="/admin" component={AdminMinimal} />
+      <Route path="/admin" component={AdminClean} />
       <Route component={() => (
         <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 flex items-center justify-center">
           <div className="text-center">

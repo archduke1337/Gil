@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface Certificate {
   id: number;
@@ -12,7 +12,7 @@ interface Certificate {
   uploadDate: string;
 }
 
-export default function AdminMinimal() {
+export default function AdminClean() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -67,122 +67,131 @@ export default function AdminMinimal() {
     setCertificates([]);
   };
 
+  const containerStyle = {
+    minHeight: "100vh",
+    background: "linear-gradient(135deg, #fef7ed, #ffffff, #fff7ed)",
+    fontFamily: "system-ui, -apple-system, sans-serif"
+  };
+
+  const cardStyle = {
+    background: "white",
+    borderRadius: "12px",
+    boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+    padding: "40px",
+    width: "100%",
+    maxWidth: "400px"
+  };
+
+  const inputStyle = {
+    width: "100%",
+    padding: "12px",
+    border: "2px solid #d1d5db",
+    borderRadius: "8px",
+    fontSize: "16px",
+    outline: "none"
+  };
+
+  const buttonStyle = {
+    width: "100%",
+    padding: "12px",
+    background: "#8B5A3C",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    fontSize: "16px",
+    fontWeight: "600",
+    cursor: "pointer"
+  };
+
   if (!isLoggedIn) {
     return (
-      <div style={{
-        minHeight: "100vh",
-        background: "linear-gradient(135deg, #fef7ed, #ffffff, #fff7ed)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "20px"
-      }}>
+      <div style={containerStyle}>
         <div style={{
-          background: "white",
-          borderRadius: "12px",
-          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
-          padding: "40px",
-          width: "100%",
-          maxWidth: "400px"
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "20px",
+          minHeight: "100vh"
         }}>
-          <h1 style={{
-            textAlign: "center",
-            margin: "0 0 30px 0",
-            color: "#8B5A3C",
-            fontSize: "24px",
-            fontWeight: "bold"
-          }}>
-            GIL Admin Login
-          </h1>
-          
-          <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            <div>
-              <label style={{ display: "block", marginBottom: "8px", color: "#374151", fontWeight: "500" }}>
-                Username
-              </label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  border: "2px solid #d1d5db",
-                  borderRadius: "8px",
-                  fontSize: "16px",
-                  outline: "none",
-                  transition: "border-color 0.2s"
-                }}
-                onFocus={(e) => e.target.style.borderColor = "#8B5A3C"}
-                onBlur={(e) => e.target.style.borderColor = "#d1d5db"}
-                required
-              />
-            </div>
+          <div style={cardStyle}>
+            <h1 style={{
+              textAlign: "center",
+              margin: "0 0 30px 0",
+              color: "#8B5A3C",
+              fontSize: "24px",
+              fontWeight: "bold"
+            }}>
+              GIL Admin Login
+            </h1>
             
-            <div>
-              <label style={{ display: "block", marginBottom: "8px", color: "#374151", fontWeight: "500" }}>
-                Password
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  border: "2px solid #d1d5db",
-                  borderRadius: "8px",
-                  fontSize: "16px",
-                  outline: "none",
-                  transition: "border-color 0.2s"
-                }}
-                onFocus={(e) => e.target.style.borderColor = "#8B5A3C"}
-                onBlur={(e) => e.target.style.borderColor = "#d1d5db"}
-                required
-              />
-            </div>
-            
-            {error && (
-              <div style={{ color: "#dc2626", fontSize: "14px", textAlign: "center" }}>
-                {error}
+            <form onSubmit={handleLogin}>
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ 
+                  display: "block", 
+                  marginBottom: "8px", 
+                  color: "#374151", 
+                  fontWeight: "500" 
+                }}>
+                  Username
+                </label>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  style={inputStyle}
+                  required
+                />
               </div>
-            )}
-            
-            <button
-              type="submit"
-              disabled={loading}
-              style={{
-                width: "100%",
-                padding: "12px",
-                background: loading ? "#9ca3af" : "#8B5A3C",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                fontSize: "16px",
-                fontWeight: "600",
-                cursor: loading ? "not-allowed" : "pointer",
-                transition: "background-color 0.2s"
-              }}
-              onMouseOver={(e) => {
-                if (!loading) (e.target as HTMLButtonElement).style.backgroundColor = "#744a38";
-              }}
-              onMouseOut={(e) => {
-                if (!loading) (e.target as HTMLButtonElement).style.backgroundColor = "#8B5A3C";
-              }}
-            >
-              {loading ? "Logging in..." : "Login"}
-            </button>
-          </form>
+              
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ 
+                  display: "block", 
+                  marginBottom: "8px", 
+                  color: "#374151", 
+                  fontWeight: "500" 
+                }}>
+                  Password
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  style={inputStyle}
+                  required
+                />
+              </div>
+              
+              {error && (
+                <div style={{ 
+                  color: "#dc2626", 
+                  fontSize: "14px", 
+                  textAlign: "center",
+                  marginBottom: "20px"
+                }}>
+                  {error}
+                </div>
+              )}
+              
+              <button
+                type="submit"
+                disabled={loading}
+                style={{
+                  ...buttonStyle,
+                  background: loading ? "#9ca3af" : "#8B5A3C",
+                  cursor: loading ? "not-allowed" : "pointer"
+                }}
+              >
+                {loading ? "Logging in..." : "Login"}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      background: "linear-gradient(135deg, #fef7ed, #ffffff, #fff7ed)"
-    }}>
+    <div style={containerStyle}>
       <header style={{
         background: "rgba(255, 255, 255, 0.9)",
         borderBottom: "1px solid #e5e7eb",
@@ -309,8 +318,8 @@ export default function AdminMinimal() {
                   border: "3px solid #f3f4f6",
                   borderTop: "3px solid #8B5A3C",
                   borderRadius: "50%",
-                  animation: "spin 1s linear infinite",
-                  margin: "0 auto 16px"
+                  margin: "0 auto 16px",
+                  animation: "spin 1s linear infinite"
                 }}></div>
                 <p style={{ margin: 0, color: "#6b7280" }}>Loading certificates...</p>
               </div>
