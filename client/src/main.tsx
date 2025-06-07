@@ -23,11 +23,20 @@ const queryClient = new QueryClient({
 });
 
 // Pre-warm critical API endpoints for faster loading
-queryClient.prefetchQuery({
-  queryKey: ["/api/certificates"],
-  queryFn: () => fetch("/api/certificates").then(res => res.json()),
-  staleTime: 1000 * 60 * 5
-});
+const prefetchCriticalData = async () => {
+  try {
+    await queryClient.prefetchQuery({
+      queryKey: ["/api/certificates"],
+      queryFn: () => fetch("/api/certificates").then(res => res.json()),
+      staleTime: 1000 * 60 * 15 // Extended cache time
+    });
+  } catch (error) {
+    console.log('Prefetch failed, will load on demand');
+  }
+};
+
+// Start prefetching immediately
+prefetchCriticalData();
 
 // Advanced resource preloading for maximum speed
 const preloadResources = () => {

@@ -1,4 +1,4 @@
-import { pgTable, text, serial, timestamp, decimal, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, decimal, boolean, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -58,7 +58,16 @@ export const certificates = pgTable("certificates", {
   issueDate: timestamp("issue_date").defaultNow(),
   uploadDate: timestamp("upload_date").defaultNow(),
   isActive: boolean("is_active").default(true),
-});
+}, (table) => ({
+  // Performance indexes for fast queries
+  reportNumberIdx: index("report_number_idx").on(table.reportNumber),
+  referenceNumberIdx: index("reference_number_idx").on(table.referenceNumber),
+  isActiveIdx: index("is_active_idx").on(table.isActive),
+  reportDateIdx: index("report_date_idx").on(table.reportDate),
+  uploadDateIdx: index("upload_date_idx").on(table.uploadDate),
+  // Composite index for common queries
+  activeReportsIdx: index("active_reports_idx").on(table.isActive, table.reportDate),
+}));
 
 export const admins = pgTable("admins", {
   id: serial("id").primaryKey(),

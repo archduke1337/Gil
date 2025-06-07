@@ -1,7 +1,6 @@
 import { Switch, Route } from "wouter";
 import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import GemLoadingSpinner from "@/components/gem-loading-spinner";
 import Home from "@/pages/home";
 
@@ -45,10 +44,10 @@ function Router() {
 
 function App() {
   return (
-    <TooltipProvider>
+    <>
       <Toaster />
       <Router />
-    </TooltipProvider>
+    </>
   );
 }
 
