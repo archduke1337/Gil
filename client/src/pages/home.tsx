@@ -2,31 +2,35 @@ import { Link } from "wouter";
 import { Shield, Gem, Search, Microscope, FileCheck, Award, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import { usePageTitle } from "@/hooks/use-page-title";
 
-export default function Home() {
+function Home() {
+  usePageTitle("Home - Diamond Certificate Verification");
+  
   const features = [
     {
-      icon: <Gem className="w-12 h-12 text-[#8B5A3C]" />,
+      icon: <Gem className="w-12 h-12 text-primary" />,
       title: "Gem Encyclopedia",
       description: "Comprehensive database of gemstones with detailed information on characteristics, origins, and identification techniques.",
       link: "/gem-encyclopedia"
     },
     {
-      icon: <Microscope className="w-12 h-12 text-[#8B5A3C]" />,
+      icon: <Microscope className="w-12 h-12 text-primary" />,
       title: "Analysis & Grading",
       description: "Professional gemological analysis and grading services using state-of-the-art equipment and certified expertise.",
       link: "/analysis"
     },
     {
-      icon: <Search className="w-12 h-12 text-[#8B5A3C]" />,
+      icon: <Search className="w-12 h-12 text-primary" />,
       title: "Advanced Gem Services",
       description: "AI-powered recommendations, community showcase, rarity analysis, and advanced search tools for gemstone enthusiasts.",
       link: "/gem-services"
     },
     {
-      icon: <FileCheck className="w-12 h-12 text-[#8B5A3C]" />,
+      icon: <FileCheck className="w-12 h-12 text-primary" />,
       title: "Report Check",
       description: "Verify the authenticity of gemological certificates and access detailed analysis reports instantly.",
       link: "/verify"
@@ -155,3 +159,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;
