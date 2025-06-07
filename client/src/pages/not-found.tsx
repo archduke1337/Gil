@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
@@ -27,12 +28,11 @@ export default function NotFound() {
             The page you're looking for doesn't exist or has been moved.
           </p>
           
-          <a 
-            href="/" 
-            className="inline-flex items-center px-4 py-2 bg-[#8c745c] text-white rounded-lg hover:bg-[#8c745c]/90 transition-colors"
-          >
-            Return to Home
-          </a>
+          <Link href="/">
+            <span className="inline-flex items-center px-4 py-2 bg-[#8c745c] text-white rounded-lg hover:bg-[#8c745c]/90 transition-colors cursor-pointer">
+              Return to Home
+            </span>
+          </Link>
         </CardContent>
       </Card>
     </div>
