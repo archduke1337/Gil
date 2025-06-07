@@ -29,7 +29,8 @@ class CacheManager {
   }
 
   invalidate(pattern: string): void {
-    for (const key of this.cache.keys()) {
+    const keys = Array.from(this.cache.keys());
+    for (const key of keys) {
       if (key.includes(pattern)) {
         this.cache.delete(key);
       }
@@ -83,17 +84,29 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getCertificateByReference(referenceNumber: string): Promise<Certificate | undefined> {
+    const cacheKey = `cert:${referenceNumber}`;
+    const cached = cache.get(cacheKey);
+    if (cached) return cached;
+
     // Check both reportNumber (GIL format) and referenceNumber (legacy format)
     const [certificate] = await db.select().from(certificates).where(
       eq(certificates.reportNumber, referenceNumber)
     );
     
-    if (certificate) return certificate;
+    if (certificate) {
+      cache.set(cacheKey, certificate, 1000 * 60 * 30); // Cache for 30 minutes
+      return certificate;
+    }
     
     // Fallback to legacy referenceNumber field
     const [legacyCertificate] = await db.select().from(certificates).where(
       eq(certificates.referenceNumber, referenceNumber)
     );
+    
+    if (legacyCertificate) {
+      cache.set(cacheKey, legacyCertificate, 1000 * 60 * 30);
+    }
+    
     return legacyCertificate || undefined;
   }
 
@@ -102,11 +115,23 @@ export class DatabaseStorage implements IStorage {
       .insert(certificates)
       .values(insertCertificate)
       .returning();
+    
+    // Invalidate certificates cache
+    cache.invalidate('certs:all');
+    cache.set(`cert:${certificate.reportNumber}`, certificate, 1000 * 60 * 30);
+    
     return certificate;
   }
 
   async getAllCertificates(): Promise<Certificate[]> {
-    return await db.select().from(certificates).where(eq(certificates.isActive, true));
+    const cacheKey = 'certs:all';
+    const cached = cache.get(cacheKey);
+    if (cached) return cached;
+
+    const certificateList = await db.select().from(certificates).where(eq(certificates.isActive, true));
+    cache.set(cacheKey, certificateList, 1000 * 60 * 5); // Cache for 5 minutes
+    
+    return certificateList;
   }
 
   async deleteCertificate(id: number): Promise<boolean> {
