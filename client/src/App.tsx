@@ -28,7 +28,7 @@ function Router() {
       <Route path="/" component={() => <LazyWrapper Component={Home} />} />
       <Route path="/verify" component={() => <LazyWrapper Component={Verify} />} />
       <Route path="/admin" component={() => <LazyWrapper Component={Admin} />} />
-      <Route component={() => <div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl text-gray-600">Page Not Found</h1></div>} />
+      <Route component={() => <LazyWrapper Component={NotFound} />} />
     </Switch>
   );
 }
