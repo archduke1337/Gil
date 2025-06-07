@@ -39,7 +39,7 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Certificate verification endpoint
+  // Certificate verification endpoint with enhanced performance
   app.get("/api/certificates/verify/:referenceNumber", async (req, res) => {
     try {
       const { referenceNumber } = req.params;
@@ -48,6 +48,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!referenceNumber) {
         return res.status(400).json({ message: "Reference number is required" });
       }
+      
+      // Set cache headers for better performance
+      res.set('Cache-Control', 'public, max-age=300');
 
       const certificate = await storage.getCertificateByReference(referenceNumber);
       

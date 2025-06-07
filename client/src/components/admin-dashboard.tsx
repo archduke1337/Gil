@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Gem, LogOut, Upload, List, RefreshCw, FileUp, Search, Filter, Map, BookOpen, Users, Eye, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,7 @@ interface AdminDashboardProps {
   onLogout: () => void;
 }
 
-export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
+const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);
   const { toast } = useToast();
 
@@ -279,4 +279,6 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       </div>
     </div>
   );
-}
+});
+
+export default AdminDashboard;
