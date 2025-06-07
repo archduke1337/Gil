@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Gem, ArrowLeft } from "lucide-react";
 import AdminLogin from "@/components/admin-login";
-import AdminDashboard from "@/components/admin-dashboard";
+import SimpleAdminDashboard from "@/components/simple-admin-dashboard";
 import { AuthProvider } from "@/components/auth-wrapper";
 import { Button } from "@/components/ui/button";
 import logoPath from "@assets/1000119055-removebg-preview.png";
@@ -48,7 +48,7 @@ export default function Admin() {
             <AdminLogin onLogin={() => setIsLoggedIn(true)} />
           </>
         ) : (
-          <AdminDashboard onLogout={() => setIsLoggedIn(false)} />
+          <SimpleAdminDashboard onLogout={() => setIsLoggedIn(false)} />
         )}
       </div>
     </AuthProvider>
