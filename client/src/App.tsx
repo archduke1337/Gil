@@ -16,7 +16,7 @@ function SimpleLoading() {
 function App() {
   return (
     <Switch>
-      <Route path="/admin" component={AdminClean} />
+      <Route path="/admin" component={AdminBasic} />
       <Route component={() => (
         <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 flex items-center justify-center">
           <div className="text-center">
