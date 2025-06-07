@@ -1,10 +1,10 @@
 import { Link, useLocation } from "wouter";
 import { Gem, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState, useCallback } from "react";
+import { useState, memo, useCallback } from "react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 
-export default function Navigation() {
+const Navigation = memo(function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -98,4 +98,6 @@ export default function Navigation() {
       </div>
     </nav>
   );
-}
+});
+
+export default Navigation;

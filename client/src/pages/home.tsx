@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import { usePageTitle } from "@/hooks/use-page-title";
+import { memo } from "react";
 
 function Home() {
   usePageTitle("Home - Diamond Certificate Verification");

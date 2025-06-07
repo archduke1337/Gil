@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, memo, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -21,7 +21,7 @@ interface VerificationFormProps {
   onResult: (result: { certificate: Certificate | null; found: boolean }) => void;
 }
 
-export default function VerificationForm({ onResult }: VerificationFormProps) {
+function VerificationForm({ onResult }: VerificationFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -112,3 +112,5 @@ export default function VerificationForm({ onResult }: VerificationFormProps) {
     </Form>
   );
 }
+
+export default VerificationForm;
