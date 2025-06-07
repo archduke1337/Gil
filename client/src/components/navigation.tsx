@@ -66,7 +66,7 @@ const Navigation = memo(function Navigation() {
           {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2 rounded-md text-gray-600 hover:text-[#8c745c] hover:bg-[#ece5dc]/50"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -98,4 +98,6 @@ const Navigation = memo(function Navigation() {
       </div>
     </nav>
   );
-}
+});
+
+export default Navigation;

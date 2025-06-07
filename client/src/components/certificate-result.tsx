@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Certificate } from "@shared/schema";
+import { memo, useCallback } from "react";
 
 interface CertificateResultProps {
   result: {
@@ -11,22 +12,10 @@ interface CertificateResultProps {
   };
 }
 
-export default function CertificateResult({ result }: CertificateResultProps) {
+const CertificateResult = memo(function CertificateResult({ result }: CertificateResultProps) {
   const { certificate, found } = result;
 
-  const handleViewCertificate = () => {
-    if (certificate) {
-      // If certificate has a file, open it
-      if (certificate.filename) {
-        window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
-      } else {
-        // For generated certificates, show certificate details in a new window
-        showCertificateDetails(certificate);
-      }
-    }
-  };
-
-  const showCertificateDetails = (certificate: Certificate) => {
+  const showCertificateDetails = useCallback((certificate: Certificate) => {
     const newWindow = window.open('', '_blank');
     if (newWindow) {
       newWindow.document.write(`
@@ -273,9 +262,21 @@ export default function CertificateResult({ result }: CertificateResultProps) {
       `);
       newWindow.document.close();
     }
-  };
+  }, []);
 
-  const handleDownloadCertificate = () => {
+  const handleViewCertificate = useCallback(() => {
+    if (certificate) {
+      // If certificate has a file, open it
+      if (certificate.filename) {
+        window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
+      } else {
+        // For generated certificates, show certificate details in a new window
+        showCertificateDetails(certificate);
+      }
+    }
+  }, [certificate, showCertificateDetails]);
+
+  const handleDownloadCertificate = useCallback(() => {
     if (certificate) {
       if (certificate.filename) {
         const link = document.createElement('a');
@@ -289,7 +290,7 @@ export default function CertificateResult({ result }: CertificateResultProps) {
         showCertificateDetails(certificate);
       }
     }
-  };
+  }, [certificate, showCertificateDetails]);
 
   return (
     <div className="py-16 bg-background">
@@ -462,4 +463,6 @@ export default function CertificateResult({ result }: CertificateResultProps) {
       </div>
     </div>
   );
-}
+});
+
+export default CertificateResult;
