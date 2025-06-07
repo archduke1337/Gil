@@ -105,6 +105,25 @@ function CertificateVerification() {
 
 
 function WorkingApp() {
+  const [currentPage, setCurrentPage] = useState("verify");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setCurrentPage("verify");
+  };
+
+  const renderCurrentPage = () => {
+    if (currentPage === "admin") {
+      return isLoggedIn ? <AdminDashboard onLogout={handleLogout} /> : <AdminLogin onLogin={handleLogin} />;
+    }
+    return <CertificateVerification />;
+  };
+
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
       <nav style={{ 
@@ -112,13 +131,42 @@ function WorkingApp() {
         padding: "1rem 2rem",
         color: "white"
       }}>
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <h1 style={{ margin: 0, fontSize: "1.5rem" }}>GIL - Gemological Institute Laboratories</h1>
+          <div>
+            <button
+              onClick={() => setCurrentPage("verify")}
+              style={{
+                backgroundColor: currentPage === "verify" ? "rgba(255,255,255,0.2)" : "transparent",
+                color: "white",
+                border: "1px solid rgba(255,255,255,0.3)",
+                padding: "8px 16px",
+                marginRight: "1rem",
+                borderRadius: "4px",
+                cursor: "pointer"
+              }}
+            >
+              Certificate Verification
+            </button>
+            <button
+              onClick={() => setCurrentPage("admin")}
+              style={{
+                backgroundColor: currentPage === "admin" ? "rgba(255,255,255,0.2)" : "transparent",
+                color: "white",
+                border: "1px solid rgba(255,255,255,0.3)",
+                padding: "8px 16px",
+                borderRadius: "4px",
+                cursor: "pointer"
+              }}
+            >
+              Admin Panel
+            </button>
+          </div>
         </div>
       </nav>
 
       <main>
-        <CertificateVerification />
+        {renderCurrentPage()}
       </main>
     </div>
   );
