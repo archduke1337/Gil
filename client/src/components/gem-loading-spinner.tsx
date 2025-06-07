@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import { memo } from "react";
 
 interface GemLoadingSpinnerProps {
   size?: "sm" | "md" | "lg";
   className?: string;
 }
 
-export default function GemLoadingSpinner({ size = "md", className = "" }: GemLoadingSpinnerProps) {
+const GemLoadingSpinner = memo(function GemLoadingSpinner({ size = "md", className = "" }: GemLoadingSpinnerProps) {
   const sizeClasses = {
     sm: "w-8 h-8",
     md: "w-16 h-16", 
@@ -104,7 +105,9 @@ export default function GemLoadingSpinner({ size = "md", className = "" }: GemLo
       />
     </div>
   );
-}
+});
+
+export default GemLoadingSpinner;
 
 export function GemLoadingPage() {
   return (
