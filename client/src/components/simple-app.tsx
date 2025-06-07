@@ -1,7 +1,4 @@
-import { createRoot } from "react-dom/client";
-import "./index.css";
-
-function App() {
+export default function SimpleApp() {
   return (
     <div className="min-h-screen bg-white">
       <div className="p-8">
@@ -63,9 +60,3 @@ function App() {
     </div>
   );
 }
-
-const rootElement = document.getElementById("root");
-if (!rootElement) throw new Error("Root element not found");
-
-const root = createRoot(rootElement);
-root.render(<App />);

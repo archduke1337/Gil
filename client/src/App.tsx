@@ -1,6 +1,5 @@
 import { Switch, Route } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { lazy, Suspense } from "react";
 import GemLoadingSpinner from "@/components/gem-loading-spinner";
 
@@ -47,10 +46,10 @@ function Router() {
 
 function App() {
   return (
-    <TooltipProvider delayDuration={300}>
+    <div>
       <Toaster />
       <Router />
-    </TooltipProvider>
+    </div>
   );
 }
 
