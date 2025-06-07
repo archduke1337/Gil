@@ -6,7 +6,7 @@ function App() {
 
   // Certificate verification state
   const [referenceNumber, setReferenceNumber] = React.useState("");
-  const [verificationResult, setVerificationResult] = React.useState(null);
+  const [verificationResult, setVerificationResult] = React.useState<any>(null);
   const [isVerifying, setIsVerifying] = React.useState(false);
 
   // Admin login state
@@ -15,7 +15,7 @@ function App() {
   const [isLoggingIn, setIsLoggingIn] = React.useState(false);
 
   // Admin dashboard state
-  const [certificates, setCertificates] = React.useState([]);
+  const [certificates, setCertificates] = React.useState<any[]>([]);
   const [isLoadingCerts, setIsLoadingCerts] = React.useState(false);
 
   const handleVerify = async () => {
@@ -231,7 +231,7 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {certificates.map((cert) => (
+                {certificates.map((cert: any) => (
                   <tr key={cert.id}>
                     <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.reportNumber}</td>
                     <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.caratWeight}</td>
@@ -301,206 +301,6 @@ function App() {
       {/* Main content */}
       <main>
         {renderCurrentPage()}
-      </main>
-    </div>
-  );
-}
-      
-      <div style={{ marginBottom: "1rem" }}>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-          style={{
-            width: "100%",
-            padding: "12px",
-            border: "2px solid #ddd",
-            borderRadius: "4px",
-            marginBottom: "1rem"
-          }}
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          style={{
-            width: "100%",
-            padding: "12px",
-            border: "2px solid #ddd",
-            borderRadius: "4px"
-          }}
-        />
-      </div>
-      
-      <button
-        onClick={handleLogin}
-        disabled={isLoading}
-        style={{
-          backgroundColor: "#8B5A3C",
-          color: "white",
-          padding: "12px 24px",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-          width: "100%"
-        }}
-      >
-        {isLoading ? "Logging in..." : "Login"}
-      </button>
-    </div>
-  );
-}
-
-
-
-// Simple admin dashboard
-function AdminDashboard({ onLogout }: { onLogout: () => void }) {
-  const queryClient = useQueryClient();
-  
-  const { data: certificatesData, isLoading, error } = useQuery({
-    queryKey: ["/api/certificates"],
-    queryFn: async () => {
-      const response = await fetch("/api/certificates");
-      if (!response.ok) {
-        throw new Error('Failed to fetch certificates');
-      }
-      return response.json();
-    }
-  });
-
-  const certificates = certificatesData?.certificates || [];
-
-  if (error) {
-    return (
-      <div style={{ padding: "2rem" }}>
-        <h1 style={{ color: "#8B5A3C" }}>Admin Dashboard</h1>
-        <div style={{ color: "red", marginTop: "1rem" }}>
-          Error loading certificates. Please try again.
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ padding: "2rem" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
-        <h1 style={{ color: "#8B5A3C" }}>Admin Dashboard</h1>
-        <button
-          onClick={onLogout}
-          style={{
-            backgroundColor: "#dc3545",
-            color: "white",
-            padding: "8px 16px",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer"
-          }}
-        >
-          Logout
-        </button>
-      </div>
-
-      {isLoading ? (
-        <p>Loading certificates...</p>
-      ) : (
-        <div>
-          <h2>Certificates ({certificates.length})</h2>
-          <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", border: "1px solid #ddd" }}>
-              <thead>
-                <tr style={{ backgroundColor: "#f8f9fa" }}>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Report Number</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Carat Weight</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Color</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Clarity</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Cut</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Active</th>
-                </tr>
-              </thead>
-              <tbody>
-                {certificates.map((cert: any) => (
-                  <tr key={cert.id}>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.reportNumber}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.caratWeight}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.colorGrade}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.clarityGrade}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.cutGrade}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.isActive ? "Yes" : "No"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// Main application component
-function App() {
-  const [currentPage, setCurrentPage] = useState("home");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const renderPage = () => {
-    if (currentPage === "admin") {
-      if (isLoggedIn) {
-        return <AdminDashboard onLogout={() => setIsLoggedIn(false)} />;
-      } else {
-        return <AdminLogin onLogin={() => setIsLoggedIn(true)} />;
-      }
-    }
-    
-    return <CertificateVerification />;
-  };
-
-  return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
-      {/* Navigation */}
-      <nav style={{ 
-        backgroundColor: "#8B5A3C", 
-        padding: "1rem 2rem",
-        color: "white"
-      }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h1 style={{ margin: 0, fontSize: "1.5rem" }}>GIL - Gemological Institute Laboratories</h1>
-          <div>
-            <button
-              onClick={() => setCurrentPage("home")}
-              style={{
-                backgroundColor: currentPage === "home" ? "rgba(255,255,255,0.2)" : "transparent",
-                color: "white",
-                border: "1px solid rgba(255,255,255,0.3)",
-                padding: "8px 16px",
-                marginRight: "1rem",
-                borderRadius: "4px",
-                cursor: "pointer"
-              }}
-            >
-              Verify
-            </button>
-            <button
-              onClick={() => setCurrentPage("admin")}
-              style={{
-                backgroundColor: currentPage === "admin" ? "rgba(255,255,255,0.2)" : "transparent",
-                color: "white",
-                border: "1px solid rgba(255,255,255,0.3)",
-                padding: "8px 16px",
-                borderRadius: "4px",
-                cursor: "pointer"
-              }}
-            >
-              Admin
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Main content */}
-      <main>
-        {renderPage()}
       </main>
     </div>
   );
