@@ -69,8 +69,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Initialize routes and error handling
-async function initializeApp() {
+(async () => {
   try {
     const server = await registerRoutes(app);
 
@@ -82,60 +81,43 @@ async function initializeApp() {
       console.error('Server error:', err);
     });
 
-    // Setup serving based on environment
-    if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
-      serveStatic(app);
-    } else if (process.env.NODE_ENV === "development") {
+    // importantly only setup vite in development and after
+    // setting up all the other routes so the catch-all route
+    // doesn't interfere with the other routes
+    if (app.get("env") === "development") {
       await setupVite(app, server);
     } else {
       serveStatic(app);
     }
 
-    // Only start server if not running on Vercel
-    if (!process.env.VERCEL) {
-      const port = parseInt(process.env.PORT || "5000", 10);
-      
-      server.on('error', (err: any) => {
-        if (err.code === 'EADDRINUSE') {
-          console.error(`Port ${port} is already in use. Attempting to kill existing processes...`);
-          process.exit(1);
-        } else {
-          console.error('Server error:', err);
-        }
-      });
+    // ALWAYS serve the app on port 5000
+    // this serves both the API and the client.
+    // It is the only port that is not firewalled.
+    const port = 5000;
+    
+    server.on('error', (err: any) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`Port ${port} is already in use. Attempting to kill existing processes...`);
+        process.exit(1);
+      } else {
+        console.error('Server error:', err);
+      }
+    });
 
-      server.listen(port, "0.0.0.0", () => {
-        log(`serving on port ${port}`);
-      });
-    }
+    server.listen(port, "0.0.0.0", () => {
+      log(`serving on port ${port}`);
+    });
 
-    return app;
+    process.on('uncaughtException', (err) => {
+      console.error('Uncaught exception:', err);
+    });
+
+    process.on('unhandledRejection', (reason, promise) => {
+      console.error('Unhandled rejection at:', promise, 'reason:', reason);
+    });
+
   } catch (error) {
-    console.error('Failed to initialize server:', error);
-    throw error;
-  }
-}
-
-// For Vercel serverless functions, export initialized app
-let appInstance: any = null;
-
-async function getApp() {
-  if (!appInstance) {
-    appInstance = await initializeApp();
-  }
-  return appInstance;
-}
-
-// For development/local mode
-if (!process.env.VERCEL) {
-  initializeApp().catch(error => {
     console.error('Failed to start server:', error);
     process.exit(1);
-  });
-}
-
-// Export for Vercel serverless functions
-export default async function handler(req: any, res: any) {
-  const app = await getApp();
-  return app(req, res);
-}
+  }
+})();
