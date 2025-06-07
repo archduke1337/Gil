@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { Shield } from "lucide-react";
+import { useState, memo, useCallback } from "react";
+import { Shield, Gem } from "lucide-react";
 import VerificationForm from "@/components/verification-form";
 import CertificateResult from "@/components/certificate-result";
 import Navigation from "@/components/navigation";

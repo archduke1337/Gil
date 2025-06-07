@@ -1,0 +1,34 @@
+Enhance the current Diamond Certificate Generator in the admin panel with the following changes:
+
+1. **UI Enhancements:**
+   - Add clearly defined section dividers with stylized headers (e.g., “Grading Results”, “Additional Information”, etc.).
+   - Use subtle border lines or background shades to group related input fields.
+   - Add a new **"Digitally Signed"** checkbox below "Signature Date" that adds a “Digitally Signed” label in the certificate output.
+   - Include toggle options for “Faint”, “Medium”, “Strong”, etc. under Fluorescence as buttons instead of dropdown.
+
+2. **New Input Fields:**
+   - Add “Color Grade Diagram Reference” (optional checkbox to show/hide diagram on certificate).
+   - Add “Clarity Plot Diagram Reference” (optional checkbox).
+   - Add “Certificate Notes” (multi-line textarea to add custom footer notes or conditions).
+   - Add “Verifier URL” field (pre-filled with `https://gilab.info/verify`).
+
+3. **Certificate Output Improvements:**
+   - Update the PDF/export layout to reflect the professional GIL format:
+     - Use proper spacing, alignment, and sectioning based on the official design.
+     - Include visual diagrams for proportion and clarity with static SVGs or image overlays if available.
+     - Automatically display "Verify this report at gilab.info" at the top center.
+     - Include a QR code pointing to the `Verifier URL` at the bottom right of the certificate.
+     - Show “Digitally Signed by [Gemologist Name]” near the signature section if checkbox is checked.
+     - Add watermark with GIL logo or seal if available.
+
+4. **UX Suggestions:**
+   - Validate that all dropdowns are selected before allowing certificate generation.
+   - Save a copy of generated data as JSON or in a lightweight DB for future certificate lookup.
+   - Allow admin to preview the certificate before final generation.
+
+5. **Future Consideration (Optional Add-ons):**
+   - Add auto-fill feature when entering a known Report Number (e.g., if it already exists in DB).
+   - Allow the upload of custom diagrams (clarity/proportion images).
+   - Provide light/dark mode toggle for the admin panel.
+
+Implement these enhancements for a polished, professional, and secure certificate generation experience in line with luxury gemological standards.

@@ -1,6 +1,6 @@
-import { useState, useMemo, useCallback, memo, useEffect } from "react";
+import { useState, useMemo, useCallback, memo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { LogOut, Upload, List, RefreshCw, FileUp, Search, Eye, Sparkles } from "lucide-react";
+import { Gem, LogOut, Upload, List, RefreshCw, FileUp, Search, Filter, Map, BookOpen, Users, Eye, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -26,15 +26,11 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);
   const { toast } = useToast();
 
-  const { data: certificatesData, isLoading: loading, error, refetch } = useQuery({
+  const { data: certificatesData, refetch, isLoading, error } = useQuery<{ certificates: Certificate[] }>({
     queryKey: ["/api/certificates"],
-    queryFn: async () => {
-      const response = await fetch("/api/certificates");
-      if (!response.ok) {
-        throw new Error(`Failed to fetch certificates: ${response.status}`);
-      }
-      return response.json();
-    },
+    refetchInterval: 30000,
+    staleTime: 10000,
+    gcTime: 30000,
   });
 
   const certificates = certificatesData?.certificates || [];
@@ -56,7 +52,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
     [searchResults, certificates]
   );
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="flex items-center justify-center py-20">
@@ -75,8 +71,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-red-600 mb-4">Error Loading Dashboard</h2>
-            <p className="text-gray-600 mb-4">Unable to load certificates. Please try again.</p>
-            <p className="text-sm text-gray-500 mb-6">Error: {error?.message || 'Unknown error'}</p>
+            <p className="text-gray-600 mb-6">Unable to load certificates. Please try again.</p>
             <Button onClick={() => refetch()} className="bg-primary hover:bg-primary/90">
               <RefreshCw className="w-4 h-4 mr-2" />
               Retry
@@ -147,7 +142,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
                   <div className="ml-6">
                     <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Active Certificates</p>
                     <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">
-                      {certificates.filter((cert: Certificate) => cert.isActive).length}
+                      {certificates.filter(cert => cert.isActive).length}
                     </p>
                   </div>
                 </div>
@@ -189,7 +184,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
                   <div className="ml-6">
                     <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Uploads This Month</p>
                     <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">
-                      {certificates.filter((cert: Certificate) => {
+                      {certificates.filter(cert => {
                         if (!cert.uploadDate) return false;
                         const uploadDate = new Date(cert.uploadDate);
                         const now = new Date();

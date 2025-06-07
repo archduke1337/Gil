@@ -1,5 +1,8 @@
 import { Switch, Route } from "wouter";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { lazy, Suspense, memo } from "react";
+import GemLoadingSpinner from "@/components/gem-loading-spinner";
 
 // Lazy load pages for faster initial load
 const Home = lazy(() => import("@/pages/home"));
@@ -16,11 +19,8 @@ const NotFound = lazy(() => import("@/pages/not-found"));
 const LazyWrapper = memo(function LazyWrapper({ Component }: { Component: React.ComponentType }) {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#8B5A3C] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-[#8B5A3C] font-medium">Loading...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <GemLoadingSpinner size="lg" />
       </div>
     }>
       <Component />
@@ -46,7 +46,12 @@ function Router() {
 }
 
 function App() {
-  return <Router />;
+  return (
+    <TooltipProvider>
+      <Toaster />
+      <Router />
+    </TooltipProvider>
+  );
 }
 
 export default App;

@@ -1,0 +1,41 @@
+Title: Build gilab.info - Gemological Institute Laboratories Diamond Certificate Verification Website with Hidden Admin Panel, Home and About Us Pages
+
+Description:
+Create a modern, professional website named gilab.info for Gemological Institute Laboratories (GILab), a diamond lab verification service. The website must include:
+
+Home Page:
+A welcoming landing page introducing Gilab.info and its mission.
+Use the color theme: primary #8c745c (warm brownish gold) and secondary #ece5dc (light beige) to create a refined, elegant style.
+Include a clear navigation menu linking to Home, About Us, and Verification pages (do NOT include Admin panel link here).
+About Us Page:
+A dedicated page describing the history, values, and expertise of Gemological Institute Laboratories.
+Use the same color theme (#8c745c and #ece5dc) for visual consistency.
+Public Verification Page:
+A clean, user-friendly page where customers can enter their diamond certificate reference number.
+Upon submission, display the diamond certificate details and provide a download/view link for the certificate file (PDF or image).
+Show a clear “Certificate not found” message if the reference number is invalid.
+Navigation menu consistent with Home and About Us pages (no admin link).
+Admin Panel (Hidden):
+Secure login page for the admin accessible only via direct URL /admin (no link in navigation).
+After login, an admin dashboard at /admin/dashboard to upload diamond certificates.
+Admin inputs a unique reference number and uploads the certificate file.
+Uploaded certificates are saved and linked to reference numbers.
+Admin sees a list of uploaded certificates with reference numbers and upload timestamps.
+Implement validation to ensure reference numbers are unique during upload.
+Technical Requirements:
+
+Use Node.js with Express framework for backend.
+Use Multer middleware for file uploads.
+Store uploaded certificates in a dedicated directory on the server.
+Store metadata (reference number, filename, upload timestamp) in a JSON file or in-memory store.
+Serve public endpoints for Home (/), About Us (/about), and Verification (/verify).
+Serve admin endpoints /admin for login and /admin/dashboard for upload management.
+Prevent admin routes from appearing in any public navigation menus.
+Implement frontend using EJS templates or plain HTML/CSS/JS to serve pages.
+Apply the color theme (#8c745c and #ece5dc) consistently across all pages for a refined, gemological aesthetic.
+Navigation menus on public pages only show Home, About Us, and Verification links.
+Responsive design for mobile and desktop.
+Deliverables:
+
+Fully functional Node.js Express app with the described pages and functionality.
+Clear instructions to run the project on Replit.
