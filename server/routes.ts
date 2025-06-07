@@ -296,14 +296,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Certificate file is required" });
       }
 
-      const validationSchema = insertCertificateSchema.extend({
+      // Create a simplified validation schema for upload
+      const uploadValidationSchema = z.object({
         referenceNumber: z.string().min(1, "Reference number is required"),
+        caratWeight: z.number().min(0.01, "Carat weight must be greater than 0"),
+        colorGrade: z.string().min(1, "Color grade is required"),
+        clarityGrade: z.string().min(1, "Clarity grade is required"),
+        cutGrade: z.string().min(1, "Cut grade is required"),
+        filename: z.string(),
       });
 
-      const validationResult = validationSchema.safeParse({
-        ...req.body,
-        filename: req.file.filename,
+      const validationResult = uploadValidationSchema.safeParse({
+        referenceNumber: req.body.referenceNumber,
         caratWeight: req.body.caratWeight ? parseFloat(req.body.caratWeight) : undefined,
+        colorGrade: req.body.colorGrade,
+        clarityGrade: req.body.clarityGrade,
+        cutGrade: req.body.cutGrade,
+        filename: req.file.filename,
       });
 
       if (!validationResult.success) {
@@ -329,10 +338,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       fs.renameSync(req.file.path, newFilePath);
 
-      const certificate = await storage.createCertificate({
-        ...validationResult.data,
+      // Create certificate with required fields and defaults
+      const certificateData: any = {
+        reportNumber: validationResult.data.referenceNumber,
+        referenceNumber: validationResult.data.referenceNumber,
+        reportDate: new Date(),
+        shape: "Round",
+        measurements: "N/A",
+        caratWeight: validationResult.data.caratWeight.toString(),
+        colorGrade: validationResult.data.colorGrade,
+        clarityGrade: validationResult.data.clarityGrade,
+        cutGrade: validationResult.data.cutGrade,
+        polish: "Good",
+        symmetry: "Good",
+        fluorescence: "None",
+        gemologistName: "GIL Certified Gemologist",
+        signatureDate: new Date(),
         filename: newFilename,
-      });
+      };
+
+      const certificate = await storage.createCertificate(certificateData);
 
       res.status(201).json({ certificate });
     } catch (error) {
