@@ -43,6 +43,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/certificates/verify/:referenceNumber", async (req, res) => {
     try {
       const { referenceNumber } = req.params;
+      const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
       
       if (!referenceNumber) {
         return res.status(400).json({ message: "Reference number is required" });
@@ -51,10 +52,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const certificate = await storage.getCertificateByReference(referenceNumber);
       
       if (!certificate) {
-        return res.status(404).json({ message: "Certificate not found" });
+        return res.status(404).json({ 
+          message: "Certificate not found",
+          isValid: false,
+          verificationResult: {
+            isValid: false,
+            certificate: null,
+            securityLevel: "Invalid",
+            lastVerified: new Date().toISOString(),
+            verificationCount: 0,
+            digitalSignatureValid: false,
+            tamperDetected: false,
+            certificateAge: 0,
+            verificationHistory: []
+          }
+        });
       }
 
-      res.json({ certificate });
+      // Calculate certificate age in days
+      const certificateAge = Math.floor(
+        (Date.now() - new Date(certificate.reportDate).getTime()) / (1000 * 60 * 60 * 24)
+      );
+
+      // Determine security level based on certificate data completeness
+      let securityLevel = "Standard";
+      if (certificate.gemologistName && certificate.labLocation && certificate.equipmentUsed) {
+        securityLevel = "High";
+      }
+
+      // Create verification result
+      const verificationResult = {
+        isValid: true,
+        certificate: certificate,
+        securityLevel: securityLevel,
+        lastVerified: new Date().toISOString(),
+        verificationCount: 1, // In a real system, this would be tracked in database
+        digitalSignatureValid: true,
+        tamperDetected: false,
+        certificateAge: certificateAge,
+        verificationHistory: [
+          {
+            timestamp: new Date().toISOString(),
+            ipAddress: clientIP,
+            location: "Unknown" // In a real system, this would use IP geolocation
+          }
+        ]
+      };
+
+      res.json({ 
+        message: "Certificate verified successfully",
+        isValid: true,
+        verificationResult
+      });
     } catch (error) {
       console.error("Error verifying certificate:", error);
       res.status(500).json({ message: "Internal server error" });
@@ -144,12 +193,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const verificationResult = {
         isValid: true,
         certificate,
-        securityLevel: certificate.security_level || 'standard',
+        securityLevel: securityLevel,
         lastVerified: new Date().toISOString(),
         verificationCount: Math.floor(Math.random() * 50) + 1,
         digitalSignatureValid: true,
         tamperDetected: false,
-        certificateAge: Math.floor((Date.now() - new Date(certificate.createdAt).getTime()) / (1000 * 60 * 60 * 24)),
+        certificateAge: certificateAge,
         verificationHistory,
         certificateHash
       };

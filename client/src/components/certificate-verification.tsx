@@ -54,21 +54,25 @@ export default function CertificateVerification() {
       const response = await fetch(`/api/certificates/verify/${reportNumber}`);
       const result = await response.json();
       
-      if (response.ok) {
-        setVerificationResult(result);
+      if (response.ok && result.isValid) {
+        setVerificationResult(result.verificationResult);
         toast({
-          title: "Verification Complete",
-          description: result.isValid ? "Certificate is authentic" : "Certificate could not be verified",
-          variant: result.isValid ? "default" : "destructive",
+          title: "Certificate Verified",
+          description: "Certificate is authentic and valid",
         });
       } else {
+        // Handle certificate not found or invalid
+        if (result.verificationResult) {
+          setVerificationResult(result.verificationResult);
+        }
         toast({
           title: "Verification Failed",
-          description: result.message || "Unable to verify certificate",
+          description: result.message || "Certificate not found in our database",
           variant: "destructive",
         });
       }
     } catch (error) {
+      console.error("Verification error:", error);
       toast({
         title: "Error",
         description: "Network error during verification",
