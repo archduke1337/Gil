@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo, useCallback } from "react";
 import { Shield, Gem } from "lucide-react";
 import VerificationForm from "@/components/verification-form";
 import CertificateResult from "@/components/certificate-result";
@@ -13,6 +13,10 @@ export default function Verify() {
     certificate: Certificate | null;
     found: boolean;
   } | null>(null);
+
+  const handleVerificationResult = useCallback((result: { certificate: Certificate | null; found: boolean }) => {
+    setVerificationResult(result);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background">
