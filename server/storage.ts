@@ -4,6 +4,45 @@ import { eq } from "drizzle-orm";
 import fs from "fs";
 import path from "path";
 
+// In-memory cache for frequently accessed data
+class CacheManager {
+  private cache = new Map<string, { data: any; expiry: number }>();
+  private defaultTTL = 1000 * 60 * 10; // 10 minutes
+
+  set(key: string, data: any, ttl = this.defaultTTL): void {
+    this.cache.set(key, {
+      data,
+      expiry: Date.now() + ttl
+    });
+  }
+
+  get(key: string): any | null {
+    const entry = this.cache.get(key);
+    if (!entry) return null;
+    
+    if (Date.now() > entry.expiry) {
+      this.cache.delete(key);
+      return null;
+    }
+    
+    return entry.data;
+  }
+
+  invalidate(pattern: string): void {
+    for (const key of this.cache.keys()) {
+      if (key.includes(pattern)) {
+        this.cache.delete(key);
+      }
+    }
+  }
+
+  clear(): void {
+    this.cache.clear();
+  }
+}
+
+const cache = new CacheManager();
+
 export interface IStorage {
   // Certificate operations
   getCertificateByReference(referenceNumber: string): Promise<Certificate | undefined>;
