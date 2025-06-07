@@ -8,7 +8,7 @@ import { Shield, ShieldCheck, AlertTriangle, Clock, Eye, FileText, QrCode, Globe
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { QRCodeSVG } from "qrcode.react";
-import GILCertificateTemplate from "./gil-certificate-template-new";
+// import GILCertificateTemplate from "./gil-certificate-template-new";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
@@ -382,11 +382,35 @@ export default function CertificateVerification() {
                       Complete GIL certificate as issued and verified through gilab.info
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="p-0">
-                    <div ref={certificateRef} className="w-full">
-                      <GILCertificateTemplate 
-                        data={formatCertificateData(verificationResult.certificate)}
-                      />
+                  <CardContent className="p-6">
+                    <div ref={certificateRef} className="w-full bg-white border rounded-lg p-8">
+                      <div className="text-center mb-8">
+                        <h2 className="text-2xl font-bold text-gray-900">GIL Certificate</h2>
+                        <p className="text-gray-600">Gemological Institute Laboratories</p>
+                      </div>
+                      <div className="grid grid-cols-2 gap-6">
+                        <div>
+                          <h3 className="font-semibold mb-4">Certificate Details</h3>
+                          <div className="space-y-2">
+                            <p><span className="font-medium">Report Number:</span> {verificationResult.certificate.reportNumber}</p>
+                            <p><span className="font-medium">Shape:</span> {verificationResult.certificate.shape}</p>
+                            <p><span className="font-medium">Carat Weight:</span> {verificationResult.certificate.caratWeight}</p>
+                            <p><span className="font-medium">Color Grade:</span> {verificationResult.certificate.colorGrade}</p>
+                            <p><span className="font-medium">Clarity Grade:</span> {verificationResult.certificate.clarityGrade}</p>
+                            <p><span className="font-medium">Cut Grade:</span> {verificationResult.certificate.cutGrade}</p>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold mb-4">Additional Information</h3>
+                          <div className="space-y-2">
+                            <p><span className="font-medium">Polish:</span> {verificationResult.certificate.polish}</p>
+                            <p><span className="font-medium">Symmetry:</span> {verificationResult.certificate.symmetry}</p>
+                            <p><span className="font-medium">Fluorescence:</span> {verificationResult.certificate.fluorescence}</p>
+                            <p><span className="font-medium">Gemologist:</span> {verificationResult.certificate.gemologistName}</p>
+                            <p><span className="font-medium">Date:</span> {new Date(verificationResult.certificate.reportDate).toLocaleDateString()}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
