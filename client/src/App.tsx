@@ -179,8 +179,9 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
 
 function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   const [certificates, setCertificates] = useState<Certificate[]>([]);
-  const [isLoadingCerts, setIsLoadingCerts] = useState(false);
+  const [isLoadingCerts, setIsLoadingCerts] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [newCertificate, setNewCertificate] = useState({
     reportNumber: "",
     caratWeight: "",
@@ -192,12 +193,18 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
 
   const loadCertificates = async () => {
     setIsLoadingCerts(true);
+    setError(null);
     try {
       const response = await fetch("/api/certificates");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setCertificates(data.certificates || []);
     } catch (error) {
       console.error("Error loading certificates:", error);
+      setError("Failed to load certificates. Please try again.");
+      setCertificates([]);
     } finally {
       setIsLoadingCerts(false);
     }
@@ -434,75 +441,127 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
       )}
 
       {isLoadingCerts ? (
-        <p>Loading certificates...</p>
+        <div style={{ textAlign: "center", padding: "2rem" }}>
+          <p>Loading certificates...</p>
+        </div>
+      ) : error ? (
+        <div style={{
+          backgroundColor: "#f8d7da",
+          color: "#721c24",
+          padding: "1rem",
+          borderRadius: "4px",
+          border: "1px solid #f5c6cb",
+          textAlign: "center"
+        }}>
+          <h3 style={{ margin: "0 0 1rem 0" }}>Error Loading Dashboard</h3>
+          <p style={{ margin: "0 0 1rem 0" }}>{error}</p>
+          <button
+            onClick={loadCertificates}
+            style={{
+              backgroundColor: "#8B5A3C",
+              color: "white",
+              padding: "8px 16px",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer"
+            }}
+          >
+            Retry
+          </button>
+        </div>
       ) : (
         <div>
           <h2>Certificates ({certificates.length})</h2>
-          <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", border: "1px solid #ddd" }}>
-              <thead>
-                <tr style={{ backgroundColor: "#f8f9fa" }}>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Report Number</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Carat Weight</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Color</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Clarity</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Cut</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Status</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {certificates.map((cert) => (
-                  <tr key={cert.id}>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.reportNumber}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.caratWeight}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.colorGrade}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.clarityGrade}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.cutGrade}</td>
-                    <td style={{ 
-                      padding: "12px", 
-                      border: "1px solid #ddd",
-                      color: cert.isActive ? "#28a745" : "#dc3545"
-                    }}>
-                      {cert.isActive ? "Active" : "Inactive"}
-                    </td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>
-                      <div style={{ display: "flex", gap: "8px" }}>
-                        <button
-                          onClick={() => handleToggleStatus(cert.id, cert.isActive)}
-                          style={{
-                            backgroundColor: cert.isActive ? "#ffc107" : "#28a745",
-                            color: "white",
-                            padding: "4px 8px",
-                            border: "none",
-                            borderRadius: "3px",
-                            cursor: "pointer",
-                            fontSize: "12px"
-                          }}
-                        >
-                          {cert.isActive ? "Deactivate" : "Activate"}
-                        </button>
-                        <button
-                          onClick={() => handleDeleteCertificate(cert.id)}
-                          style={{
-                            backgroundColor: "#dc3545",
-                            color: "white",
-                            padding: "4px 8px",
-                            border: "none",
-                            borderRadius: "3px",
-                            cursor: "pointer",
-                            fontSize: "12px"
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </td>
+          {certificates.length === 0 ? (
+            <div style={{
+              textAlign: "center",
+              padding: "2rem",
+              backgroundColor: "#f8f9fa",
+              borderRadius: "4px",
+              border: "1px solid #dee2e6"
+            }}>
+              <p style={{ margin: "0 0 1rem 0", color: "#6c757d" }}>No certificates found</p>
+              <button
+                onClick={() => setShowAddForm(true)}
+                style={{
+                  backgroundColor: "#8B5A3C",
+                  color: "white",
+                  padding: "8px 16px",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer"
+                }}
+              >
+                Add Your First Certificate
+              </button>
+            </div>
+          ) : (
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", border: "1px solid #ddd" }}>
+                <thead>
+                  <tr style={{ backgroundColor: "#f8f9fa" }}>
+                    <th style={{ padding: "12px", border: "1px solid #ddd" }}>Report Number</th>
+                    <th style={{ padding: "12px", border: "1px solid #ddd" }}>Carat Weight</th>
+                    <th style={{ padding: "12px", border: "1px solid #ddd" }}>Color</th>
+                    <th style={{ padding: "12px", border: "1px solid #ddd" }}>Clarity</th>
+                    <th style={{ padding: "12px", border: "1px solid #ddd" }}>Cut</th>
+                    <th style={{ padding: "12px", border: "1px solid #ddd" }}>Status</th>
+                    <th style={{ padding: "12px", border: "1px solid #ddd" }}>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {certificates.map((cert) => (
+                    <tr key={cert.id}>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.reportNumber}</td>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.caratWeight}</td>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.colorGrade}</td>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.clarityGrade}</td>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.cutGrade}</td>
+                      <td style={{ 
+                        padding: "12px", 
+                        border: "1px solid #ddd",
+                        color: cert.isActive ? "#28a745" : "#dc3545"
+                      }}>
+                        {cert.isActive ? "Active" : "Inactive"}
+                      </td>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>
+                        <div style={{ display: "flex", gap: "8px" }}>
+                          <button
+                            onClick={() => handleToggleStatus(cert.id, cert.isActive)}
+                            style={{
+                              backgroundColor: cert.isActive ? "#ffc107" : "#28a745",
+                              color: "white",
+                              padding: "4px 8px",
+                              border: "none",
+                              borderRadius: "3px",
+                              cursor: "pointer",
+                              fontSize: "12px"
+                            }}
+                          >
+                            {cert.isActive ? "Deactivate" : "Activate"}
+                          </button>
+                          <button
+                            onClick={() => handleDeleteCertificate(cert.id)}
+                            style={{
+                              backgroundColor: "#dc3545",
+                              color: "white",
+                              padding: "4px 8px",
+                              border: "none",
+                              borderRadius: "3px",
+                              cursor: "pointer",
+                              fontSize: "12px"
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       )}
     </div>
