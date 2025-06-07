@@ -35,7 +35,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
     retryDelay: 1000,
   });
 
-  const certificates = (certificatesData as any)?.certificates || [];
+  const certificates: Certificate[] = (certificatesData as any)?.certificates || [];
 
   const handleLogout = useCallback(() => {
     toast({
@@ -146,7 +146,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
                   <div className="ml-6">
                     <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Active Certificates</p>
                     <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">
-                      {certificates.filter(cert => cert.isActive).length}
+                      {certificates.filter((cert: Certificate) => cert.isActive).length}
                     </p>
                   </div>
                 </div>
@@ -188,7 +188,7 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
                   <div className="ml-6">
                     <p className="text-sm font-medium text-gray-600 text-ultra-smooth">Uploads This Month</p>
                     <p className="text-3xl font-semibold text-gray-900 text-ultra-smooth">
-                      {certificates.filter(cert => {
+                      {certificates.filter((cert: Certificate) => {
                         if (!cert.uploadDate) return false;
                         const uploadDate = new Date(cert.uploadDate);
                         const now = new Date();
