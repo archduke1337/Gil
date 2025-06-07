@@ -90,12 +90,14 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
 
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       // Invalidate certificates cache to refresh dashboard
       queryClient.invalidateQueries({ queryKey: ["/api/certificates"] });
+      // Also clear any cached certificate verification data
+      queryClient.invalidateQueries({ queryKey: ["/api/certificates/verify"] });
       toast({
         title: "Certificate Generated Successfully", 
-        description: "Certificate has been created and saved to the database.",
+        description: `Certificate ${data.certificate?.reportNumber || 'N/A'} has been created and saved to the database.`,
       });
       onSuccess();
     },
