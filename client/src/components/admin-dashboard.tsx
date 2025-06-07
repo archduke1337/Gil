@@ -26,17 +26,32 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const { toast } = useToast();
 
   const { data: certificatesData, refetch, isLoading, error } = useQuery({
-    queryKey: ["/api/certificates"],
+    queryKey: ["certificates"],
     queryFn: async () => {
-      const response = await fetch("/api/certificates");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      try {
+        const response = await fetch("/api/certificates", {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          credentials: 'same-origin'
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch certificates: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return data;
+      } catch (err) {
+        console.error('Certificate fetch error:', err);
+        throw err;
       }
-      return response.json();
     },
-    refetchInterval: 30000,
-    staleTime: 10000,
-    gcTime: 30000,
+    retry: 2,
+    retryDelay: 1000,
+    refetchOnWindowFocus: false,
+    refetchOnMount: true,
   });
 
   const certificates: Certificate[] = certificatesData?.certificates || [];
@@ -73,18 +88,94 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
   if (error) {
     console.error("Dashboard error details:", error);
+    // Continue with empty certificates array to show dashboard with empty state
+    const certificates: Certificate[] = [];
+    
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-red-600 mb-4">Error Loading Dashboard</h2>
-            <p className="text-gray-600 mb-6">Unable to load certificates. Please try again.</p>
-            <p className="text-sm text-gray-500 mb-6">Error: {error?.message || 'Unknown error'}</p>
-            <Button onClick={() => refetch()} className="bg-primary hover:bg-primary/90">
-              <RefreshCw className="w-4 h-4 mr-2" />
-              Retry
-            </Button>
+        <div className="bg-white/80 backdrop-blur-sm shadow-sm border-0 rounded-b-3xl">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-6">
+              <div className="flex items-center space-x-3">
+                <img 
+                  src={logoPath} 
+                  alt="GIL - Gemological Institute Laboratories" 
+                  className="h-12 w-auto"
+                />
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">GIL Admin Dashboard</h1>
+                  <p className="text-sm text-gray-600">Comprehensive gemological management system</p>
+                </div>
+              </div>
+              <Button onClick={handleLogout} variant="outline">
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+            </div>
           </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <div className="flex items-center">
+              <div className="text-red-500 mr-3">⚠️</div>
+              <div>
+                <h3 className="text-red-800 font-medium">Connection Issue</h3>
+                <p className="text-red-700 text-sm">Unable to load certificates. Click retry to attempt reconnection.</p>
+                <Button 
+                  onClick={() => refetch()} 
+                  className="mt-2 bg-red-600 hover:bg-red-700 text-white"
+                  size="sm"
+                >
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                  Retry Connection
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <Tabs defaultValue="certificates" className="space-y-6">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
+              <TabsTrigger value="certificates" className="flex items-center space-x-2">
+                <List className="w-4 h-4" />
+                <span>Certificates</span>
+              </TabsTrigger>
+              <TabsTrigger value="upload" className="flex items-center space-x-2">
+                <Upload className="w-4 h-4" />
+                <span>Upload</span>
+              </TabsTrigger>
+              <TabsTrigger value="bulk" className="flex items-center space-x-2">
+                <FileUp className="w-4 h-4" />
+                <span>Bulk Upload</span>
+              </TabsTrigger>
+              <TabsTrigger value="search" className="flex items-center space-x-2">
+                <Search className="w-4 h-4" />
+                <span>Advanced Search</span>
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="certificates" className="space-y-6">
+              <div className="text-center py-12">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No certificates available</h3>
+                <p className="text-gray-500">Unable to connect to database. Please retry the connection.</p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="upload" className="space-y-6">
+              <UploadForm onSuccess={() => refetch()} />
+            </TabsContent>
+
+            <TabsContent value="bulk" className="space-y-6">
+              <BulkUpload onSuccess={() => refetch()} />
+            </TabsContent>
+
+            <TabsContent value="search" className="space-y-6">
+              <div className="text-center py-12">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">Search unavailable</h3>
+                <p className="text-gray-500">Please establish database connection first.</p>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     );
