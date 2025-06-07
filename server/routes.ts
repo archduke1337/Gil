@@ -115,31 +115,104 @@ Crawl-delay: 2`);
     }
   });
 
-  // Schema.org structured data
+  // RSS Feed for fresh content
+  app.get('/feed.xml', (req, res) => {
+    res.type('application/xml');
+    res.sendFile('feed.xml', { root: './client/public' });
+  });
+
+  // Google Search Console submission endpoint
+  app.get('/google-indexing-api', async (req, res) => {
+    const urls = [
+      'https://gilab.info/',
+      'https://gilab.info/verify',
+      'https://gilab.info/encyclopedia',
+      'https://gilab.info/search',
+      'https://gilab.info/education'
+    ];
+    
+    res.json({
+      message: 'URLs ready for Google indexing',
+      urls: urls,
+      timestamp: new Date().toISOString(),
+      status: 'ready'
+    });
+  });
+
+  // Schema.org structured data with enhanced SEO
   app.get('/schema.json', (req, res) => {
     const schema = {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": ["Organization", "ProfessionalService"],
       "name": "Gemological Institute Laboratories",
-      "alternateName": "GIL",
+      "alternateName": ["GIL", "GIL Gemological Institute"],
       "url": "https://gilab.info",
       "logo": "https://gilab.info/attached_assets/1000119055-removebg-preview.png",
-      "description": "Professional diamond certificate verification and gemstone authentication services",
+      "description": "Leading gemological institute providing professional diamond certificate verification, gemstone authentication, and laboratory certification services worldwide",
+      "foundingDate": "2025",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "email": "admin@gillab.info"
+        "email": "admin@gillab.info",
+        "availableLanguage": "English"
       },
-      "service": {
-        "@type": "Service",
-        "name": "Diamond Certificate Verification",
-        "description": "Secure verification of diamond and gemstone certificates"
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "Global",
+        "addressLocality": "Worldwide"
       },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://gilab.info/verify?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "areaServed": "Worldwide",
+      "knowsAbout": [
+        "Diamond Grading",
+        "Gemstone Authentication",
+        "Certificate Verification",
+        "Precious Stone Analysis",
+        "Jewelry Appraisal"
+      ],
+      "serviceType": [
+        "Diamond Certificate Verification",
+        "Gemstone Authentication",
+        "Laboratory Services",
+        "Professional Certification"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Diamond Verification Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Diamond Certificate Verification",
+              "description": "Instant verification of diamond certificates and authenticity reports"
+            }
+          },
+          {
+            "@type": "Offer", 
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Gemstone Authentication",
+              "description": "Professional gemstone analysis and certification services"
+            }
+          }
+        ]
+      },
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": "https://gilab.info/verify?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        },
+        {
+          "@type": "ViewAction",
+          "target": "https://gilab.info/verify",
+          "name": "Verify Diamond Certificate"
+        }
+      ],
+      "sameAs": [
+        "https://gilab.info/verify",
+        "https://gilab.info/encyclopedia"
+      ]
     };
     res.json(schema);
   });

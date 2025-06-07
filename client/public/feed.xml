@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GIL Gemological Institute - Diamond Certificate Verification News</title>
+    <description>Latest updates on diamond certificate verification, gemstone authentication, and industry news from GIL Gemological Institute</description>
+    <link>https://gilab.info</link>
+    <atom:link href="https://gilab.info/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 07 Jan 2025 12:00:00 GMT</lastBuildDate>
+    <generator>GIL Gemological Institute</generator>
+    
+    <item>
+      <title>Advanced Diamond Certificate Verification Now Available</title>
+      <description>GIL introduces cutting-edge diamond certificate verification technology with instant authentication and comprehensive grading reports.</description>
+      <link>https://gilab.info/verify</link>
+      <guid>https://gilab.info/news/advanced-verification-2025</guid>
+      <pubDate>Tue, 07 Jan 2025 12:00:00 GMT</pubDate>
+      <category>Diamond Verification</category>
+    </item>
+    
+    <item>
+      <title>How to Verify Diamond Certificates - Complete Guide</title>
+      <description>Step-by-step guide to verify diamond certificates using GIL's professional authentication system. Learn about grading standards and security features.</description>
+      <link>https://gilab.info/encyclopedia</link>
+      <guid>https://gilab.info/guides/verify-certificate-guide</guid>
+      <pubDate>Mon, 06 Jan 2025 10:00:00 GMT</pubDate>
+      <category>Education</category>
+    </item>
+    
+    <item>
+      <title>Diamond Grading Standards and Certification Process</title>
+      <description>Understanding diamond grading criteria, certification processes, and how to authenticate genuine diamond reports from certified gemological institutes.</description>
+      <link>https://gilab.info/education</link>
+      <guid>https://gilab.info/education/grading-standards</guid>
+      <pubDate>Sun, 05 Jan 2025 14:30:00 GMT</pubDate>
+      <category>Gemology</category>
+    </item>
+  </channel>
+</rss>
