@@ -1,14 +1,18 @@
 import { Link, useLocation } from "wouter";
 import { Gem, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, memo, useCallback } from "react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 
-export default function Navigation() {
+const Navigation = memo(function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const isActive = (path: string) => location === path;
+  const isActive = useCallback((path: string) => location === path, [location]);
+  
+  const toggleMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(prev => !prev);
+  }, []);
 
   const navigationItems = [
     { href: "/", label: "Home" },
