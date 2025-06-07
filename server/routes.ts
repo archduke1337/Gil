@@ -127,20 +127,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const certificateData = {
         referenceNumber,
         reportNumber: reportNumber || referenceNumber,
-        labName: labName || "GIL",
-        reportDate: new Date().toISOString(),
-        filename: req.file.filename,
-        originalName: req.file.originalname,
-        fileSize: req.file.size,
+        reportDate: new Date(),
         shape: "Not specified",
-        caratWeight: "Not specified",
+        measurements: "Not specified",
+        caratWeight: "0.000",
         colorGrade: "Not specified",
         clarityGrade: "Not specified",
         cutGrade: "Not specified",
-        measurements: "Not specified",
         polish: "Not specified",
         symmetry: "Not specified",
         fluorescence: "Not specified",
+        gemologistName: "GIL Team",
+        signatureDate: new Date(),
+        filename: req.file.filename,
         comments: "Uploaded certificate file",
         examinedBy: "GIL Team",
         approvedBy: "GIL Director"
@@ -189,11 +188,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const certificate = await storage.createCertificate({
+      const certificateData = {
         ...result.data,
-        labName: "GIL",
-        reportDate: new Date().toISOString()
-      });
+        reportDate: result.data.reportDate || new Date(),
+        signatureDate: result.data.signatureDate || new Date()
+      };
+      
+      const certificate = await storage.createCertificate(certificateData);
       
       res.json({ message: "GIL certificate created successfully", certificate });
     } catch (error) {
