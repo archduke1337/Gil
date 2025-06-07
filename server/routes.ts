@@ -345,6 +345,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         reportDate: new Date(),
         shape: "Round",
         measurements: "N/A",
+        dimensions: "N/A", // Required field
         caratWeight: validationResult.data.caratWeight.toString(),
         colorGrade: validationResult.data.colorGrade,
         clarityGrade: validationResult.data.clarityGrade,
