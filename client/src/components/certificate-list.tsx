@@ -20,7 +20,8 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
 
   const filteredCertificates = useMemo(() => 
     certificates.filter(cert =>
-      cert.referenceNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false
+      (cert.reportNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
+      (cert.referenceNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
     ), [certificates, searchQuery]
   );
 
@@ -32,7 +33,7 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
         <!DOCTYPE html>
         <html>
         <head>
-          <title>Certificate ${certificate.referenceNumber}</title>
+          <title>Certificate ${certificate.reportNumber || certificate.referenceNumber}</title>
           <style>
             body { 
               font-family: 'Inter', sans-serif; 
@@ -112,7 +113,7 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
             </div>
             
             <div class="reference">
-              Certificate No: ${certificate.referenceNumber}
+              Certificate No: ${certificate.reportNumber || certificate.referenceNumber}
             </div>
             
             <div class="content">
@@ -232,7 +233,7 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
   const handleViewCertificate = useCallback((certificate: Certificate) => {
     // If certificate has a file, open it
     if (certificate.filename) {
-      window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
+      window.open(`/api/certificates/file/${certificate.reportNumber || certificate.referenceNumber}`, '_blank');
     } else {
       // For generated certificates, show certificate details in a modal or new page
       showCertificateDetails(certificate);
@@ -245,7 +246,7 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
       await apiRequest("DELETE", `/api/certificates/${certificate.id}`);
       toast({
         title: "Certificate Deleted",
-        description: `Certificate ${certificate.referenceNumber} has been deleted`,
+        description: `Certificate ${certificate.reportNumber || certificate.referenceNumber} has been deleted`,
       });
       onUpdate();
     } catch (error: any) {
@@ -318,7 +319,7 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
               <div key={certificate.id} className="border border-border rounded-lg p-4 hover:bg-accent transition-colors">
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
-                    <h3 className="font-semibold text-foreground">{certificate.referenceNumber}</h3>
+                    <h3 className="font-semibold text-foreground">{certificate.reportNumber || certificate.referenceNumber}</h3>
                     <p className="text-sm text-muted-foreground">
                       Uploaded: {certificate.uploadDate ? new Date(certificate.uploadDate).toLocaleDateString('en-US', {
                         year: 'numeric',
