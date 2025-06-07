@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react";
-
-interface Certificate {
-  id: number;
-  reportNumber: string;
-  caratWeight: string;
-  colorGrade: string;
-  clarityGrade: string;
-  cutGrade: string;
-  isActive: boolean;
-}
+import AdminLogin from "./components/admin-login";
+import AdminDashboard from "./components/admin-dashboard";
+import type { Certificate } from "@shared/schema";
 
 function CertificateVerification() {
   const [referenceNumber, setReferenceNumber] = useState("");
