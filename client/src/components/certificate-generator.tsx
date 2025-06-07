@@ -866,7 +866,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                   </motion.div>
 
                   {/* Submit Button */}
-                  <div className="w-full bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-8 mt-8 border border-primary/20">
+                  <div className="w-full bg-gradient-to-r from-amber-50 to-stone-100 rounded-2xl p-8 mt-8 border border-primary/20">
                     <div className="flex flex-col items-center gap-4">
                       <div className="text-center">
                         <h4 className="text-xl font-bold text-foreground mb-2">Ready to Generate Certificate</h4>
@@ -876,7 +876,7 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
                         type="submit" 
                         disabled={isGenerating}
                         size="lg"
-                        className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-bold py-6 px-16 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 min-w-[320px] h-20 text-xl border-2 border-amber-700"
+                        className="bg-gradient-to-r from-amber-800 to-amber-900 hover:from-amber-900 hover:to-stone-800 text-white font-bold py-6 px-16 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 min-w-[320px] h-20 text-xl border-2 border-amber-800"
                       >
                         {isGenerating ? (
                           <div className="flex items-center gap-4">
