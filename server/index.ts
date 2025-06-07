@@ -17,42 +17,55 @@ app.use(compression({
   }
 }));
 
-// SSL and security headers middleware
+// Security headers middleware
 app.use((req, res, next) => {
-  // Force HTTPS redirect
-  if (req.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
-    return res.redirect(301, `https://${req.header('host')}${req.url}`);
+  // Force HTTPS redirect in production only
+  const isProduction = process.env.NODE_ENV === 'production';
+  const isSecure = req.secure || req.header('x-forwarded-proto') === 'https';
+  
+  if (isProduction && !isSecure && !req.hostname.includes('localhost')) {
+    return res.redirect(301, `https://${req.hostname}${req.url}`);
   }
   
-  // Comprehensive security headers
+  // Basic security headers (always applied)
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Vary', 'Accept-Encoding');
-  
-  // SSL/TLS Security headers
-  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   res.setHeader('X-Permitted-Cross-Domain-Policies', 'none');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   
-  // Content Security Policy for enhanced security
-  res.setHeader('Content-Security-Policy', 
+  // SSL/TLS Security headers (production only)
+  if (isProduction && isSecure) {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  }
+  
+  // Content Security Policy (relaxed for development)
+  const csp = process.env.NODE_ENV === 'development' ? 
+    "default-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://replit.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+    "font-src 'self' https://fonts.gstatic.com; " +
+    "img-src 'self' data: https: blob:; " +
+    "connect-src 'self' ws: wss:; " +
+    "frame-ancestors 'none';" :
     "default-src 'self'; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://replit.com; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "font-src 'self' https://fonts.gstatic.com; " +
     "img-src 'self' data: https:; " +
     "connect-src 'self'; " +
-    "frame-ancestors 'none';"
-  );
+    "frame-ancestors 'none';";
   
-  // Different cache strategies for different content types
+  res.setHeader('Content-Security-Policy', csp);
+  
+  // Cache strategies
   if (req.path.startsWith('/api/')) {
-    res.setHeader('Cache-Control', 'public, max-age=300'); // 5 minutes for API
+    res.setHeader('Cache-Control', 'public, max-age=300');
   } else if (req.path.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg)$/)) {
-    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year for static assets
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
   } else {
-    res.setHeader('Cache-Control', 'public, max-age=3600'); // 1 hour for HTML
+    res.setHeader('Cache-Control', 'public, max-age=3600');
   }
   
   next();
