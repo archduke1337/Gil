@@ -13,7 +13,7 @@ interface CertificateListProps {
   onUpdate: () => void;
 }
 
-export default function CertificateList({ certificates, onUpdate }: CertificateListProps) {
+function CertificateList({ certificates, onUpdate }: CertificateListProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
   const { toast } = useToast();
@@ -24,17 +24,7 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
     ), [certificates, searchQuery]
   );
 
-  const handleViewCertificate = (certificate: Certificate) => {
-    // If certificate has a file, open it
-    if (certificate.filename) {
-      window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
-    } else {
-      // For generated certificates, show certificate details in a modal or new page
-      showCertificateDetails(certificate);
-    }
-  };
-
-  const showCertificateDetails = (certificate: Certificate) => {
+  const showCertificateDetails = useCallback((certificate: Certificate) => {
     // Create a new window with certificate details
     const newWindow = window.open('', '_blank');
     if (newWindow) {
@@ -237,9 +227,19 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
       `);
       newWindow.document.close();
     }
-  };
+  }, []);
 
-  const handleDeleteCertificate = async (certificate: Certificate) => {
+  const handleViewCertificate = useCallback((certificate: Certificate) => {
+    // If certificate has a file, open it
+    if (certificate.filename) {
+      window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
+    } else {
+      // For generated certificates, show certificate details in a modal or new page
+      showCertificateDetails(certificate);
+    }
+  }, [showCertificateDetails]);
+
+  const handleDeleteCertificate = useCallback(async (certificate: Certificate) => {
     setIsDeleting(certificate.id);
     try {
       await apiRequest("DELETE", `/api/certificates/${certificate.id}`);
@@ -257,7 +257,7 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
     } finally {
       setIsDeleting(null);
     }
-  };
+  }, [toast, onUpdate]);
 
   return (
     <Card className="bg-card rounded-xl shadow-lg border border-border">
@@ -363,3 +363,5 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
     </Card>
   );
 }
+
+export default CertificateList;
