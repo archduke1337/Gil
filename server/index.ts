@@ -81,32 +81,32 @@ app.use((req, res, next) => {
       console.error('Server error:', err);
     });
 
-    // importantly only setup vite in development and after
-    // setting up all the other routes so the catch-all route
-    // doesn't interfere with the other routes
-    if (app.get("env") === "development") {
+    // Setup serving based on environment
+    if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
+      serveStatic(app);
+    } else if (process.env.NODE_ENV === "development") {
       await setupVite(app, server);
     } else {
       serveStatic(app);
     }
 
-    // ALWAYS serve the app on port 5000
-    // this serves both the API and the client.
-    // It is the only port that is not firewalled.
-    const port = 5000;
-    
-    server.on('error', (err: any) => {
-      if (err.code === 'EADDRINUSE') {
-        console.error(`Port ${port} is already in use. Attempting to kill existing processes...`);
-        process.exit(1);
-      } else {
-        console.error('Server error:', err);
-      }
-    });
+    // Only start server if not running on Vercel
+    if (!process.env.VERCEL) {
+      const port = parseInt(process.env.PORT || "5000", 10);
+      
+      server.on('error', (err: any) => {
+        if (err.code === 'EADDRINUSE') {
+          console.error(`Port ${port} is already in use. Attempting to kill existing processes...`);
+          process.exit(1);
+        } else {
+          console.error('Server error:', err);
+        }
+      });
 
-    server.listen(port, "0.0.0.0", () => {
-      log(`serving on port ${port}`);
-    });
+      server.listen(port, "0.0.0.0", () => {
+        log(`serving on port ${port}`);
+      });
+    }
 
     process.on('uncaughtException', (err) => {
       console.error('Uncaught exception:', err);
@@ -121,3 +121,6 @@ app.use((req, res, next) => {
     process.exit(1);
   }
 })();
+
+// Export for Vercel serverless functions
+export default app;
