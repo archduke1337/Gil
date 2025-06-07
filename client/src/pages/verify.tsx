@@ -1,14 +1,12 @@
-import { useState, memo, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Shield, Gem } from "lucide-react";
 import VerificationForm from "@/components/verification-form";
 import CertificateResult from "@/components/certificate-result";
 import Navigation from "@/components/navigation";
 import type { Certificate } from "@shared/schema";
 import logoPath from "@assets/1000119055-removebg-preview.png";
-import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function Verify() {
-  usePageTitle("Certificate Verification - Diamond Report Check");
   const [verificationResult, setVerificationResult] = useState<{
     certificate: Certificate | null;
     found: boolean;

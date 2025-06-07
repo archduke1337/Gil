@@ -28,9 +28,10 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
   const { data: certificatesData, refetch, isLoading, error } = useQuery<{ certificates: Certificate[] }>({
     queryKey: ["/api/certificates"],
-    refetchInterval: 30000,
-    staleTime: 10000,
-    gcTime: 30000,
+    staleTime: 1000 * 60 * 5, // 5 minutes
+    gcTime: 1000 * 60 * 10, // 10 minutes
+    retry: 2,
+    refetchOnWindowFocus: false,
   });
 
   const certificates = certificatesData?.certificates || [];

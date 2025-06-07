@@ -7,12 +7,6 @@ import GemLoadingSpinner from "@/components/gem-loading-spinner";
 // Lazy load pages for faster initial load
 const Home = lazy(() => import("@/pages/home"));
 const Verify = lazy(() => import("@/pages/verify"));
-const About = lazy(() => import("@/pages/about"));
-const GemEncyclopedia = lazy(() => import("@/pages/gem-encyclopedia"));
-const GemDetail = lazy(() => import("@/pages/gem-detail"));
-const AnalysisGrading = lazy(() => import("@/pages/analysis-grading"));
-const GemServices = lazy(() => import("@/pages/gem-services"));
-const FAQs = lazy(() => import("@/pages/faqs"));
 const Admin = lazy(() => import("@/pages/admin"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
@@ -33,14 +27,8 @@ function Router() {
     <Switch>
       <Route path="/" component={() => <LazyWrapper Component={Home} />} />
       <Route path="/verify" component={() => <LazyWrapper Component={Verify} />} />
-      <Route path="/about" component={() => <LazyWrapper Component={About} />} />
-      <Route path="/gem-encyclopedia" component={() => <LazyWrapper Component={GemEncyclopedia} />} />
-      <Route path="/gem/:id" component={() => <LazyWrapper Component={GemDetail} />} />
-      <Route path="/analysis" component={() => <LazyWrapper Component={AnalysisGrading} />} />
-      <Route path="/gem-services" component={() => <LazyWrapper Component={GemServices} />} />
-      <Route path="/faqs" component={() => <LazyWrapper Component={FAQs} />} />
       <Route path="/admin" component={() => <LazyWrapper Component={Admin} />} />
-      <Route component={() => <LazyWrapper Component={NotFound} />} />
+      <Route component={() => <div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl text-gray-600">Page Not Found</h1></div>} />
     </Switch>
   );
 }
