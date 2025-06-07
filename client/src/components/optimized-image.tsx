@@ -1,100 +1,109 @@
-import { useState, useCallback } from "react";
-import { cn } from "@/lib/utils";
+import { useState, useRef, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps {
   src: string;
   alt: string;
   className?: string;
-  placeholder?: string;
-  sizes?: string;
+  width?: number;
+  height?: number;
   priority?: boolean;
   quality?: number;
-  onLoad?: () => void;
-  onError?: () => void;
+  placeholder?: 'blur' | 'empty';
+  blurDataURL?: string;
 }
 
 export default function OptimizedImage({
   src,
   alt,
-  className = "",
-  placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSI+TG9hZGluZy4uLjwvdGV4dD48L3N2Zz4=",
-  sizes = "100vw",
+  className = '',
+  width,
+  height,
   priority = false,
-  quality = 80,
-  onLoad,
-  onError
+  quality = 75,
+  placeholder = 'empty',
+  blurDataURL = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y3ZjdmNyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjE0cHgiIGZpbGw9IiNjY2MiPkxvYWRpbmcuLi48L3RleHQ+PC9zdmc+'
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(priority);
   const [hasError, setHasError] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState(placeholder);
+  const imgRef = useRef<HTMLImageElement>(null);
 
-  const handleLoad = useCallback(() => {
-    setIsLoaded(true);
-    setCurrentSrc(src);
-    onLoad?.();
-  }, [src, onLoad]);
+  useEffect(() => {
+    if (priority) return;
 
-  const handleError = useCallback(() => {
-    setHasError(true);
-    onError?.();
-  }, [onError]);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    );
 
-  const handleImageLoad = useCallback(() => {
-    const img = new Image();
-    img.onload = handleLoad;
-    img.onerror = handleError;
-    img.src = src;
-  }, [src, handleLoad, handleError]);
-
-  // Start loading the image when component mounts
-  useState(() => {
-    if (priority) {
-      handleImageLoad();
-    } else {
-      // Lazy load with intersection observer
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              handleImageLoad();
-              observer.disconnect();
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      const element = document.createElement('div');
-      observer.observe(element);
-      
-      return () => observer.disconnect();
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
     }
-  });
+
+    return () => observer.disconnect();
+  }, [priority]);
+
+  const handleLoad = () => {
+    setIsLoaded(true);
+  };
+
+  const handleError = () => {
+    setHasError(true);
+    setIsLoaded(true);
+  };
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
-      <img
-        src={currentSrc}
-        alt={alt}
-        className={cn(
-          "transition-opacity duration-300",
-          isLoaded ? "opacity-100" : "opacity-70",
-          hasError && "opacity-50"
-        )}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        sizes={sizes}
-        onLoad={currentSrc === src ? handleLoad : undefined}
-        onError={handleError}
-      />
+    <div 
+      ref={imgRef}
+      className={cn('relative overflow-hidden', className)}
+      style={{ width, height }}
+    >
+      {placeholder === 'blur' && !isLoaded && (
+        <img
+          src={blurDataURL}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover filter blur-sm"
+          aria-hidden="true"
+        />
+      )}
       
-      {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-muted animate-pulse rounded" />
+      {isInView && !hasError && (
+        <img
+          src={src}
+          alt={alt}
+          className={cn(
+            'w-full h-full object-cover transition-opacity duration-300',
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          )}
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+          onLoad={handleLoad}
+          onError={handleError}
+          style={{
+            width: width || 'auto',
+            height: height || 'auto'
+          }}
+        />
       )}
       
       {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground text-sm">
-          Failed to load image
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-gray-400">
+          <span className="text-sm">Failed to load image</span>
+        </div>
+      )}
+      
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+          <div className="animate-pulse bg-gray-200 rounded w-8 h-8" />
         </div>
       )}
     </div>

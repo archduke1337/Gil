@@ -4,6 +4,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-display: swap;
+  will-change: scroll-position;
+}
+
+/* GPU acceleration for animations */
+.animate-spin,
+.animate-pulse,
+.animate-bounce {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize image loading */
+img {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 300px;
+}
+
+/* Critical rendering optimization */
+.critical-content {
+  contain: layout style paint;
+}
+
+/* Reduce layout thrashing */
+.prevent-layout-shift {
+  min-height: 1px;
+  contain: layout;
+}
+
 @layer base {
   :root {
     --background: 210 11% 98%; /* #F5F7FA */

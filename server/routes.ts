@@ -277,7 +277,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           id: cert.id.toString(),
           type: 'certificate',
           description: `Certificate ${cert.reportNumber} created`,
-          timestamp: cert.createdAt,
+          timestamp: cert.reportDate.toISOString(),
           status: 'completed'
         }))
       };
