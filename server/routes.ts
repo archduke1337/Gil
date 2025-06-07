@@ -146,6 +146,8 @@ Crawl-delay: 2`);
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Register SEO routes first
+  registerSEORoutes(app);
   // Certificate verification endpoint
   app.get("/api/certificates/verify/:referenceNumber", async (req, res) => {
     try {
