@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Gem, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState, memo, useCallback } from "react";
+import { useState, useCallback } from "react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 
 export default function Navigation() {

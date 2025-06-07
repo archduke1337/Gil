@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import logoPath from "@assets/1000119055-removebg-preview.png";
-import { memo } from "react";
 
 interface GemLoadingSpinnerProps {
   size?: "sm" | "md" | "lg";

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Certificate } from "@shared/schema";
-import { memo, useCallback } from "react";
+import { useCallback } from "react";
 
 interface CertificateResultProps {
   result: {
