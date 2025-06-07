@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIL Diamond Certificate Verification</title>
+    <link rel="icon" href="/attached_assets/1000119055-removebg-preview.png">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 32px;
+            background: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .logo {
+            height: 96px;
+            margin: 0 auto 16px;
+            display: block;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #111827;
+            margin: 0 0 16px 0;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: #6b7280;
+            margin: 0 0 32px 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            padding: 24px;
+            border-radius: 8px;
+        }
+        .card-blue {
+            background-color: #eff6ff;
+        }
+        .card-gray {
+            background-color: #f9fafb;
+        }
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 16px 0;
+        }
+        .card-text {
+            color: #374151;
+            margin: 0 0 16px 0;
+        }
+        .input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .button {
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .button:hover {
+            background-color: #1d4ed8;
+        }
+        .services {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .service-item {
+            display: flex;
+            align-items: center;
+        }
+        .service-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #2563eb;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="/attached_assets/1000119055-removebg-preview.png" alt="GIL Logo" class="logo">
+            <h1 class="title">GIL Diamond Certificate Verification</h1>
+            <p class="subtitle">Professional Diamond Authentication & Gemological Services</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card card-blue">
+                <h2 class="card-title">Verify Certificate</h2>
+                <p class="card-text">
+                    Enter your diamond certificate number to verify authenticity and view detailed grading information.
+                </p>
+                <input type="text" placeholder="Enter certificate number" class="input" id="certificateInput">
+                <button class="button" onclick="verifyCertificate()">Verify Certificate</button>
+            </div>
+            
+            <div class="card card-gray">
+                <h2 class="card-title">Our Services</h2>
+                <div class="services">
+                    <div class="service-item">
+                        <span class="service-dot"></span>
+                        Diamond Certificate Verification
+                    </div>
+                    <div class="service-item">
+                        <span class="service-dot"></span>
+                        Gemstone Authentication
+                    </div>
+                    <div class="service-item">
+                        <span class="service-dot"></span>
+                        Professional Grading Services
+                    </div>
+                    <div class="service-item">
+                        <span class="service-dot"></span>
+                        Gem Encyclopedia Access
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function verifyCertificate() {
+            const input = document.getElementById('certificateInput');
+            const certificateNumber = input.value.trim();
+            
+            if (!certificateNumber) {
+                alert('Please enter a certificate number');
+                return;
+            }
+            
+            // Simulate verification
+            alert('Certificate verification feature will be implemented soon. Certificate: ' + certificateNumber);
+        }
+    </script>
+</body>
+</html>

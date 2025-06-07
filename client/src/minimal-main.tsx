@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 
-const App = () => {
+const MinimalApp = () => {
   return React.createElement("div", {
     style: {
       minHeight: "100vh",
@@ -9,8 +9,9 @@ const App = () => {
       padding: "32px",
       fontFamily: "system-ui, -apple-system, sans-serif"
     }
-  }, 
+  }, [
     React.createElement("div", {
+      key: "container",
       style: { maxWidth: "1024px", margin: "0 auto" }
     }, [
       React.createElement("div", {
@@ -146,11 +147,11 @@ const App = () => {
         ])
       ])
     ])
-  );
+  ]);
 };
 
 const rootElement = document.getElementById("root");
-if (!rootElement) throw new Error("Root element not found");
-
-const root = ReactDOM.createRoot(rootElement);
-root.render(React.createElement(App));
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(React.createElement(MinimalApp));
+}
