@@ -76,7 +76,7 @@ export class DatabaseStorage implements IStorage {
     try {
       const existingAdmin = await this.getAdminByUsername('admin');
       if (!existingAdmin) {
-        await this.createAdmin({ username: 'admin', password: 'password' });
+        await this.createAdmin({ username: 'admin', password: 'admin123' });
       }
     } catch (error) {
       console.error('Error initializing default admin:', error);
@@ -88,26 +88,24 @@ export class DatabaseStorage implements IStorage {
     const cached = cache.get(cacheKey);
     if (cached) return cached;
 
-    // Check both reportNumber (GIL format) and referenceNumber (legacy format)
-    const [certificate] = await db.select().from(certificates).where(
-      eq(certificates.reportNumber, referenceNumber)
-    );
-    
-    if (certificate) {
-      cache.set(cacheKey, certificate, 1000 * 60 * 30); // Cache for 30 minutes
-      return certificate;
+    try {
+      // Check both reportNumber (GIL format) and referenceNumber (legacy format)
+      const [certificate] = await db.select().from(certificates).where(
+        eq(certificates.reportNumber, referenceNumber)
+      );
+      
+      if (certificate) {
+        cache.set(cacheKey, certificate, 1000 * 60 * 30); // Cache for 30 minutes
+        return certificate;
+      }
+      
+      return undefined;
+    } catch (error) {
+      console.error('Error fetching certificate by reference:', error);
+      return undefined;
     }
     
-    // Fallback to legacy referenceNumber field
-    const [legacyCertificate] = await db.select().from(certificates).where(
-      eq(certificates.referenceNumber, referenceNumber)
-    );
-    
-    if (legacyCertificate) {
-      cache.set(cacheKey, legacyCertificate, 1000 * 60 * 30);
-    }
-    
-    return legacyCertificate || undefined;
+    return undefined;
   }
 
   async createCertificate(insertCertificate: InsertCertificate): Promise<Certificate> {
@@ -128,14 +126,18 @@ export class DatabaseStorage implements IStorage {
     const cached = cache.get(cacheKey);
     if (cached) return cached;
 
-    const certificateList = await db.select().from(certificates)
-      .where(eq(certificates.isActive, true))
-      .orderBy(desc(certificates.reportDate))
-      .limit(1000); // Limit for performance
-    
-    cache.set(cacheKey, certificateList, 1000 * 60 * 5); // Cache for 5 minutes
-    
-    return certificateList;
+    try {
+      const certificateList = await db.select().from(certificates)
+        .orderBy(desc(certificates.reportDate))
+        .limit(1000); // Limit for performance
+      
+      cache.set(cacheKey, certificateList, 1000 * 60 * 5); // Cache for 5 minutes
+      
+      return certificateList;
+    } catch (error) {
+      console.error('Error fetching all certificates:', error);
+      return [];
+    }
   }
 
   async deleteCertificate(id: number): Promise<boolean> {

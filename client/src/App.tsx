@@ -170,19 +170,179 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
   );
 }
 
+// Certificate Generator Component
+function CertificateGenerator({ onSuccess }: { onSuccess: () => void }) {
+  const [reportNumber, setReportNumber] = useState(`G${Date.now().toString().slice(-10)}`);
+  const [caratWeight, setCaratWeight] = useState("1.00");
+  const [colorGrade, setColorGrade] = useState("D");
+  const [clarityGrade, setClarityGrade] = useState("FL");
+  const [cutGrade, setCutGrade] = useState("Excellent");
+  const [isCreating, setIsCreating] = useState(false);
+
+  const handleCreate = useCallback(async () => {
+    setIsCreating(true);
+    try {
+      const certificateData = {
+        reportNumber,
+        reportDate: new Date().toISOString(),
+        shape: "Round",
+        measurements: "6.50 x 6.52 x 4.05 mm",
+        caratWeight: parseFloat(caratWeight),
+        colorGrade,
+        clarityGrade,
+        cutGrade,
+        polish: "Excellent",
+        symmetry: "Excellent",
+        fluorescence: "None",
+        gemologistName: "Dr. Sarah Johnson",
+        signatureDate: new Date().toISOString(),
+        labLocation: "GIL Headquarters",
+        equipmentUsed: "Gemological microscope, spectroscopy, precision scale",
+        gemType: "Diamond",
+        isActive: true,
+      };
+
+      const response = await fetch("/api/certificates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(certificateData),
+      });
+
+      if (response.ok) {
+        onSuccess();
+        setReportNumber(`G${Date.now().toString().slice(-10)}`);
+        alert("Certificate created successfully!");
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to create certificate: ${errorData.message || 'Unknown error'}`);
+      }
+    } catch (error) {
+      alert("Error creating certificate");
+    } finally {
+      setIsCreating(false);
+    }
+  }, [reportNumber, caratWeight, colorGrade, clarityGrade, cutGrade, onSuccess]);
+
+  return (
+    <div style={{ backgroundColor: "white", padding: "1.5rem", borderRadius: "8px", marginBottom: "2rem", border: "1px solid #ddd" }}>
+      <h3 style={{ color: "#8B5A3C", marginBottom: "1rem" }}>Create New Certificate</h3>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "1rem" }}>
+        <div>
+          <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Report Number:</label>
+          <input
+            type="text"
+            value={reportNumber}
+            onChange={(e) => setReportNumber(e.target.value)}
+            style={{ width: "100%", padding: "8px", border: "1px solid #ddd", borderRadius: "4px" }}
+          />
+        </div>
+        <div>
+          <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Carat Weight:</label>
+          <input
+            type="text"
+            value={caratWeight}
+            onChange={(e) => setCaratWeight(e.target.value)}
+            style={{ width: "100%", padding: "8px", border: "1px solid #ddd", borderRadius: "4px" }}
+          />
+        </div>
+        <div>
+          <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Color Grade:</label>
+          <select
+            value={colorGrade}
+            onChange={(e) => setColorGrade(e.target.value)}
+            style={{ width: "100%", padding: "8px", border: "1px solid #ddd", borderRadius: "4px" }}
+          >
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+          </select>
+        </div>
+        <div>
+          <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Clarity Grade:</label>
+          <select
+            value={clarityGrade}
+            onChange={(e) => setClarityGrade(e.target.value)}
+            style={{ width: "100%", padding: "8px", border: "1px solid #ddd", borderRadius: "4px" }}
+          >
+            <option value="FL">FL</option>
+            <option value="IF">IF</option>
+            <option value="VVS1">VVS1</option>
+            <option value="VVS2">VVS2</option>
+            <option value="VS1">VS1</option>
+            <option value="VS2">VS2</option>
+            <option value="SI1">SI1</option>
+            <option value="SI2">SI2</option>
+          </select>
+        </div>
+        <div>
+          <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Cut Grade:</label>
+          <select
+            value={cutGrade}
+            onChange={(e) => setCutGrade(e.target.value)}
+            style={{ width: "100%", padding: "8px", border: "1px solid #ddd", borderRadius: "4px" }}
+          >
+            <option value="Excellent">Excellent</option>
+            <option value="Very Good">Very Good</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+            <option value="Poor">Poor</option>
+          </select>
+        </div>
+      </div>
+      <button
+        onClick={handleCreate}
+        disabled={isCreating}
+        style={{
+          backgroundColor: "#8B5A3C",
+          color: "white",
+          padding: "10px 20px",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+          opacity: isCreating ? 0.7 : 1
+        }}
+      >
+        {isCreating ? "Creating..." : "Create Certificate"}
+      </button>
+    </div>
+  );
+}
+
 // Simple admin dashboard
 function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   const queryClient = useQueryClient();
   
-  const { data: certificatesData, isLoading } = useQuery({
+  const { data: certificatesData, isLoading, error } = useQuery({
     queryKey: ["/api/certificates"],
     queryFn: async () => {
       const response = await fetch("/api/certificates");
+      if (!response.ok) {
+        throw new Error('Failed to fetch certificates');
+      }
       return response.json();
     }
   });
 
   const certificates = certificatesData?.certificates || [];
+
+  if (error) {
+    return (
+      <div style={{ padding: "2rem" }}>
+        <h1 style={{ color: "#8B5A3C" }}>Admin Dashboard</h1>
+        <div style={{ color: "red", marginTop: "1rem" }}>
+          Error loading certificates. Please try again.
+        </div>
+      </div>
+    );
+  }
+
+  const handleCertificateCreated = useCallback(() => {
+    queryClient.invalidateQueries({ queryKey: ["/api/certificates"] });
+  }, [queryClient]);
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -202,6 +362,8 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
           Logout
         </button>
       </div>
+
+      <CertificateGenerator onSuccess={handleCertificateCreated} />
 
       {isLoading ? (
         <p>Loading certificates...</p>
