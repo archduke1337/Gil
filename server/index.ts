@@ -17,12 +17,34 @@ app.use(compression({
   }
 }));
 
-// Set security and performance headers
+// SSL and security headers middleware
 app.use((req, res, next) => {
+  // Force HTTPS redirect
+  if (req.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
+    return res.redirect(301, `https://${req.header('host')}${req.url}`);
+  }
+  
+  // Comprehensive security headers
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Vary', 'Accept-Encoding');
+  
+  // SSL/TLS Security headers
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  res.setHeader('X-Permitted-Cross-Domain-Policies', 'none');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  
+  // Content Security Policy for enhanced security
+  res.setHeader('Content-Security-Policy', 
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://replit.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+    "font-src 'self' https://fonts.gstatic.com; " +
+    "img-src 'self' data: https:; " +
+    "connect-src 'self'; " +
+    "frame-ancestors 'none';"
+  );
   
   // Different cache strategies for different content types
   if (req.path.startsWith('/api/')) {
