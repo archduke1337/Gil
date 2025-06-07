@@ -75,40 +75,7 @@ export const admins = pgTable("admins", {
   password: text("password").notNull(),
 });
 
-// GIL Certificate Schema (Primary) - Enhanced
-export const gilCertificateSchema = z.object({
-  reportNumber: z.string().min(1, "Report number is required"),
-  reportDate: z.coerce.date({ required_error: "Report date is required" }),
-  shape: z.string().min(1, "Shape is required"),
-  measurements: z.string().min(1, "Measurements are required"),
-  caratWeight: z.string().min(1, "Carat weight is required"),
-  colorGrade: z.string().min(1, "Color grade is required"),
-  clarityGrade: z.string().min(1, "Clarity grade is required"),
-  cutGrade: z.string().min(1, "Cut grade is required"),
-  polish: z.string().min(1, "Polish is required"),
-  symmetry: z.string().min(1, "Symmetry is required"),
-  fluorescence: z.string().min(1, "Fluorescence is required"),
-  inscription: z.string().optional(),
-  comments: z.string().optional(),
-  gemologistName: z.string().min(1, "Gemologist name is required"),
-  signatureDate: z.coerce.date({ required_error: "Signature date is required" }),
-  isActive: z.boolean().default(true),
-  // Enhanced fields
-  digitallySignedBy: z.boolean().default(false),
-  colorGradeDiagram: z.boolean().default(false),
-  clarityPlotDiagram: z.boolean().default(false),
-  certificateNotes: z.string().optional(),
-  verifierUrl: z.string().default("https://gilab.info/verify"),
-  proportionsDiagram: z.string().optional(),
-  clarityDiagram1: z.string().optional(),
-  clarityDiagram2: z.string().optional(),
-  tablePercentage: z.string().optional(),
-  depthPercentage: z.string().optional(),
-  crownAngle: z.string().optional(),
-  pavilionAngle: z.string().optional(),
-  girdleThickness: z.string().optional(),
-  culetSize: z.string().optional(),
-});
+
 
 // Legacy Certificate Schema (Backward compatibility)
 export const insertCertificateSchema = createInsertSchema(certificates).omit({

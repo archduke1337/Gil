@@ -10,8 +10,7 @@ import UploadForm from "@/components/upload-form";
 import CertificateList from "@/components/certificate-list";
 import BulkUpload from "@/components/bulk-upload";
 import AdvancedSearch from "@/components/advanced-search";
-import CertificateGenerator from "@/components/certificate-generator";
-import EnhancedGILCertificateGenerator from "@/components/enhanced-gil-certificate-generator";
+
 import { DashboardSkeleton, CertificateListSkeleton } from "@/components/skeleton-loader";
 import GemLoadingSpinner from "@/components/gem-loading-spinner";
 import { useToast } from "@/hooks/use-toast";
@@ -199,14 +198,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
         </div>
 
         <Tabs defaultValue="certificates" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
             <TabsTrigger value="certificates" className="flex items-center space-x-2">
               <List className="w-4 h-4" />
               <span>Certificates</span>
-            </TabsTrigger>
-            <TabsTrigger value="generator" className="flex items-center space-x-2">
-              <Sparkles className="w-4 h-4" />
-              <span>Generator</span>
             </TabsTrigger>
             <TabsTrigger value="upload" className="flex items-center space-x-2">
               <Upload className="w-4 h-4" />
@@ -232,15 +227,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </motion.div>
           </TabsContent>
 
-          <TabsContent value="generator" className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <EnhancedGILCertificateGenerator onSuccess={handleUploadSuccess} />
-            </motion.div>
-          </TabsContent>
+
 
           <TabsContent value="upload" className="space-y-6">
             <motion.div

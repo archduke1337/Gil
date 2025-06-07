@@ -5,8 +5,7 @@ import { FormSkeleton, CertificateListSkeleton } from "@/components/skeleton-loa
 // Lazy load heavy components for better performance
 export const LazyAdvancedSearch = lazy(() => import("@/components/advanced-search"));
 export const LazyBulkUpload = lazy(() => import("@/components/bulk-upload"));
-export const LazyCertificateGenerator = lazy(() => import("@/components/certificate-generator"));
-export const LazyEnhancedGILCertificateGenerator = lazy(() => import("@/components/enhanced-gil-certificate-generator"));
+
 export const LazyARVisualization = lazy(() => import("@/components/ar-visualization"));
 export const LazyARGemIdentification = lazy(() => import("@/components/ar-gem-identification"));
 export const LazyGemRecommendationEngine = lazy(() => import("@/components/gem-recommendation-engine"));
@@ -30,21 +29,7 @@ export function LazyBulkUploadWrapper(props: any) {
   );
 }
 
-export function LazyCertificateGeneratorWrapper(props: any) {
-  return (
-    <Suspense fallback={<FormSkeleton />}>
-      <LazyCertificateGenerator {...props} />
-    </Suspense>
-  );
-}
 
-export function LazyEnhancedGILCertificateGeneratorWrapper(props: any) {
-  return (
-    <Suspense fallback={<FormSkeleton />}>
-      <LazyEnhancedGILCertificateGenerator {...props} />
-    </Suspense>
-  );
-}
 
 export function LazyARVisualizationWrapper(props: any) {
   return (
