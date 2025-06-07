@@ -1,36 +1,29 @@
 import { Link } from "wouter";
 import { Shield, Gem, Search, Microscope, FileCheck, Award, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
-import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
-import { usePageTitle } from "@/hooks/use-page-title";
 
 function Home() {
-  usePageTitle("Home - Diamond Certificate Verification");
-  
   const features = [
     {
-      icon: <Gem className="w-12 h-12 text-primary" />,
+      icon: <Gem className="w-12 h-12 text-[#8B5A3C]" />,
       title: "Gem Encyclopedia",
       description: "Comprehensive database of gemstones with detailed information on characteristics, origins, and identification techniques.",
       link: "/gem-encyclopedia"
     },
     {
-      icon: <Microscope className="w-12 h-12 text-primary" />,
+      icon: <Microscope className="w-12 h-12 text-[#8B5A3C]" />,
       title: "Analysis & Grading",
       description: "Professional gemological analysis and grading services using state-of-the-art equipment and certified expertise.",
       link: "/analysis"
     },
     {
-      icon: <Search className="w-12 h-12 text-primary" />,
+      icon: <Search className="w-12 h-12 text-[#8B5A3C]" />,
       title: "Advanced Gem Services",
       description: "AI-powered recommendations, community showcase, rarity analysis, and advanced search tools for gemstone enthusiasts.",
       link: "/gem-services"
     },
     {
-      icon: <FileCheck className="w-12 h-12 text-primary" />,
+      icon: <FileCheck className="w-12 h-12 text-[#8B5A3C]" />,
       title: "Report Check",
       description: "Verify the authenticity of gemological certificates and access detailed analysis reports instantly.",
       link: "/verify"
@@ -39,7 +32,33 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
+      {/* Navigation */}
+      <nav className="bg-white/90 backdrop-blur-sm border-0 rounded-b-3xl shadow-lg sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <Link href="/">
+                <div className="flex items-center space-x-3">
+                  <img src={logoPath} alt="GIL Logo" className="h-10 w-10" />
+                  <span className="text-xl font-bold text-[#8B5A3C]">GIL</span>
+                </div>
+              </Link>
+            </div>
+            
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-8">
+                <Link href="/" className="text-[#8B5A3C] hover:text-[#8B5A3C]/80 px-3 py-2 rounded-md text-sm font-medium">Home</Link>
+                <Link href="/about" className="text-gray-700 hover:text-[#8B5A3C] px-3 py-2 rounded-md text-sm font-medium">About Us</Link>
+                <Link href="/gem-encyclopedia" className="text-gray-700 hover:text-[#8B5A3C] px-3 py-2 rounded-md text-sm font-medium">Gem Encyclopedia</Link>
+                <Link href="/analysis" className="text-gray-700 hover:text-[#8B5A3C] px-3 py-2 rounded-md text-sm font-medium">Analysis & Grading</Link>
+                <Link href="/gem-services" className="text-gray-700 hover:text-[#8B5A3C] px-3 py-2 rounded-md text-sm font-medium">Gem Services</Link>
+                <Link href="/verify" className="text-gray-700 hover:text-[#8B5A3C] px-3 py-2 rounded-md text-sm font-medium">Report Check</Link>
+                <Link href="/faqs" className="text-gray-700 hover:text-[#8B5A3C] px-3 py-2 rounded-md text-sm font-medium">FAQs</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
       
       {/* Hero Section */}
       <section className="relative py-16 lg:py-24 overflow-hidden">

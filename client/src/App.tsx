@@ -1,9 +1,8 @@
 import { Switch, Route } from "wouter";
-import { Toaster } from "@/components/ui/toaster";
 import { lazy, Suspense, memo } from "react";
 
 // Lazy load pages for faster initial load
-const Home = lazy(() => import("@/test-home"));
+const Home = lazy(() => import("@/pages/home"));
 const Verify = lazy(() => import("@/pages/verify"));
 const About = lazy(() => import("@/pages/about"));
 const GemEncyclopedia = lazy(() => import("@/pages/gem-encyclopedia"));
@@ -47,12 +46,7 @@ function Router() {
 }
 
 function App() {
-  return (
-    <>
-      <Toaster />
-      <Router />
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
