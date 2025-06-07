@@ -1,4 +1,4 @@
-import { useState, memo, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -21,7 +21,7 @@ interface VerificationFormProps {
   onResult: (result: { certificate: Certificate | null; found: boolean }) => void;
 }
 
-function VerificationForm({ onResult }: VerificationFormProps) {
+export default function VerificationForm({ onResult }: VerificationFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -38,21 +38,11 @@ function VerificationForm({ onResult }: VerificationFormProps) {
       const response = await apiRequest("GET", `/api/certificates/verify/${encodeURIComponent(data.referenceNumber)}`);
       const result = await response.json();
       
-      // Check if verification was successful
-      if (result.isValid && result.certificate) {
-        onResult({ certificate: result.certificate, found: true });
-        toast({
-          title: "Certificate Found",
-          description: "Certificate verification successful",
-        });
-      } else {
-        onResult({ certificate: null, found: false });
-        toast({
-          title: "Certificate Not Found",
-          description: result.message || "The reference number was not found in our database",
-          variant: "destructive",
-        });
-      }
+      onResult({ certificate: result.certificate, found: true });
+      toast({
+        title: "Certificate Found",
+        description: "Certificate verification successful",
+      });
     } catch (error: any) {
       if (error.message.includes("404")) {
         onResult({ certificate: null, found: false });
@@ -122,5 +112,3 @@ function VerificationForm({ onResult }: VerificationFormProps) {
     </Form>
   );
 }
-
-export default VerificationForm;

@@ -1,32 +1,40 @@
-import { Link } from "wouter";
-import { Home, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { AlertCircle } from "lucide-react";
+import logoPath from "@assets/1000119055-removebg-preview.png";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function NotFound() {
+  usePageTitle("Page Not Found - 404 Error");
+  
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 flex items-center justify-center">
-      <div className="text-center space-y-6 px-4">
-        <div className="space-y-2">
-          <h1 className="text-6xl font-bold text-primary">404</h1>
-          <h2 className="text-2xl font-semibold text-gray-800">Page Not Found</h2>
-          <p className="text-gray-600 max-w-md mx-auto">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#ece5dc] to-white">
+      <Card className="w-full max-w-md mx-4 border-[#8c745c]/20">
+        <CardContent className="pt-6 text-center">
+          <div className="flex justify-center mb-6">
+            <img 
+              src={logoPath} 
+              alt="GIL - Gemological Institute Laboratories" 
+              className="h-16 w-auto"
+            />
+          </div>
+          
+          <div className="flex justify-center items-center mb-4 gap-2">
+            <AlertCircle className="h-8 w-8 text-[#8c745c]" />
+            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
+          </div>
+
+          <p className="mt-4 text-sm text-gray-600 mb-6">
             The page you're looking for doesn't exist or has been moved.
           </p>
-        </div>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild className="bg-primary hover:bg-primary/90">
-            <Link href="/">
-              <Home className="w-4 h-4 mr-2" />
-              Go Home
-            </Link>
-          </Button>
-          <Button variant="outline" onClick={() => window.history.back()}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Go Back
-          </Button>
-        </div>
-      </div>
+          
+          <a 
+            href="/" 
+            className="inline-flex items-center px-4 py-2 bg-[#8c745c] text-white rounded-lg hover:bg-[#8c745c]/90 transition-colors"
+          >
+            Return to Home
+          </a>
+        </CardContent>
+      </Card>
     </div>
   );
 }

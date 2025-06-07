@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -73,43 +72,6 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
   const [gemImagePreview, setGemImagePreview] = useState<string | null>(null);
   const certificateRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-  const queryClient = useQueryClient();
-
-  const createCertificateMutation = useMutation({
-    mutationFn: async (certificateData: any) => {
-      const response = await fetch("/api/certificates", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(certificateData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to create certificate");
-      }
-
-      return response.json();
-    },
-    onSuccess: (data) => {
-      // Invalidate certificates cache to refresh dashboard
-      queryClient.invalidateQueries({ queryKey: ["/api/certificates"] });
-      // Also clear any cached certificate verification data
-      queryClient.invalidateQueries({ queryKey: ["/api/certificates/verify"] });
-      toast({
-        title: "Certificate Generated Successfully", 
-        description: `Certificate ${data.certificate?.reportNumber || 'N/A'} has been created and saved to the database.`,
-      });
-      onSuccess();
-    },
-    onError: (error: Error) => {
-      console.error("Certificate generation error:", error);
-      toast({
-        title: "Generation Failed",
-        description: error.message || "An error occurred while generating the certificate",
-        variant: "destructive",
-      });
-    },
-  });
 
   const form = useForm<CertificateForm>({
     resolver: zodResolver(certificateSchema),
@@ -193,8 +155,26 @@ export default function CertificateGenerator({ onSuccess }: CertificateGenerator
         isActive: true,
       };
 
-      await createCertificateMutation.mutateAsync(certificateData);
+      const response = await fetch("/api/certificates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(certificateData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create certificate");
+      }
+
+      const certificate = await response.json();
       setGeneratedCertificate(data);
+      
+      toast({
+        title: "Certificate Generated Successfully", 
+        description: `Certificate ${data.reportNumber} has been created and saved to the database.`,
+      });
+
+      onSuccess();
     } catch (error) {
       console.error("Certificate generation error:", error);
       toast({

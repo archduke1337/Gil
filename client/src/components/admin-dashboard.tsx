@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, memo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Gem, LogOut, Upload, List, RefreshCw, FileUp, Search, Filter, Map, BookOpen, Users, Eye, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,16 +22,15 @@ interface AdminDashboardProps {
   onLogout: () => void;
 }
 
-function AdminDashboard({ onLogout }: AdminDashboardProps) {
+export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);
   const { toast } = useToast();
 
   const { data: certificatesData, refetch, isLoading, error } = useQuery<{ certificates: Certificate[] }>({
     queryKey: ["/api/certificates"],
-    staleTime: 1000 * 60 * 5, // 5 minutes
-    gcTime: 1000 * 60 * 10, // 10 minutes
-    retry: 2,
-    refetchOnWindowFocus: false,
+    refetchInterval: 30000,
+    staleTime: 10000,
+    gcTime: 30000,
   });
 
   const certificates = certificatesData?.certificates || [];
@@ -281,5 +280,3 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
     </div>
   );
 }
-
-export default AdminDashboard;

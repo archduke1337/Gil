@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Certificate } from "@shared/schema";
-import { memo, useCallback } from "react";
+import { useCallback } from "react";
 
 interface CertificateResultProps {
   result: {
@@ -12,7 +12,7 @@ interface CertificateResultProps {
   };
 }
 
-function CertificateResult({ result }: CertificateResultProps) {
+export default function CertificateResult({ result }: CertificateResultProps) {
   const { certificate, found } = result;
 
   const showCertificateDetails = useCallback((certificate: Certificate) => {
@@ -464,5 +464,3 @@ function CertificateResult({ result }: CertificateResultProps) {
     </div>
   );
 }
-
-export default CertificateResult;

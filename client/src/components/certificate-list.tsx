@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, memo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Eye, Trash2, RefreshCw, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,19 +13,28 @@ interface CertificateListProps {
   onUpdate: () => void;
 }
 
-function CertificateList({ certificates, onUpdate }: CertificateListProps) {
+export default function CertificateList({ certificates, onUpdate }: CertificateListProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
   const { toast } = useToast();
 
   const filteredCertificates = useMemo(() => 
     certificates.filter(cert =>
-      (cert.reportNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
-      (cert.referenceNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
+      cert.referenceNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false
     ), [certificates, searchQuery]
   );
 
-  const showCertificateDetails = useCallback((certificate: Certificate) => {
+  const handleViewCertificate = (certificate: Certificate) => {
+    // If certificate has a file, open it
+    if (certificate.filename) {
+      window.open(`/api/certificates/file/${certificate.referenceNumber}`, '_blank');
+    } else {
+      // For generated certificates, show certificate details in a modal or new page
+      showCertificateDetails(certificate);
+    }
+  };
+
+  const showCertificateDetails = (certificate: Certificate) => {
     // Create a new window with certificate details
     const newWindow = window.open('', '_blank');
     if (newWindow) {
@@ -33,7 +42,7 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
         <!DOCTYPE html>
         <html>
         <head>
-          <title>Certificate ${certificate.reportNumber || certificate.referenceNumber}</title>
+          <title>Certificate ${certificate.referenceNumber}</title>
           <style>
             body { 
               font-family: 'Inter', sans-serif; 
@@ -113,7 +122,7 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
             </div>
             
             <div class="reference">
-              Certificate No: ${certificate.reportNumber || certificate.referenceNumber}
+              Certificate No: ${certificate.referenceNumber}
             </div>
             
             <div class="content">
@@ -228,25 +237,15 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
       `);
       newWindow.document.close();
     }
-  }, []);
+  };
 
-  const handleViewCertificate = useCallback((certificate: Certificate) => {
-    // If certificate has a file, open it
-    if (certificate.filename) {
-      window.open(`/api/certificates/file/${certificate.reportNumber || certificate.referenceNumber}`, '_blank');
-    } else {
-      // For generated certificates, show certificate details in a modal or new page
-      showCertificateDetails(certificate);
-    }
-  }, [showCertificateDetails]);
-
-  const handleDeleteCertificate = useCallback(async (certificate: Certificate) => {
+  const handleDeleteCertificate = async (certificate: Certificate) => {
     setIsDeleting(certificate.id);
     try {
       await apiRequest("DELETE", `/api/certificates/${certificate.id}`);
       toast({
         title: "Certificate Deleted",
-        description: `Certificate ${certificate.reportNumber || certificate.referenceNumber} has been deleted`,
+        description: `Certificate ${certificate.referenceNumber} has been deleted`,
       });
       onUpdate();
     } catch (error: any) {
@@ -258,7 +257,7 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
     } finally {
       setIsDeleting(null);
     }
-  }, [toast, onUpdate]);
+  };
 
   return (
     <Card className="bg-card rounded-xl shadow-lg border border-border">
@@ -319,7 +318,7 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
               <div key={certificate.id} className="border border-border rounded-lg p-4 hover:bg-accent transition-colors">
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
-                    <h3 className="font-semibold text-foreground">{certificate.reportNumber || certificate.referenceNumber}</h3>
+                    <h3 className="font-semibold text-foreground">{certificate.referenceNumber}</h3>
                     <p className="text-sm text-muted-foreground">
                       Uploaded: {certificate.uploadDate ? new Date(certificate.uploadDate).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -364,5 +363,3 @@ function CertificateList({ certificates, onUpdate }: CertificateListProps) {
     </Card>
   );
 }
-
-export default CertificateList;

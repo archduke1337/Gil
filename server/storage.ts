@@ -50,7 +50,6 @@ export interface IStorage {
   createCertificate(certificate: InsertCertificate): Promise<Certificate>;
   getAllCertificates(): Promise<Certificate[]>;
   deleteCertificate(id: number): Promise<boolean>;
-  updateCertificateStatus(id: number, isActive: boolean): Promise<boolean>;
   
   // Admin operations
   getAdminByUsername(username: string): Promise<Admin | undefined>;
@@ -77,7 +76,7 @@ export class DatabaseStorage implements IStorage {
     try {
       const existingAdmin = await this.getAdminByUsername('admin');
       if (!existingAdmin) {
-        await this.createAdmin({ username: 'admin', password: 'admin123' });
+        await this.createAdmin({ username: 'admin', password: 'password' });
       }
     } catch (error) {
       console.error('Error initializing default admin:', error);
@@ -89,24 +88,26 @@ export class DatabaseStorage implements IStorage {
     const cached = cache.get(cacheKey);
     if (cached) return cached;
 
-    try {
-      // Check both reportNumber (GIL format) and referenceNumber (legacy format)
-      const [certificate] = await db.select().from(certificates).where(
-        eq(certificates.reportNumber, referenceNumber)
-      );
-      
-      if (certificate) {
-        cache.set(cacheKey, certificate, 1000 * 60 * 30); // Cache for 30 minutes
-        return certificate;
-      }
-      
-      return undefined;
-    } catch (error) {
-      console.error('Error fetching certificate by reference:', error);
-      return undefined;
+    // Check both reportNumber (GIL format) and referenceNumber (legacy format)
+    const [certificate] = await db.select().from(certificates).where(
+      eq(certificates.reportNumber, referenceNumber)
+    );
+    
+    if (certificate) {
+      cache.set(cacheKey, certificate, 1000 * 60 * 30); // Cache for 30 minutes
+      return certificate;
     }
     
-    return undefined;
+    // Fallback to legacy referenceNumber field
+    const [legacyCertificate] = await db.select().from(certificates).where(
+      eq(certificates.referenceNumber, referenceNumber)
+    );
+    
+    if (legacyCertificate) {
+      cache.set(cacheKey, legacyCertificate, 1000 * 60 * 30);
+    }
+    
+    return legacyCertificate || undefined;
   }
 
   async createCertificate(insertCertificate: InsertCertificate): Promise<Certificate> {
@@ -127,59 +128,23 @@ export class DatabaseStorage implements IStorage {
     const cached = cache.get(cacheKey);
     if (cached) return cached;
 
-    try {
-      const certificateList = await db.select().from(certificates)
-        .orderBy(desc(certificates.reportDate))
-        .limit(1000); // Limit for performance
-      
-      cache.set(cacheKey, certificateList, 1000 * 60 * 5); // Cache for 5 minutes
-      
-      return certificateList;
-    } catch (error) {
-      console.error('Error fetching all certificates:', error);
-      return [];
-    }
+    const certificateList = await db.select().from(certificates)
+      .where(eq(certificates.isActive, true))
+      .orderBy(desc(certificates.reportDate))
+      .limit(1000); // Limit for performance
+    
+    cache.set(cacheKey, certificateList, 1000 * 60 * 5); // Cache for 5 minutes
+    
+    return certificateList;
   }
 
   async deleteCertificate(id: number): Promise<boolean> {
-    try {
-      const result = await db
-        .delete(certificates)
-        .where(eq(certificates.id, id))
-        .returning();
-      
-      if (result.length > 0) {
-        // Invalidate cache
-        cache.invalidate('certs:all');
-        cache.invalidate(`cert:${result[0].reportNumber}`);
-      }
-      
-      return result.length > 0;
-    } catch (error) {
-      console.error('Error deleting certificate:', error);
-      return false;
-    }
-  }
-
-  async updateCertificateStatus(id: number, isActive: boolean): Promise<boolean> {
-    try {
-      const result = await db
-        .update(certificates)
-        .set({ isActive })
-        .where(eq(certificates.id, id))
-        .returning();
-      
-      if (result.length > 0) {
-        // Invalidate cache
-        cache.invalidate('certs:all');
-        cache.invalidate(`cert:${result[0].reportNumber}`);
-      }
-      
-      return result.length > 0;
-    } catch (error) {
-      console.error('Error updating certificate status:', error);
-      return false;
-    }
+    const result = await db
+      .update(certificates)
+      .set({ isActive: false })
+      .where(eq(certificates.id, id))
+      .returning();
+    return result.length > 0;
   }
 
   async getAdminByUsername(username: string): Promise<Admin | undefined> {

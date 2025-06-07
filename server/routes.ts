@@ -39,7 +39,7 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Certificate verification endpoint with enhanced performance
+  // Certificate verification endpoint
   app.get("/api/certificates/verify/:referenceNumber", async (req, res) => {
     try {
       const { referenceNumber } = req.params;
@@ -48,9 +48,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!referenceNumber) {
         return res.status(400).json({ message: "Reference number is required" });
       }
-      
-      // Set cache headers for better performance
-      res.set('Cache-Control', 'public, max-age=300');
 
       const certificate = await storage.getCertificateByReference(referenceNumber);
       
@@ -446,34 +443,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ certificates });
     } catch (error) {
       console.error("Error fetching certificates:", error);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  });
-
-  // Update certificate (admin only)
-  app.patch("/api/certificates/:id", async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      
-      if (isNaN(id)) {
-        return res.status(400).json({ message: "Invalid certificate ID" });
-      }
-
-      const { isActive } = req.body;
-      
-      if (typeof isActive !== 'boolean') {
-        return res.status(400).json({ message: "isActive field is required and must be boolean" });
-      }
-
-      const success = await storage.updateCertificateStatus(id, isActive);
-      
-      if (!success) {
-        return res.status(404).json({ message: "Certificate not found" });
-      }
-
-      res.json({ message: "Certificate updated successfully" });
-    } catch (error) {
-      console.error("Error updating certificate:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   });
