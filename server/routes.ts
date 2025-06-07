@@ -355,6 +355,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         gemologistName: "GIL Certified Gemologist",
         signatureDate: new Date(),
         filename: newFilename,
+        gemType: "Diamond", // Required field
       };
 
       const certificate = await storage.createCertificate(certificateData);
