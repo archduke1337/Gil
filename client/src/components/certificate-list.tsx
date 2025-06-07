@@ -20,7 +20,8 @@ export default function CertificateList({ certificates, onUpdate }: CertificateL
 
   const filteredCertificates = useMemo(() => 
     certificates.filter(cert =>
-      cert.referenceNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false
+      (cert.referenceNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
+      (cert.reportNumber?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
     ), [certificates, searchQuery]
   );
 
