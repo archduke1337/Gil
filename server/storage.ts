@@ -50,6 +50,7 @@ export interface IStorage {
   createCertificate(certificate: InsertCertificate): Promise<Certificate>;
   getAllCertificates(): Promise<Certificate[]>;
   deleteCertificate(id: number): Promise<boolean>;
+  updateCertificateStatus(id: number, isActive: boolean): Promise<boolean>;
   
   // Admin operations
   getAdminByUsername(username: string): Promise<Admin | undefined>;
@@ -141,12 +142,44 @@ export class DatabaseStorage implements IStorage {
   }
 
   async deleteCertificate(id: number): Promise<boolean> {
-    const result = await db
-      .update(certificates)
-      .set({ isActive: false })
-      .where(eq(certificates.id, id))
-      .returning();
-    return result.length > 0;
+    try {
+      const result = await db
+        .delete(certificates)
+        .where(eq(certificates.id, id))
+        .returning();
+      
+      if (result.length > 0) {
+        // Invalidate cache
+        cache.invalidate('certs:all');
+        cache.invalidate(`cert:${result[0].reportNumber}`);
+      }
+      
+      return result.length > 0;
+    } catch (error) {
+      console.error('Error deleting certificate:', error);
+      return false;
+    }
+  }
+
+  async updateCertificateStatus(id: number, isActive: boolean): Promise<boolean> {
+    try {
+      const result = await db
+        .update(certificates)
+        .set({ isActive })
+        .where(eq(certificates.id, id))
+        .returning();
+      
+      if (result.length > 0) {
+        // Invalidate cache
+        cache.invalidate('certs:all');
+        cache.invalidate(`cert:${result[0].reportNumber}`);
+      }
+      
+      return result.length > 0;
+    } catch (error) {
+      console.error('Error updating certificate status:', error);
+      return false;
+    }
   }
 
   async getAdminByUsername(username: string): Promise<Admin | undefined> {

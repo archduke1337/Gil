@@ -180,6 +180,15 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
 function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [isLoadingCerts, setIsLoadingCerts] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newCertificate, setNewCertificate] = useState({
+    reportNumber: "",
+    caratWeight: "",
+    colorGrade: "",
+    clarityGrade: "",
+    cutGrade: "",
+    isActive: true
+  });
 
   const loadCertificates = async () => {
     setIsLoadingCerts(true);
@@ -194,6 +203,72 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
     }
   };
 
+  const handleAddCertificate = async () => {
+    try {
+      const response = await fetch("/api/certificates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newCertificate)
+      });
+      
+      if (response.ok) {
+        setShowAddForm(false);
+        setNewCertificate({
+          reportNumber: "",
+          caratWeight: "",
+          colorGrade: "",
+          clarityGrade: "",
+          cutGrade: "",
+          isActive: true
+        });
+        loadCertificates();
+        alert("Certificate added successfully");
+      } else {
+        alert("Failed to add certificate");
+      }
+    } catch (error) {
+      alert("Error adding certificate");
+    }
+  };
+
+  const handleDeleteCertificate = async (id: number) => {
+    if (confirm("Are you sure you want to delete this certificate?")) {
+      try {
+        const response = await fetch(`/api/certificates/${id}`, {
+          method: "DELETE"
+        });
+        
+        if (response.ok) {
+          loadCertificates();
+          alert("Certificate deleted successfully");
+        } else {
+          alert("Failed to delete certificate");
+        }
+      } catch (error) {
+        alert("Error deleting certificate");
+      }
+    }
+  };
+
+  const handleToggleStatus = async (id: number, currentStatus: boolean) => {
+    try {
+      const response = await fetch(`/api/certificates/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isActive: !currentStatus })
+      });
+      
+      if (response.ok) {
+        loadCertificates();
+        alert(`Certificate ${!currentStatus ? "activated" : "deactivated"} successfully`);
+      } else {
+        alert("Failed to update certificate status");
+      }
+    } catch (error) {
+      alert("Error updating certificate status");
+    }
+  };
+
   // Load certificates on mount
   useEffect(() => {
     loadCertificates();
@@ -203,20 +278,160 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
     <div style={{ padding: "2rem" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
         <h1 style={{ color: "#8B5A3C" }}>Admin Dashboard</h1>
-        <button
-          onClick={onLogout}
-          style={{
-            backgroundColor: "#dc3545",
-            color: "white",
-            padding: "8px 16px",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer"
-          }}
-        >
-          Logout
-        </button>
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <button
+            onClick={() => setShowAddForm(!showAddForm)}
+            style={{
+              backgroundColor: "#8B5A3C",
+              color: "white",
+              padding: "8px 16px",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer"
+            }}
+          >
+            {showAddForm ? "Cancel" : "Add Certificate"}
+          </button>
+          <button
+            onClick={loadCertificates}
+            style={{
+              backgroundColor: "#28a745",
+              color: "white",
+              padding: "8px 16px",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer"
+            }}
+          >
+            Refresh
+          </button>
+          <button
+            onClick={onLogout}
+            style={{
+              backgroundColor: "#dc3545",
+              color: "white",
+              padding: "8px 16px",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer"
+            }}
+          >
+            Logout
+          </button>
+        </div>
       </div>
+
+      {showAddForm && (
+        <div style={{ 
+          backgroundColor: "white", 
+          padding: "2rem", 
+          borderRadius: "8px",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+          marginBottom: "2rem" 
+        }}>
+          <h3 style={{ color: "#8B5A3C", marginBottom: "1rem" }}>Add New Certificate</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
+            <input
+              type="text"
+              placeholder="Report Number (e.g., G5096035810)"
+              value={newCertificate.reportNumber}
+              onChange={(e) => setNewCertificate({...newCertificate, reportNumber: e.target.value})}
+              style={{
+                padding: "8px",
+                border: "1px solid #ddd",
+                borderRadius: "4px"
+              }}
+            />
+            <input
+              type="text"
+              placeholder="Carat Weight (e.g., 1.25)"
+              value={newCertificate.caratWeight}
+              onChange={(e) => setNewCertificate({...newCertificate, caratWeight: e.target.value})}
+              style={{
+                padding: "8px",
+                border: "1px solid #ddd",
+                borderRadius: "4px"
+              }}
+            />
+            <select
+              value={newCertificate.colorGrade}
+              onChange={(e) => setNewCertificate({...newCertificate, colorGrade: e.target.value})}
+              style={{
+                padding: "8px",
+                border: "1px solid #ddd",
+                borderRadius: "4px"
+              }}
+            >
+              <option value="">Select Color Grade</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+              <option value="H">H</option>
+              <option value="I">I</option>
+              <option value="J">J</option>
+            </select>
+            <select
+              value={newCertificate.clarityGrade}
+              onChange={(e) => setNewCertificate({...newCertificate, clarityGrade: e.target.value})}
+              style={{
+                padding: "8px",
+                border: "1px solid #ddd",
+                borderRadius: "4px"
+              }}
+            >
+              <option value="">Select Clarity Grade</option>
+              <option value="FL">FL</option>
+              <option value="IF">IF</option>
+              <option value="VVS1">VVS1</option>
+              <option value="VVS2">VVS2</option>
+              <option value="VS1">VS1</option>
+              <option value="VS2">VS2</option>
+              <option value="SI1">SI1</option>
+              <option value="SI2">SI2</option>
+            </select>
+            <select
+              value={newCertificate.cutGrade}
+              onChange={(e) => setNewCertificate({...newCertificate, cutGrade: e.target.value})}
+              style={{
+                padding: "8px",
+                border: "1px solid #ddd",
+                borderRadius: "4px"
+              }}
+            >
+              <option value="">Select Cut Grade</option>
+              <option value="Excellent">Excellent</option>
+              <option value="Very Good">Very Good</option>
+              <option value="Good">Good</option>
+              <option value="Fair">Fair</option>
+              <option value="Poor">Poor</option>
+            </select>
+            <label style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <input
+                type="checkbox"
+                checked={newCertificate.isActive}
+                onChange={(e) => setNewCertificate({...newCertificate, isActive: e.target.checked})}
+              />
+              Active Certificate
+            </label>
+          </div>
+          <button
+            onClick={handleAddCertificate}
+            disabled={!newCertificate.reportNumber || !newCertificate.caratWeight}
+            style={{
+              backgroundColor: "#8B5A3C",
+              color: "white",
+              padding: "10px 20px",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              opacity: (!newCertificate.reportNumber || !newCertificate.caratWeight) ? 0.6 : 1
+            }}
+          >
+            Add Certificate
+          </button>
+        </div>
+      )}
 
       {isLoadingCerts ? (
         <p>Loading certificates...</p>
@@ -232,7 +447,8 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
                   <th style={{ padding: "12px", border: "1px solid #ddd" }}>Color</th>
                   <th style={{ padding: "12px", border: "1px solid #ddd" }}>Clarity</th>
                   <th style={{ padding: "12px", border: "1px solid #ddd" }}>Cut</th>
-                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Active</th>
+                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Status</th>
+                  <th style={{ padding: "12px", border: "1px solid #ddd" }}>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -243,7 +459,45 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
                     <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.colorGrade}</td>
                     <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.clarityGrade}</td>
                     <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.cutGrade}</td>
-                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>{cert.isActive ? "Yes" : "No"}</td>
+                    <td style={{ 
+                      padding: "12px", 
+                      border: "1px solid #ddd",
+                      color: cert.isActive ? "#28a745" : "#dc3545"
+                    }}>
+                      {cert.isActive ? "Active" : "Inactive"}
+                    </td>
+                    <td style={{ padding: "12px", border: "1px solid #ddd" }}>
+                      <div style={{ display: "flex", gap: "8px" }}>
+                        <button
+                          onClick={() => handleToggleStatus(cert.id, cert.isActive)}
+                          style={{
+                            backgroundColor: cert.isActive ? "#ffc107" : "#28a745",
+                            color: "white",
+                            padding: "4px 8px",
+                            border: "none",
+                            borderRadius: "3px",
+                            cursor: "pointer",
+                            fontSize: "12px"
+                          }}
+                        >
+                          {cert.isActive ? "Deactivate" : "Activate"}
+                        </button>
+                        <button
+                          onClick={() => handleDeleteCertificate(cert.id)}
+                          style={{
+                            backgroundColor: "#dc3545",
+                            color: "white",
+                            padding: "4px 8px",
+                            border: "none",
+                            borderRadius: "3px",
+                            cursor: "pointer",
+                            fontSize: "12px"
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
