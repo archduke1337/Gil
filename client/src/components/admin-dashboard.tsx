@@ -27,20 +27,19 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
   const { data: certificatesData, refetch, isLoading, error } = useQuery({
     queryKey: ["/api/certificates"],
+    queryFn: async () => {
+      const response = await fetch("/api/certificates");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    },
     refetchInterval: 30000,
     staleTime: 10000,
     gcTime: 30000,
   });
 
-  const certificates: Certificate[] = (certificatesData as any)?.certificates || [];
-
-  // Debug logging
-  console.log("Admin Dashboard State:", { 
-    isLoading, 
-    error: error?.message, 
-    certificatesData, 
-    certificatesCount: certificates.length 
-  });
+  const certificates: Certificate[] = certificatesData?.certificates || [];
 
   const handleLogout = useCallback(() => {
     toast({
