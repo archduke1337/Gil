@@ -17,6 +17,12 @@ const uploadSchema = z.object({
   colorGrade: z.string().optional(),
   clarityGrade: z.string().optional(),
   cutGrade: z.string().optional(),
+  gemType: z.string().optional(),
+  shape: z.string().optional(),
+  measurements: z.string().optional(),
+  polish: z.string().optional(),
+  symmetry: z.string().optional(),
+  fluorescence: z.string().optional(),
 });
 
 type UploadForm = z.infer<typeof uploadSchema>;
@@ -38,6 +44,12 @@ export default function UploadFormComponent({ onSuccess }: UploadFormProps) {
       colorGrade: "",
       clarityGrade: "",
       cutGrade: "",
+      gemType: "Diamond",
+      shape: "",
+      measurements: "",
+      polish: "",
+      symmetry: "",
+      fluorescence: "",
     },
   });
 
