@@ -38,6 +38,113 @@ const upload = multer({
   },
 });
 
+// SEO Routes for Google crawling
+function registerSEORoutes(app: Express) {
+  // Serve robots.txt
+  app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.send(`User-agent: *
+Allow: /
+Allow: /verify
+Allow: /admin
+
+Sitemap: https://gilab.info/sitemap.xml
+
+Disallow: /api/admin/
+Disallow: /uploads/
+
+Crawl-delay: 1
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2`);
+  });
+
+  // Dynamic sitemap.xml
+  app.get('/sitemap.xml', async (req, res) => {
+    try {
+      const allCertificates = await storage.getAllCertificates();
+      const currentDate = new Date().toISOString().split('T')[0];
+      
+      let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://gilab.info/</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://gilab.info/verify</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://gilab.info/encyclopedia</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+
+      // Add certificate pages for active certificates
+      allCertificates.forEach(cert => {
+        if (cert.isActive) {
+          sitemap += `
+  <url>
+    <loc>https://gilab.info/certificate/${cert.reportNumber}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>`;
+        }
+      });
+
+      sitemap += `
+</urlset>`;
+
+      res.type('application/xml');
+      res.send(sitemap);
+    } catch (error) {
+      console.error('Error generating sitemap:', error);
+      res.status(500).send('Error generating sitemap');
+    }
+  });
+
+  // Schema.org structured data
+  app.get('/schema.json', (req, res) => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Gemological Institute Laboratories",
+      "alternateName": "GIL",
+      "url": "https://gilab.info",
+      "logo": "https://gilab.info/attached_assets/1000119055-removebg-preview.png",
+      "description": "Professional diamond certificate verification and gemstone authentication services",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "admin@gillab.info"
+      },
+      "service": {
+        "@type": "Service",
+        "name": "Diamond Certificate Verification",
+        "description": "Secure verification of diamond and gemstone certificates"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://gilab.info/verify?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    };
+    res.json(schema);
+  });
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Certificate verification endpoint
   app.get("/api/certificates/verify/:referenceNumber", async (req, res) => {
