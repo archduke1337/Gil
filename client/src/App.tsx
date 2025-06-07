@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 interface Certificate {
   id: number;
   reportNumber: string;
-  referenceNumber: string;
   caratWeight: string;
   colorGrade: string;
   clarityGrade: string;
