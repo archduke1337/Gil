@@ -22,7 +22,7 @@ interface AdminDashboardProps {
   onLogout: () => void;
 }
 
-const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboardProps) {
+export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [searchResults, setSearchResults] = useState<Certificate[]>([]);
   const { toast } = useToast();
 
@@ -279,6 +279,4 @@ const AdminDashboard = memo(function AdminDashboard({ onLogout }: AdminDashboard
       </div>
     </div>
   );
-});
-
-export default AdminDashboard;
+}

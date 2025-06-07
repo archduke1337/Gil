@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useState, memo, useCallback } from "react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 
-const Navigation = memo(function Navigation() {
+export default function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -98,6 +98,4 @@ const Navigation = memo(function Navigation() {
       </div>
     </nav>
   );
-});
-
-export default Navigation;
+}

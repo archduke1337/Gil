@@ -21,7 +21,7 @@ interface VerificationFormProps {
   onResult: (result: { certificate: Certificate | null; found: boolean }) => void;
 }
 
-function VerificationForm({ onResult }: VerificationFormProps) {
+export default function VerificationForm({ onResult }: VerificationFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -112,5 +112,3 @@ function VerificationForm({ onResult }: VerificationFormProps) {
     </Form>
   );
 }
-
-export default VerificationForm;

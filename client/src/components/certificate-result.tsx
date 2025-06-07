@@ -12,7 +12,7 @@ interface CertificateResultProps {
   };
 }
 
-const CertificateResult = memo(function CertificateResult({ result }: CertificateResultProps) {
+export default function CertificateResult({ result }: CertificateResultProps) {
   const { certificate, found } = result;
 
   const showCertificateDetails = useCallback((certificate: Certificate) => {
@@ -463,6 +463,4 @@ const CertificateResult = memo(function CertificateResult({ result }: Certificat
       </div>
     </div>
   );
-});
-
-export default CertificateResult;
+}
