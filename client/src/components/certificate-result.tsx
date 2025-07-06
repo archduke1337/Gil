@@ -1,4 +1,4 @@
-import { CheckCircle, AlertTriangle, Eye, Download, Shield, Lock, Calendar } from "lucide-react";
+import { CheckCircle, AlertTriangle, Eye, Download, Shield, Lock, Calendar, Gem, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -427,6 +427,30 @@ export default function CertificateResult({ result }: CertificateResultProps) {
                     </li>
                   </ul>
                 </div>
+              </div>
+            </div>
+            
+            {/* Buy Similar Certified Gemstones CTA */}
+            <div className="mt-8 p-6 bg-gradient-to-r from-[#8c745c]/5 to-[#8c745c]/10 rounded-lg border border-[#8c745c]/20">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-[#8c745c] to-[#a18966] rounded-full flex items-center justify-center">
+                    <Gem className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900">Shop Similar Certified Gemstones</h4>
+                    <p className="text-sm text-gray-600">
+                      Browse our collection of authentic GIL-certified gemstones at Jewelors.com
+                    </p>
+                  </div>
+                </div>
+                <Button 
+                  onClick={() => window.open('https://jewelors.com', '_blank', 'noopener,noreferrer')}
+                  className="bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-medium px-6 py-2 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  <ShoppingCart className="w-4 h-4 mr-2" />
+                  Shop Now
+                </Button>
               </div>
             </div>
           </Card>

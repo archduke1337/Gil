@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { Gem } from "lucide-react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 
 interface FooterProps {
@@ -11,7 +12,7 @@ export default function Footer({ variant = "dark" }: FooterProps) {
   return (
     <footer className={`py-12 ${isDark ? "text-white" : "bg-white border-t border-border"}`} style={{ backgroundColor: isDark ? '#101826' : undefined }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-4 gap-8">
           <div>
             <img 
               src={logoPath} 
@@ -89,6 +90,33 @@ export default function Footer({ variant = "dark" }: FooterProps) {
                 </Link>
               </li>
             </ul>
+          </div>
+          
+          <div>
+            <h3 className={`text-lg font-semibold mb-4 ${isDark ? "text-[#8c745c]" : "text-[#8c745c]"}`}>
+              Authorized Partner
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-center">
+                <Gem className={`w-4 h-4 mr-2 ${isDark ? "text-[#8c745c]" : "text-[#8c745c]"}`} />
+                <span className={`font-medium ${isDark ? "text-white" : "text-foreground"}`}>
+                  Jewelors.com
+                </span>
+              </div>
+              <p className={`text-sm ${isDark ? "text-gray-400" : "text-muted-foreground"}`}>
+                Shop authentic GIL-certified gemstones from our trusted partner
+              </p>
+              <button
+                onClick={() => window.open('https://jewelors.com', '_blank', 'noopener,noreferrer')}
+                className={`text-sm transition-colors ${
+                  isDark 
+                    ? "text-[#8c745c] hover:text-white" 
+                    : "text-[#8c745c] hover:text-foreground"
+                }`}
+              >
+                Buy Certified Gemstones →
+              </button>
+            </div>
           </div>
           
           <div>

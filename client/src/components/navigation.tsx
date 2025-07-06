@@ -24,6 +24,10 @@ export default function Navigation() {
     { href: "/faqs", label: "FAQs" }
   ];
 
+  const handleBuyGemstones = () => {
+    window.open('https://jewelors.com', '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <nav className="bg-white/90 backdrop-blur-sm border-0 rounded-b-3xl soft-shadow sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,6 +65,15 @@ export default function Navigation() {
                 </Button>
               </Link>
             ))}
+            
+            {/* Buy Certified Gemstones Button */}
+            <Button 
+              onClick={handleBuyGemstones}
+              className="bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-medium px-4 py-2 ml-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              <Gem className="w-4 h-4 mr-2" />
+              Buy Certified Gemstones
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -92,6 +105,18 @@ export default function Navigation() {
                   </Button>
                 </Link>
               ))}
+              
+              {/* Buy Certified Gemstones Button - Mobile */}
+              <Button 
+                onClick={() => {
+                  handleBuyGemstones();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full justify-start bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-medium rounded-xl mt-3 shadow-lg"
+              >
+                <Gem className="w-4 h-4 mr-2" />
+                Buy Certified Gemstones
+              </Button>
             </div>
           </div>
         )}
