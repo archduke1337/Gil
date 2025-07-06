@@ -4,6 +4,12 @@ import { Button } from "@/components/ui/button";
 import { useState, useCallback } from "react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 
+interface NavigationItem {
+  href: string;
+  label: string;
+  external?: boolean;
+}
+
 export default function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,14 +20,16 @@ export default function Navigation() {
     setIsMobileMenuOpen(prev => !prev);
   }, []);
 
-  const navigationItems = [
+  const navigationItems: NavigationItem[] = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About Us" },
     { href: "/gem-encyclopedia", label: "Gem Encyclopedia" },
     { href: "/analysis", label: "Analysis & Grading" },
     { href: "/gem-services", label: "Gem Services" },
     { href: "/verify", label: "Report Check" },
-    { href: "/faqs", label: "FAQs" }
+    { href: "/faqs", label: "FAQs" },
+    // Jewelors.com Integration
+    { href: "https://jewelors.com", label: "🛒 Buy Gemstones", external: true }
   ];
 
   const handleBuyGemstones = () => {
@@ -53,18 +61,30 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-2">
             {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
+              item.external ? (
                 <Button 
+                  key={item.href}
+                  onClick={() => window.open(item.href, '_blank', 'noopener,noreferrer')}
                   variant="ghost" 
                   size="sm"
-                  className={`btn-premium text-ultra-smooth touch-friendly ${isActive(item.href) 
-                    ? "text-[#8c745c] border-b-2 border-[#8c745c] rounded-none" 
-                    : "text-gray-600 hover:text-[#8c745c]"
-                  }`}
+                  className="btn-premium text-ultra-smooth touch-friendly text-gray-600 hover:text-[#8c745c] bg-gradient-to-r from-[#8c745c]/10 to-[#a18966]/10 hover:from-[#8c745c]/20 hover:to-[#a18966]/20 border border-[#8c745c]/30"
                 >
                   {item.label}
                 </Button>
-              </Link>
+              ) : (
+                <Link key={item.href} href={item.href}>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    className={`btn-premium text-ultra-smooth touch-friendly ${isActive(item.href) 
+                      ? "text-[#8c745c] border-b-2 border-[#8c745c] rounded-none" 
+                      : "text-gray-600 hover:text-[#8c745c]"
+                    }`}
+                  >
+                    {item.label}
+                  </Button>
+                </Link>
+              )
             ))}
             
             {/* Buy Certified Gemstones Button */}
@@ -92,19 +112,33 @@ export default function Navigation() {
           <div className="lg:hidden">
             <div className="px-4 pt-2 pb-3 space-y-2">
               {navigationItems.map((item) => (
-                <Link key={item.href} href={item.href}>
+                item.external ? (
                   <Button
+                    key={item.href}
                     variant="ghost"
-                    className={`w-full justify-start rounded-xl text-ultra-smooth ${
-                      isActive(item.href) 
-                        ? "text-[#8c745c] bg-[#ece5dc]" 
-                        : "text-gray-600 hover:text-[#8c745c] hover:bg-[#ece5dc]/50"
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="w-full justify-start rounded-xl text-ultra-smooth text-gray-600 hover:text-[#8c745c] hover:bg-[#ece5dc]/50 bg-gradient-to-r from-[#8c745c]/10 to-[#a18966]/10 border border-[#8c745c]/30"
+                    onClick={() => {
+                      window.open(item.href, '_blank', 'noopener,noreferrer');
+                      setIsMobileMenuOpen(false);
+                    }}
                   >
                     {item.label}
                   </Button>
-                </Link>
+                ) : (
+                  <Link key={item.href} href={item.href}>
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-start rounded-xl text-ultra-smooth ${
+                        isActive(item.href) 
+                          ? "text-[#8c745c] bg-[#ece5dc]" 
+                          : "text-gray-600 hover:text-[#8c745c] hover:bg-[#ece5dc]/50"
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Button>
+                  </Link>
+                )
               ))}
               
               {/* Buy Certified Gemstones Button - Mobile */}

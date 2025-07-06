@@ -71,15 +71,25 @@ function Home() {
               <span className="block text-[#8c745c]">Laboratories</span>
             </motion.h1>
             
-            {/* TEST: Buy Gemstones Button */}
-            <div className="mt-6 mb-8">
-              <Button 
-                onClick={() => window.open('https://jewelors.com', '_blank', 'noopener,noreferrer')}
-                className="bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              >
-                <Gem className="w-5 h-5 mr-2" />
-                🛒 Buy Certified Gemstones at Jewelors.com
-              </Button>
+            {/* Jewelors.com CTA */}
+            <div className="mt-8 mb-8">
+              <div className="bg-gradient-to-r from-[#8c745c]/10 to-[#a18966]/10 rounded-2xl p-6 border border-[#8c745c]/20">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">
+                  🛒 Shop Certified Gemstones
+                </h3>
+                <p className="text-gray-600 text-center mb-4">
+                  Browse our collection of authentic GIL-certified gemstones at our authorized partner
+                </p>
+                <div className="text-center">
+                  <Button 
+                    onClick={() => window.open('https://jewelors.com', '_blank', 'noopener,noreferrer')}
+                    className="bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    <Gem className="w-5 h-5 mr-2" />
+                    Visit Jewelors.com
+                  </Button>
+                </div>
+              </div>
             </div>
             
             <motion.p
