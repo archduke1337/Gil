@@ -43,8 +43,8 @@ export default function Navigation() {
                 />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-heading-sm font-heading text-foreground text-ultra-smooth">GIL</h1>
-                <p className="text-caption text-muted-foreground hidden md:block text-ultra-smooth">Gemological Institute Laboratories</p>
+                <h1 className="text-2xl font-bold text-gray-900 text-ultra-smooth">GIL</h1>
+                <p className="text-xs text-gray-500 uppercase tracking-wide text-ultra-smooth">GEMOLOGICAL INSTITUTE LABORATORIES</p>
               </div>
             </div>
           </Link>
