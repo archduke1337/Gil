@@ -30,11 +30,11 @@ export default function Navigation() {
 
   return (
     <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-6 lg:pr-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Brand */}
           <Link href="/">
-            <div className="flex items-center space-x-3 cursor-pointer">
+            <div className="flex items-center space-x-2 cursor-pointer">
               <div className="w-10 h-10 flex items-center justify-center">
                 <img 
                   src={logoPath} 
@@ -42,7 +42,7 @@ export default function Navigation() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2">
                 <h1 className="text-2xl font-bold text-gray-900">GIL</h1>
                 <div className="h-6 w-px bg-gray-300 hidden sm:block"></div>
                 <p className="text-sm text-gray-600 uppercase tracking-wide font-medium hidden sm:block">
