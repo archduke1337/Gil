@@ -71,6 +71,17 @@ function Home() {
               <span className="block text-[#8c745c]">Laboratories</span>
             </motion.h1>
             
+            {/* TEST: Buy Gemstones Button */}
+            <div className="mt-6 mb-8">
+              <Button 
+                onClick={() => window.open('https://jewelors.com', '_blank', 'noopener,noreferrer')}
+                className="bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <Gem className="w-5 h-5 mr-2" />
+                🛒 Buy Certified Gemstones at Jewelors.com
+              </Button>
+            </div>
+            
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -188,7 +199,7 @@ function Home() {
               Buy Certified Gemstones
             </h2>
             <p className="text-body-lg font-body text-gray-600 max-w-3xl mx-auto text-ultra-smooth">
-              Shop authentic, GIL-certified gemstones from our authorized partner
+              Shop authentic, GIL-certified gemstones from our authorized seller partner
             </p>
           </motion.div>
 

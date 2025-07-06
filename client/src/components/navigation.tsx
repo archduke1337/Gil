@@ -25,6 +25,7 @@ export default function Navigation() {
   ];
 
   const handleBuyGemstones = () => {
+    // Open jewelors.com in new tab
     window.open('https://jewelors.com', '_blank', 'noopener,noreferrer');
   };
 
