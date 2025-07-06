@@ -29,47 +29,39 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="bg-white/90 backdrop-blur-sm border-0 rounded-b-3xl soft-shadow sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex justify-between items-center h-20">
-          {/* Enhanced Logo */}
+    <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo and Brand */}
           <Link href="/">
-            <div className="flex items-center cursor-pointer interactive-element gpu-accelerated touch-friendly">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center mr-3 sm:mr-4">
+            <div className="flex items-center space-x-3 cursor-pointer">
+              <div className="w-10 h-10 flex items-center justify-center">
                 <img 
                   src={logoPath} 
                   alt="GIL Logo" 
-                  className="w-full h-full object-contain crisp-edges"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div className="flex items-center">
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 text-ultra-smooth tracking-tight mr-3 sm:mr-4">GIL</h1>
-                <div className="hidden sm:block h-8 w-px bg-gray-300 mr-3 sm:mr-4"></div>
-                <div className="hidden md:block">
-                  <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-widest font-medium text-ultra-smooth leading-tight whitespace-nowrap">
-                    GEMOLOGICAL INSTITUTE LABORATORIES
-                  </p>
-                </div>
-                <div className="block md:hidden">
-                  <p className="text-xs text-gray-600 uppercase tracking-wide font-medium text-ultra-smooth leading-tight">
-                    GEMOLOGICAL INSTITUTE<br />
-                    LABORATORIES
-                  </p>
-                </div>
+              <div className="flex items-center space-x-3">
+                <h1 className="text-2xl font-bold text-gray-900">GIL</h1>
+                <div className="h-6 w-px bg-gray-300 hidden sm:block"></div>
+                <p className="text-sm text-gray-600 uppercase tracking-wide font-medium hidden sm:block">
+                  GEMOLOGICAL INSTITUTE LABORATORIES
+                </p>
               </div>
             </div>
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <Button 
                   variant="ghost" 
                   size="sm"
-                  className={`btn-premium text-ultra-smooth touch-friendly ${isActive(item.href) 
-                    ? "text-[#8c745c] border-b-2 border-[#8c745c] rounded-none" 
-                    : "text-gray-600 hover:text-[#8c745c]"
+                  className={`px-3 py-2 text-sm font-medium transition-colors ${isActive(item.href) 
+                    ? "text-[#8c745c] bg-[#8c745c]/10" 
+                    : "text-gray-600 hover:text-[#8c745c] hover:bg-gray-50"
                   }`}
                 >
                   {item.label}
@@ -80,16 +72,16 @@ export default function Navigation() {
             {/* Buy Certified Gemstones Button */}
             <Button 
               onClick={handleBuyGemstones}
-              className="bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-medium px-4 py-2 ml-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="bg-[#8c745c] hover:bg-[#7a6650] text-white font-medium px-4 py-2 ml-4 rounded-lg shadow-sm transition-all duration-200"
             >
               <Gem className="w-4 h-4 mr-2" />
-              Buy Certified Gemstones
+              Buy Gemstones
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-md text-gray-600 hover:text-[#8c745c] hover:bg-[#ece5dc]/50"
+            className="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
           >
@@ -99,16 +91,16 @@ export default function Navigation() {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden">
-            <div className="px-4 pt-2 pb-3 space-y-2">
+          <div className="lg:hidden border-t border-gray-200">
+            <div className="px-4 py-3 space-y-1">
               {navigationItems.map((item) => (
                 <Link key={item.href} href={item.href}>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start rounded-xl text-ultra-smooth ${
+                    className={`w-full justify-start px-3 py-2 text-sm font-medium ${
                       isActive(item.href) 
-                        ? "text-[#8c745c] bg-[#ece5dc]" 
-                        : "text-gray-600 hover:text-[#8c745c] hover:bg-[#ece5dc]/50"
+                        ? "text-[#8c745c] bg-[#8c745c]/10" 
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -123,10 +115,10 @@ export default function Navigation() {
                   handleBuyGemstones();
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full justify-start bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-medium rounded-xl mt-3 shadow-lg"
+                className="w-full justify-start bg-[#8c745c] hover:bg-[#7a6650] text-white font-medium px-3 py-2 mt-2"
               >
                 <Gem className="w-4 h-4 mr-2" />
-                Buy Certified Gemstones
+                Buy Gemstones
               </Button>
             </div>
           </div>
