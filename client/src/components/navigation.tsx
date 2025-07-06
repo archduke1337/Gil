@@ -34,28 +34,19 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Enhanced Logo */}
           <Link href="/">
-            <div className="flex items-center cursor-pointer interactive-element gpu-accelerated touch-friendly">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center mr-3 sm:mr-4">
+            <div className="flex items-center space-x-4 cursor-pointer interactive-element gpu-accelerated touch-friendly">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
                 <img 
                   src={logoPath} 
                   alt="GIL Logo" 
                   className="w-full h-full object-contain crisp-edges"
                 />
               </div>
-              <div className="flex items-center">
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 text-ultra-smooth tracking-tight mr-3 sm:mr-4">GIL</h1>
-                <div className="hidden sm:block h-8 w-px bg-gray-300 mr-3 sm:mr-4"></div>
-                <div className="hidden md:block">
-                  <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-widest font-medium text-ultra-smooth leading-tight whitespace-nowrap">
-                    GEMOLOGICAL INSTITUTE LABORATORIES
-                  </p>
-                </div>
-                <div className="block md:hidden">
-                  <p className="text-xs text-gray-600 uppercase tracking-wide font-medium text-ultra-smooth leading-tight">
-                    GEMOLOGICAL INSTITUTE<br />
-                    LABORATORIES
-                  </p>
-                </div>
+              <div className="flex flex-col justify-center">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 text-ultra-smooth tracking-tight leading-none">GIL</h1>
+                <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-widest font-medium text-ultra-smooth leading-tight mt-1">
+                  GEMOLOGICAL INSTITUTE LABORATORIES
+                </p>
               </div>
             </div>
           </Link>
