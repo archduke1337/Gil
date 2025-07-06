@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import jewelorsLogoPath from "@assets/jewelors-logo.png";
+import jewelryCraftingPath from "@assets/jewelry-crafting.jpg";
 import { usePageTitle } from "@/hooks/use-page-title";
 
 function Home() {
@@ -253,13 +254,16 @@ function Home() {
                     </Button>
                   </div>
                   
-                  <div className="relative h-64 md:h-full bg-gradient-to-br from-[#8c745c]/10 to-[#8c745c]/20 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-gradient-to-r from-[#8c745c] to-[#a18966] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <Gem className="w-10 h-10 text-white" />
-                      </div>
-                      <p className="text-[#8c745c] font-medium text-lg">Premium Collection</p>
-                      <p className="text-gray-600 text-sm">Certified & Authentic</p>
+                  <div className="relative h-64 md:h-full overflow-hidden">
+                    <img 
+                      src={jewelryCraftingPath} 
+                      alt="Professional Jewelry Crafting" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 text-white">
+                      <p className="text-lg font-semibold mb-1">Premium Collection</p>
+                      <p className="text-sm opacity-90">Certified & Authentic</p>
                     </div>
                   </div>
                 </div>
