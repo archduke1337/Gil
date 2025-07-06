@@ -29,39 +29,44 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-6 lg:pr-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo and Brand */}
+    <nav className="bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          {/* Premium Logo and Brand */}
           <Link href="/">
-            <div className="flex items-center space-x-2 cursor-pointer">
-              <div className="w-10 h-10 flex items-center justify-center">
+            <div className="flex items-center space-x-4 cursor-pointer group">
+              <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-[#8c745c]/10 to-[#8c745c]/5 rounded-xl group-hover:from-[#8c745c]/20 group-hover:to-[#8c745c]/10 transition-all duration-300">
                 <img 
                   src={logoPath} 
                   alt="GIL Logo" 
-                  className="w-full h-full object-contain"
+                  className="w-10 h-10 object-contain"
                 />
               </div>
-              <div className="flex items-center space-x-2">
-                <h1 className="text-2xl font-bold text-gray-900">GIL</h1>
-                <div className="h-6 w-px bg-gray-300 hidden sm:block"></div>
-                <p className="text-sm text-gray-600 uppercase tracking-wide font-medium hidden sm:block">
-                  GEMOLOGICAL INSTITUTE LABORATORIES
-                </p>
+              <div className="flex items-center space-x-4">
+                <h1 className="text-2xl font-bold text-gray-900 tracking-tight">GIL</h1>
+                <div className="h-8 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden sm:block"></div>
+                <div className="hidden sm:block">
+                  <p className="text-xs text-gray-500 uppercase tracking-[0.15em] font-semibold leading-tight">
+                    GEMOLOGICAL INSTITUTE
+                  </p>
+                  <p className="text-xs text-[#8c745c] uppercase tracking-[0.15em] font-semibold -mt-0.5">
+                    LABORATORIES
+                  </p>
+                </div>
               </div>
             </div>
           </Link>
           
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* Premium Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-2">
             {navigationItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <Button 
                   variant="ghost" 
                   size="sm"
-                  className={`px-3 py-2 text-sm font-medium transition-colors ${isActive(item.href) 
-                    ? "text-[#8c745c] bg-[#8c745c]/10" 
-                    : "text-gray-600 hover:text-[#8c745c] hover:bg-gray-50"
+                  className={`px-4 py-2.5 text-sm font-medium transition-all duration-200 rounded-lg ${isActive(item.href) 
+                    ? "text-[#8c745c] bg-[#8c745c]/10 shadow-sm" 
+                    : "text-gray-700 hover:text-[#8c745c] hover:bg-gray-50"
                   }`}
                 >
                   {item.label}
@@ -69,38 +74,40 @@ export default function Navigation() {
               </Link>
             ))}
             
-            {/* Buy Certified Gemstones Button */}
-            <Button 
-              onClick={handleBuyGemstones}
-              className="bg-[#8c745c] hover:bg-[#7a6650] text-white font-medium px-4 py-2 ml-4 rounded-lg shadow-sm transition-all duration-200"
-            >
-              <Gem className="w-4 h-4 mr-2" />
-              Buy Gemstones
-            </Button>
+            {/* Premium CTA Button */}
+            <div className="ml-6 pl-6 border-l border-gray-200">
+              <Button 
+                onClick={handleBuyGemstones}
+                className="bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-semibold px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]"
+              >
+                <Gem className="w-4 h-4 mr-2" />
+                Buy Gemstones
+              </Button>
+            </div>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Enhanced Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+            className="lg:hidden p-3 rounded-xl text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Enhanced Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200">
-            <div className="px-4 py-3 space-y-1">
+          <div className="lg:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md">
+            <div className="px-6 py-4 space-y-2">
               {navigationItems.map((item) => (
                 <Link key={item.href} href={item.href}>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start px-3 py-2 text-sm font-medium ${
+                    className={`w-full justify-start px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
                       isActive(item.href) 
-                        ? "text-[#8c745c] bg-[#8c745c]/10" 
-                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                        ? "text-[#8c745c] bg-[#8c745c]/10 shadow-sm" 
+                        : "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -109,17 +116,19 @@ export default function Navigation() {
                 </Link>
               ))}
               
-              {/* Buy Certified Gemstones Button - Mobile */}
-              <Button 
-                onClick={() => {
-                  handleBuyGemstones();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full justify-start bg-[#8c745c] hover:bg-[#7a6650] text-white font-medium px-3 py-2 mt-2"
-              >
-                <Gem className="w-4 h-4 mr-2" />
-                Buy Gemstones
-              </Button>
+              {/* Premium Mobile CTA Button */}
+              <div className="pt-3 mt-3 border-t border-gray-100">
+                <Button 
+                  onClick={() => {
+                    handleBuyGemstones();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-semibold px-4 py-3 rounded-lg shadow-md"
+                >
+                  <Gem className="w-4 h-4 mr-2" />
+                  Buy Gemstones
+                </Button>
+              </div>
             </div>
           </div>
         )}
