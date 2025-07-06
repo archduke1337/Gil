@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import jewelorsLogoPath from "@assets/jewelors-logo.png";
 import { usePageTitle } from "@/hooks/use-page-title";
 
 function Home() {
@@ -204,11 +205,15 @@ function Home() {
                 <div className="grid md:grid-cols-2 items-center">
                   <div className="p-8 lg:p-12">
                     <div className="flex items-center mb-6">
-                      <div className="w-12 h-12 bg-gradient-to-r from-[#8c745c] to-[#a18966] rounded-full flex items-center justify-center mr-4">
-                        <Gem className="w-6 h-6 text-white" />
+                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4 shadow-lg border border-gray-100">
+                        <img 
+                          src={jewelorsLogoPath} 
+                          alt="Jewelors Logo" 
+                          className="w-12 h-8 object-contain"
+                        />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-1">Jewelors.com</h3>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-1">Jewelors</h3>
                         <p className="text-sm text-[#8c745c] font-medium">Authorized GIL Partner</p>
                       </div>
                     </div>

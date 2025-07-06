@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Gem } from "lucide-react";
 import logoPath from "@assets/1000119055-removebg-preview.png";
+import jewelorsLogoPath from "@assets/jewelors-logo.png";
 
 interface FooterProps {
   variant?: "light" | "dark";
@@ -98,9 +99,15 @@ export default function Footer({ variant = "dark" }: FooterProps) {
             </h3>
             <div className="space-y-3">
               <div className="flex items-center">
-                <Gem className={`w-4 h-4 mr-2 ${isDark ? "text-[#8c745c]" : "text-[#8c745c]"}`} />
+                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-3 shadow-sm">
+                  <img 
+                    src={jewelorsLogoPath} 
+                    alt="Jewelors Logo" 
+                    className="w-6 h-4 object-contain"
+                  />
+                </div>
                 <span className={`font-medium ${isDark ? "text-white" : "text-foreground"}`}>
-                  Jewelors.com
+                  Jewelors
                 </span>
               </div>
               <p className={`text-sm ${isDark ? "text-gray-400" : "text-muted-foreground"}`}>

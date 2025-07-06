@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Certificate } from "@shared/schema";
 import { useCallback } from "react";
+import jewelorsLogoPath from "@assets/jewelors-logo.png";
 
 interface CertificateResultProps {
   result: {
@@ -434,13 +435,17 @@ export default function CertificateResult({ result }: CertificateResultProps) {
             <div className="mt-8 p-6 bg-gradient-to-r from-[#8c745c]/5 to-[#8c745c]/10 rounded-lg border border-[#8c745c]/20">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-[#8c745c] to-[#a18966] rounded-full flex items-center justify-center">
-                    <Gem className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100">
+                    <img 
+                      src={jewelorsLogoPath} 
+                      alt="Jewelors Logo" 
+                      className="w-8 h-5 object-contain"
+                    />
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900">Shop Similar Certified Gemstones</h4>
                     <p className="text-sm text-gray-600">
-                      Browse our collection of authentic GIL-certified gemstones at Jewelors.com
+                      Browse our collection of authentic GIL-certified gemstones at Jewelors
                     </p>
                   </div>
                 </div>
