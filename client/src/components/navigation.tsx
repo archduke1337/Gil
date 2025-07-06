@@ -30,21 +30,32 @@ export default function Navigation() {
 
   return (
     <nav className="bg-white/90 backdrop-blur-sm border-0 rounded-b-3xl soft-shadow sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex justify-between items-center h-20">
+          {/* Enhanced Logo */}
           <Link href="/">
-            <div className="flex items-center space-x-2 sm:space-x-3 cursor-pointer interactive-element gpu-accelerated touch-friendly">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
+            <div className="flex items-center cursor-pointer interactive-element gpu-accelerated touch-friendly">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center mr-3 sm:mr-4">
                 <img 
                   src={logoPath} 
                   alt="GIL Logo" 
                   className="w-full h-full object-contain crisp-edges"
                 />
               </div>
-              <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold text-gray-900 text-ultra-smooth">GIL</h1>
-                <p className="text-xs text-gray-500 uppercase tracking-wide text-ultra-smooth">GEMOLOGICAL INSTITUTE LABORATORIES</p>
+              <div className="flex items-center">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 text-ultra-smooth tracking-tight mr-3 sm:mr-4">GIL</h1>
+                <div className="hidden sm:block h-8 w-px bg-gray-300 mr-3 sm:mr-4"></div>
+                <div className="hidden md:block">
+                  <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-widest font-medium text-ultra-smooth leading-tight whitespace-nowrap">
+                    GEMOLOGICAL INSTITUTE LABORATORIES
+                  </p>
+                </div>
+                <div className="block md:hidden">
+                  <p className="text-xs text-gray-600 uppercase tracking-wide font-medium text-ultra-smooth leading-tight">
+                    GEMOLOGICAL INSTITUTE<br />
+                    LABORATORIES
+                  </p>
+                </div>
               </div>
             </div>
           </Link>
