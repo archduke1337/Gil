@@ -449,13 +449,15 @@ export default function CertificateResult({ result }: CertificateResultProps) {
                     </p>
                   </div>
                 </div>
-                <Button 
-                  onClick={() => window.open('https://jewelors.com', '_blank', 'noopener,noreferrer')}
-                  className="bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-medium px-6 py-2 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+                <a 
+                  href="https://jewelors.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-gradient-to-r from-[#8c745c] to-[#a18966] hover:from-[#7a6650] hover:to-[#8c745c] text-white font-medium px-6 py-2 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
                 >
                   <ShoppingCart className="w-4 h-4 mr-2" />
                   Shop Now
-                </Button>
+                </a>
               </div>
             </div>
           </Card>

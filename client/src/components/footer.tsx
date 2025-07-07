@@ -113,8 +113,10 @@ export default function Footer({ variant = "dark" }: FooterProps) {
               <p className={`text-sm ${isDark ? "text-gray-400" : "text-muted-foreground"}`}>
                 Shop authentic GIL-certified gemstones from our trusted partner
               </p>
-              <button
-                onClick={() => window.open('https://jewelors.com', '_blank', 'noopener,noreferrer')}
+              <a
+                href="https://jewelors.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`text-sm transition-colors ${
                   isDark 
                     ? "text-[#8c745c] hover:text-white" 
@@ -122,7 +124,7 @@ export default function Footer({ variant = "dark" }: FooterProps) {
                 }`}
               >
                 Buy Certified Gemstones →
-              </button>
+              </a>
             </div>
           </div>
           
