@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the entire site
+Disallow: /admin*
+
+# Sitemap location
+Sitemap: https://gilab.info/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
