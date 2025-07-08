@@ -66,7 +66,7 @@ export default function CookieConsent() {
     // Only load if not already loaded
     if (!document.querySelector('script[src*="pagead/js/adsbygoogle.js"]')) {
       const script = document.createElement("script");
-      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX";
+      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9411632521970777";
       script.async = true;
       script.crossOrigin = "anonymous";
       document.head.appendChild(script);

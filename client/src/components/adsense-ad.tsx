@@ -53,7 +53,7 @@ export default function AdSenseAd({
       <ins
         className="adsbygoogle"
         style={defaultStyle}
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX" // Replace with your AdSense publisher ID
+        data-ad-client="ca-pub-9411632521970777"
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
         data-full-width-responsive={responsive ? "true" : "false"}
@@ -66,7 +66,7 @@ export default function AdSenseAd({
 export function HeaderBannerAd() {
   return (
     <AdSenseAd
-      adSlot="1234567890" // Replace with actual ad slot ID
+      adSlot="4098765432" // GIL Header Banner
       adFormat="banner"
       className="mb-6"
       style={{ height: "90px" }}
@@ -77,7 +77,7 @@ export function HeaderBannerAd() {
 export function SidebarAd() {
   return (
     <AdSenseAd
-      adSlot="1234567891" // Replace with actual ad slot ID
+      adSlot="1098765432" // GIL Sidebar Rectangle
       adFormat="rectangle"
       className="mb-4"
       style={{ height: "250px", maxWidth: "300px" }}
@@ -88,7 +88,7 @@ export function SidebarAd() {
 export function ContentAd() {
   return (
     <AdSenseAd
-      adSlot="1234567892" // Replace with actual ad slot ID
+      adSlot="2098765432" // GIL Content Native
       adFormat="auto"
       className="my-8"
       responsive={true}
@@ -99,7 +99,7 @@ export function ContentAd() {
 export function FooterAd() {
   return (
     <AdSenseAd
-      adSlot="1234567893" // Replace with actual ad slot ID
+      adSlot="3098765432" // GIL Footer Banner
       adFormat="banner"
       className="mt-6"
       style={{ height: "90px" }}

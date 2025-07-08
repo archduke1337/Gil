@@ -2,7 +2,7 @@
 # This file is required for Google AdSense compliance
 # Replace 'pub-XXXXXXXXXXXXXXXXX' with your actual AdSense publisher ID
 
-google.com, pub-XXXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-9411632521970777, DIRECT, f08c47fec0942fa0
 
 # Additional authorized advertising systems can be added here
 # Format: <advertising_system_domain>, <publisher_account_id>, <account_type>, <certification_authority_id>
