@@ -1,11 +1,40 @@
+# robots.txt for Gemological Institute Laboratories
+# This file helps search engines understand how to crawl your site
+
 User-agent: *
 Allow: /
+Allow: /verify
+Allow: /about
+Allow: /gem-encyclopedia
+Allow: /gem/*
+Allow: /analysis
+Allow: /gem-services
+Allow: /faqs
+Allow: /privacy-policy
+Allow: /terms-of-service
 
-# Allow all search engines to crawl the entire site
-Disallow: /admin*
+# Block admin areas from search engines
+Disallow: /admin
+Disallow: /api/
+
+# Allow access to important files
+Allow: /sitemap.xml
+Allow: /ads.txt
 
 # Sitemap location
 Sitemap: https://gilab.info/sitemap.xml
 
-# Crawl-delay for polite crawling
+# Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1
+
+# AdSense crawler
+User-agent: Mediapartners-Google
+Allow: /
+
+# Google AdSense verification crawler
+User-agent: AdsBot-Google
+Allow: /
+
+# Allow Google's mobile-friendly testing tool
+User-agent: Googlebot-Mobile
+Allow: /

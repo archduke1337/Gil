@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
+import { HeaderBannerAd, ContentAd } from "@/components/adsense-ad";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import jewelorsLogoPath from "@assets/jewelors-logo.png";
 import jewelryCraftingPath from "@assets/jewelry-crafting.jpg";
@@ -42,6 +43,9 @@ function Home() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
+      
+      {/* Header Ad Banner */}
+      <HeaderBannerAd />
       
       {/* Hero Section */}
       <section className="relative py-16 lg:py-24 overflow-hidden">
@@ -175,6 +179,9 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Content Ad between sections */}
+      <ContentAd />
 
       {/* Authorized Seller Section */}
       <section className="py-20 bg-gradient-to-r from-[#8c745c]/5 via-white to-[#8c745c]/10 overflow-hidden">

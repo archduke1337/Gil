@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { lazy, Suspense } from "react";
 import GemLoadingSpinner from "@/components/gem-loading-spinner";
+import CookieConsent from "@/components/cookie-consent";
 
 // Lazy load pages for faster initial load
 const Home = lazy(() => import("@/pages/home"));
@@ -14,6 +15,8 @@ const AnalysisGrading = lazy(() => import("@/pages/analysis-grading"));
 const GemServices = lazy(() => import("@/pages/gem-services"));
 const FAQs = lazy(() => import("@/pages/faqs"));
 const Admin = lazy(() => import("@/pages/admin"));
+const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
+const TermsOfService = lazy(() => import("@/pages/terms-of-service"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function LazyWrapper({ Component }: { Component: React.ComponentType }) {
@@ -40,6 +43,8 @@ function Router() {
       <Route path="/gem-services" component={() => <LazyWrapper Component={GemServices} />} />
       <Route path="/faqs" component={() => <LazyWrapper Component={FAQs} />} />
       <Route path="/admin" component={() => <LazyWrapper Component={Admin} />} />
+      <Route path="/privacy-policy" component={() => <LazyWrapper Component={PrivacyPolicy} />} />
+      <Route path="/terms-of-service" component={() => <LazyWrapper Component={TermsOfService} />} />
       <Route component={() => <LazyWrapper Component={NotFound} />} />
     </Switch>
   );
@@ -50,6 +55,7 @@ function App() {
     <TooltipProvider>
       <Toaster />
       <Router />
+      <CookieConsent />
     </TooltipProvider>
   );
 }

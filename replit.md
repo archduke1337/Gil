@@ -34,12 +34,14 @@ The GIL Diamond Verification Platform is a comprehensive gemological certificati
 ## Key Components
 
 ### Public Features
-1. **Home Page**: Professional landing page with GIL branding
-2. **Certificate Verification**: Public verification system using reference numbers
+1. **Home Page**: Professional landing page with GIL branding and strategic ad placements
+2. **Certificate Verification**: Public verification system using reference numbers with sidebar ads
 3. **Gem Encyclopedia**: Educational resource about gemstones and diamonds
 4. **Analysis & Grading**: Information about GIL's grading processes
 5. **Gem Services**: Professional services offered by GIL
 6. **FAQs**: Comprehensive frequently asked questions
+7. **Privacy Policy**: GDPR-compliant privacy policy for AdSense compliance
+8. **Terms of Service**: Comprehensive terms covering website usage and advertising
 
 ### Admin Features (Hidden)
 1. **Admin Dashboard**: Secure management interface accessible via direct URL
@@ -76,6 +78,13 @@ The GIL Diamond Verification Platform is a comprehensive gemological certificati
 - **certificates**: Comprehensive certificate data with GIL-specific fields
 - **admins**: Simple admin authentication table
 - Supports both legacy fields and modern GIL certificate format
+
+### AdSense Integration
+- **Cookie Consent**: GDPR-compliant cookie management with customizable preferences
+- **Ad Components**: Responsive AdSense ad units (header, sidebar, content, footer)
+- **Compliance**: Privacy policy, terms of service, ads.txt, and proper meta tags
+- **Strategic Placement**: Non-intrusive ad positioning optimized for user experience
+- **Revenue Optimization**: Professional gemological content targeting high-value audience
 
 ## External Dependencies
 
@@ -129,6 +138,7 @@ The GIL Diamond Verification Platform is a comprehensive gemological certificati
 - July 06, 2025. Integrated jewelors.com as authorized gemstone seller with comprehensive integration across navigation, homepage, footer, and certificate verification pages
 - January 07, 2025. Complete search engine optimization setup including robots.txt, sitemap.xml, enhanced meta tags, and comprehensive submission guide for all major search engines
 - January 07, 2025. Successfully submitted website to Google Search Console, Bing Webmaster Tools, and Yandex Webmaster with verified ownership and sitemap submissions
+- January 07, 2025. Comprehensive Google AdSense integration with GDPR-compliant cookie consent, privacy policy, terms of service, strategic ad placements, and full compliance setup ready for monetization
 
 ## User Preferences
 

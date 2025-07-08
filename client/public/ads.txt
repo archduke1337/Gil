@@ -1,0 +1,17 @@
+# ads.txt file for Gemological Institute Laboratories
+# This file is required for Google AdSense compliance
+# Replace 'pub-XXXXXXXXXXXXXXXXX' with your actual AdSense publisher ID
+
+google.com, pub-XXXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+
+# Additional authorized advertising systems can be added here
+# Format: <advertising_system_domain>, <publisher_account_id>, <account_type>, <certification_authority_id>
+
+# Example for additional ad networks (uncomment and replace with actual IDs when needed):
+# media.net, 8CU12345, DIRECT
+# contextual.media.net, 520031, RESELLER
+# appnexus.com, 123456, RESELLER, f5ab79cb980f11d1
+# openx.com, 123456789, RESELLER, 6ac7d578-cc1d-4e01-b969-1e4c8e2b28b6
+
+# For transparency and compliance, only authorized advertising partners should be listed
+# Last updated: January 7, 2025

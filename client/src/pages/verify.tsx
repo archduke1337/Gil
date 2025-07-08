@@ -3,6 +3,7 @@ import { Shield, Gem } from "lucide-react";
 import VerificationForm from "@/components/verification-form";
 import CertificateResult from "@/components/certificate-result";
 import Navigation from "@/components/navigation";
+import { SidebarAd, ContentAd } from "@/components/adsense-ad";
 import type { Certificate } from "@shared/schema";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import { usePageTitle } from "@/hooks/use-page-title";
@@ -40,17 +41,30 @@ export default function Verify() {
 
       {/* Verification Form Section */}
       <div className="py-16 bg-card">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-card rounded-3xl soft-shadow border-0 p-10">
-            <div className="text-center mb-10">
-              <h2 className="text-heading-md font-heading text-foreground mb-3 text-ultra-smooth">Enter Certificate Reference</h2>
-              <p className="text-body font-body text-muted-foreground text-ultra-smooth">Input your diamond certificate reference number to view details</p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Sidebar Ad */}
+            <div className="lg:col-span-1 order-last lg:order-first">
+              <SidebarAd />
             </div>
             
-            <VerificationForm onResult={handleVerificationResult} />
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              <div className="bg-card rounded-3xl soft-shadow border-0 p-10">
+                <div className="text-center mb-10">
+                  <h2 className="text-heading-md font-heading text-foreground mb-3 text-ultra-smooth">Enter Certificate Reference</h2>
+                  <p className="text-body font-body text-muted-foreground text-ultra-smooth">Input your diamond certificate reference number to view details</p>
+                </div>
+                
+                <VerificationForm onResult={handleVerificationResult} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Content Ad */}
+      <ContentAd />
 
       {/* Certificate Results */}
       {verificationResult && (

@@ -159,14 +159,26 @@ export default function Footer({ variant = "dark" }: FooterProps) {
               </li>
               <li>
                 <Link 
-                  href="/admin" 
+                  href="/privacy-policy" 
                   className={`transition-colors ${
                     isDark 
                       ? "text-gray-400 hover:text-white" 
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  Admin Panel
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/terms-of-service" 
+                  className={`transition-colors ${
+                    isDark 
+                      ? "text-gray-400 hover:text-white" 
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Terms of Service
                 </Link>
               </li>
             </ul>
