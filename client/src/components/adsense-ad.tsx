@@ -66,10 +66,11 @@ export default function AdSenseAd({
 export function HeaderBannerAd() {
   return (
     <AdSenseAd
-      adSlot="4098765432" // GIL Header Banner
-      adFormat="banner"
+      adSlot="7150312766" // GIL Header Banner - Real AdSense Slot
+      adFormat="auto"
       className="mb-6"
-      style={{ height: "90px" }}
+      style={{ minHeight: "90px" }}
+      responsive={true}
     />
   );
 }
@@ -77,10 +78,11 @@ export function HeaderBannerAd() {
 export function SidebarAd() {
   return (
     <AdSenseAd
-      adSlot="1098765432" // GIL Sidebar Rectangle
-      adFormat="rectangle"
+      adSlot="7150312766" // GIL Sidebar Rectangle - Using same slot for now
+      adFormat="auto"
       className="mb-4"
-      style={{ height: "250px", maxWidth: "300px" }}
+      style={{ minHeight: "250px", maxWidth: "300px" }}
+      responsive={true}
     />
   );
 }
@@ -88,7 +90,7 @@ export function SidebarAd() {
 export function ContentAd() {
   return (
     <AdSenseAd
-      adSlot="2098765432" // GIL Content Native
+      adSlot="7150312766" // GIL Content Native - Using same slot for now
       adFormat="auto"
       className="my-8"
       responsive={true}
@@ -99,10 +101,11 @@ export function ContentAd() {
 export function FooterAd() {
   return (
     <AdSenseAd
-      adSlot="3098765432" // GIL Footer Banner
-      adFormat="banner"
+      adSlot="7150312766" // GIL Footer Banner - Using same slot for now
+      adFormat="auto"
       className="mt-6"
-      style={{ height: "90px" }}
+      style={{ minHeight: "90px" }}
+      responsive={true}
     />
   );
 }
