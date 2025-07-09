@@ -5,13 +5,42 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import { HeaderBannerAd, ContentAd, FooterAd } from "@/components/adsense-ad";
+import { SEOMeta, StructuredData } from "@/components/seo-meta";
+import { OptimizedImage } from "@/components/image-optimized";
+import { InternalLinks } from "@/components/internal-links";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import jewelorsLogoPath from "@assets/jewelors-logo.png";
 import jewelryCraftingPath from "@assets/jewelry-crafting.jpg";
-import { usePageTitle } from "@/hooks/use-page-title";
 
 function Home() {
-  usePageTitle("Home - Diamond Certificate Verification");
+  // Organization structured data
+  const organizationData = {
+    name: "Gemological Institute Laboratories",
+    alternateName: "GIL",
+    url: "https://gilab.info",
+    logo: "https://gilab.info/attached_assets/1000119055-removebg-preview.png",
+    description: "Leading gemological institute providing professional diamond certification, grading, and verification services worldwide.",
+    sameAs: [
+      "https://jewelors.com"
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "US"
+    }
+  };
+
+  // Website structured data for search
+  const websiteData = {
+    url: "https://gilab.info",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://gilab.info/verify?search={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
   
   const features = [
     {
@@ -42,6 +71,14 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEOMeta
+        title="Professional Diamond Certificate Verification & Gemological Services"
+        description="GIL - Gemological Institute Laboratories offers expert diamond certification, gemstone grading, and instant certificate verification. Industry-leading accuracy with advanced 3D analysis technology."
+        keywords="diamond certificate verification, gemological institute, diamond grading, gemstone certification, GIL laboratory, diamond authentication, gem analysis, precious stone verification, diamond report check"
+        url="https://gilab.info"
+      />
+      <StructuredData type="Organization" data={organizationData} />
+      <StructuredData type="WebSite" data={websiteData} />
       <Navigation />
       
       {/* Header Ad Banner */}
@@ -60,9 +97,12 @@ function Home() {
               transition={{ duration: 0.8 }}
               className="mb-8"
             >
-              <img 
+              <OptimizedImage 
                 src={logoPath} 
-                alt="GIL - Gemological Institute Laboratories" 
+                alt="GIL - Gemological Institute Laboratories logo" 
+                width={128}
+                height={128}
+                priority
                 className="h-24 md:h-32 w-auto mx-auto mb-6"
               />
             </motion.div>
@@ -214,9 +254,11 @@ function Home() {
                   <div className="p-8 lg:p-12">
                     <div className="flex items-center mb-6">
                       <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4 shadow-lg border border-gray-100">
-                        <img 
+                        <OptimizedImage 
                           src={jewelorsLogoPath} 
-                          alt="Jewelors Logo" 
+                          alt="Jewelors - Authorized GIL Partner for Certified Gemstones" 
+                          width={48}
+                          height={32}
                           className="w-12 h-8 object-contain"
                         />
                       </div>
@@ -264,10 +306,11 @@ function Home() {
                   </div>
                   
                   <div className="relative h-64 md:h-full overflow-hidden">
-                    <img 
+                    <OptimizedImage 
                       src={jewelryCraftingPath} 
-                      alt="Professional Jewelry Crafting" 
+                      alt="Professional jewelry crafting and gemstone setting services" 
                       className="w-full h-full object-cover"
+                      placeholder="blur"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                     <div className="absolute bottom-6 left-6 text-white">
@@ -361,6 +404,9 @@ function Home() {
         </div>
       </section>
 
+      {/* Internal Links Section */}
+      <InternalLinks currentPage="/" className="bg-gray-50" />
+
       {/* Footer Ad */}
       <FooterAd />
 
@@ -369,9 +415,11 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <img 
+              <OptimizedImage 
                 src={logoPath} 
-                alt="GIL - Gemological Institute Laboratories" 
+                alt="GIL - Gemological Institute Laboratories footer logo" 
+                width={64}
+                height={64}
                 className="h-16 w-auto mb-4 brightness-0 invert"
               />
               <p className="text-gray-400 leading-relaxed">

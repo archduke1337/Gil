@@ -4,12 +4,14 @@ import VerificationForm from "@/components/verification-form";
 import CertificateResult from "@/components/certificate-result";
 import Navigation from "@/components/navigation";
 import { SidebarAd, ContentAd } from "@/components/adsense-ad";
+import { SEOMeta, StructuredData, SEOBreadcrumbs } from "@/components/seo-meta";
+import { OptimizedImage } from "@/components/image-optimized";
+import { InternalLinks } from "@/components/internal-links";
+import { generateBreadcrumbs } from "@/utils/seo-helpers";
 import type { Certificate } from "@shared/schema";
 import logoPath from "@assets/1000119055-removebg-preview.png";
-import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function Verify() {
-  usePageTitle("Certificate Verification - Diamond Report Check");
   const [verificationResult, setVerificationResult] = useState<{
     certificate: Certificate | null;
     found: boolean;
@@ -19,8 +21,33 @@ export default function Verify() {
     setVerificationResult(result);
   }, []);
 
+  const breadcrumbs = generateBreadcrumbs('/verify');
+
+  // Service structured data
+  const serviceData = {
+    name: "Diamond Certificate Verification Service",
+    provider: {
+      "@type": "Organization",
+      name: "Gemological Institute Laboratories"
+    },
+    serviceType: "Certificate Authentication",
+    description: "Instant online verification of diamond and gemstone certificates issued by GIL",
+    areaServed: "Worldwide",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "GIL Verification Services"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background">
+      <SEOMeta
+        title="Diamond Certificate Verification - Instant Authentication"
+        description="Verify the authenticity of your GIL diamond certificate instantly. Enter your certificate reference number to access detailed grading information and ensure your gemstone's authenticity."
+        keywords="verify diamond certificate, GIL certificate check, diamond report verification, gemstone authentication, certificate reference number, diamond grading report"
+        url="https://gilab.info/verify"
+      />
+      <StructuredData type="WebSite" data={serviceData} />
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-primary/15 to-primary/5 text-foreground py-16">
@@ -37,6 +64,11 @@ export default function Verify() {
             Verify the authenticity of your diamond certificate using our secure verification system
           </p>
         </div>
+      </div>
+
+      {/* Breadcrumbs */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <SEOBreadcrumbs items={breadcrumbs} />
       </div>
 
       {/* Verification Form Section */}
@@ -71,14 +103,19 @@ export default function Verify() {
         <CertificateResult result={verificationResult} />
       )}
 
+      {/* Internal Links Section */}
+      <InternalLinks currentPage="/verify" className="mt-12" />
+
       {/* Footer */}
       <footer className="text-white py-12" style={{ backgroundColor: '#101826' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <img 
+              <OptimizedImage 
                 src={logoPath} 
-                alt="GIL - Gemological Institute Laboratories" 
+                alt="GIL - Gemological Institute Laboratories verification page footer" 
+                width={64}
+                height={64}
                 className="h-16 w-auto mb-4 brightness-0 invert"
               />
               <p className="text-muted-foreground leading-relaxed">
