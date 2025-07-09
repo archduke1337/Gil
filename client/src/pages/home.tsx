@@ -8,6 +8,7 @@ import { HeaderBannerAd, ContentAd, FooterAd } from "@/components/adsense-ad";
 import { SEOMeta, StructuredData } from "@/components/seo-meta";
 import { OptimizedImage } from "@/components/image-optimized";
 import { InternalLinks } from "@/components/internal-links";
+import GIAStandardsSection from "@/components/gia-standards-section";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import jewelorsLogoPath from "@assets/jewelors-logo.png";
 import jewelryCraftingPath from "@assets/jewelry-crafting.jpg";
@@ -123,8 +124,8 @@ function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-body-lg font-body text-gray-600 mb-8 max-w-4xl mx-auto text-ultra-smooth"
             >
-              Leading the industry in diamond certification and gemological 
-              expertise with cutting-edge technology and uncompromising standards
+              Professional diamond and gemstone testing services following GIA standards 
+              with cutting-edge technology and uncompromising accuracy
             </motion.p>
             
             <motion.div
@@ -222,6 +223,9 @@ function Home() {
 
       {/* Content Ad between sections */}
       <ContentAd />
+
+      {/* GIA Standards Section */}
+      <GIAStandardsSection />
 
       {/* Authorized Seller Section */}
       <section className="py-20 bg-gradient-to-r from-[#8c745c]/5 via-white to-[#8c745c]/10 overflow-hidden">

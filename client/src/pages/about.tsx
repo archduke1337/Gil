@@ -305,7 +305,7 @@ export default function About() {
             <div className="bg-[#ece5dc]/30 p-8 rounded-2xl">
               <h4 className="text-xl font-semibold text-foreground mb-4">Certification Standards</h4>
               <p className="text-muted-foreground mb-6">
-                Our certification process follows the internationally recognized 4Cs grading system:
+                Our certification process follows the GIA internationally recognized 4Cs grading system:
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
@@ -415,16 +415,16 @@ export default function About() {
           
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h4 className="text-2xl font-bold text-foreground mb-6">Our Testing Methods</h4>
+              <h4 className="text-2xl font-bold text-foreground mb-6">GIA-Standard Testing Methods</h4>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-8 h-8 bg-[#ece5dc] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <Award className="w-4 h-4 text-[#8c745c]" />
                   </div>
                   <div>
-                    <h5 className="font-semibold text-foreground mb-2">Spectroscopic Analysis</h5>
+                    <h5 className="font-semibold text-foreground mb-2">GIA Spectroscopic Analysis</h5>
                     <p className="text-muted-foreground">
-                      Advanced spectroscopy techniques including FTIR, UV-Vis, and Raman spectroscopy
+                      Advanced GIA-approved spectroscopy techniques including FTIR, UV-Vis, and Raman spectroscopy for precise gemstone identification
                     </p>
                   </div>
                 </div>
@@ -458,7 +458,7 @@ export default function About() {
             <div className="bg-[#ece5dc]/30 p-8 rounded-2xl">
               <h4 className="text-xl font-semibold text-foreground mb-4">Grading Standards</h4>
               <p className="text-muted-foreground mb-6">
-                We follow internationally recognized grading systems:
+                We follow GIA internationally recognized grading systems:
               </p>
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-3 bg-white rounded-lg">

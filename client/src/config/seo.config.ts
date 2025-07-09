@@ -12,11 +12,14 @@ export const SEO_CONFIG = {
     'diamond grading',
     'gemstone certification',
     'GIL laboratory',
+    'GIA standards',
     'diamond authentication',
     'gem analysis',
     'precious stone verification',
     'diamond report check',
-    'certificate reference number'
+    'certificate reference number',
+    'GIA trained gemologist',
+    'GIA testing methods'
   ],
   defaultImage: '/attached_assets/1000119055-removebg-preview.png',
   twitterHandle: '@GILGemology',
@@ -40,8 +43,8 @@ export const SEO_CONFIG = {
 export const PAGE_SEO = {
   home: {
     title: 'Professional Diamond Certificate Verification & Gemological Services',
-    description: 'GIL - Gemological Institute Laboratories offers expert diamond certification, gemstone grading, and instant certificate verification. Industry-leading accuracy with advanced 3D analysis technology.',
-    keywords: 'diamond certificate, gemological institute, GIL, diamond grading, gemstone certification'
+    description: 'GIL - Gemological Institute Laboratories offers expert diamond certification following GIA standards, gemstone grading, and instant certificate verification. Industry-leading accuracy with GIA-trained gemologists.',
+    keywords: 'diamond certificate, gemological institute, GIL, GIA standards, diamond grading, gemstone certification, GIA trained gemologist'
   },
   verify: {
     title: 'Diamond Certificate Verification - Instant Authentication',
@@ -54,9 +57,9 @@ export const PAGE_SEO = {
     keywords: 'gem encyclopedia, diamond guide, gemstone information, precious stones, gem characteristics'
   },
   analysis: {
-    title: 'Diamond Analysis & Grading Services - Professional Gemological Testing',
-    description: 'Professional gemological analysis and grading services using state-of-the-art equipment. Get accurate diamond grading reports from GIL certified experts.',
-    keywords: 'diamond analysis, gemstone grading, professional testing, GIL grading, diamond report'
+    title: 'GIA Standard Diamond Analysis & Grading Services - Professional Gemological Testing',
+    description: 'Professional gemological analysis following GIA standards using state-of-the-art equipment. Get accurate diamond grading reports from GIA-trained experts.',
+    keywords: 'diamond analysis, GIA standards, gemstone grading, professional testing, GIL grading, diamond report, GIA trained gemologist'
   },
   services: {
     title: 'Advanced Gem Services - AI Analysis & Community Platform',

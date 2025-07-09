@@ -99,7 +99,7 @@ export default function AnalysisGrading() {
             Analysis & Grading Services
           </h1>
           <p className="text-body-lg font-body text-muted-foreground max-w-2xl mx-auto text-ultra-smooth">
-            Professional gemological analysis using advanced instruments and internationally recognized grading standards
+            Professional gemological analysis using advanced instruments following GIA methodologies and internationally recognized grading standards
           </p>
         </div>
       </div>
@@ -110,7 +110,7 @@ export default function AnalysisGrading() {
           <div className="text-center mb-12">
             <h2 className="text-display font-heading text-foreground mb-4 text-ultra-smooth">Our Analysis Process</h2>
             <p className="text-body-lg font-body text-muted-foreground max-w-3xl mx-auto text-ultra-smooth">
-              Every gemstone undergoes rigorous examination using state-of-the-art equipment and expert evaluation
+              Every gemstone undergoes rigorous examination using state-of-the-art equipment and GIA-trained expert evaluation
             </p>
           </div>
 
@@ -162,9 +162,9 @@ export default function AnalysisGrading() {
       <div className="py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-display font-heading text-foreground mb-6 text-ultra-smooth">Diamond Grading Standards</h2>
+            <h2 className="text-display font-heading text-foreground mb-6 text-ultra-smooth">GIA Diamond Grading Standards</h2>
             <p className="text-body-lg font-body text-muted-foreground text-ultra-smooth">
-              We follow the internationally recognized 4Cs system for diamond evaluation
+              We follow the GIA internationally recognized 4Cs system for precise diamond evaluation and certification
             </p>
           </div>
 
