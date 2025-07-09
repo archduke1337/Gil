@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
-import { HeaderBannerAd, ContentAd } from "@/components/adsense-ad";
+import { HeaderBannerAd, ContentAd, FooterAd } from "@/components/adsense-ad";
 import logoPath from "@assets/1000119055-removebg-preview.png";
 import jewelorsLogoPath from "@assets/jewelors-logo.png";
 import jewelryCraftingPath from "@assets/jewelry-crafting.jpg";
@@ -360,6 +360,9 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Footer Ad */}
+      <FooterAd />
 
       {/* Footer */}
       <footer className="text-white py-12" style={{ backgroundColor: '#101826' }}>

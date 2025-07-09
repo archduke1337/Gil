@@ -78,7 +78,7 @@ export function HeaderBannerAd() {
 export function SidebarAd() {
   return (
     <AdSenseAd
-      adSlot="7150312766" // GIL Sidebar Rectangle - Using same slot for now
+      adSlot="6670966465" // GIL Sidebar Rectangle - Second ad slot
       adFormat="auto"
       className="mb-4"
       style={{ minHeight: "250px", maxWidth: "300px" }}
@@ -101,7 +101,7 @@ export function ContentAd() {
 export function FooterAd() {
   return (
     <AdSenseAd
-      adSlot="7150312766" // GIL Footer Banner - Using same slot for now
+      adSlot="6670966465" // GIL Footer Banner - Second ad slot
       adFormat="auto"
       className="mt-6"
       style={{ minHeight: "90px" }}
