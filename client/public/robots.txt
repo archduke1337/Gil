@@ -8,6 +8,7 @@ Allow: /about
 Allow: /gem-encyclopedia
 Allow: /gem/*
 Allow: /analysis
+Allow: /analysis-grading
 Allow: /gem-services
 Allow: /faqs
 Allow: /privacy-policy
@@ -23,6 +24,7 @@ Allow: /ads.txt
 
 # Sitemap location
 Sitemap: https://gilab.info/sitemap.xml
+Sitemap: https://gilab.info/sitemap-new.xml
 
 # Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1
