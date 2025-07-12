@@ -60,17 +60,22 @@ export function getRelatedPages(currentPage: string): { title: string; url: stri
     '/': [
       { title: 'Verify Certificate', url: '/verify' },
       { title: 'Gem Encyclopedia', url: '/gem-encyclopedia' },
-      { title: 'Analysis & Grading', url: '/analysis' }
+      { title: 'Analysis & Grading', url: '/analysis-grading' }
     ],
     '/verify': [
-      { title: 'How Grading Works', url: '/analysis' },
+      { title: 'How Grading Works', url: '/analysis-grading' },
       { title: 'Learn About Gems', url: '/gem-encyclopedia' },
       { title: 'Our Services', url: '/gem-services' }
     ],
     '/gem-encyclopedia': [
-      { title: 'Get Your Gem Graded', url: '/analysis' },
+      { title: 'Get Your Gem Graded', url: '/analysis-grading' },
       { title: 'Verify Authenticity', url: '/verify' },
       { title: 'Advanced Services', url: '/gem-services' }
+    ],
+    '/analysis-grading': [
+      { title: 'Verify Your Certificate', url: '/verify' },
+      { title: 'Learn More About Gems', url: '/gem-encyclopedia' },
+      { title: 'View All Services', url: '/gem-services' }
     ],
     '/analysis': [
       { title: 'Verify Your Certificate', url: '/verify' },
@@ -94,6 +99,7 @@ export function generateBreadcrumbs(path: string): { name: string; url: string }
   const pathMap: { [key: string]: string } = {
     '/verify': 'Certificate Verification',
     '/gem-encyclopedia': 'Gem Encyclopedia',
+    '/analysis-grading': 'Analysis & Grading',
     '/analysis': 'Analysis & Grading',
     '/gem-services': 'Gem Services',
     '/faqs': 'FAQs',

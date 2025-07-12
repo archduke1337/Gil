@@ -39,6 +39,7 @@ function Router() {
       <Route path="/about" component={() => <LazyWrapper Component={About} />} />
       <Route path="/gem-encyclopedia" component={() => <LazyWrapper Component={GemEncyclopedia} />} />
       <Route path="/gem/:id" component={() => <LazyWrapper Component={GemDetail} />} />
+      <Route path="/analysis-grading" component={() => <LazyWrapper Component={AnalysisGrading} />} />
       <Route path="/analysis" component={() => <LazyWrapper Component={AnalysisGrading} />} />
       <Route path="/gem-services" component={() => <LazyWrapper Component={GemServices} />} />
       <Route path="/faqs" component={() => <LazyWrapper Component={FAQs} />} />
