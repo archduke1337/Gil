@@ -30,14 +30,22 @@ Your sitemap now includes these working URLs:
 - ✅ `https://gilab.info/privacy-policy` (Privacy Policy)
 - ✅ `https://gilab.info/terms-of-service` (Terms of Service)
 
-## 🚀 NEXT STEPS IN GOOGLE SEARCH CONSOLE
+## 🚀 IMMEDIATE FIX - USE NEW SITEMAP
 
-### Step 1: Resubmit Sitemap
+**Due to CDN caching issues, use this temporary sitemap URL:**
+
+### Step 1: Use Alternative Sitemap (IMMEDIATE FIX)
 1. Go to **Google Search Console**
 2. Navigate to **Sitemaps** section
 3. **Delete** the current sitemap entry
-4. **Add new sitemap**: `https://gilab.info/sitemap.xml`
+4. **Add new sitemap**: `https://gilab.info/sitemap-new.xml`
 5. Click **Submit**
+
+### Step 2: Test the New Sitemap
+The new sitemap bypasses the cache and should work immediately:
+- **URL**: `https://gilab.info/sitemap-new.xml`
+- **Format**: Clean, simple XML (no complex schemas)
+- **Routes**: All URLs confirmed working
 
 ### Step 2: Force Reindexing
 1. Go to **URL Inspection** tool

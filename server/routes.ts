@@ -56,6 +56,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.sendFile(path.join(process.cwd(), 'client/public/sitemap.xml'));
   });
 
+  app.get('/sitemap-new.xml', (req, res) => {
+    res.type('application/xml');
+    res.sendFile(path.join(process.cwd(), 'client/public/sitemap-new.xml'));
+  });
+
   // Certificate verification endpoint
   app.get("/api/certificates/verify/:referenceNumber", async (req, res) => {
     try {
