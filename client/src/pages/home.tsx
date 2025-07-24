@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Shield, Gem, Search, Microscope, FileCheck, Award, ChevronRight } from "lucide-react";
+import { Shield, Gem, Search, Microscope, FileCheck, Award, ChevronRight, Diamond, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -411,6 +411,110 @@ function Home() {
       {/* Internal Links Section */}
       <InternalLinks currentPage="/" className="bg-gray-50" />
 
+      {/* Educational Resources Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Educational Resources</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Learn from industry experts with our comprehensive guides and educational materials
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Card className="h-full hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="p-8">
+                  <Diamond className="w-12 h-12 text-[#8c745c] mb-4" />
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Diamond Education Guide</h3>
+                  <p className="text-gray-600 mb-6">
+                    Master the 4Cs of diamonds - Cut, Color, Clarity, and Carat. Learn about diamond shapes, 
+                    certification importance, and make informed purchasing decisions with our comprehensive guide.
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center text-gray-700">
+                      <ChevronRight className="w-4 h-4 mr-2 text-[#8c745c]" />
+                      Understanding the 4Cs in detail
+                    </li>
+                    <li className="flex items-center text-gray-700">
+                      <ChevronRight className="w-4 h-4 mr-2 text-[#8c745c]" />
+                      Diamond shapes and cutting styles
+                    </li>
+                    <li className="flex items-center text-gray-700">
+                      <ChevronRight className="w-4 h-4 mr-2 text-[#8c745c]" />
+                      Certification and grading standards
+                    </li>
+                    <li className="flex items-center text-gray-700">
+                      <ChevronRight className="w-4 h-4 mr-2 text-[#8c745c]" />
+                      Buying tips and price factors
+                    </li>
+                  </ul>
+                  <Link href="/diamond-education">
+                    <Button className="w-full bg-[#8c745c] hover:bg-[#725d47] text-white">
+                      Explore Diamond Education
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Card className="h-full hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="p-8">
+                  <Sparkles className="w-12 h-12 text-purple-600 mb-4" />
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Complete Gemstone Guide</h3>
+                  <p className="text-gray-600 mb-6">
+                    Discover the world of colored gemstones - from precious rubies and sapphires to rare 
+                    collector stones. Learn identification methods, treatments, and proper care techniques.
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center text-gray-700">
+                      <ChevronRight className="w-4 h-4 mr-2 text-purple-600" />
+                      Precious and semi-precious stones
+                    </li>
+                    <li className="flex items-center text-gray-700">
+                      <ChevronRight className="w-4 h-4 mr-2 text-purple-600" />
+                      Gemstone properties and origins
+                    </li>
+                    <li className="flex items-center text-gray-700">
+                      <ChevronRight className="w-4 h-4 mr-2 text-purple-600" />
+                      Identification techniques
+                    </li>
+                    <li className="flex items-center text-gray-700">
+                      <ChevronRight className="w-4 h-4 mr-2 text-purple-600" />
+                      Treatment disclosure and care
+                    </li>
+                  </ul>
+                  <Link href="/gemstone-guide">
+                    <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+                      Discover Gemstone Guide
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer Ad */}
       <FooterAd />
 
@@ -436,6 +540,8 @@ function Home() {
               <ul className="space-y-2">
                 <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
                 <li><Link href="/gem-encyclopedia" className="text-gray-400 hover:text-white transition-colors">Gem Encyclopedia</Link></li>
+                <li><Link href="/diamond-education" className="text-gray-400 hover:text-white transition-colors">Diamond Education</Link></li>
+                <li><Link href="/gemstone-guide" className="text-gray-400 hover:text-white transition-colors">Gemstone Guide</Link></li>
                 <li><Link href="/analysis" className="text-gray-400 hover:text-white transition-colors">Analysis & Grading</Link></li>
                 <li><Link href="/gem-services" className="text-gray-400 hover:text-white transition-colors">Gem Services</Link></li>
                 <li><Link href="/verify" className="text-gray-400 hover:text-white transition-colors">Report Check</Link></li>
