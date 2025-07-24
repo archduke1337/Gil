@@ -20,6 +20,7 @@ export default function Navigation() {
     { href: "/gem-encyclopedia", label: "Gem Encyclopedia" },
     { href: "/analysis", label: "Analysis & Grading" },
     { href: "/gem-services", label: "Gem Services" },
+    { href: "/blog", label: "Blog" },
     { href: "/verify", label: "Report Check" },
     { href: "/faqs", label: "FAQs" }
   ];

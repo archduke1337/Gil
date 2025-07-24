@@ -19,6 +19,8 @@ const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
 const TermsOfService = lazy(() => import("@/pages/terms-of-service"));
 const DiamondEducation = lazy(() => import("@/pages/diamond-education"));
 const GemstoneGuide = lazy(() => import("@/pages/gemstone-guide"));
+const Blog = lazy(() => import("@/pages/blog"));
+const BlogPost = lazy(() => import("@/pages/blog-post"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function LazyWrapper({ Component }: { Component: React.ComponentType }) {
@@ -50,6 +52,8 @@ function Router() {
       <Route path="/terms-of-service" component={() => <LazyWrapper Component={TermsOfService} />} />
       <Route path="/diamond-education" component={() => <LazyWrapper Component={DiamondEducation} />} />
       <Route path="/gemstone-guide" component={() => <LazyWrapper Component={GemstoneGuide} />} />
+      <Route path="/blog" component={() => <LazyWrapper Component={Blog} />} />
+      <Route path="/blog/:id" component={() => <LazyWrapper Component={BlogPost} />} />
       <Route component={() => <LazyWrapper Component={NotFound} />} />
     </Switch>
   );
