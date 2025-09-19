@@ -47,14 +47,14 @@ app.use((req, res, next) => {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "font-src 'self' https://fonts.gstatic.com; " +
     "img-src 'self' data: https: blob:; " +
-    "connect-src 'self' ws: wss:; " +
+    "connect-src 'self' ws: wss: https://vitals.vercel-insights.com; " +
     "frame-ancestors 'none';" :
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://replit.com; " +
+    "script-src 'self' 'unsafe-inline'; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "font-src 'self' https://fonts.gstatic.com; " +
-    "img-src 'self' data: https:; " +
-    "connect-src 'self'; " +
+    "img-src 'self' data: https: blob:; " +
+    "connect-src 'self' https://vitals.vercel-insights.com; " +
     "frame-ancestors 'none';";
   
   res.setHeader('Content-Security-Policy', csp);
