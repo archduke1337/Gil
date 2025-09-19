@@ -5,8 +5,8 @@ import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
 
-// Export for Vercel serverless
-export default app;
+// Export app for use in other modules
+export const expressApp = app;
 
 // Performance optimizations
 app.use(compression({
