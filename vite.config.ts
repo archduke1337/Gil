@@ -1,20 +1,28 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+
+// Vercel Analytics and Speed Insights plugin
+const vercelAnalytics = {
+  name: 'vercel-analytics',
+  transformIndexHtml: (html: string) => {
+    return html.replace(
+      '</head>',
+      `
+        <script>
+          window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        </script>
+        <script defer src="/_vercel/insights/script.js"></script>
+        <script defer src="/_vercel/speed-insights/script.js"></script>
+      </head>`
+    );
+  }
+};
 
 export default defineConfig({
   plugins: [
     react(),
-    runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
-      : []),
+    vercelAnalytics,
   ],
   resolve: {
     alias: {
@@ -23,9 +31,32 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  root: path.resolve(import.meta.dirname, "client"),
+  root: "client",
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/client"),
+    outDir: "../dist/client",
     emptyOutDir: true,
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-slot', '@radix-ui/react-label'],
+        }
+      }
+    }
   },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom'],
+  },
+  server: {
+    headers: {
+      'Cache-Control': 'public, max-age=31536000',
+    },
+  },
+  define: {
+    'process.env.VERCEL': JSON.stringify(process.env.VERCEL),
+    'process.env.VERCEL_ENV': JSON.stringify(process.env.VERCEL_ENV),
+  },
+  // Vercel-specific optimizations
+  base: process.env.VERCEL ? '/' : '/',
 });
