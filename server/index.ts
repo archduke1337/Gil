@@ -1,5 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import compression from "compression";
+import path from "path";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
@@ -122,7 +123,10 @@ async function getApp() {
     if (app.get("env") === "development") {
       await setupVite(app, await serverPromise);
     } else {
-      serveStatic(app);
+      app.use(express.static('dist/client'));
+      app.get('*', (_req, res) => {
+        res.sendFile(path.resolve('dist/client/index.html'));
+      });
     }
   }
   return app;
