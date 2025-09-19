@@ -1,6 +1,5 @@
 import { Switch, Route } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { lazy, Suspense } from "react";
 import GemLoadingSpinner from "@/components/gem-loading-spinner";
 import CookieConsent from "@/components/cookie-consent";
@@ -61,11 +60,11 @@ function Router() {
 
 function App() {
   return (
-    <TooltipProvider>
+    <>
       <Toaster />
       <Router />
       <CookieConsent />
-    </TooltipProvider>
+    </>
   );
 }
 
