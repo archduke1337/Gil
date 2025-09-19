@@ -44,23 +44,23 @@ export async function registerRoutes(app: Express): Promise<Express> {
   app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
   // SEO routes for search engines
-  app.get('/robots.txt', (req, res) => {
+  app.get('/robots.txt', (req: express.Request, res: express.Response) => {
     res.type('text/plain');
     res.sendFile(path.join(process.cwd(), 'client/public/robots.txt'));
   });
 
-  app.get('/sitemap.xml', (req, res) => {
+  app.get('/sitemap.xml', (req: express.Request, res: express.Response) => {
     res.type('application/xml');
     res.sendFile(path.join(process.cwd(), 'client/public/sitemap.xml'));
   });
 
-  app.get('/sitemap-new.xml', (req, res) => {
+  app.get('/sitemap-new.xml', (req: express.Request, res: express.Response) => {
     res.type('application/xml');
     res.sendFile(path.join(process.cwd(), 'client/public/sitemap-new.xml'));
   });
 
   // Certificate verification endpoint
-  app.get("/api/certificates/verify/:referenceNumber", async (req, res) => {
+  app.get("/api/certificates/verify/:referenceNumber", async (req: express.Request, res: express.Response) => {
     try {
       const { referenceNumber } = req.params;
       const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
@@ -131,7 +131,7 @@ export async function registerRoutes(app: Express): Promise<Express> {
   });
 
   // Get certificate file
-  app.get("/api/certificates/file/:referenceNumber", async (req, res) => {
+  app.get("/api/certificates/file/:referenceNumber", async (req: express.Request, res: express.Response) => {
     try {
       const { referenceNumber } = req.params;
       const certificate = await storage.getCertificateByReference(referenceNumber);
@@ -154,7 +154,7 @@ export async function registerRoutes(app: Express): Promise<Express> {
   });
 
   // Admin login endpoint
-  app.post("/api/admin/login", async (req, res) => {
+  app.post("/api/admin/login", async (req: express.Request, res: express.Response) => {
     try {
       const { username, password } = req.body;
       
@@ -400,7 +400,7 @@ export async function registerRoutes(app: Express): Promise<Express> {
 
 
   // Get all certificates (admin only)
-  app.get("/api/certificates", async (req, res) => {
+  app.get("/api/certificates", async (req: express.Request, res: express.Response) => {
     try {
       const certificates = await storage.getAllCertificates();
       res.json({ certificates });
@@ -411,7 +411,7 @@ export async function registerRoutes(app: Express): Promise<Express> {
   });
 
   // Delete certificate (admin only)
-  app.delete("/api/certificates/:id", async (req, res) => {
+  app.delete("/api/certificates/:id", async (req: express.Request, res: express.Response) => {
     try {
       const id = parseInt(req.params.id);
       
