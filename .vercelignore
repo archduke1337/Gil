@@ -6,8 +6,8 @@ node_modules
 .vscode
 .idea
 coverage
-dist
 client/node_modules
+uploads/
 client/dist
 uploads/*
 !uploads/.gitkeep
