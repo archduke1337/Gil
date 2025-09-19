@@ -104,55 +104,28 @@ app.use((req, res, next) => {
   next();
 });
 
-(async () => {
-  try {
-    const server = await registerRoutes(app);
 
+// Vercel expects an exported handler, not a server.listen
+let serverPromise: Promise<any> | null = null;
+async function getApp() {
+  if (!serverPromise) {
+    serverPromise = registerRoutes(app);
     app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
       const status = err.status || err.statusCode || 500;
       const message = err.message || "Internal Server Error";
-
       res.status(status).json({ message });
       console.error('Server error:', err);
     });
-
-    // importantly only setup vite in development and after
-    // setting up all the other routes so the catch-all route
-    // doesn't interfere with the other routes
     if (app.get("env") === "development") {
-      await setupVite(app, server);
+      await setupVite(app, await serverPromise);
     } else {
       serveStatic(app);
     }
-
-    // ALWAYS serve the app on port 5000
-    // this serves both the API and the client.
-    // It is the only port that is not firewalled.
-    const port = 5000;
-    
-    server.on('error', (err: any) => {
-      if (err.code === 'EADDRINUSE') {
-        console.error(`Port ${port} is already in use. Attempting to kill existing processes...`);
-        process.exit(1);
-      } else {
-        console.error('Server error:', err);
-      }
-    });
-
-    server.listen(port, "0.0.0.0", () => {
-      log(`serving on port ${port}`);
-    });
-
-    process.on('uncaughtException', (err) => {
-      console.error('Uncaught exception:', err);
-    });
-
-    process.on('unhandledRejection', (reason, promise) => {
-      console.error('Unhandled rejection at:', promise, 'reason:', reason);
-    });
-
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
   }
-})();
+  return app;
+}
+
+export default async function handler(req: any, res: any) {
+  const app = await getApp();
+  app(req, res);
+}
