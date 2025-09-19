@@ -9,7 +9,7 @@ const app = express();
 app.use(compression({
   level: 6,
   threshold: 1024,
-  filter: (req, res) => {
+  filter: (req: express.Request, res: express.Response) => {
     if (req.headers['x-no-compression']) {
       return false;
     }
@@ -18,7 +18,7 @@ app.use(compression({
 }));
 
 // Security headers middleware
-app.use((req, res, next) => {
+app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
   // Force HTTPS redirect in production only
   const isProduction = process.env.NODE_ENV === 'production';
   const isSecure = req.secure || req.header('x-forwarded-proto') === 'https';
@@ -74,13 +74,13 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
-app.use((req, res, next) => {
+app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
   const start = Date.now();
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
 
   const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
+  res.json = function (bodyJson: any, ...args: any[]) {
     capturedJsonResponse = bodyJson;
     return originalResJson.apply(res, [bodyJson, ...args]);
   };
@@ -125,7 +125,8 @@ async function getApp() {
   return app;
 }
 
-export default async function handler(req: any, res: any) {
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   const app = await getApp();
   app(req, res);
 }
