@@ -1,5 +1,4 @@
 import express, { type Express, type Request } from "express";
-import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertCertificateSchema } from "@shared/schema";
 import multer from "multer";
@@ -38,8 +37,7 @@ const upload = multer({
   },
 });
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  const httpServer = createServer(app);
+export async function registerRoutes(app: Express): Promise<Express> {
 
   // Express middleware
   app.use(express.json({ limit: "50mb" }));
@@ -434,5 +432,5 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  return httpServer;
+  return app;
 }
