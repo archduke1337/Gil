@@ -5,6 +5,9 @@ import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
 
+// Export for Vercel serverless
+export default app;
+
 // Performance optimizations
 app.use(compression({
   level: 6,
