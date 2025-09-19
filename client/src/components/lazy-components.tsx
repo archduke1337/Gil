@@ -2,13 +2,13 @@ import { lazy, Suspense } from 'react';
 import GemLoadingSpinner from './gem-loading-spinner';
 
 // Lazy load heavy components for faster initial page load
-export const LazyAdvancedDashboard = lazy(() => import('./advanced-dashboard'));
-export const LazyCertificateGenerator = lazy(() => import('./certificate-generator'));
-export const LazyEnhancedGILCertificateGenerator = lazy(() => import('./enhanced-gil-certificate-generator'));
-export const LazyBulkUpload = lazy(() => import('./bulk-upload'));
-export const LazyARVisualization = lazy(() => import('./ar-visualization'));
-export const LazyARGemIdentification = lazy(() => import('./ar-gem-identification'));
-export const LazyGemRecommendationEngine = lazy(() => import('./gem-recommendation-engine'));
+export const LazyAdvancedDashboard = lazy(() => import('./advanced-dashboard').then(module => ({ default: module.default })));
+export const LazyCertificateGenerator = lazy(() => import('./certificate-generator').then(module => ({ default: module.default })));
+export const LazyEnhancedGILCertificateGenerator = lazy(() => import('./enhanced-gil-certificate-generator').then(module => ({ default: module.default })));
+export const LazyBulkUpload = lazy(() => import('./bulk-upload').then(module => ({ default: module.default })));
+export const LazyARVisualization = lazy(() => import('./ar-visualization').then(module => ({ default: module.default })));
+export const LazyARGemIdentification = lazy(() => import('./ar-gem-identification').then(module => ({ default: module.default })));
+export const LazyGemRecommendationEngine = lazy(() => import('./gem-recommendation-engine').then(module => ({ default: module.default })));
 export const LazyGemRarityHeatmap = lazy(() => import('./gem-rarity-heatmap'));
 export const LazyCommunityShowcase = lazy(() => import('./community-showcase'));
 export const LazyEnhancedGemAnalysis = lazy(() => import('./enhanced-gem-analysis'));

@@ -200,17 +200,14 @@ export async function registerRoutes(app: Express): Promise<Express> {
                           certificateAge < 1095 ? "Medium" : "Standard";
 
       // Generate security hash for verification
-  import crypto from "crypto";
-  const certificateHash = crypto;
-        .createHash('sha256')
-        .update(JSON.stringify({
-          reportNumber: certificate.reportNumber,
-          caratWeight: certificate.caratWeight,
-          colorGrade: certificate.colorGrade,
-          clarityGrade: certificate.clarityGrade,
-          cutGrade: certificate.cutGrade
-        }))
-        .digest('hex');
+      const hashInput = JSON.stringify({
+        reportNumber: certificate.reportNumber,
+        caratWeight: certificate.caratWeight,
+        colorGrade: certificate.colorGrade,
+        clarityGrade: certificate.clarityGrade,
+        cutGrade: certificate.cutGrade
+      });
+      const hash = crypto.createHash('sha256').update(hashInput).digest('hex');
 
       // Verification history (in production, store in database)
       const verificationHistory = [
@@ -231,7 +228,7 @@ export async function registerRoutes(app: Express): Promise<Express> {
         tamperDetected: false,
         certificateAge,
         verificationHistory,
-        certificateHash
+        hash // Already computed earlier
       };
 
       res.json(verificationResult);

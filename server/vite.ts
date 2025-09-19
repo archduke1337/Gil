@@ -36,12 +36,15 @@ export async function setupVite(app: Express, server: Server) {
         process.exit(1);
       },
     },
-    server: serverOptions,
+    server: {
+      ...serverOptions,
+      allowedHosts: ['localhost']
+    },
     appType: "custom",
   });
 
   app.use(vite.middlewares);
-  app.use("*", async (req, res, next) => {
+  app.use("*", async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     const url = req.originalUrl;
 
     try {

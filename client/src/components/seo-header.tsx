@@ -73,9 +73,9 @@ export function PerformanceMonitor() {
         // Cumulative Layout Shift
         let clsValue = 0;
         const clsObserver = new PerformanceObserver((list) => {
-          for (const entry of list.getEntries()) {
-            if (!entry.hadRecentInput) {
-              clsValue += entry.value;
+          for (const entry of list.getEntries() as PerformanceEntry[]) {
+            if (!(entry as any).hadRecentInput) {
+              clsValue += (entry as any).value;
               console.log('CLS:', clsValue);
             }
           }
