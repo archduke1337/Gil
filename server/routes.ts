@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import express, { type Express, type Request } from "express";
 import { storage } from "./storage";
 import { insertCertificateSchema } from "@shared/schema";
@@ -8,6 +9,7 @@ import { z } from "zod";
 
 interface MulterRequest extends Request {
   file?: Express.Multer.File;
+  body: any;
 }
 
 // Configure multer for file uploads
@@ -177,7 +179,7 @@ export async function registerRoutes(app: Express): Promise<Express> {
   });
 
   // Enhanced certificate verification with security features
-  app.get("/api/certificates/verify/:reportNumber", async (req, res) => {
+  app.get("/api/certificates/verify/:reportNumber", async (req: express.Request, res: express.Response) => {
     try {
       const { reportNumber } = req.params;
       const certificate = await storage.getCertificateByReference(reportNumber);
@@ -198,7 +200,8 @@ export async function registerRoutes(app: Express): Promise<Express> {
                           certificateAge < 1095 ? "Medium" : "Standard";
 
       // Generate security hash for verification
-      const certificateHash = require('crypto')
+  import crypto from "crypto";
+  const certificateHash = crypto;
         .createHash('sha256')
         .update(JSON.stringify({
           reportNumber: certificate.reportNumber,
@@ -242,7 +245,7 @@ export async function registerRoutes(app: Express): Promise<Express> {
   });
 
   // Dashboard analytics endpoint
-  app.get("/api/dashboard/stats", async (req, res) => {
+  app.get("/api/dashboard/stats", async (req: express.Request, res: express.Response) => {
     try {
       const certificates = await storage.getAllCertificates();
       const totalCertificates = certificates.length;
@@ -310,7 +313,7 @@ export async function registerRoutes(app: Express): Promise<Express> {
   });
 
   // Upload certificate endpoint
-  app.post("/api/certificates/upload", upload.single('certificateFile'), async (req: MulterRequest, res) => {
+  app.post("/api/certificates/upload", upload.single('certificateFile'), async (req: MulterRequest, res: express.Response) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: "Certificate file is required" });
