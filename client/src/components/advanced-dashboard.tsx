@@ -1,5 +1,19 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import type { LucideIcon } from 'lucide-react';
+
+interface CustomCardProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+const CustomCard = ({ className, children }: CustomCardProps) => {
+  return (
+    <Card className={className}>
+      {children}
+    </Card>
+  );
+};
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -15,50 +29,56 @@ import {
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 
-interface DashboardStats {
-  totalCertificates: number;
-  activeCertificates: number;
-  verifications: number;
-  securityLevel: string;
-  monthlyGrowth: number;
-  recentActivity: Array<{
-    id: string;
-    type: string;
-    description: string;
-    timestamp: string;
-    status: string;
-  }>;
-  certificatesByGrade: Array<{
-    grade: string;
-    count: number;
-    percentage: number;
-  }>;
-  monthlyStats: Array<{
-    month: string;
-    certificates: number;
-    verifications: number;
-    revenue: number;
-  }>;
+import type { DashboardData } from "@/types/dashboard";
+
+// Mock data shape matches DashboardData interface
+const mockData: DashboardData = {
+  totalCertificates: 1250,
+  monthlyGrowth: 12.5,
+  verifications: 850,
+  securityLevel: "High",
+  activeCertificates: 1150,
+  monthlyStats: [
+    { month: "Jan", certificates: 120, verifications: 95 },
+    { month: "Feb", certificates: 135, verifications: 102 },
+    // Add more months as needed
+  ],
+  certificatesByGrade: [
+    { grade: "Excellent", count: 450 },
+    { grade: "Very Good", count: 350 },
+    // Add more grades as needed
+  ],
   qualityMetrics: {
-    averageProcessingTime: number;
-    accuracyRate: number;
-    customerSatisfaction: number;
-    errorRate: number;
-  };
-  popularShapes: Array<{
-    shape: string;
-    count: number;
-    trend: number;
-  }>;
-}
+    clarity: 92,
+    color: 88,
+    cut: 95,
+    overall: 91.6
+  },
+  popularShapes: [
+    { shape: "Round", count: 450 },
+    { shape: "Princess", count: 280 },
+    // Add more shapes as needed
+  ],
+  recentActivity: [
+    {
+      id: "1",
+      type: "certification",
+      description: "New certificate issued",
+      timestamp: "2025-09-20T10:30:00Z",
+      user: "John Doe"
+    },
+    // Add more activities as needed
+  ]
+};
 
 export default function AdvancedDashboard() {
   const [dateRange, setDateRange] = useState("30d");
-  const [selectedMetric, setSelectedMetric] = useState("certificates");
+  const [selectedMetric, setSelectedMetric] = useState<"certificates" | "verifications">("certificates");
 
-  const { data: stats, isLoading } = useQuery({
+  const { data: stats, isLoading } = useQuery<DashboardData>({
     queryKey: ['/api/dashboard/stats', dateRange],
     refetchInterval: 30000, // Refresh every 30 seconds
+    initialData: mockData // Use mock data as initial data
   });
 
   const mockStats: DashboardStats = {
@@ -119,7 +139,7 @@ export default function AdvancedDashboard() {
     ]
   };
 
-  const currentStats = stats || mockStats;
+  const currentStats = stats || mockData;
 
   const COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
 
@@ -145,7 +165,7 @@ export default function AdvancedDashboard() {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white">
+        <CustomCard className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -159,9 +179,9 @@ export default function AdvancedDashboard() {
               <Diamond className="w-12 h-12 text-emerald-200" />
             </div>
           </CardContent>
-        </Card>
+        </CustomCard>
 
-        <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+        <CustomCard className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -175,9 +195,9 @@ export default function AdvancedDashboard() {
               <Shield className="w-12 h-12 text-blue-200" />
             </div>
           </CardContent>
-        </Card>
+        </CustomCard>
 
-        <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white">
+        <CustomCard className="bg-gradient-to-br from-purple-500 to-purple-600 text-white">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -191,9 +211,9 @@ export default function AdvancedDashboard() {
               <Award className="w-12 h-12 text-purple-200" />
             </div>
           </CardContent>
-        </Card>
+        </CustomCard>
 
-        <Card className="bg-gradient-to-br from-orange-500 to-orange-600 text-white">
+        <CustomCard className="bg-gradient-to-br from-orange-500 to-orange-600 text-white">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -207,13 +227,13 @@ export default function AdvancedDashboard() {
               <FileText className="w-12 h-12 text-orange-200" />
             </div>
           </CardContent>
-        </Card>
+        </CustomCard>
       </div>
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Monthly Trends */}
-        <Card>
+        <CustomCard>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <TrendingUp className="w-5 h-5" />
@@ -250,7 +270,7 @@ export default function AdvancedDashboard() {
         </Card>
 
         {/* Color Grade Distribution */}
-        <Card>
+        <CustomCard>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Diamond className="w-5 h-5" />
