@@ -36,6 +36,7 @@ export default defineConfig({
     outDir: "../dist/client",
     emptyOutDir: true,
     sourcemap: true,
+    chunkSizeWarningLimit: 2000, // Size in kB (2MB)
     rollupOptions: {
       output: {
         manualChunks(id) {
