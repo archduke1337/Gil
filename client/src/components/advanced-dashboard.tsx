@@ -13,6 +13,23 @@ const CustomCard = ({ className, children }: CustomCardProps) => {
       {children}
     </Card>
   );
+};            </div>
+          </CardContent>
+        </CustomCard>
+      </div>
+
+      {/* Recent Activity */}
+      <CustomCard>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Activity className="w-5 h-5" />
+              <span>Recent Activity</span>
+            </CardTitle>
+            <CardDescription>Latest system activities and events</CardDescription>
+          </CardHeader>
+          <CardContent>ren}
+    </Card>
+  );
 };
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -299,13 +316,13 @@ export default function AdvancedDashboard() {
               </PieChart>
             </ResponsiveContainer>
           </CardContent>
-        </Card>
+        </CustomCard>
       </div>
 
       {/* Quality Metrics & Popular Shapes */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Quality Metrics */}
-        <Card>
+        <CustomCard>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Award className="w-5 h-5" />
@@ -346,10 +363,10 @@ export default function AdvancedDashboard() {
               <Progress value={100 - (currentStats.qualityMetrics.errorRate * 33.33)} className="h-2" />
             </div>
           </CardContent>
-        </Card>
+        </CustomCard>
 
         {/* Popular Shapes */}
-        <Card>
+        <CustomCard>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Diamond className="w-5 h-5" />
@@ -386,7 +403,7 @@ export default function AdvancedDashboard() {
       </div>
 
       {/* Recent Activity */}
-      <Card>
+      <CustomCard>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <Activity className="w-5 h-5" />
@@ -420,7 +437,7 @@ export default function AdvancedDashboard() {
             ))}
           </div>
         </CardContent>
-      </Card>
+      </CustomCard>
     </div>
   );
 }
