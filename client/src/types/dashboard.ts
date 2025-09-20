@@ -14,20 +14,22 @@ export interface DashboardData {
     count: number;
   }>;
   qualityMetrics: {
-    clarity: number;
-    color: number;
-    cut: number;
-    overall: number;
+    averageProcessingTime: number;
+    accuracyRate: number;
+    customerSatisfaction: number;
+    errorRate: number;
   };
   popularShapes: Array<{
     shape: string;
     count: number;
+    trend: number;
   }>;
   recentActivity: Array<{
     id: string;
     type: string;
     description: string;
     timestamp: string;
+    status: 'completed' | 'success' | 'passed' | 'pending';
     user?: string;
   }>;
 }
