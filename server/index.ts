@@ -9,6 +9,9 @@ const app = express();
 // Export app for use in other modules
 export const expressApp = app;
 
+// Import certificate manager
+import { certificateManager } from './certificates';
+
 // Performance optimizations
 app.use(compression({
   level: 6,
@@ -108,6 +111,26 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
   next();
 });
 
+
+// Start HTTPS server in production
+if (process.env.NODE_ENV === 'production' && !process.env.VERCEL) {
+  const httpsPort = process.env.HTTPS_PORT ? parseInt(process.env.HTTPS_PORT) : 443;
+  const httpPort = process.env.PORT ? parseInt(process.env.PORT) : 80;
+  
+  // Start HTTPS server
+  certificateManager.startHttpsServer(httpsPort);
+  
+  // Start HTTP server for redirect
+  app.listen(httpPort, () => {
+    log(`HTTP server running on port ${httpPort} (redirecting to HTTPS)`, 'server');
+  });
+} else if (process.env.NODE_ENV === 'development') {
+  // In development, just start HTTP server
+  const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+  app.listen(port, () => {
+    log(`Development server running on port ${port}`, 'server');
+  });
+}
 
 // Vercel expects an exported handler, not a server.listen
 let serverPromise: Promise<any> | null = null;
